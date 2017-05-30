@@ -1,0 +1,38 @@
+#!/bin/sh
+# my_ide as my default sofeware development environment
+# config tmux multi-win and multi-pan including tmux, vim and execution enviroment
+# name     : tmuxen， tmux environment made easy
+# author   : zhujiang m.zhujiang@icloud.com
+# license  : GPL
+# created  : 2012 Jul 01
+# modified : 2016 Jun 10
+#
+
+cmd=$(which tmux) # tmux path
+session=codefun   # session name
+
+if [ -z $cmd ]; then
+  echo "You need to install tmux."
+  # sudo apt-get install -y  tmux
+  brew install tmux
+  # exit 1
+fi
+
+$cmd has -t $session
+
+if [ $? != 0 ]; then
+
+# todo: config tmux as ide
+$cmd new -d -n vim -s $session "vim"
+#   $cmd splitw -v -p 20 -t $session "pry"
+#   $cmd neww -n mutt -t $session "mutt"
+#   $cmd neww -n irssi -t $session "irssi"
+#   $cmd neww -n cmus -t $session "cmus"
+#   $cmd neww -n zsh -t $session "zsh"
+#   $cmd splitw -h -p 50 -t $session "zsh"
+#   $cmd selectw -t $session:5
+fi
+
+$cmd att -t $session
+
+exit 0

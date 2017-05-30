@@ -1,0 +1,8 @@
+#!/bin/sh
+
+script_path=$(cd "$(dirname "$0")"; cd ../dotfiles/; pwd)
+echo $dotfiles_path
+
+
+ln -s $dotfiles_path/.tmux.conf ${HOME}/.tmux.conf
+ln -s $dotfiles_path/.vimrc ${HOME}/.vimrc

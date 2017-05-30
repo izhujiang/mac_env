@@ -1,0 +1,18 @@
+#!/bin/sh
+curdir=$(pwd)
+echo $curdir
+
+SCRIPT_PATH=$(cd "$(dirname "$0")"; pwd)
+cd ${HOME}
+git clone --recursive -j8 git@github.com:izhujiang/vim-plugin.git .vim
+
+# assuming .vimrc is linked or prepared during the install procesing
+# todo: do check .vimrc
+vim +PluginInstall +qall
+
+# compile YouCompleteMe plugin with propert arguments after installation.
+cd .vim/bundle/YouCompleteMe
+./install.py --clang-completer --gocode-completer
+./run_tests.py
+cd $SCRIPT_PATP
+
