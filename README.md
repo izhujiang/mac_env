@@ -1,2 +1,3 @@
-# mac_env
-Building and configure for my mac_os 
+# Building and configure for my workspace and supporting tool, packages, and  deveolpment enviroment in macos and linux(ubuntu)  
+
+# something to declare...
