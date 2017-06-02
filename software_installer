@@ -1,25 +1,9 @@
-"#!/bin/sh"
+# install specific platform tools and packages according to platform
+# if ...
+  ./platforms/mac/software_installer
+# else ...
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-brew install git
-brew install wget
-brew install cmake
-brew install python
-brew install python3
-brew install tmux
-
-# with python2.* support
-# brew install vim 
-# brew remove vim
-# clean up cache if necessay
-# brew cleanup
-# install vim with python3 support
-brew install vim --with-python3
-
-# brew install zsh
-brew install go
-
+# endif
 
 ./configs/all_configs
 

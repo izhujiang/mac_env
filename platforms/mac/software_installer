@@ -1,0 +1,27 @@
+#!/bin/sh
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew install git
+brew install wget
+brew install cmake
+brew install python
+brew install python3
+brew install tmux
+
+# with python2.* support
+# brew install vim 
+# brew remove vim
+# clean up cache if necessay
+# brew cleanup
+# install vim with python3 support
+brew install vim --with-python3
+
+# brew install zsh
+brew install go
+
+
+./configs/all_configs
+
+# setup my dev_env with tmux and vim 
+ln -s apps/my_ide ${HOME}/my_ide
