@@ -12,7 +12,11 @@ vim +PluginInstall +qall
 
 # compile YouCompleteMe plugin with propert arguments after installation.
 cd .vim/bundle/YouCompleteMe
-./install.py --clang-completer --gocode-completer
-./run_tests.py
+# install ycm with python2.* support
+# ./install.py --clang-completer --gocode-completer
+# ./run_tests.py
+# install ycm with python3 support
+python3 install.py --clang-completer --gocode-completer
+python3 run_tests.py
 cd $SCRIPT_PATP
 
