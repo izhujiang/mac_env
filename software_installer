@@ -1,11 +1,18 @@
+#!/bin/sh 
+
+SYSOS=`uname -s`
+
 # install specific platform tools and packages according to platform
-# if ...
-  ./platforms/mac/software_installer
-# else ...
+if [ $SYSOS="Linux" ];then
+  echo "Working on Linux"
+  # source ./platforms/mac/software_installer
+elif [ $SYSOS == "Darwin" ];then
+  echo "Working on MacOS"
+else
+  echo "other OS: $SYSOS"
+fi
 
-# endif
-
-./configs/all_configs
+# ./configs/all_configs
 
 # setup my dev_env with tmux and vim 
-ln -s apps/my_ide ${HOME}/my_ide
+# ln -s apps/my_ide ${HOME}/my_ide

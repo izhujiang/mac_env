@@ -16,12 +16,12 @@ brew install tmux
 # brew cleanup
 # install vim with python3 support
 brew install vim --with-python3
+../common/install_vi_plugins
 
-# brew install zsh
 brew install go
 
 
-./configs/all_configs
+../../configs/all_configs
 
 # setup my dev_env with tmux and vim 
 ln -s apps/my_ide ${HOME}/my_ide
