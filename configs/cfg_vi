@@ -1,0 +1,7 @@
+SH_CFG_FILE=~/.bashrc
+
+echo "export VIM_HOME=/opt/vim" >> $SH_CFG_FILE
+echo "export PATH=\${VIM_HOME}/bin:\${PATH}" >> $SH_CFG_FILE
+echo "alias vi=vim" >> $SH_CFG_FILE
+source $SH_CFG_FILE
+
