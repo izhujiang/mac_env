@@ -3,10 +3,11 @@
 SYSOS=`uname -s`
 
 # install specific platform tools and packages according to platform
-if [ $SYSOS="Linux" ];then
+if [ $SYSOS = "Linux" ] ; then
   echo "Working on Linux"
+  echo $SYSOS
   # source ./platforms/mac/software_installer
-elif [ $SYSOS == "Darwin" ];then
+elif [ $SYSOS = "Darwin" ] ; then
   echo "Working on MacOS"
 else
   echo "other OS: $SYSOS"
