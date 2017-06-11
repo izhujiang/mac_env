@@ -8,9 +8,14 @@ brew install python
 brew install python3
 brew install tmux
 
+
 # install zsh and ohmyzsh as well as its custom plugins
 chsh -s /bin/zsh
 source ../common/install_zsh_extras
+
+
+# install python 3rd party packages
+source ../common/install_python_extras
 
 # with python2.* support
 # brew install vim 

@@ -2,6 +2,10 @@
 
 sudo apt install -y zsh wget cmake python3 tmux xclip
 
+# install zsh and ohmyzsh as well as its custom plugins
+chsh -s /bin/zsh
+source ../common/install_zsh_extras
+
 source ../common/install_python_extras
 # install vim with python3 support
 # sudo apt install vim --with-python3

@@ -2,12 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/hurricane/.oh-my-zsh
+export ZSH=${HOME}/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerline"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -52,8 +52,8 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git zsh-autosuggestions)
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-source $ZSH/oh-my-zsh.sh
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
+source ${ZSH}/oh-my-zsh.sh
 
 # User configuration
 
@@ -73,7 +73,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -106,3 +106,25 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 # enable autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# 
+# Setting for autosuggestions
+# 
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
+
+export WORKON_HOME=$HOME/.local/virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
+
+# fixing unknown locale: UTF-8
+export LANG=en_US.UTF-8
+unset LC_CTYPE
+# source /usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
+PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
+POWERLINE_ZSH=${PY_PACKS_LOC}/powerline/bindings/zsh/powerline.zsh
+# echo '/usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh'
+# echo ${POWERLINE_ZSH}
+source ${POWERLINE_ZSH}
+
+export GOPATH=$HOME/workspace/goworkspace

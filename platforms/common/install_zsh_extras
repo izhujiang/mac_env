@@ -1,7 +1,42 @@
 #!/bin/sh
 echo "Here is the custom directory of oh_my_zsh:  ${ZSH_CUSTOM}"
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+if [ ! -d ${ZSH} ]; then
+  git clone git://github.com/robbyrussell/oh-my-zsh.git ${ZSH}
+else
+  CURDIR=$(pwd) 
+  cd ${ZSH}
+  git pull
+  cd ${CURDIR}
+fi
+# install zsh plugins 
+# remember to update "plugins" items in .zshrc file
+for plugin in zsh-autosuggestions zsh-syntax-highlighting zsh-completions
+do
+  if [ ! -d ${ZSH_CUSTOM}/plugins/${plugin} ]; then
+    git clone git://github.com/zsh-users/${plugin} ${ZSH_CUSTOM}/plugins/${plugin}
+  else
+    CURDIR=$(pwd) 
+    cd ${ZSH_CUSTOM}/plugins/${plugin}
+    git pull
+    cd ${CURDIR}
+  fi
+done
 
-git clone git://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
+# install Powerline fonts, Ref https://github.com/powerline/fonts
+git clone git://github.com/powerline/fonts.git
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts
 
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
+
+# install powerline theme
+git clone git@github.com:jeremyFreeAgent/oh-my-zsh-powerline-theme.git
+echo $(pwd)
+cd oh-my-zsh-powerline-theme
+# cp -f powerline.zsh-theme ${ZSH}/themes/
+source ./install_in_omz.sh
+cd ..
+# sleep for 2 seconds to avoid error "shell-init: error retrieving current directory" when rm powerline-theme directory
+sleep 2
+rm -rf oh-my-zsh-powerline-theme
