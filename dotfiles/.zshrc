@@ -84,9 +84,9 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-rcfile=".zshrc"
+rcfile="${HOME}/.zshrc"
 if [ -L $rcfile ] ; then
-	export DOTFILES_DIR=$(dirname $(readlink ${rcfile}))
+  export DOTFILES_DIR=$(dirname $(readlink ${rcfile}))
 else
   export DOTFILES_DIR=$(dirname ${rcfile})
 fi
