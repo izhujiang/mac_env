@@ -1,7 +1,14 @@
 #!/bin/sh
 
-script_path=$(cd "$(dirname "$0")"; cd ../dotfiles/; pwd)
+dotfiles_path=${MY_ENV_ROOT}/dotfiles
 echo $dotfiles_path
+
+for dotfile in .zshrc .bash_profile .tmux.conf .vimrc
+do
+  if [ -L ${HOME}/${dotfile} ]; then
+    unlink ${HOME}/${dotfile};
+  fi
+done
 
 ln -s ${dotfiles_path}/.zshrc ${HOME}/.zshrc
 ln -s ${dotfiles_path}/.bash_profile ${HOME}/.bash_profile

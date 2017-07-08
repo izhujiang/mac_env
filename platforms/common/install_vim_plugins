@@ -1,14 +1,16 @@
 #!/bin/sh
-curdir=$(pwd)
-echo $curdir
 
-SCRIPT_PATH=$(cd "$(dirname "$0")"; pwd)
 cd ${HOME}
-git clone --recursive -j8 git@github.com:izhujiang/vim-plugin.git .vim
+if [ ! -d ${HOME}/.vim ]; then 
+  git clone --recursive -j8 git@github.com:izhujiang/vim-plugin.git .vim
+else
+  cd .vim
+  git pull
+  git submodule update --recursive
+fi
 
-# assuming .vimrc is linked or prepared during the install procesing
-# todo: do check .vimrc
 vim +PluginInstall +qall
+
 
 # compile YouCompleteMe plugin with propert arguments after installation.
 cd .vim/bundle/YouCompleteMe
@@ -18,4 +20,4 @@ cd .vim/bundle/YouCompleteMe
 # install ycm with python3 support
 python3 install.py --clang-completer --gocode-completer
 python3 run_tests.py
-cd $SCRIPT_PATH
+cd ${MY_ENV_ROOT}/platforms/common

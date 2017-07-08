@@ -84,16 +84,15 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias ls="ls -G"
-alias ll="ls -la"
+rcfile=".zshrc"
+if [ -L $rcfile ] ; then
+	export DOTFILES_DIR=$(dirname $(readlink ${rcfile}))
+else
+  export DOTFILES_DIR=$(dirname ${rcfile})
+fi
 
-alias vi=vim
+source ${DOTFILES_DIR}/.common_shrc
 
-alias -s tar="tar -xvf"
-alias -s gz="tar -xzvf"
-alias -s tgz="tar -xzvf"
-alias -s bz2="tar -xjvf"
-alias -s zip="unzip"
 
 # man page highlight
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
@@ -107,18 +106,12 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 # enable autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-# 
+#
 # Setting for autosuggestions
-# 
+#
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 
-export WORKON_HOME=$HOME/.local/virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
 
-# fixing unknown locale: UTF-8
-export LANG=en_US.UTF-8
-unset LC_CTYPE
 # source /usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
 PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
@@ -126,5 +119,3 @@ POWERLINE_ZSH=${PY_PACKS_LOC}/powerline/bindings/zsh/powerline.zsh
 # echo '/usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh'
 # echo ${POWERLINE_ZSH}
 source ${POWERLINE_ZSH}
-
-export GOPATH=$HOME/workspace/goworkspace

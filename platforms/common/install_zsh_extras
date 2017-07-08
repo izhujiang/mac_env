@@ -1,12 +1,18 @@
 #!/bin/sh
+
+echo ${SHELL: -3}
+if [[ ${SHELL: -3} == "zsh" ]] ; then 
+  # read -p "If you want to install zsh_extras, you shall switch to zsh(chsh -s \$(which \${SHELL}). [Y/n]"
+  echo "If you want to install zsh_extras, you shall switch to zsh. Type command: \n chsh -s \$(which \${SHELL}). "
+  return 1
+fi
+
 echo "Here is the custom directory of oh_my_zsh:  ${ZSH_CUSTOM}"
 if [ ! -d ${ZSH} ]; then
   git clone git://github.com/robbyrussell/oh-my-zsh.git ${ZSH}
 else
-  CURDIR=$(pwd) 
   cd ${ZSH}
   git pull
-  cd ${CURDIR}
 fi
 # install zsh plugins 
 # remember to update "plugins" items in .zshrc file
@@ -15,28 +21,27 @@ do
   if [ ! -d ${ZSH_CUSTOM}/plugins/${plugin} ]; then
     git clone git://github.com/zsh-users/${plugin} ${ZSH_CUSTOM}/plugins/${plugin}
   else
-    CURDIR=$(pwd) 
     cd ${ZSH_CUSTOM}/plugins/${plugin}
     git pull
-    cd ${CURDIR}
   fi
 done
 
-# install Powerline fonts, Ref https://github.com/powerline/fonts
-git clone git://github.com/powerline/fonts.git
-cd fonts
-./install.sh
-cd ..
-rm -rf fonts
-
+cd ${MY_ENV_ROOT}/extras
 
 # install powerline theme
-git clone git@github.com:jeremyFreeAgent/oh-my-zsh-powerline-theme.git
-echo $(pwd)
-cd oh-my-zsh-powerline-theme
+if [ ! d ${MY_ENV_ROOT}/extras/oh-my-zsh-powerline-theme ]; then
+  git clone git@github.com:jeremyFreeAgent/oh-my-zsh-powerline-theme.git
+  cd oh_my_zsh-powerline-theme
+else
+  cd oh-my-zsh-powerline-theme
+  git pull
+fi
+# echo $(pwd)
 # cp -f powerline.zsh-theme ${ZSH}/themes/
 source ./install_in_omz.sh
 cd ..
+
 # sleep for 2 seconds to avoid error "shell-init: error retrieving current directory" when rm powerline-theme directory
-sleep 2
-rm -rf oh-my-zsh-powerline-theme
+# sleep 2
+
+cd ${MY_ENV_ROOT}/platforms/common
