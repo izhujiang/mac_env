@@ -2,8 +2,14 @@
 
 echo "Attention: The build vim from source code in linux should be updated!!!"
 cd ~/repo
-git clone git@github.com:vim/vim.git
-cd vim
+if [ ! -d vim ]; then
+  git clone git@github.com:vim/vim.git
+  cd vim
+else
+  cd vim 
+  git pull
+fi
+
 sudo mkdir -p /opt/vim
 sudo chown hurricane /opt/vim
 
@@ -12,10 +18,9 @@ sudo apt install -y python3-dev libncurses5-dev libxpm-dev libxt-dev libx11-dev 
 ./configure --prefix=/opt/vim --enable-python3interp=yes -with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu
 make && make test && make install
 
-for SH_CFG_FILE in ~/.bashrc ~/.zshrc
-do
-  echo "export VIM_HOME=/opt/vim" >> $SH_CFG_FILE
-  echo "export PATH=\${VIM_HOME}/bin:\${PATH}" >> $SH_CFG_FILE
-  echo "alias vi=vim" >> $SH_CFG_FILE
-  source $SH_CFG_FILE
-done
+
+
+SH_CFG_FILE=${HOME}/.vim_cfg  
+echo "export VIM_HOME=/opt/vim" > $SH_CFG_FILE
+echo "export PATH=\${VIM_HOME}/bin:\${PATH}" >> $SH_CFG_FILE
+echo "alias vi=vim" >> $SH_CFG_FILE

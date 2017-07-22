@@ -15,6 +15,7 @@ sudo brew install tmux
 # brew cleanup
 # install vim with python3 support
 sudo brew install vim --with-python3
+echo "" > ${HOME}/.vim_cfg
 
 # reattach-to-user-namespace support copy and pasty
 sudo brew install reattach-to-user-namespace
