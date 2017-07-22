@@ -2,9 +2,9 @@
 
 cd ${HOME}
 if [ ! -d ${HOME}/.vim ]; then 
-  git clone --recursive -j8 git@github.com:izhujiang/vim-plugin.git .vim
+  git clone --recursive git@github.com:izhujiang/vim-plugin.git ${HOME}/.vim
 else
-  cd .vim
+  cd ${HOME}/.vim
   git pull
   git submodule update --recursive
 fi
@@ -13,7 +13,7 @@ vim +PluginInstall +qall
 
 
 # compile YouCompleteMe plugin with propert arguments after installation.
-cd .vim/bundle/YouCompleteMe
+cd ${HOME}/.vim/bundle/YouCompleteMe
 # install ycm with python2.* support
 # ./install.py --clang-completer --gocode-completer
 # ./run_tests.py

@@ -2,23 +2,26 @@
 
 export MY_ENV_ROOT=$(cd "$(dirname '$0')";  pwd)
 echo "MY_ENV_ROOT location is:${MY_ENV_ROOT}"
-export PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
-export PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
-echo "PY_PACKS(Python packages) location is: ${PY_PACKS_LOC}"
 SYSOS=`uname -s`
 
 # install specific platform tools and packages according to platform
-if [ $SYSOS = "Linux" ] ; then
+if [ ${SYSOS} = "Linux" ] ; then
   echo "Working on Linux"
   echo $SYSOS
-  # source ./platforms/mac/software_installer
-elif [ $SYSOS = "Darwin" ] ; then
+  echo "only support ubuntu now."
+  source ${MY_ENV_ROOT}/platforms/linux/software_installer_ubuntu
+elif [ ${SYSOS} = "Darwin" ] ; then
   echo "Working on MacOS"
+  source ${MY_ENV_ROOT}/platforms/mac/software_installer
 else
-  echo "other OS: $SYSOS"
+  echo "other OS: ${SYSOS}"
 fi
 
-# ./configs/all_configs
+export PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
+export PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
+echo "PY_PACKS(Python packages) location is: ${PY_PACKS_LOC}"
+
+source ${MY_ENV_ROOT}/configs/all_configs
 
 # setup my dev_env with tmux and vim 
 # ln -s apps/my_ide ${HOME}/my_ide

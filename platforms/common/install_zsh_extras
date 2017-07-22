@@ -1,19 +1,23 @@
 #!/bin/sh
 
 echo ${SHELL: -3}
-if [[ ${SHELL: -3} == "zsh" ]] ; then 
-  # read -p "If you want to install zsh_extras, you shall switch to zsh(chsh -s \$(which \${SHELL}). [Y/n]"
-  echo "If you want to install zsh_extras, you shall switch to zsh. Type command: \n chsh -s \$(which \${SHELL}). "
-  return 1
+if [[ ${SHELL: -3} != "zsh" ]] ; then 
+  read -p "If you want to install zsh_extras including oh_my_zsh, you shall switch to zsh(chsh -s \$(which zsh}), and re-login then run again. [Y/n]" yn
+  #echo "If you want to install zsh_extras, you shall switch to zsh. Type command: \n chsh -s \$(which \${SHELL}). "
+  if [[ $yn == [Yy] ]];then
+    chsh -s $(which zsh)
+    return 1 
+  else
+    return 0
+  fi
 fi
 
-echo "Here is the custom directory of oh_my_zsh:  ${ZSH_CUSTOM}"
-if [ ! -d ${ZSH} ]; then
-  git clone git://github.com/robbyrussell/oh-my-zsh.git ${ZSH}
-else
-  cd ${ZSH}
-  git pull
+echo ${ZSH_CUSTOM}
+if [[ ${ZSH_CUSTOM} == "" ]]; then
+  echo "Install oh_my_zsh first please and run install_zsh_extras again."
+  return 0
 fi
+
 # install zsh plugins 
 # remember to update "plugins" items in .zshrc file
 for plugin in zsh-autosuggestions zsh-syntax-highlighting zsh-completions
@@ -29,9 +33,9 @@ done
 cd ${MY_ENV_ROOT}/extras
 
 # install powerline theme
-if [ ! d ${MY_ENV_ROOT}/extras/oh-my-zsh-powerline-theme ]; then
+if [ ! -d ${MY_ENV_ROOT}/extras/oh-my-zsh-powerline-theme ]; then
   git clone git@github.com:jeremyFreeAgent/oh-my-zsh-powerline-theme.git
-  cd oh_my_zsh-powerline-theme
+  cd oh-my-zsh-powerline-theme
 else
   cd oh-my-zsh-powerline-theme
   git pull

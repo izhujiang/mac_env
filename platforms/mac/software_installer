@@ -23,7 +23,7 @@ sudo brew install go
 
 
 source ${MY_ENV_ROOT}/platforms/common/install_extras
-source ${MY_ENV_ROOT}/configs/all_configs
+# source ${MY_ENV_ROOT}/configs/all_configs
 
 # setup my dev_env with tmux and vim 
-ln -s apps/my_ide ${HOME}/my_ide
+# ln -s apps/my_ide ${HOME}/my_ide

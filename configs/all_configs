@@ -1,1 +1,20 @@
-./ln_dotfiles
+#!/bin/sh
+
+dotfiles_path=${MY_ENV_ROOT}/dotfiles
+echo $dotfiles_path
+
+for dotfile in .zshrc .bash_profile .tmux.conf .vimrc
+do
+  if [ -L ${HOME}/${dotfile} ]; then
+    unlink ${HOME}/${dotfile};
+  fi
+done
+
+if [ -f ${HOME}/.zshrc ]; then
+   rm ${HOME}/.zshrc
+fi
+
+ln -s ${dotfiles_path}/.zshrc ${HOME}/.zshrc
+ln -s ${dotfiles_path}/.bash_profile ${HOME}/.bash_profile
+ln -s ${dotfiles_path}/.tmux.conf ${HOME}/.tmux.conf
+ln -s ${dotfiles_path}/.vimrc ${HOME}/.vimrc
