@@ -24,7 +24,9 @@ export WORKON_HOME=$HOME/.local/virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 source /usr/local/bin/virtualenvwrapper.sh
 
-export GOPATH=$HOME/workspace/goworkspace
+export GOROOT=$HOME/repo/golang/go
+export PATH=$GOROOT/bin:$PATH
+export GOPATH=$HOME/workspace/go
 
 
 # Powerline daemon is not run automatically by any of my bindings.

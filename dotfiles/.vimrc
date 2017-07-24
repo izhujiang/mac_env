@@ -3,7 +3,7 @@ autocmd! bufwritepost .vimrc source %
 syn on                      "语法支持
 
 
-source ${DOTFILES_DIR}/vim/base
+source ${DOTFILES_DIR}/vim/base.vim
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -38,23 +38,25 @@ Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'nvie/vim-flake8'
 Plugin 'davidhalter/jedi-vim'
 
+" for golang dev"
+Plugin 'fatih/vim-go'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
 " setting for supporting editing files
-source ${DOTFILES_DIR}/vim/langs/py
-source ${DOTFILES_DIR}/vim/langs/go
-source ${DOTFILES_DIR}/vim/langs/js
-source ${DOTFILES_DIR}/vim/langs/html
-source ${DOTFILES_DIR}/vim/langs/css
+source ${DOTFILES_DIR}/vim/langs/py.vim
+source ${DOTFILES_DIR}/vim/langs/go.vim
+source ${DOTFILES_DIR}/vim/langs/js.vim
+source ${DOTFILES_DIR}/vim/langs/html.vim
+source ${DOTFILES_DIR}/vim/langs/css.vim
 
 " the config of the plugins
-source ${DOTFILES_DIR}/vim/plugins/nerdtree
-source ${DOTFILES_DIR}/vim/plugins/syntastic
-source ${DOTFILES_DIR}/vim/plugins/airline
-source ${DOTFILES_DIR}/vim/plugins/ycm
-source ${DOTFILES_DIR}/vim/plugins/ultisnips
+source ${DOTFILES_DIR}/vim/plugins/nerdtree.vim
+source ${DOTFILES_DIR}/vim/plugins/syntastic.vim
+source ${DOTFILES_DIR}/vim/plugins/airline.vim
+source ${DOTFILES_DIR}/vim/plugins/ycm.vim
+source ${DOTFILES_DIR}/vim/plugins/ultisnips.vim
 
 " the config for the features
-source ${DOTFILES_DIR}/vim/features/virtualenv
-source ${DOTFILES_DIR}/vim/features/tmux
+source ${DOTFILES_DIR}/vim/features/virtualenv.vim
+source ${DOTFILES_DIR}/vim/features/tmux.vim

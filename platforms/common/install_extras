@@ -9,8 +9,8 @@ source ${common_path}/install_python_extras
 source ${common_path}/install_zsh_extras
 
 # install vim plugins
-# source ${common_path}/install_vim_plugins
+source ${common_path}/install_vim_plugins
 
 # insatll powerline fonts and plugin
-# source ${common_path}/install_powerline_extras
+source ${common_path}/install_powerline_extras
 
