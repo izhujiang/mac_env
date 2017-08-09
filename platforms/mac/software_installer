@@ -7,7 +7,7 @@ sudo brew install cmake
 sudo brew install python
 sudo brew install python3
 sudo brew install tmux
-
+sudo brew install readline xz
 # with python2.* support
 # brew install vim 
 # brew remove vim

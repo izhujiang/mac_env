@@ -7,3 +7,10 @@ let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+" Additional UltiSnips config.
+let g:UltiSnipsSnippetsDir = $HOME . '/.vim/ultisnips'
+let g:UltiSnipsSnippetDirectories = [
+      \ $HOME . '/.vim/ultisnips',
+      \ $HOME . '/.vim/ultisnips-private'
+      \ ]

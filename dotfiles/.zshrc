@@ -84,6 +84,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
 rcfile="${HOME}/.zshrc"
 if [ -L $rcfile ] ; then
   export DOTFILES_DIR=$(dirname $(readlink ${rcfile}))
@@ -92,7 +93,6 @@ else
 fi
 
 source ${DOTFILES_DIR}/.common_shrc
-
 
 # man page highlight
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
@@ -103,21 +103,34 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-# enable autojump
-# for mac
-# [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-# for ubuntu
-[ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh 
+SYSOS=`uname -s`
+if [ ${SYSOS} = "Linux" ] ; then
+  # for ubuntu
+  [ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh 
+elif [ ${SYSOS} = "Darwin" ] ; then
+  # enable autojump
+  # for mac
+  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+else
+  echo "other OS: ${SYSOS}"
+fi
+
 #
 # Setting for autosuggestions
 #
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 
-
 # source /usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
+# PY_PACKS_LOC=$(pip show powerline-status | grep Location)
 PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
 POWERLINE_ZSH=${PY_PACKS_LOC}/powerline/bindings/zsh/powerline.zsh
 # echo '/usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh'
 # echo ${POWERLINE_ZSH}
 source ${POWERLINE_ZSH}
+
+export PYENV_ROOT=${HOME}/.pyenv
+if [ -d ${PYENV_ROOT} ]; then
+  export PATH=${PYENV_ROOT}/bin:${PATH}
+  eval "$(pyenv init -)"
+fi
