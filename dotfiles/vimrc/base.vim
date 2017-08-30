@@ -38,7 +38,7 @@ map <Leader>w :w<CR>
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
+" command W w !sudo tee % > /dev/null
 
 
 if has("multi_byte")
