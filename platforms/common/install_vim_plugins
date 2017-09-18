@@ -19,5 +19,5 @@ cd ${HOME}/.vim/bundle/YouCompleteMe
 # ./run_tests.py
 # install ycm with python3 support
 python3 install.py --clang-completer --gocode-completer
-python3 run_tests.py
+# python3 run_tests.py
 cd ${MY_ENV_ROOT}/platforms/common

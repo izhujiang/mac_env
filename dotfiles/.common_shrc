@@ -16,7 +16,7 @@ alias bz2="tar -xjvf"
 alias zip="unzip"
 
 
-source ${HOME}/.vim_cfg
+# source ${HOME}/.vim_cfg
 
 # added by Anaconda3 4.2.0 installer
 # export PATH="/usr/local/opt/anaconda3/bin:$PATH"
@@ -24,17 +24,17 @@ export WORKON_HOME=$HOME/.local/virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 source /usr/local/bin/virtualenvwrapper.sh
 
-export GOROOT=$HOME/repo/golang/go
-export PATH=$GOROOT/bin:$PATH
+# export GOROOT=$HOME/repo/golang/go
+# export PATH=$GOROOT/bin:$PATH
 export GOPATH=$HOME/workspace/go
 
-export JAVA_HOME=/opt/jdk
-export JRE_HOME=${JAVA_HOME}/jre
-export CLASSPATH=${JAVA_HOME}/lib:${JRE_HOME}/lib
-export PATH=${JAVA_HOME}/bin:$PATH
-export BAZEL=/opt/bazel
-export PATH=${BAZEL}:$PATH
-export NODE_HOME=/opt/node
-export PATH=${NODE_HOME}/bin:$PATH
+# export JAVA_HOME=/opt/jdk
+# export JRE_HOME=${JAVA_HOME}/jre
+# export CLASSPATH=${JAVA_HOME}/lib:${JRE_HOME}/lib
+# export PATH=${JAVA_HOME}/bin:$PATH
+# export BAZEL=/opt/bazel
+# export PATH=${BAZEL}:$PATH
+# export NODE_HOME=/opt/node
+# export PATH=${NODE_HOME}/bin:$PATH
 # Powerline daemon is not run automatically by any of my bindings.
 powerline-daemon -q

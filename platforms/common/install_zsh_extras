@@ -12,7 +12,7 @@ if [[ ${SHELL: -3} != "zsh" ]] ; then
   fi
 fi
 
-echo ${ZSH_CUSTOM}
+echo "The ZSH_CUSTOM is: "${ZSH_CUSTOM}
 if [[ ${ZSH_CUSTOM} == "" ]]; then
   echo "Install oh_my_zsh first please and run install_zsh_extras again."
   return 0

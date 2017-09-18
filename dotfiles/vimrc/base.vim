@@ -204,6 +204,7 @@ set nowrap "Don't Wrap lines (it is stupid)
 " Visual mode related
 "------------------------------------------------------------------------------
 
+" visual shifting (does not exit Visual mode)
 " easyly moving of code blocks in visual mode
 vnoremap < <gv  
 vnoremap > >gv
@@ -212,10 +213,6 @@ vnoremap > >gv
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
-
-" visual shifting (does not exit Visual mode)
-vnoremap < <gv
-vnoremap > >gv
 
 
 "------------------------------------------------------------------------------

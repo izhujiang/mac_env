@@ -34,6 +34,8 @@ Plugin 'honza/vim-snippets'
 " best Git wrapper
 Plugin 'tpope/vim-fugitive'
 
+Plugin 'vim-scripts/TaskList.vim'
+
 " for python dev
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'nvie/vim-flake8'
