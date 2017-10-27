@@ -134,3 +134,4 @@ if [ -d ${PYENV_ROOT} ]; then
   export PATH=${PYENV_ROOT}/bin:${PATH}
   eval "$(pyenv init -)"
 fi
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
