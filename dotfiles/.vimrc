@@ -49,6 +49,19 @@ Plugin 'fatih/vim-go'
 Plugin 'mattn/emmet-vim'
 Plugin 'alpaca-tc/beautify.vim'
 
+" for hugo
+Plugin 'robertbasic/vim-hugo-helper'
+
+" for markdown
+" Plugin 'godlygeek/tabular'
+" Plugin 'plasticboy/vim-markdown'
+"
+" Instant Markdown previews from VIm!
+" You first need to have node.js with npm installed. Then:
+" npm -g install instant-markdown-d
+" It seems bugs with vim-instant-markdown, so walk around(atom) and wait for update to fix the bug...
+" Plugin 'suan/vim-instant-markdown'
+" au FileType markdown setl shell=bash\ -i
 call vundle#end()            " required
 
 " the config of the plugins
@@ -59,6 +72,8 @@ source ${DOTFILES_DIR}/vimrc/plugins/ycm.vim
 source ${DOTFILES_DIR}/vimrc/plugins/ultisnips.vim
 source ${DOTFILES_DIR}/vimrc/plugins/emmet.vim
 source ${DOTFILES_DIR}/vimrc/plugins/mulcursors.vim
+source ${DOTFILES_DIR}/vimrc/plugins/hugohelper.vim
+" source ${DOTFILES_DIR}/vimrc/plugins/instantmarkdown.vim
 
 " setting for supporting editing files
 source ${DOTFILES_DIR}/vimrc/langs/py.vim
@@ -66,6 +81,7 @@ source ${DOTFILES_DIR}/vimrc/langs/go.vim
 source ${DOTFILES_DIR}/vimrc/langs/js.vim
 source ${DOTFILES_DIR}/vimrc/langs/html.vim
 source ${DOTFILES_DIR}/vimrc/langs/css.vim
+source ${DOTFILES_DIR}/vimrc/langs/markdown.vim
 
 " the config for the features
 " source ${DOTFILES_DIR}/vimrc/features/virtualenv.vim

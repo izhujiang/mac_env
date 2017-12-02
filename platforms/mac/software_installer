@@ -22,6 +22,7 @@ sudo brew install reattach-to-user-namespace
 
 sudo brew install go
 
+sudo brew install node
 
 source ${MY_ENV_ROOT}/platforms/common/install_extras
 # source ${MY_ENV_ROOT}/configs/all_configs

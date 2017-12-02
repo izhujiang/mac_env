@@ -1,0 +1,3 @@
+npm -g install create-react-app
+npm -g install instant-markdown-d
+npm -g install typescripit
