@@ -1,4 +1,8 @@
 
+if exists('$TMUX')
+  set  term=screen-256color
+endif
+
 " python with virtualenv support
 py3 << EOF
 import os
