@@ -23,6 +23,11 @@ map [[ [c
 "------------------------------------------------------------------------------
 
 " --buffers
+" move between buffers
+nnoremap <leader>bj :bnext<cr>
+nnoremap <leader>bk :bprevious<cr>
+nnoremap <leader>bh :bfirst<cr>
+nnoremap <leader>bl :blast<cr>
 " Close the current buffer (w/o closingthe currentwindow)
 nnoremap bd :bdelete<cr>
 
@@ -48,12 +53,9 @@ nnoremap <C-l> gt
 nnoremap <C-h> gT
 nnoremap <leader>te : tabe<CR>
 
-
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
-
-
 
 " --windows
 nnoremap wj <C-W>j
@@ -61,13 +63,11 @@ nnoremap wk <C-W>k
 nnoremap wh <C-W>h
 nnoremap wl <C-W>l
 
-
 "------------------------------------------------------------------------------
 " Insert mode related
 "------------------------------------------------------------------------------
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <esc>
-
 
 
 "------------------------------------------------------------------------------
@@ -78,7 +78,6 @@ inoremap jj <esc>
 " easyly moving of code blocks in visual mode
 vnoremap < <gv
 vnoremap > >gv
-
 "------------------------------------------------------------------------------
 " Search, Replace and Highlight
 "------------------------------------------------------------------------------
@@ -106,23 +105,10 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
-
 "------------------------------------------------------------------------------
 " QuickFix
 "------------------------------------------------------------------------------
-"
-" Do :help cope if you are unsure what cope is. It's super useful!
-" To go to the next search result do:
-"   <leader>n
-" To go to the previous search results do:
-"   <leader>p
-"
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
-
+nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 "------------------------------------------------------------------------------
 " Misc
 "------------------------------------------------------------------------------
@@ -171,6 +157,12 @@ map <leader>T :NERDTreeFind<cr>
 " ---Tagbar
 nmap <F8> :TagbarToggle<CR>
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " ---Fugitive
 "map <leader>gdi :Gdiff<cr>
 "map <leader>gst :Gstatus<cr>
@@ -178,6 +170,7 @@ nmap <F8> :TagbarToggle<CR>
 nnoremap gdi :Gdiff<cr>
 nnoremap gst :Gstatus<cr>
 nnoremap gdu :diffupdate<cr>
+
 
 
 " ---YCM--------------

@@ -1,0 +1,62 @@
+Vim shortcuts
+
+1. motions
+--basic:
+  [h/j/k/l]
+  [w/e]
+  [w/e/b/ge/W/E/B/gE]
+  [H/M/L]
+  gg/G/[#num]G
+
+--move in a line:
+  {N}[f/t/F/T]X   // find the Nth X character.
+  0,^,$,g_
+
+--page scroll:
+  ctrl+[b/f/d/w/u]
+--scroll according to cursor:
+  z[<cr>/z/t/b/.]
+
+--move by search
+  [/ or ?] + {ctrl+[P/N]}
+  q/ or q? + vi-edit<cr>  // q/ or q? command open up command-line window
+
+  % : Go to the corresponding (, {, [.
+  * (resp. #) : go to next (resp. previous) occurrence of the word under the cursor
+
+  gd/gD
+
+--jump-motions
+  "'"、"`"、"G"、"/"、"?"、"n"、"N"、"%"、"("、")"、"[["、"]]"、"{"、"}"、":s"、":tag"、"L"、"M"、"H"
+  ctrl+O/ctrl+I
+
+
+
+2. VI mode
+-- Insert mode
+  i/I, a/A, o/O
+  c[w,iw,...]
+
+-- Editing command in normal mode
+  y/yy
+  p
+  d/dd
+  gu/gU
+
+  u/ctrl+r
+
+-- Repeate command
+  .
+  N<command>
+  [#num].
+
+3. Layerout management
+--buffers
+  b[n,p,h,j,k,l,#num],bd
+--navigate between windows:
+  w[h/j/k/l]
+--navigate between tabs:
+  t[h/j/k.l]
+
+4. Command pattern
+<start position><command><end position>

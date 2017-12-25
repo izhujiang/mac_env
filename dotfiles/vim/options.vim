@@ -25,6 +25,21 @@ set helplang=cn             "help file in chinese
 "------------------------------------------------------------------------------
 " Sessions
 "------------------------------------------------------------------------------
+let g:session_autoload = 'no'
+let g:session_autosave = 'no'
+
+" Define what to save with :mksession
+" blank - empty windows
+" buffers - all buffers not only ones in a window
+" curdir - the current directory
+" folds - including manually created ones
+" help - the help window
+" options - all options and mapping
+" winsize - window sizes
+" tabpages - all tab pages
+" slash and unix - share session file between unix and windows
+set sessionoptions=blank,buffers,curdir,folds,help,options,winsize,tabpages,slash,unix
+
 " Remember things between sessions
 "
 " '20  - remember marks for 20 previous files
@@ -37,17 +52,6 @@ set helplang=cn             "help file in chinese
 
 " Remember info about open buffers on close
 set viminfo^=%
-
-" Define what to save with :mksession
-" blank - empty windows
-" buffers - all buffers not only ones in a window
-" curdir - the current directory
-" folds - including manually created ones
-" help - the help window
-" options - all options and mapping
-" winsize - window sizes
-" tabpages - all tab pages
-set sessionoptions=blank,buffers,curdir,folds,help,options,winsize,tabpages
 
 "------------------------------------------------------------------------------
 " Files
@@ -199,7 +203,6 @@ set foldcolumn=0
 set laststatus=2
 " Show (partial) commands (or size of selection in Visual mode) in the status line
 set showcmd
-
 
 
 "------------------------------------------------------------------------------
