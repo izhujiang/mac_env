@@ -87,12 +87,12 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 rcfile="${HOME}/.zshrc"
 if [ -L $rcfile ] ; then
-  export DOTFILES_DIR=$(dirname $(readlink ${rcfile}))
+	export DOTFILES_DIR=$(dirname $(dirname $(readlink ${rcfile})))
 else
-  export DOTFILES_DIR=$(dirname ${rcfile})
+	export DOTFILES_DIR=$(dirname $(dirname ${rcfile}))
 fi
 
-source ${DOTFILES_DIR}/.common_shrc
+source ${DOTFILES_DIR}/sh/.common_shrc
 
 # man page highlight
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking

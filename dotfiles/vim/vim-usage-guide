@@ -12,6 +12,7 @@ Vim shortcuts
   {N}[f/t/F/T]X   // find the Nth X character.
   0,^,$,g_
 
+
 --page scroll:
   ctrl+[b/f/d/w/u]
 --scroll according to cursor:
@@ -42,7 +43,6 @@ Vim shortcuts
   p
   d/dd
   gu/gU
-
   u/ctrl+r
 
 -- Repeate command

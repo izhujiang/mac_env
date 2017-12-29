@@ -95,9 +95,18 @@ Plug 'junegunn/vim-easy-align'
 " Comment stuff out
 Plug 'tpope/vim-commentary'
 
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --clang-completer --go-completer --js-completer
+  endif
+endfunction
 " Todo: install(update and build automaticlly) YouCompleteMe like vimpro
 " A code-completion engine for Vim
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'branch': 'stable', 'do': function('BuildYCM') }
 
 " Highlights trailing whitespace in red and provides :FixWhitespace to fix it.
 Plug 'bronson/vim-trailing-whitespace'
@@ -136,10 +145,16 @@ Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 " Plug 'davidhalter/jedi-vim'
 " Requirements File Format syntax support for Vim
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+
 " A nicer Python indentation style for vim
-Plug 'Vimjas/vim-python-pep8-indent'
+" Plug 'Vimjas/vim-python-pep8-indent'
+
 " Flake8, a static syntax and style checker for Python source code.
-Plug 'nvie/vim-flake8'
+" Plug 'nvie/vim-flake8'
+
+" Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
+" Sorry. Waiting for stable version. master version does't support vim-plug.
+Plug 'python-mode/python-mode', { 'branch': 'develop', 'do': 'git submodule update --init --recursive'}
 
 " Javascript Bundle, html/css
 " Enhanced javascript syntax file for Vim
@@ -166,6 +181,7 @@ Plug 'robertbasic/vim-hugo-helper'
 
 call plug#end()
 
+source ${DOTFILES_DIR}/vim/features.vim
 source ${DOTFILES_DIR}/vim/options.vim
 source ${DOTFILES_DIR}/vim/commands.vim
 source ${DOTFILES_DIR}/vim/events.vim

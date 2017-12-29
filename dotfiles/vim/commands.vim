@@ -171,7 +171,75 @@ nnoremap gdi :Gdiff<cr>
 nnoremap gst :Gstatus<cr>
 nnoremap gdu :diffupdate<cr>
 
+" ----python-mode----
 
+" --Vim motion
+" support Vim motion (See operator) for python objects (such as functions,
+" class and methods).
+" C — means class
+" M — means method or function
+"
+" ================  ============================
+" Key               Command
+" ================  ============================
+" [[                Jump to previous class or function (normal, visual, operator modes)
+" ]]                Jump to next class or function  (normal, visual, operator modes)
+" [M                Jump to previous class or method (normal, visual, operator modes)
+" ]M                Jump to next class or method (normal, visual, operator modes)
+" aC                Select a class. Ex: vaC, daC, yaC, caC (normal, operator modes)
+" iC                Select inner class. Ex: viC, diC, yiC, ciC (normal, operator modes)
+" aM                Select a function or method. Ex: vaM, daM, yaM, caM (normal, operator modes)
+" iM                Select inner function or method. Ex: viM, diM, yiM, ciM (normal, operator modes)
+" ================  ============================
+
+" Show documentation
+" :PymodeDoc <args> — show documentation 
+" Bind keys to show documentation for current word (selection)
+let g:pymode_doc_bind = 'K'
+
+" Support virtualenv
+" Commands:
+" :PymodeVirtualenv <path> -- Activate virtualenv (path can be absolute or
+
+" --Run code
+" :PymodeRun -- Run current buffer or selection
+let g:pymode_run_bind = '<leader>r'
+let g:pymode_breakpoint_bind = '<leader>b'
+" Manually set breakpoint command (leave empty for automatic detection)
+let g:pymode_breakpoint_cmd = ''
+
+" --Code checking
+" Pymode supports pylint, pep257, pep8, pyflakes, mccabe code
+" checkers. You could run several similar checkers.
+" Commands:
+" :PymodeLint -- Check code in current buffer
+" :PymodeLintToggle -- Toggle code checking
+" :PymodeLintAuto -- Fix PEP8 errors in current buffer automatically
+
+" --Rope support 
+" Commands:
+" :PymodeRopeAutoImport -- Resolve import for element under cursor
+" :PymodeRopeModuleToPackage -- Convert current module to package
+" :PymodeRopeNewProject -- Open new Rope project in current working directory
+" :PymodeRopeRegenerate -- Regenerate the project cache
+" :PymodeRopeRenameModule -- Rename current module
+" :PymodeRopeUndo -- Undo changes from last refactoring
+" :PymodeRopeRedo -- Redo changes from last refactoring
+
+let g:pymode_rope_show_doc_bind = '<C-c>d'
+let g:pymode_rope_completion_bind = '<C-Space>'
+let g:pymode_rope_goto_definition_bind = '<C-c>g'
+
+let g:pymode_rope_rename_bind = '<C-c>rr'
+let g:pymode_rope_rename_module_bind = '<C-c>r1r'
+let g:pymode_rope_organize_imports_bind = '<C-c>ro'
+let g:pymode_rope_autoimport_bind = '<C-c>ra'
+let g:pymode_rope_module_to_package_bind = '<C-c>r1p'
+let g:pymode_rope_extract_method_bind = '<C-c>rm'
+let g:pymode_rope_extract_variable_bind = '<C-c>rl'
+let g:pymode_rope_use_function_bind = '<C-c>ru'
+let g:pymode_rope_move_bind = '<C-c>rv'
+let g:pymode_rope_change_signature_bind = '<C-c>rs'
 
 " ---YCM--------------
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项

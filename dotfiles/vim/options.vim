@@ -247,7 +247,7 @@ let g:tagbar_type_go = {
 
 
 " -------Python
-let python_highlight_all=1
+" let python_highlight_all=1
 
 
 "------------HogoHelper---------------------------------------------------------------
@@ -273,6 +273,99 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" -------python-mode------------------------------------------------------
+" --Common functionality
+" Turn on the whole plugin
+let g:pymode = 1
+let g:pymode_python = 'python3'
+let g:pymode_trim_whitespaces = 1
+let g:pymode_options = 1
+let g:pymode_options_max_line_length = 79
+let g:pymode_options_colorcolumn = 1
+
+" Setup pymode quickfix window
+let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_maxheight = 6
+
+let g:pymode_indent = 1
+let g:pymode_folding = 1
+
+" Enable pymode-motion
+let g:pymode_motion = 1
+" Pymode could show documentation for current word by pydoc.
+let g:pymode_doc = 1
+
+" Enable automatic virtualenv detection                     'g:pymode_virtualenv'
+let g:pymode_virtualenv = 0
+" Set path to virtualenv manually                  'g:pymode_virtualenv_path'
+" let g:pymode_virtualenv_path = $VIRTUAL_ENV
+
+let g:pymode_run = 1
+" Pymode automatically detects available debugger (like pdb, ipdb, pudb) and user
+" can set/unset breakpoint with one key and without code checking and etc.
+let g:pymode_breakpoint = 1
+
+" Turn on code checking
+let g:pymode_lint = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_unmodified = 0
+let g:pymode_lint_on_fly = 0
+let g:pymode_lint_message = 1
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+"let g:pymode_lint_ignore = "E501,W"
+"let g:pymode_lint_select = "E501,W0011,W430"
+
+" Auto open cwindow (quickfix) if any errors have been found
+let g:pymode_lint_cwindow = 1
+let g:pymode_lint_signs = 1
+let g:pymode_lint_todo_symbol = 'WW'
+let g:pymode_lint_comment_symbol = 'CC'
+let g:pymode_lint_visual_symbol = 'RR'
+let g:pymode_lint_error_symbol = 'EE'
+let g:pymode_lint_info_symbol = 'II'
+let g:pymode_lint_pyflakes_symbol = 'FF'
+
+
+" Pymode has the ability to set code checkers options from pymode variables:
+let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
+let g:pymode_lint_options_pyflakes = { 'builtins': '_' }
+let g:pymode_lint_options_mccabe = { 'complexity': 12 }
+let g:pymode_lint_options_pep257 = {}
+let g:pymode_lint_options_pylint = {'max-line-length': g:pymode_options_max_line_length}
+
+" Pymode supports Rope refactoring operations, code completion and code assists.
+ " Turn on the rope script                                        'g:pymode_rope'
+ let g:pymode_rope = 1
+let g:pymode_rope_regenerate_on_write = 1
+let g:pymode_rope_completion = 1
+let g:pymode_rope_complete_on_dot = 1
+let g:pymode_rope_lookup_project = 0
+" let g:pymode_rope_autoimport = 0
+" let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime']
+let g:pymode_rope_autoimport_import_after_complete = 0
+" Values are (`e`, `new`, `vnew`)
+let g:pymode_rope_goto_definition_cmd = 'new'
+
+" Syntax
+" Turn on pymode syntax                                        *'g:pymode_syntax'*
+let g:pymode_syntax = 1
+let g:pymode_syntax_slow_sync = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_highlight_async_await = g:pymode_syntax_all
+let g:pymode_syntax_highlight_equal_operator = g:pymode_syntax_all
+let g:pymode_syntax_highlight_stars_operator = g:pymode_syntax_all
+let g:pymode_syntax_highlight_self = g:pymode_syntax_all
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+let g:pymode_syntax_string_formatting = g:pymode_syntax_all
+let g:pymode_syntax_string_format = g:pymode_syntax_all
+let g:pymode_syntax_string_templates = g:pymode_syntax_all
+let g:pymode_syntax_doctests = g:pymode_syntax_all
+let g:pymode_syntax_builtin_objs = g:pymode_syntax_all
+let g:pymode_syntax_builtin_types = g:pymode_syntax_all
+let g:pymode_syntax_highlight_exceptions = g:pymode_syntax_all
+let g:pymode_syntax_docstrings = g:pymode_syntax_all
 
 " -------Syntastic------------------------------------------------------
 set statusline+=%#warningmsg#
