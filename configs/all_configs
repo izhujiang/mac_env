@@ -14,7 +14,8 @@ if [ -f ${HOME}/.zshrc ]; then
    rm ${HOME}/.zshrc
 fi
 
-ln -s ${dotfiles_path}/.zshrc ${HOME}/.zshrc
-ln -s ${dotfiles_path}/.bash_profile ${HOME}/.bash_profile
-ln -s ${dotfiles_path}/.tmux.conf ${HOME}/.tmux.conf
-ln -s ${dotfiles_path}/.vimrc ${HOME}/.vimrc
+ln -s ${dotfiles_path}/sh/.zshrc ${HOME}/.zshrc
+ln -s ${dotfiles_path}/sh/.bash_profile ${HOME}/.bash_profile
+ln -s ${dotfiles_path}/tmux/.tmux.conf ${HOME}/.tmux.conf
+ln -s ${dotfiles_path}/vim/.vimrc ${HOME}/.vimrc
+ln -s ${dotfiles_path}/vim/.tern-config ${HOME}/.tern-config

@@ -53,8 +53,12 @@ DISABLE_AUTO_UPDATE="true"
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git zsh-autosuggestions)
 # plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions extract vi-mode docker)
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions extract docker)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions
+        git git-flow golang docker tmux )
 source ${ZSH}/oh-my-zsh.sh
+
+set -o vi
+bindkey -v
 
 # User configuration
 
@@ -106,7 +110,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 SYSOS=`uname -s`
 if [ ${SYSOS} = "Linux" ] ; then
   # for ubuntu
-  [ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh 
+  [ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh
 elif [ ${SYSOS} = "Darwin" ] ; then
   # enable autojump
   # for mac

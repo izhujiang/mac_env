@@ -22,7 +22,11 @@ sudo brew install reattach-to-user-namespace
 
 sudo brew install go
 
+sudo brew install ruby
+
 sudo brew install node
+
+sudo brew install astyle
 
 source ${MY_ENV_ROOT}/platforms/common/install_extras
 # source ${MY_ENV_ROOT}/configs/all_configs

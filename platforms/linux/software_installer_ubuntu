@@ -1,8 +1,10 @@
 #!/bin/sh
 
-sudo apt install -y wget cmake autoconf libtool libtool-bin python3 python3-pip zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev tmux
+sudo apt install -y wget cmake autoconf libtool libtool-bin python3 python3-pip ruby zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev tmux
 # install xclip for copying to system clipboard, supporting tmux.
-sudo apt install -y xclip 
+sudo apt install -y xclip
+
+sudo apt install -y astyle
 
 # brew install go
 
@@ -13,5 +15,5 @@ source ${MY_ENV_ROOT}/platforms/linux/build_vim
 
 source ${MY_ENV_ROOT}/platforms/common/install_extras
 
-# setup my dev_env with tmux and vim 
+# setup my dev_env with tmux and vim
 # ln -s apps/my_ide ${HOME}/my_ide

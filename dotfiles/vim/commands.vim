@@ -3,17 +3,17 @@
 " Files
 "------------------------------------------------------------------------------
 " Fast saving
-map <Leader>w :w<CR>
+nnoremap <Leader>w :w<CR>
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 " command W w !sudo tee % > /dev/null
 
 " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 " 正向跳转至下一个更改的开始。
-map ]] ]c
-map [[ [c
+nnoremap ]] ]c
+nnoremap [[ [c
 
 "------------------------------------------------------------------------------
 " Buffers, Windows and Tabs
@@ -37,17 +37,17 @@ nnoremap <leader>bda :1,1000 bd!<cr>
 " --tabs
 " -------------------------------------------------------
 " Useful mappings for managing tabs
-noremap tn :tabnew<Space>
+noremap <leader>tn :tabnew<Space>
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-nnoremap tc :tabclose<CR>
-nnoremap tm :tabmove<CR>
+nnoremap <leader>tc :tabclose<CR>
+nnoremap <leader>tm :tabmove<CR>
 " move tabs
-nnoremap tj :tabnext<CR>
-nnoremap tk :tabprev<CR>
-nnoremap th :tabfirst<CR>
-nnoremap tl :tablast<CR>
+nnoremap <leader>tj :tabnext<CR>
+nnoremap <leader>tk :tabprev<CR>
+nnoremap <leader>th :tabfirst<CR>
+nnoremap <leader>tl :tablast<CR>
 "通过ctrl h/l切换标签等
 nnoremap <C-l> gt
 nnoremap <C-h> gT
@@ -58,10 +58,10 @@ let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
 
 " --windows
-nnoremap wj <C-W>j
-nnoremap wk <C-W>k
-nnoremap wh <C-W>h
-nnoremap wl <C-W>l
+nnoremap <leader>wj <C-W>j
+nnoremap <leader>wk <C-W>k
+nnoremap <leader>wh <C-W>h
+nnoremap <leader>wl <C-W>l
 
 "------------------------------------------------------------------------------
 " Insert mode related
@@ -90,20 +90,20 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 
 " Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :nohlsearch<cr>
+nnoremap <silent> <leader><cr> :nohlsearch<cr>
 
 "------------------------------------------------------------------------------
 " Spell checking
 "------------------------------------------------------------------------------
 
 " Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
+nnoremap <leader>ss :setlocal spell!<cr>
 
 " shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
+ nnoremap <leader>sn ]s
+ nnoremap <leader>sp [s
+ nnoremap <leader>sa zg
+ nnoremap <leader>s? z=
 
 "------------------------------------------------------------------------------
 " QuickFix
@@ -125,9 +125,33 @@ nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-"------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " Langs
-"------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
+" General programming options
+" Enable folding with the spacebar
+nnoremap <space> za
+
+" -------C/C++
+" using <leader><space> shortcut to make c/c++ file is supercool
+autocmd FileType c,cpp
+\ map <buffer> <leader><space> :w<cr>:make<cr>
+" It's super useful!
+\ nmap <leader>cw :cw 10<cr>
+" To go to the next search result do:
+\ map <leader>cn :cn<cr>
+" To go to the previous search results do:
+\ map <leader>cp :cp<cr>
+\ map <leader>cc :botright cope<cr>
+\ map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+":cc               show detail error info
+":cp               jump to preview error
+":cn               jump to next error
+":cl               list all errors
+":cw               show error window(quickfix) when errors exist
+":col              get older error list
+":cnew             get newer error list
+
 "---Golang
 "---vim-go settings
 au FileType go nmap gs (go-implements)
@@ -173,73 +197,73 @@ nnoremap gdu :diffupdate<cr>
 
 " ----python-mode----
 
-" --Vim motion
-" support Vim motion (See operator) for python objects (such as functions,
-" class and methods).
-" C — means class
-" M — means method or function
-"
-" ================  ============================
-" Key               Command
-" ================  ============================
-" [[                Jump to previous class or function (normal, visual, operator modes)
-" ]]                Jump to next class or function  (normal, visual, operator modes)
-" [M                Jump to previous class or method (normal, visual, operator modes)
-" ]M                Jump to next class or method (normal, visual, operator modes)
-" aC                Select a class. Ex: vaC, daC, yaC, caC (normal, operator modes)
-" iC                Select inner class. Ex: viC, diC, yiC, ciC (normal, operator modes)
-" aM                Select a function or method. Ex: vaM, daM, yaM, caM (normal, operator modes)
-" iM                Select inner function or method. Ex: viM, diM, yiM, ciM (normal, operator modes)
-" ================  ============================
-
-" Show documentation
-" :PymodeDoc <args> — show documentation 
-" Bind keys to show documentation for current word (selection)
-let g:pymode_doc_bind = 'K'
-
-" Support virtualenv
-" Commands:
-" :PymodeVirtualenv <path> -- Activate virtualenv (path can be absolute or
-
-" --Run code
-" :PymodeRun -- Run current buffer or selection
-let g:pymode_run_bind = '<leader>r'
-let g:pymode_breakpoint_bind = '<leader>b'
-" Manually set breakpoint command (leave empty for automatic detection)
-let g:pymode_breakpoint_cmd = ''
-
-" --Code checking
-" Pymode supports pylint, pep257, pep8, pyflakes, mccabe code
-" checkers. You could run several similar checkers.
-" Commands:
-" :PymodeLint -- Check code in current buffer
-" :PymodeLintToggle -- Toggle code checking
-" :PymodeLintAuto -- Fix PEP8 errors in current buffer automatically
-
-" --Rope support 
-" Commands:
-" :PymodeRopeAutoImport -- Resolve import for element under cursor
-" :PymodeRopeModuleToPackage -- Convert current module to package
-" :PymodeRopeNewProject -- Open new Rope project in current working directory
-" :PymodeRopeRegenerate -- Regenerate the project cache
-" :PymodeRopeRenameModule -- Rename current module
-" :PymodeRopeUndo -- Undo changes from last refactoring
-" :PymodeRopeRedo -- Redo changes from last refactoring
-
-let g:pymode_rope_show_doc_bind = '<C-c>d'
-let g:pymode_rope_completion_bind = '<C-Space>'
-let g:pymode_rope_goto_definition_bind = '<C-c>g'
-
-let g:pymode_rope_rename_bind = '<C-c>rr'
-let g:pymode_rope_rename_module_bind = '<C-c>r1r'
-let g:pymode_rope_organize_imports_bind = '<C-c>ro'
-let g:pymode_rope_autoimport_bind = '<C-c>ra'
-let g:pymode_rope_module_to_package_bind = '<C-c>r1p'
-let g:pymode_rope_extract_method_bind = '<C-c>rm'
-let g:pymode_rope_extract_variable_bind = '<C-c>rl'
-let g:pymode_rope_use_function_bind = '<C-c>ru'
-let g:pymode_rope_move_bind = '<C-c>rv'
-let g:pymode_rope_change_signature_bind = '<C-c>rs'
+" " --Vim motion
+" " support Vim motion (See operator) for python objects (such as functions,
+" " class and methods).
+" " C — means class
+" " M — means method or function
+" "
+" " ================  ============================
+" " Key               Command
+" " ================  ============================
+" " [[                Jump to previous class or function (normal, visual, operator modes)
+" " ]]                Jump to next class or function  (normal, visual, operator modes)
+" " [M                Jump to previous class or method (normal, visual, operator modes)
+" " ]M                Jump to next class or method (normal, visual, operator modes)
+" " aC                Select a class. Ex: vaC, daC, yaC, caC (normal, operator modes)
+" " iC                Select inner class. Ex: viC, diC, yiC, ciC (normal, operator modes)
+" " aM                Select a function or method. Ex: vaM, daM, yaM, caM (normal, operator modes)
+" " iM                Select inner function or method. Ex: viM, diM, yiM, ciM (normal, operator modes)
+" " ================  ============================
+" 
+" " Show documentation
+" " :PymodeDoc <args> — show documentation 
+" " Bind keys to show documentation for current word (selection)
+" let g:pymode_doc_bind = 'K'
+" 
+" " Support virtualenv
+" " Commands:
+" " :PymodeVirtualenv <path> -- Activate virtualenv (path can be absolute or
+" 
+" " --Run code
+" " :PymodeRun -- Run current buffer or selection
+" let g:pymode_run_bind = '<leader>r'
+" let g:pymode_breakpoint_bind = '<leader>b'
+" " Manually set breakpoint command (leave empty for automatic detection)
+" let g:pymode_breakpoint_cmd = ''
+" 
+" " --Code checking
+" " Pymode supports pylint, pep257, pep8, pyflakes, mccabe code
+" " checkers. You could run several similar checkers.
+" " Commands:
+" " :PymodeLint -- Check code in current buffer
+" " :PymodeLintToggle -- Toggle code checking
+" " :PymodeLintAuto -- Fix PEP8 errors in current buffer automatically
+" 
+" " --Rope support 
+" " Commands:
+" " :PymodeRopeAutoImport -- Resolve import for element under cursor
+" " :PymodeRopeModuleToPackage -- Convert current module to package
+" " :PymodeRopeNewProject -- Open new Rope project in current working directory
+" " :PymodeRopeRegenerate -- Regenerate the project cache
+" " :PymodeRopeRenameModule -- Rename current module
+" " :PymodeRopeUndo -- Undo changes from last refactoring
+" " :PymodeRopeRedo -- Redo changes from last refactoring
+" 
+" let g:pymode_rope_show_doc_bind = '<C-c>d'
+" let g:pymode_rope_completion_bind = '<C-Space>'
+" let g:pymode_rope_goto_definition_bind = '<C-c>g'
+" 
+" let g:pymode_rope_rename_bind = '<C-c>rr'
+" let g:pymode_rope_rename_module_bind = '<C-c>r1r'
+" let g:pymode_rope_organize_imports_bind = '<C-c>ro'
+" let g:pymode_rope_autoimport_bind = '<C-c>ra'
+" let g:pymode_rope_module_to_package_bind = '<C-c>r1p'
+" let g:pymode_rope_extract_method_bind = '<C-c>rm'
+" let g:pymode_rope_extract_variable_bind = '<C-c>rl'
+" let g:pymode_rope_use_function_bind = '<C-c>ru'
+" let g:pymode_rope_move_bind = '<C-c>rv'
+" let g:pymode_rope_change_signature_bind = '<C-c>rs'
 
 " ---YCM--------------
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
@@ -249,6 +273,18 @@ inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
+
+" let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+" let g:ycm_key_list_accept_completion = ['<C-y>']
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+" let g:ycm_key_list_stop_completion = ['<C-y>']
+
+let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_key_list_stop_completion = ['<enter>']
+
+let g:ycm_key_detailed_diagnostics = '<leader>d'
 
 nnoremap <leader>g :YcmCompleter GoTo<CR> " 跳转到定义处
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic

@@ -59,6 +59,9 @@ if exists('make')
 endif
 Plug 'Shougo/vimproc.vim', {'do': g:make}
 
+" Vim colorscheme
+" Plug 'altercation/vim-colors-solarized'
+
 " Status/tabline for vim
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -88,6 +91,7 @@ Plug 'honza/vim-snippets'
 
 " Provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-surround'
 
 "A simple, easy-to-use Vim alignment plugin
 Plug 'junegunn/vim-easy-align'
@@ -128,6 +132,7 @@ if v:version >= 703
   Plug 'Shougo/vimshell.vim'
 endif
 
+Plug 'benmills/vimux'
 Plug 'vimcn/vimcdoc'
 
 " Extended session management for Vim, require vmi-misc
@@ -154,7 +159,7 @@ Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
 " Sorry. Waiting for stable version. master version does't support vim-plug.
-Plug 'python-mode/python-mode', { 'branch': 'develop', 'do': 'git submodule update --init --recursive'}
+" Plug 'python-mode/python-mode', { 'branch': 'develop', 'do': 'git submodule update --init --recursive'}
 
 " Javascript Bundle, html/css
 " Enhanced javascript syntax file for Vim
@@ -169,8 +174,8 @@ Plug 'alpaca-tc/beautify.vim'
 " for hugo
 Plug 'robertbasic/vim-hugo-helper'
 " for markdown
-" Plug 'godlygeek/tabular'
-" Plug 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 "
 " Instant Markdown previews from VIm!
 " You first need to have node.js with npm installed. Then:

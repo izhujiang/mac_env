@@ -9,7 +9,7 @@
 #
 
 cmd=$(which tmux) # tmux path
-session=codefun   # session name
+session=my_ide   # session name
 
 if [ -z $cmd ]; then
   echo "You need to install tmux."
