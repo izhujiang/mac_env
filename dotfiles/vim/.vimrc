@@ -35,10 +35,10 @@ call plug#begin(expand('~/.vim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-" file system explorer
+" file system explorer, using builtin file explorer(netrw) instead. However, what about the nerdtree-git
+" https://blog.stevenocchipinti.com/2016/12/28/using-netrw-instead-of-nerdtree-for-vim/
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'jistr/vim-nerdtree-tabs'
 
 " Fuzzy file, buffer, mru, tag, etc finder.
 Plug 'ctrlpvim/ctrlp.vim'
@@ -51,13 +51,6 @@ Plug 'majutsushi/tagbar'
 
 " Bookmark plugin
 Plug 'MattesGroeger/vim-bookmarks'
-
-" Interactive command execution in Vim.
-let g:make = 'gmake'
-if exists('make')
-    let g:make = 'make'
-endif
-Plug 'Shougo/vimproc.vim', {'do': g:make}
 
 " Vim colorscheme
 " Plug 'altercation/vim-colors-solarized'
@@ -110,7 +103,8 @@ function! BuildYCM(info)
 endfunction
 " Todo: install(update and build automaticlly) YouCompleteMe like vimpro
 " A code-completion engine for Vim
-Plug 'Valloric/YouCompleteMe', { 'branch': 'stable', 'do': function('BuildYCM') }
+" Plug 'Valloric/YouCompleteMe', { 'branch': 'stable', 'do': function('BuildYCM') }
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 " Highlights trailing whitespace in red and provides :FixWhitespace to fix it.
 Plug 'bronson/vim-trailing-whitespace'
@@ -141,6 +135,8 @@ Plug 'xolox/vim-session'
 "*****************************************************************************
 "" Custom bundles
 "*****************************************************************************
+" A vim plugin that simplifies the transition between multiline and single-line code
+Plug 'AndrewRadev/splitjoin.vim'
 
 "" Go Lang Bundle
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
@@ -174,17 +170,29 @@ Plug 'alpaca-tc/beautify.vim'
 " for hugo
 Plug 'robertbasic/vim-hugo-helper'
 " for markdown
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+" Plug 'godlygeek/tabular'
+" Plug 'plasticboy/vim-markdown'
 "
 " Instant Markdown previews from VIm!
 " You first need to have node.js with npm installed. Then:
 " npm -g install instant-markdown-d
 " It seems bugs with vim-instant-markdown, so walk around(atom) and wait for update to fix the bug...
 " Plug 'suan/vim-instant-markdown'
-" au FileType markdown setl shell=bash\ -i
+
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
 call plug#end()
+" Enable matchit plugin shiped with vim
+runtime macros/matchit.vim
 
 source ${DOTFILES_DIR}/vim/features.vim
 source ${DOTFILES_DIR}/vim/options.vim

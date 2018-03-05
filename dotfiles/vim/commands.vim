@@ -29,7 +29,7 @@ nnoremap <leader>bk :bprevious<cr>
 nnoremap <leader>bh :bfirst<cr>
 nnoremap <leader>bl :blast<cr>
 " Close the current buffer (w/o closingthe currentwindow)
-nnoremap bd :bdelete<cr>
+nnoremap <leader>bd :bdelete<cr>
 
 " Close all the buffers
 nnoremap <leader>bda :1,1000 bd!<cr>
@@ -62,6 +62,7 @@ nnoremap <leader>wj <C-W>j
 nnoremap <leader>wk <C-W>k
 nnoremap <leader>wh <C-W>h
 nnoremap <leader>wl <C-W>l
+nnoremap <leader>q <C-W>q
 
 "------------------------------------------------------------------------------
 " Insert mode related
@@ -75,9 +76,9 @@ inoremap jj <esc>
 "------------------------------------------------------------------------------
 
 " visual shifting (does not exit Visual mode)
-" easyly moving of code blocks in visual mode
-vnoremap < <gv
-vnoremap > >gv
+" easyly moving of code blocks in visual mode, not good, break the rule of dot command
+" vnoremap < <gv
+" vnoremap > >gv
 "------------------------------------------------------------------------------
 " Search, Replace and Highlight
 "------------------------------------------------------------------------------
@@ -100,15 +101,26 @@ nnoremap <silent> <leader><cr> :nohlsearch<cr>
 nnoremap <leader>ss :setlocal spell!<cr>
 
 " shortcuts using <leader>
- nnoremap <leader>sn ]s
- nnoremap <leader>sp [s
- nnoremap <leader>sa zg
- nnoremap <leader>s? z=
+nnoremap <leader>sn ]s
+nnoremap <leader>sp [s
+nnoremap <leader>sa zg
+nnoremap <leader>s? z=
 
 "------------------------------------------------------------------------------
 " QuickFix
 "------------------------------------------------------------------------------
-nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
+nnoremap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
+
+
+
+""------------------------------------------------------------------------------
+" Command mode related
+"------------------------------------------------------------------------------
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+" type %% on Vim’s : command-line prompt, it automatically expands to the path of the active buffer, 
+" :edit %%, :read %%, :write %%save %%, saveas %%.
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 "------------------------------------------------------------------------------
 " Misc
 "------------------------------------------------------------------------------
@@ -118,6 +130,7 @@ nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 
 " Quickly open a buffer for scribble
 " map <leader>q :e ~/buffer<cr>
+
 
 " Quickly open a markdown buffer for scribble
 " map <leader>x :e ~/buffer.md<cr>
@@ -154,18 +167,22 @@ autocmd FileType c,cpp
 
 "---Golang
 "---vim-go settings
-au FileType go nmap gs (go-implements)
-au FileType go nmap gi (go-info)
-au FileType go nmap gd (go-doc)
-au FileType go nmap gv (go-doc-vertical)
-au FileType go nmap gr (go-run)
-au FileType go nmap gb (go-build)
-au FileType go nmap gt (go-test)
-au FileType go nmap gc (go-coverage)
-au FileType go nmap gds (go-def-split)
-au FileType go nmap gdv (go-def-vertical)
-au FileType go nmap gdt (go-def-tab)
-au FileType go nmap gre (go-rename)
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>go <Plug>(go-implements)
+autocmd FileType go nmap <leader>gi <Plug>(go-info)
+autocmd FileType go nmap <leader>gt :GoAlternate<cr>
+autocmd FileType go nmap <leader>gd <Plug>(go-doc)
+autocmd FileType go nmap <leader>gdv <Plug>(go-doc-vertical)
+autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <leader>gc <Plug>(go-coverage)
+autocmd FileType go nmap <leader>gct <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <leader>gds <Plug>(go-def-split)
+autocmd FileType go nmap <leader>gdv <Plug>(go-def-vertical)
+autocmd FileType go nmap <leader>gdt <Plug>(go-def-tab)
+autocmd FileType go nmap <leader>gre <Plug>(go-rename)
+autocmd FileType go nmap <leader>gdf :GoDecls<cr>
+autocmd FileType go nmap <leader>gdd :GoDeclsDir<cr>
 
 
 "------------------------------------------------------------------------------
@@ -173,6 +190,7 @@ au FileType go nmap gre (go-rename)
 "------------------------------------------------------------------------------
 "
 " ---NERDTree
+"
 " Toogle on/off
 map <F2> :NERDTreeToggle<CR>
 " Locate file in hierarchy quickly
@@ -215,32 +233,32 @@ nnoremap gdu :diffupdate<cr>
 " " aM                Select a function or method. Ex: vaM, daM, yaM, caM (normal, operator modes)
 " " iM                Select inner function or method. Ex: viM, diM, yiM, ciM (normal, operator modes)
 " " ================  ============================
-" 
+"
 " " Show documentation
-" " :PymodeDoc <args> — show documentation 
+" " :PymodeDoc <args> — show documentation
 " " Bind keys to show documentation for current word (selection)
 " let g:pymode_doc_bind = 'K'
-" 
+"
 " " Support virtualenv
 " " Commands:
 " " :PymodeVirtualenv <path> -- Activate virtualenv (path can be absolute or
-" 
+"
 " " --Run code
 " " :PymodeRun -- Run current buffer or selection
 " let g:pymode_run_bind = '<leader>r'
 " let g:pymode_breakpoint_bind = '<leader>b'
 " " Manually set breakpoint command (leave empty for automatic detection)
 " let g:pymode_breakpoint_cmd = ''
-" 
+"
 " " --Code checking
 " " Pymode supports pylint, pep257, pep8, pyflakes, mccabe code
 " " checkers. You could run several similar checkers.
-" " Commands:
+" Commands:
 " " :PymodeLint -- Check code in current buffer
 " " :PymodeLintToggle -- Toggle code checking
 " " :PymodeLintAuto -- Fix PEP8 errors in current buffer automatically
-" 
-" " --Rope support 
+"
+" " --Rope support
 " " Commands:
 " " :PymodeRopeAutoImport -- Resolve import for element under cursor
 " " :PymodeRopeModuleToPackage -- Convert current module to package
@@ -249,11 +267,11 @@ nnoremap gdu :diffupdate<cr>
 " " :PymodeRopeRenameModule -- Rename current module
 " " :PymodeRopeUndo -- Undo changes from last refactoring
 " " :PymodeRopeRedo -- Redo changes from last refactoring
-" 
+"
 " let g:pymode_rope_show_doc_bind = '<C-c>d'
 " let g:pymode_rope_completion_bind = '<C-Space>'
 " let g:pymode_rope_goto_definition_bind = '<C-c>g'
-" 
+"
 " let g:pymode_rope_rename_bind = '<C-c>rr'
 " let g:pymode_rope_rename_module_bind = '<C-c>r1r'
 " let g:pymode_rope_organize_imports_bind = '<C-c>ro'
@@ -319,4 +337,3 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
-

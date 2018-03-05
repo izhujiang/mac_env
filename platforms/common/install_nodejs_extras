@@ -1,5 +1,4 @@
 npm -g install create-react-app
-npm -g install instant-markdown-d
 npm -g install typescripit
 npm -g install react-devtools
 npm -g install js-beautify

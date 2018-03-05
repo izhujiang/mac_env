@@ -10,7 +10,14 @@ filetype plugin indent on    " required
 " Rebind <Leader> key, with a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ','
+" mapping the reverse character search command to another key.
+noremap \ ,
 
+" Disable arrowskeys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -76,6 +83,10 @@ endif
 set nobackup
 set nowritebackup
 set noswapfile
+
+" writes the content of the file automatically if you call :make.
+" vim-go also makes use of this setting.
+set autowrite
 
 "------------------------------------------------------------------------------
 " Editing
@@ -223,14 +234,42 @@ au BufNewFile,BufRead *.py
 " more options reference to pymode.
 " let python_highlight_all=1
 
+au BufNewFile,BufRead *.go
+\ setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab fileformat=unix
 " ----Golong
-let g:go_fmt_command = "gofmt" "Explicited the formater plugin (gofmt, goimports, goreturn...)
 
+" Currently by default :GoDecls and :GoDeclsDir show type and function declarations.
+let g:go_decls_includes = "func,type"
+
+" The "go to definition" command families are very powerful but yet easy to use.
+" Under the hood it uses by default the tool guru.guru has an excellent track record of being very predictable.
+" But sometimes it's very slow for certain queries.
+" vim-go was using godef which is very fast on resolving queries.
+let g:go_def_mode = 'godef'
+
+" let g:go_fmt_command = "gofmt" "Explicited the formater plugin (gofmt, goimports, goreturn...)
+let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 0
+
+"
 " By default syntax-highlighting for Functions, Methods and Structs is disabled.
 " Let's enable them!
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+" let g:go_highlight_build_constraints = 1
+" let g:go_highlight_generate_tags = 1
+
+" use only quickfix for Build, Check, Tests, etc..
+let g:go_list_type = "quickfix"
+" :GoMetaLinter for a given Go source code. By default it'll run go vet, golint and errcheck concurrently.
+" gometalinter collects all the outputs and normalizes it to a common format.
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 0
+let g:go_metalinter_deadline = "3s"
 
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
@@ -289,8 +328,15 @@ autocmd BufNewFile,BufReadPost *.md
 \ set conceallevel=2
 " let g:vim_markdown_conceal = 0
 " let g:tex_conceal = ""
+
+" ref to help:markdown_composer
+" seems not work
+\ let g:markdown_composer_refresh_ratea = 10000
+
 " options for instant-markdown, ref to https://github.com/suan/vim-instant-markdown
+" autocmd FileType markdown set shell=bash\ -i
 " set shell=bash\ -i
+" au FileType markdown setl shell=bash\ -i
 " " This will cause vim-instant-markdown to only refresh on the following events:
 " " -No keys have been pressed for a while
 " " -A while after you leave insert mode
@@ -305,7 +351,6 @@ autocmd BufNewFile,BufReadPost *.md
 "
 " " By default, external resources such as images, stylesheets, frames and plugins are allowed. To block such content
 " " let g:instant_markdown_allow_external_content = 0
-
 
 "------------HogoHelper---------------------------------------------------------------
 " :HugoHelperSpellCheck toggles the spell check for the current language.
