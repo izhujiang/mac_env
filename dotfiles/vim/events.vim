@@ -54,6 +54,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " YCM settings
 autocmd InsertLeave * if pumvisible() != 0|pclose|endif    "离开插入模式后自动关闭预览窗口
 
+" -- vim-commentary
+autocmd FileType python,shell set commentstring=#\ %s 
+" comments for more filetypes
+
 "------------------------------------------------------------------------------
 " Helper functions
 "------------------------------------------------------------------------------

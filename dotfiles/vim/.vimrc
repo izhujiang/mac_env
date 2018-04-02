@@ -141,6 +141,9 @@ Plug 'AndrewRadev/splitjoin.vim'
 "" Go Lang Bundle
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 
+" colorscheme
+Plug 'fatih/molokai'
+
 " Python Lang Bundle
 " YouCompleteMe has built-in jedi engine.
 " Plug 'davidhalter/jedi-vim'

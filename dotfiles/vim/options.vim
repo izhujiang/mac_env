@@ -138,8 +138,13 @@ set splitright
 " --Colors and Fonts
 " set background=dark
 " colorscheme vim-material
-set background=dark
+
+" set background=dark
 " colorscheme solarized
+
+let g:rehash256 = 1
+let g:molokai_original = 1
+colorscheme molokai
 
 " --
 " set colorcolumn=80,160
@@ -245,11 +250,12 @@ let g:go_decls_includes = "func,type"
 " Under the hood it uses by default the tool guru.guru has an excellent track record of being very predictable.
 " But sometimes it's very slow for certain queries.
 " vim-go was using godef which is very fast on resolving queries.
-let g:go_def_mode = 'godef'
+let g:go_def_mode = 'guru'
+" let g:go_def_mode = 'godef'
 
 " let g:go_fmt_command = "gofmt" "Explicited the formater plugin (gofmt, goimports, goreturn...)
 let g:go_fmt_command = "goimports"
-let g:go_fmt_autosave = 0
+let g:go_fmt_autosave = 1
 
 "
 " By default syntax-highlighting for Functions, Methods and Structs is disabled.
@@ -260,16 +266,30 @@ let g:go_highlight_structs = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
-" let g:go_highlight_build_constraints = 1
+let g:go_highlight_build_constraints = 1
 " let g:go_highlight_generate_tags = 1
 
-" use only quickfix for Build, Check, Tests, etc..
+" There are two types of error lists in Vim: location list and quickfix
+" use only quickfix for Build, Check, Tests, et
 let g:go_list_type = "quickfix"
+
 " :GoMetaLinter for a given Go source code. By default it'll run go vet, golint and errcheck concurrently.
 " gometalinter collects all the outputs and normalizes it to a common format.
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-let g:go_metalinter_autosave = 0
-let g:go_metalinter_deadline = "3s"
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['golint']
+let g:go_metalinter_deadline = "5s"
+
+" :GoInfo, Identifier resolution
+" vim-go has a support to automatically show the information whenever you move your cursor.
+" let g:go_auto_type_info = 1
+let g:go_auto_type_info = 0
+" status line is updated automatically
+" set updatetime=800
+
+" :GoSameIds :GoSameIdsClear,and GoSameIdsToggle
+" go_auto_sameids enabled by :GoSameIDsAutoToggle
+let g:go_auto_sameids = 0
 
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',

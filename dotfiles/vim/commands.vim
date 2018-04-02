@@ -68,7 +68,7 @@ nnoremap <leader>q <C-W>q
 " Insert mode related
 "------------------------------------------------------------------------------
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
-inoremap jj <esc>
+" inoremap jj <esc>
 
 
 "------------------------------------------------------------------------------
@@ -109,9 +109,21 @@ nnoremap <leader>s? z=
 "------------------------------------------------------------------------------
 " QuickFix
 "------------------------------------------------------------------------------
+" It's super useful!
+nnoremap <leader>cw :cw 20<cr>
 nnoremap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 
+" To go to the next search result do:
+nnoremap <leader>cn :cn<cr>
+" To go to the previous search results do:
+nnoremap <leader>cp :cp<cr>
 
+nnoremap <leader>cc :botright copen<cr>
+
+":cp               jump to preview error
+":cn               jump to next error
+":cl               list all errors
+":cw               show error window(quickfix) when errors exist
 
 ""------------------------------------------------------------------------------
 " Command mode related
@@ -149,41 +161,54 @@ nnoremap <space> za
 " using <leader><space> shortcut to make c/c++ file is supercool
 autocmd FileType c,cpp
 \ map <buffer> <leader><space> :w<cr>:make<cr>
-" It's super useful!
-\ nmap <leader>cw :cw 10<cr>
-" To go to the next search result do:
-\ map <leader>cn :cn<cr>
-" To go to the previous search results do:
-\ map <leader>cp :cp<cr>
-\ map <leader>cc :botright cope<cr>
 \ map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 ":cc               show detail error info
-":cp               jump to preview error
-":cn               jump to next error
-":cl               list all errors
-":cw               show error window(quickfix) when errors exist
 ":col              get older error list
 ":cnew             get newer error list
 
 "---Golang
 "---vim-go settings
-autocmd FileType go nmap <leader>b  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+" autocmd FileType go nmap <leader>gb  <Plug>(go-build)
+autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+autocmd FileType go nmap <leader>gt <Plug>(go-test)
+" autocmd FileType go nmap <leader>gc <Plug>(go-coverage)
+autocmd FileType go nmap <leader>gc <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <leader>gm :GoMetaLinter<cr>
+
+
+autocmd FileType go nmap <leader>ga :GoAlternate<cr>
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
 autocmd FileType go nmap <leader>go <Plug>(go-implements)
 autocmd FileType go nmap <leader>gi <Plug>(go-info)
-autocmd FileType go nmap <leader>gt :GoAlternate<cr>
+" vim-go overrides the default normal shortcut K so that it invokes :GoDoc instead of man
 autocmd FileType go nmap <leader>gd <Plug>(go-doc)
-autocmd FileType go nmap <leader>gdv <Plug>(go-doc-vertical)
-autocmd FileType go nmap <leader>t <Plug>(go-test)
-autocmd FileType go nmap <leader>gc <Plug>(go-coverage)
-autocmd FileType go nmap <leader>gct <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <leader>gdvv <Plug>(go-doc-vertical)
+autocmd FileType go nmap <leader>gs  :GoSameIdsToggle<cr>
+" vim builtin gd shortcut for go_def?
 autocmd FileType go nmap <leader>gds <Plug>(go-def-split)
 autocmd FileType go nmap <leader>gdv <Plug>(go-def-vertical)
 autocmd FileType go nmap <leader>gdt <Plug>(go-def-tab)
-autocmd FileType go nmap <leader>gre <Plug>(go-rename)
+
 autocmd FileType go nmap <leader>gdf :GoDecls<cr>
 autocmd FileType go nmap <leader>gdd :GoDeclsDir<cr>
 
+autocmd FileType go nmap <leader>gn <Plug>(go-rename)
+
+" mapping to <leader>gb
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
 
 "------------------------------------------------------------------------------
 " Plugins
