@@ -14,7 +14,7 @@ alias gz="tar -xzvf"
 alias tgz="tar -xzvf"
 alias bz2="tar -xjvf"
 alias zip="unzip"
-
+alias cl="clear"
 
 # added by Anaconda3 4.2.0 installer
 # export PATH="/usr/local/opt/anaconda3/bin:$PATH"
