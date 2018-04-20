@@ -9,7 +9,7 @@ if [ ${SYSOS} = "Linux" ] ; then
   echo "Working on Linux"
   echo $SYSOS
   echo "only support ubuntu now."
-  source ${MY_ENV_ROOT}/platforms/linux/software_installer_ubuntu
+  . ${MY_ENV_ROOT}/platforms/linux/software_installer_ubuntu
 elif [ ${SYSOS} = "Darwin" ] ; then
   echo "Working on MacOS"
   source ${MY_ENV_ROOT}/platforms/mac/software_installer
@@ -17,11 +17,11 @@ else
   echo "other OS: ${SYSOS}"
 fi
 
-export PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
-export PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
-echo "PY_PACKS(Python packages) location is: ${PY_PACKS_LOC}"
+#export PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
+#export PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
+#echo "PY_PACKS(Python packages) location is: ${PY_PACKS_LOC}"
 
-source ${MY_ENV_ROOT}/configs/all_configs
+#source ${MY_ENV_ROOT}/configs/all_configs
 
 # setup my dev_env with tmux and vim 
 # ln -s apps/my_ide ${HOME}/my_ide

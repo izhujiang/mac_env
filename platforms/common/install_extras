@@ -2,20 +2,20 @@
 
 common_path=${MY_ENV_ROOT}/platforms/common
 # install python 3rd party packages
-source ${common_path}/install_python_extras
+. ${common_path}/install_python_extras
 
 
 # install gem 3d party packages
-source ${common_path}/install_gem_extras
+. ${common_path}/install_gem_extras
 
 # install node.js 3d party packages
-source ${common_path}/install_nodejs_extras
+. ${common_path}/install_nodejs_extras
 
 # install zsh and ohmyzsh as well as its custom plugins
-source ${common_path}/install_zsh_extras
+. ${common_path}/install_zsh_extras
 
 # install vim plugins
-# source ${common_path}/install_vim_plugins
+# . ${common_path}/install_vim_plugins
 
 # insatll powerline fonts and plugin
-source ${common_path}/install_powerline_extras
+. ${common_path}/install_powerline_extras
