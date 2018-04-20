@@ -9,3 +9,4 @@ npm -g install async
 npm -g install rimraf
 npm -g install winston
 npm -g install colors
+npm -g install simplehttpserver
