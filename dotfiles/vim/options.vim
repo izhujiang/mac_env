@@ -318,6 +318,10 @@ let g:tagbar_type_go = {
 \ }
 
 
+" ------java
+let g:rooter_targets = '*.gradle, *.yml, *.yaml'
+let g:rooter_patterns = ['.gradle', '.git', '.git/']
+
 " ------js/html/css
 au BufNewFile,BufRead *.js,*.htm,*.html,*.css
 \ set tabstop=2 |
