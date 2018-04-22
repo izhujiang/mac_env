@@ -398,6 +398,17 @@ let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeIgnore=['\.o$', '\.pyc$', '\.php\~$','\~$']
 
+
+" -----CTRLP-------------------------------------------
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|class|jar|war)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
 " -----Powerline-----------------------------------------
 "这个是安装字体后 必须设置此项"
 let g:airline_powerline_fonts = 1

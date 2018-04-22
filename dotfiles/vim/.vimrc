@@ -137,6 +137,7 @@ endfunction
 " A code-completion engine for Vim
 " Plug 'Valloric/YouCompleteMe', { 'branch': 'stable', 'do': function('BuildYCM') }
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
 " It takes huge time to download jdt.ls to supporting YouCompleteMe for java, which is currently experimental.
 " Blocking YouCompleteMe in let g:ycm_filetype_blacklist and ycm_filetype_specific_completion_to_disable
 " Waiting ......
@@ -204,7 +205,7 @@ Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'for': '
 Plug 'sbdchd/neoformat', {'for': 'java'}
 
 " Asynchronous linting and make framework for Neovim/Vim, not good enought for gradle. using gradle via shell instead.
-" Plug 'neomake/neomake'
+Plug 'neomake/neomake'
 " Plug 'tfnico/vim-gradle'
 call plug#end()
 " Enable matchit plugin shiped with vim
