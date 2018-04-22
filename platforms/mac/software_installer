@@ -7,11 +7,16 @@ brew install wget
 brew install cmake
 brew install python
 brew install python3
-brew cask reinstall java
+# brew cask install java8
+brew install go
+brew install ruby
+brew install node
+
 brew install tmux
 brew install readline xz
 # reattach-to-user-namespace support copy and pasty
 brew install reattach-to-user-namespace
+brew install astyle
 # with python2.* support
 # brew install vim 
 # brew remove vim
@@ -21,12 +26,6 @@ brew install reattach-to-user-namespace
 brew install vim --with-python3
 echo "" > ${HOME}/.vim_cfg
 
-
-brew install go
-brew install ruby
-brew install node
-
-brew install astyle
 
 source ${MY_ENV_ROOT}/platforms/common/install_extras
 # source ${MY_ENV_ROOT}/configs/all_configs
