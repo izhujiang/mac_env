@@ -2,8 +2,6 @@
 " General
 "------------------------------------------------------------------------------
 
-" let's make sure we are in noncompatble mode
-set nocompatible              " required
 " Enable filetype plugins
 filetype plugin indent on    " required
 
@@ -27,7 +25,7 @@ else
     set wildignore+=.git\*,.hg\*,.svn\*
 endif
 
-set helplang=cn             "help file in chinese
+" set helplang=cn             "help file in chinese
 
 "------------------------------------------------------------------------------
 " Sessions
@@ -320,6 +318,10 @@ let g:tagbar_type_go = {
 \ }
 
 
+" ------java
+let g:rooter_targets = '*.gradle, *.yml, *.yaml'
+let g:rooter_patterns = ['.gradle', '.git', '.git/']
+
 " ------js/html/css
 au BufNewFile,BufRead *.js,*.htm,*.html,*.css
 \ set tabstop=2 |
@@ -376,6 +378,20 @@ autocmd BufNewFile,BufReadPost *.md
 " :HugoHelperSpellCheck toggles the spell check for the current language.
 " Running it once, turns the spell check on. Running it again, turns it off.
 let g:hugohelper_spell_check_lang = 'en_us'
+"
+" -------Java
+" options ref to https://github.com/sbdchd/neoformat
+autocmd BufNewFile,BufReadPost *.* 
+\ let g:neoformat_enabled_java = ['uncrustify', 'astyle']
+
+" configure Neomake to open the list automatically:
+let g:neomake_open_list = 2
+
+" -------Markdown
+" options ref to https://github.com/plasticboy/vim-markdown
+autocmd BufNewFile,BufReadPost *.md
+\ set filetype=markdown
+" let g:vim_markdown_folding_disabled = 1
 "------------------------------------------------------------------------------
 " Plugins
 "------------------------------------------------------------------------------
@@ -493,19 +509,19 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " let g:pymode_syntax_docstrings = g:pymode_syntax_all
 
 " -------Syntastic------------------------------------------------------
-set statusline+=%#warningmsg#
-" todo SyntasticStatuslineFlag() ?
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" " todo SyntasticStatuslineFlag() ?
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-" install flake8 first
-let g:syntastic_python_checkers=['flake8']
-" let g:syntastic_python_checkers=['flake8', 'pep8', 'python3']
+" let g:syntastic_aggregate_errors = 1
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 1
+" " install flake8 first
+" let g:syntastic_python_checkers=['flake8']
+" " let g:syntastic_python_checkers=['flake8', 'pep8', 'python3']
 
 " -------YouCompleteMe and UltiSnips------------------------------------
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -572,13 +588,8 @@ let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
 " so jedi will be able to provide completions for every package you have in the virtual environment.
 let g:ycm_python_binary_path = 'python'
 
-
-" Disable unhelpful semantic completions.
-let g:ycm_filetype_specific_completion_to_disable = {
-    \   'gitcommit': 1,
-    \   'haskell': 1,
-    \   'ruby': 1
-    \ }
+let g:syntastic_java_checkers = []
+let g:EclimFileTypeValidate = 0
 
 let g:ycm_semantic_triggers = {
     \   'c' : ['->', '.'],
@@ -606,14 +617,21 @@ let g:ycm_semantic_triggers = {
 
 " Same as default, but with "mail", "markdown" and "text" removed.
 let g:ycm_filetype_blacklist = {
-      \   'notes': 1,
-      \   'unite': 1,
-      \   'tagbar': 1,
-      \   'pandoc': 1,
-      \   'qf': 1,
-      \   'vimwiki': 1,
-      \   'infolog': 1,
-      \ }
+    \   'notes': 1,
+    \   'unite': 1,
+    \   'tagbar': 1,
+    \   'pandoc': 1,
+    \   'qf': 1,
+    \   'vimwiki': 1,
+    \   'infolog': 1,
+    \ }
+
+" Disable unhelpful semantic completions.
+let g:ycm_filetype_specific_completion_to_disable = {
+    \   'gitcommit': 1,
+    \   'haskell': 1,
+    \   'ruby': 1,
+    \ }
 
 let g:ycm_filter_diagnostics = {}
 " \ "java": {

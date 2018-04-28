@@ -7,12 +7,20 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+autocmd BufNewFile,BufRead *.gradle setf groovy
 "------------------------------------------------------------------------------
 " Writing
 "------------------------------------------------------------------------------
 autocmd BufWrite *.go :call DeleteTrailingWS()
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
+
+augroup fmt
+  autocmd!
+  autocmd BufWritePre *.java undojoin | Neoformat
+" autocmd BufWritePre * undojoin | Neoformat
+augroup END
 
 "------------------------------------------------------------------------------
 " Buffers

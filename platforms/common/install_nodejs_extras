@@ -1,11 +1,11 @@
-sudo npm -g install create-react-app
-sudo npm -g install typescript
-sudo npm -g install react-devtools
-sudo npm -g install js-beautify
-# npm -g install node-jq
-sudo npm -g install js2coffee
-sudo npm -g install commander
-sudo npm -g install async
-sudo npm -g install rimraf
-sudo npm -g install winston
-sudo npm -g install colors
+npm -g install create-react-app
+npm -g install typescript
+npm -g install react-devtools
+npm -g install js-beautify
+npm -g install js2coffee
+npm -g install commander
+npm -g install async
+npm -g install rimraf
+npm -g install winston
+npm -g install colors
+npm -g install simplehttpserver
