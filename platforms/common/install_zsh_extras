@@ -10,7 +10,8 @@ do
   else
     cd ${ZSH_CUSTOM}/plugins/${plugin}
     git pull
-  fi done
+  fi
+done
 
 cd ${MY_ENV_ROOT}/extras
 
@@ -22,12 +23,14 @@ else
   cd oh-my-zsh-powerline-theme
   git pull
 fi
+
 # echo $(pwd)
 # cp -f powerline.zsh-theme ${ZSH}/themes/
-source ./install_in_omz.sh
+. ./install_in_omz.sh
 cd ..
 
 # sleep for 2 seconds to avoid error "shell-init: error retrieving current directory" when rm powerline-theme directory
-# sleep 2
+sleep 2
+rm ${MY_ENV_ROOT}/extras/oh-my-zsh-powerline-theme
 
 cd ${MY_ENV_ROOT}/platforms/common

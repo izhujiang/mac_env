@@ -1,8 +1,5 @@
-" Automatic reloading of .vimrc
 " autocmd! bufwritepost .vimrc source %
 syn on                      "语法支持
-"Fast reloading of the .vimrc
-map <silent> <leader>sv :source ~/.vimrc<cr>
 
 "*****************************************************************************
 "" Vim-PLug core
@@ -10,6 +7,8 @@ map <silent> <leader>sv :source ~/.vimrc<cr>
 if has('vim_starting')
   set nocompatible               " Be iMproved
 endif
+
+let g:session_autosave = 'no'
 
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 " support with http://www.vim-bootstrap.com/
@@ -26,7 +25,6 @@ if !filereadable(vimplug_exists)
   silent !\curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   let g:not_finish_vimplug = "yes"
 
-  autocmd VimEnter * PlugInstall
 endif
 
 " Required:
@@ -212,16 +210,4 @@ Plug 'sbdchd/neoformat', {'for': 'java'}
 Plug 'tfnico/vim-gradle', { 'for': [ 'java', 'groovy' ] }
 Plug 'airblade/vim-rooter', { 'for': [ 'java', 'groovy' ] }
 call plug#end()
-" Enable matchit plugin shiped with vim
-runtime macros/matchit.vim
-
-
-if exists('$TMUX')
-  set  term=screen-256color
-endif
-export DOTFILES_DIR=${MY_ENV_ROOT}/dotfiles
-source ${DOTFILES_DIR}/vim/features.vim
-source ${DOTFILES_DIR}/vim/options.vim
-source ${DOTFILES_DIR}/vim/commands.vim
-source ${DOTFILES_DIR}/vim/events.vim
 

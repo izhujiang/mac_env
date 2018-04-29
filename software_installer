@@ -17,10 +17,19 @@ else
   echo "other OS: ${SYSOS}"
 fi
 
-#export PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
-#export PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
-#echo "PY_PACKS(Python packages) location is: ${PY_PACKS_LOC}"
+cd ~/
+rm .zshrc .bash_profile .vimrc
+cp ${MY_ENV_ROOT}/dotfiles/vim/.vimrc-plugin-only .vimrc
 
+ln -s ${MY_ENV_ROOT}/dotfiles/sh/.zshrc ~/.zshrc
+ln -s ${MY_ENV_ROOT}/dotfiles/sh/.bash_profile ~/.bash_profile
+
+echo "install vim's plugins......"
+vim +PlugInstall +qall
+sleep 1
+rm ~/.vimrc
+
+ln -s ${MY_ENV_ROOT}/dotfiles/vim/.vimrc ~/.vimrc
 #source ${MY_ENV_ROOT}/configs/all_configs
 
 # setup my dev_env with tmux and vim 

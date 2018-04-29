@@ -5,16 +5,6 @@ if [ ! -d ~/.pyenv ]; then
 fi
 # todo; consider when vertualenv is already installed 
 # install 3rd party python packages
-# pip3 install flake8
-# pip3 install pep8
-# pip3 install future
-# pip3 install jedi
-# pip3 install mock
-# pip3 install nose
-# pip3 install PyHamcrest
-# pip3 install vertualenv
-# pip3 install virtualenvwrapper
-# pip3 install powerline-status
 pip3 install flake8
 pip3 install future
 pip3 install pep8
@@ -23,3 +13,5 @@ pip3 install mock
 pip3 install nose
 pip3 install PyHamcrest
 pip3 install powerline-status
+# pip3 install vertualenv
+# pip3 install virtualenvwrapper
