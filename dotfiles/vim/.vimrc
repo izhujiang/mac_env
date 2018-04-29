@@ -70,10 +70,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
-"  Powerful shell in vim
-if v:version >= 703
-  Plug 'Shougo/vimshell.vim'
-endif
+" Vim8 has builtin terminal support
+" " Install VimShell and its depencency vimproc
+" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" "  Powerful shell in vim
+" if v:version >= 703
+"   Plug 'Shougo/vimshell.vim'
+" endif
 
 " vim plugin to interact with tmux
 Plug 'benmills/vimux'
@@ -205,8 +208,9 @@ Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'for': '
 Plug 'sbdchd/neoformat', {'for': 'java'}
 
 " Asynchronous linting and make framework for Neovim/Vim, not good enought for gradle. using gradle via shell instead.
-Plug 'neomake/neomake'
-" Plug 'tfnico/vim-gradle'
+" Plug 'neomake/neomake'
+Plug 'tfnico/vim-gradle', { 'for': [ 'java', 'groovy' ] }
+Plug 'airblade/vim-rooter', { 'for': [ 'java', 'groovy' ] }
 call plug#end()
 " Enable matchit plugin shiped with vim
 runtime macros/matchit.vim

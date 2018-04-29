@@ -2,7 +2,9 @@
 
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap caskroom/cask
-
+# springboot
+# brew tap pivotal/tap
+# brew install springboot
 brew install wget
 brew install cmake
 brew install python
@@ -26,6 +28,7 @@ brew install astyle
 brew install vim --with-python3
 echo "" > ${HOME}/.vim_cfg
 
+brew install httpie
 
 source ${MY_ENV_ROOT}/platforms/common/install_extras
 # source ${MY_ENV_ROOT}/configs/all_configs

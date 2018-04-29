@@ -9,6 +9,7 @@ autocmd BufReadPost *
 
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 autocmd BufNewFile,BufRead *.gradle setf groovy
+autocmd FileType java,groovy :execute "compiler gradle"
 "------------------------------------------------------------------------------
 " Writing
 "------------------------------------------------------------------------------
@@ -63,7 +64,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 autocmd InsertLeave * if pumvisible() != 0|pclose|endif    "离开插入模式后自动关闭预览窗口
 
 " -- vim-commentary
-autocmd FileType python,shell set commentstring=#\ %s 
+autocmd FileType python,shell set commentstring=#\ %s
 " comments for more filetypes
 
 "------------------------------------------------------------------------------

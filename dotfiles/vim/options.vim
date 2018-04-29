@@ -319,8 +319,10 @@ let g:tagbar_type_go = {
 
 
 " ------java
-let g:rooter_targets = '*.gradle, *.yml, *.yaml'
-let g:rooter_patterns = ['.gradle', '.git', '.git/']
+" vim-rooter change current directory where build.gradle exists.
+" and vim-gradle run make command(make build/run/test)
+let g:rooter_targets = '*.gradle,*.java,*.yml,*.yaml'
+let g:rooter_patterns = ['settings.gradle', 'build.gradle', '.git', '.git/']
 
 " ------js/html/css
 au BufNewFile,BufRead *.js,*.htm,*.html,*.css
@@ -381,7 +383,7 @@ let g:hugohelper_spell_check_lang = 'en_us'
 "
 " -------Java
 " options ref to https://github.com/sbdchd/neoformat
-autocmd BufNewFile,BufReadPost *.* 
+autocmd BufNewFile,BufReadPost *.*
 \ let g:neoformat_enabled_java = ['uncrustify', 'astyle']
 
 " configure Neomake to open the list automatically:
@@ -599,6 +601,7 @@ let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
 " so jedi will be able to provide completions for every package you have in the virtual environment.
 let g:ycm_python_binary_path = 'python'
 
+" conflict with other dianostics plugins like Syntastic and other dianostics plugins like Eclim
 let g:syntastic_java_checkers = []
 let g:EclimFileTypeValidate = 0
 
