@@ -219,9 +219,9 @@ runtime macros/matchit.vim
 if exists('$TMUX')
   set  term=screen-256color
 endif
-export DOTFILES_DIR=${MY_ENV_ROOT}/dotfiles
-source ${DOTFILES_DIR}/vim/features.vim
-source ${DOTFILES_DIR}/vim/options.vim
-source ${DOTFILES_DIR}/vim/commands.vim
-source ${DOTFILES_DIR}/vim/events.vim
+
+source ${MY_ENV_ROOT}/dotfiles/vim/features.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/options.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/commands.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/events.vim
 
