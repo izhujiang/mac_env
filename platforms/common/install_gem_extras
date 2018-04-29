@@ -1,2 +1,2 @@
-gem install html2haml
-gem install sass
+sudo gem install html2haml
+sudo gem install sass

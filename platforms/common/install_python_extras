@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [[ ! -d ~/.pyenv ]]; then
+if [ ! -d ~/.pyenv ]; then
   git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 fi
 # todo; consider when vertualenv is already installed 
@@ -15,13 +15,11 @@ fi
 # pip3 install vertualenv
 # pip3 install virtualenvwrapper
 # pip3 install powerline-status
-sudo pip3 install flake8
-sudo pip3 install future
-sudo pip3 install pep8
-sudo pip3 install jedi
-sudo pip3 install mock
-sudo pip3 install nose
-sudo pip3 install PyHamcrest
-sudo pip3 install vertualenv
-sudo pip3 install virtualenvwrapper
-sudo pip3 install powerline-status
+pip3 install flake8
+pip3 install future
+pip3 install pep8
+pip3 install jedi
+pip3 install mock
+pip3 install nose
+pip3 install PyHamcrest
+pip3 install powerline-status

@@ -1,22 +1,5 @@
 #!/bin/sh
 
-echo ${SHELL: -3}
-if [[ ${SHELL: -3} != "zsh" ]] ; then 
-  read -p "If you want to install zsh_extras including oh_my_zsh, you shall switch to zsh(chsh -s \$(which zsh}), and re-login then run again. [Y/n]" yn
-  #echo "If you want to install zsh_extras, you shall switch to zsh. Type command: \n chsh -s \$(which \${SHELL}). "
-  if [[ $yn == [Yy] ]];then
-    chsh -s $(which zsh)
-    return 1 
-  else
-    return 0
-  fi
-fi
-
-echo "The ZSH_CUSTOM is: "${ZSH_CUSTOM}
-if [[ ${ZSH_CUSTOM} == "" ]]; then
-  echo "Install oh_my_zsh first please and run install_zsh_extras again."
-  return 0
-fi
 
 # install zsh plugins 
 # remember to update "plugins" items in .zshrc file
@@ -27,8 +10,7 @@ do
   else
     cd ${ZSH_CUSTOM}/plugins/${plugin}
     git pull
-  fi
-done
+  fi done
 
 cd ${MY_ENV_ROOT}/extras
 
