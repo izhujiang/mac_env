@@ -18,9 +18,9 @@ alias cl="clear"
 
 # added by Anaconda3 4.2.0 installer
 # export PATH="/usr/local/opt/anaconda3/bin:$PATH"
-export WORKON_HOME=$HOME/.local/virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-source /usr/local/bin/virtualenvwrapper.sh
+# export WORKON_HOME=$HOME/.local/virtualenvs
+# export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+# source /usr/local/bin/virtualenvwrapper.sh
 
 # export GOROOT=$HOME/repo/golang/go
 export GOPATH=$HOME/workspace/go

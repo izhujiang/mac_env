@@ -138,9 +138,11 @@ set splitright
 " colorscheme vim-material
 
 " set background=dark
+" let g:solarized_termcolors=256
 " colorscheme solarized
 
 let g:rehash256 = 1
+" prefer the scheme to match the original monokai background color, otherwith comment it.
 let g:molokai_original = 1
 colorscheme molokai
 
@@ -419,6 +421,7 @@ let g:ctrlp_custom_ignore = {
 "这个是安装字体后 必须设置此项"
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='material'
+let g:airline_theme='tomorrow'
 
 "打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
 let g:airline#extensions#tabline#enabled = 1
