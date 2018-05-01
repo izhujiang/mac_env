@@ -111,6 +111,8 @@ SYSOS=`uname -s`
 if [ ${SYSOS} = "Linux" ] ; then
   # for ubuntu
   [ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh
+  export JAVA_HOME=~/java/jdk-10
+  export PATH=${JAVA_HOME}/bin:${PATH}
 elif [ ${SYSOS} = "Darwin" ] ; then
   # enable autojump
   # for mac
