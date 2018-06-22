@@ -8,7 +8,9 @@ unset LC_CTYPE
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 alias ll='ls -GFlas'
-alias vi=vim
+# alias ll="ls -la"
+alias vi="vim"
+alias python="python3"
 
 alias gz="tar -xzvf"
 alias tgz="tar -xzvf"

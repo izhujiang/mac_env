@@ -2,7 +2,7 @@
 
 sudo apt install -y wget cmake autoconf libtool libtool-bin lib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev cargo
 
-sudo apt install -y python3 dpython3-dev python3-pip ruby ruby-dev default-jdk golang nodejs npm
+sudo apt install -y python3 dpython3-dev python3-pip ruby ruby-dev default-jdk golang nodejs npm jq
 echo "Download Oracle JDK from oracle website and install it to ${HOME}/java like ${HOME}/java/jdk-10, if you prefer oracle jdk instead."
 
 sudo apt install -y tmux autojump astyle

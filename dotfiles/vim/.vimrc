@@ -46,8 +46,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Eclipse like task list
 Plug 'vim-scripts/TaskList.vim'
 
-" Class outline viewer for Vim
-Plug 'majutsushi/tagbar'
+" C++ Class outline viewer for Vim
+" Plug 'majutsushi/tagbar'
 
 " Bookmark plugin
 Plug 'MattesGroeger/vim-bookmarks'
@@ -90,7 +90,7 @@ Plug 'vim-scripts/grep.vim'
 Plug 'Yggdroot/indentLine'
 
 " Provides insert mode auto-completion for quotes, parens, brackets, etc.
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 
 "A simple, easy-to-use Vim alignment plugin
@@ -103,10 +103,10 @@ Plug 'tpope/vim-commentary'
 Plug 'bronson/vim-trailing-whitespace'
 
 " A vim plugin that simplifies the transition between multiline and single-line code
-Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'AndrewRadev/splitjoin.vim'
 
 " True Sublime Text style multiple selections for Vim
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 
 " Syntax checking hacks for vim, https://github.com/vim-syntastic/syntastic
 " Plug 'vim-syntastic/syntastic'
@@ -118,10 +118,10 @@ Plug 'terryma/vim-multiple-cursors'
 if v:version >= 704
   " The ultimate snippet solution for Vim
   " Snippet engines
-  Plug 'SirVer/ultisnips'
+    Plug 'SirVer/ultisnips'
+    " vim-snipmate default snippets
+    Plug 'honza/vim-snippets'
 endif
-" vim-snipmate default snippets
-Plug 'honza/vim-snippets'
 
 " Build YouCompleteMe
 function! BuildYCM(info)
@@ -134,7 +134,6 @@ function! BuildYCM(info)
     !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
   endif
 endfunction
-
 
 " Todo: install(update and build automaticlly) YouCompleteMe like vimpro
 " A code-completion engine for Vim
@@ -177,17 +176,24 @@ Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 "" ------------Html/css/Javascript Bundle ----------------------------------
 " Javascript Bundle, html/css
 " Enhanced javascript syntax file for Vim
-Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'mxw/vim-jsx', {'for': 'javascript'}
+" Prettier is an opinionated code formatter with support for: JavaScript JSX Flow TypeScript CSS JSON GraphQL Markdown YAML
+Plug 'prettier/vim-prettier', {
+    \ 'do': 'npm -g install',
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 
 " Provides support for expanding abbreviations similar to emmet.
-Plug 'mattn/emmet-vim', {'for': ['html','css']}
+Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript']}
 " Beautify.vim is reformatter and converter.
-Plug 'alpaca-tc/beautify.vim', {'for': ['html', 'css', 'javascript']}
+" Plug 'alpaca-tc/beautify.vim', {'for': ['html', 'css', 'javascript']}
+
+" Flow is a static type checker for your JavaScript code.
+" Plug 'flowtype/vim-flow', {'for': 'javascript'}
 
 " --------------Markdown----------------------------------------------
 " for makrdown and hugo
-Plug 'robertbasic/vim-hugo-helper', {'for': 'Markdown'}
+" Plug 'robertbasic/vim-hugo-helper', {'for': 'Markdown'}
 
 " Build MarkdownComposer
 function! BuildComposer(info)
@@ -220,8 +226,27 @@ if exists('$TMUX')
   set  term=screen-256color
 endif
 
-source ${MY_ENV_ROOT}/dotfiles/vim/features.vim
-source ${MY_ENV_ROOT}/dotfiles/vim/options.vim
-source ${MY_ENV_ROOT}/dotfiles/vim/commands.vim
-source ${MY_ENV_ROOT}/dotfiles/vim/events.vim
+" source ${MY_ENV_ROOT}/dotfiles/vim/features.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/general.vim
+
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/nerdtree.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ctrlp.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/powerline.vim
+
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ultrisnips.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ycm.vim
+
+
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-commentary.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-easyalign.vim
+
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-go.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/neoformat.vim
+
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-javascript.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-prettier.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/emmet-vim.vim
+
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-markdown.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/markdown_composer.vim
 
