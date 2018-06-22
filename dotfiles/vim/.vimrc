@@ -102,6 +102,9 @@ Plug 'tpope/vim-commentary'
 " Highlights trailing whitespace in red and provides :FixWhitespace to fix it.
 Plug 'bronson/vim-trailing-whitespace'
 
+" A Narrow Region Plugin for vim, focus on a selected region while making the rest inaccessible.
+Plug 'chrisbra/NrrwRgn'
+
 " A vim plugin that simplifies the transition between multiline and single-line code
 " Plug 'AndrewRadev/splitjoin.vim'
 
