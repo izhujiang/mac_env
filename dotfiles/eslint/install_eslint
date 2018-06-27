@@ -8,4 +8,6 @@ npm install --save-dev \
   eslint-plugin-react \
   eslint-plugin-relay \
   eslint \
-  babel-eslint
+  babel-eslint \
+  prettier \
+  eslint-plugin-prettier

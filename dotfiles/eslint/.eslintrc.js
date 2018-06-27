@@ -1,3 +1,7 @@
 module.exports = {
-    "extends": "fbjs"
-};
+  "extends": "fbjs",
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error", { "singleQuote": true }]
+  }
+}

@@ -24,7 +24,7 @@ let g:ale_set_quickfix = 1
 " By default, all available tools for all supported languages will be run.
 " If you want to only select a subset of the tools, you can define b:ale_linters for a single buffer, or g:ale_linters globally
 " let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
-let g:ale_fixers = {'javascript': ['eslint'], }
+let g:ale_fixers = {'javascript': ['eslint', 'prettier'] }
 " let g:ale_fixers = {'javascript': ['eslint',' prettier'] }
 " let g:ale_fixers = {'javascript': ['standard']}
 
