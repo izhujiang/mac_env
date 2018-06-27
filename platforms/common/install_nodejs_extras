@@ -1,5 +1,5 @@
-npm -g install create-react-app
 npm -g install typescript
+npm -g install create-react-app
 npm -g install react-devtools
 npm -g install js-beautify
 npm -g install js2coffee
@@ -10,4 +10,3 @@ npm -g install winston
 npm -g install colors
 npm -g install simplehttpserver
 npm -g install mongo-hacker
-npm -g install prettier

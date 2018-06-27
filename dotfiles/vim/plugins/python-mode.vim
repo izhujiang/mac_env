@@ -1,0 +1,9 @@
+let g:pymode_python = 'python3'
+let g:pymode_lint = 0  " ALE
+let g:pymode_folding = 0  " SimplyFold
+let g:pymode_run = 0
+let g:pymode_breakpoint = 0
+let g:pymode_options = 0
+let g:pymode_doc = 0
+let g:pymode_rope = 0
+let g:pymode_debug = 0

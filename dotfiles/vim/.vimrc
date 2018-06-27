@@ -41,13 +41,17 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Fuzzy file, buffer, mru, tag, etc finder.
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+" Fuzzy Finding: CtrlP –> fzf, because it's asynchronous and fast
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Eclipse like task list
 Plug 'vim-scripts/TaskList.vim'
 
-" C++ Class outline viewer for Vim
-" Plug 'majutsushi/tagbar'
+" 
+" Universal CTags: tagging engine that scans project files and generates tag files.
+" Autotag: automatically update the tag files after each save.
+" Tagbar: displays a window with a hierarchical list of tags in the current file.
 
 " Bookmark plugin
 Plug 'MattesGroeger/vim-bookmarks'
@@ -111,11 +115,11 @@ Plug 'chrisbra/NrrwRgn'
 " True Sublime Text style multiple selections for Vim
 " Plug 'terryma/vim-multiple-cursors'
 
-" Syntax checking hacks for vim, https://github.com/vim-syntastic/syntastic
-" Plug 'vim-syntastic/syntastic'
-" Syntastic aims to provide a common interface to syntax checkers for as many languages as possible.
-" For particular languages, there are, of course, other plugins that provide more functionality than syntastic. You
-" might want to take a look at ghcmod-vim, jedi-vim, python-mode, vim-go, or YouCompleteMe.
+" Syntax Highlighting
+" linting: Syntastic –> ALE
+" A bunch of syntastic settings were ripped out, and replaced with a slim ALE configuration.
+" For each language, ALE will automatically detect linters that are installed on the system.
+Plug 'w0rp/ale'
 
 " ---------------------------------
 if v:version >= 704
@@ -154,7 +158,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 "" ------------Golang Bundle ----------------------------------
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for':'go'}
-
 
 "" ------------Python Bundle ----------------------------------
 " Python Lang Bundle
@@ -233,18 +236,22 @@ endif
 source ${MY_ENV_ROOT}/dotfiles/vim/general.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/nerdtree.vim
-source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ctrlp.vim
+" source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ctrlp.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/powerline.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ultrisnips.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ycm.vim
 
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ale.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-commentary.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-easyalign.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-go.vim
+
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/neoformat.vim
+
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/python-mode.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-javascript.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-prettier.vim

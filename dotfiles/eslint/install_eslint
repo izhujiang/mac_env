@@ -1,0 +1,11 @@
+echo "using create-react-app command to create react app, then npm eslint and plugins to local."
+echo "npm install --save-dev eslint babel-eslint eslint-config-fbjs eslint-plugin-babel eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-relay"
+npm install --save-dev \
+  eslint-config-fbjs \
+  eslint-plugin-babel \
+  eslint-plugin-flowtype \
+  eslint-plugin-jsx-a11y \
+  eslint-plugin-react \
+  eslint-plugin-relay \
+  eslint \
+  babel-eslint

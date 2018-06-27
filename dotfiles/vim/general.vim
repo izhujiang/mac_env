@@ -94,7 +94,8 @@ set autowrite
 
 " Fast saving
 nnoremap <Leader>w :w<CR>
-
+" write file with sudo when open file readonly
+cmap sw w !sudo tee >/dev/null %
 " Switch CWD to the directory of the open buffer
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
@@ -126,6 +127,13 @@ set nrformats=octal,hex,alpha
 "------------------------------------------------------------------------------
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 " inoremap jj <esc>
+
+" move to begin and end of line
+noremap <C-h> ^
+noremap <C-l> $
+
+" inoremap <C-k> <Up>
+" inoremap <C-j> <Down>
 
 "------------------------------------------------------------------------------
 " Buffers, Windows and Tabs
@@ -167,9 +175,6 @@ nnoremap <leader>tj :tabnext<CR>
 nnoremap <leader>tk :tabprev<CR>
 nnoremap <leader>th :tabfirst<CR>
 nnoremap <leader>tl :tablast<CR>
-"通过ctrl h/l切换标签等
-nnoremap <C-l> gt
-nnoremap <C-h> gT
 nnoremap <leader>te : tabe<CR>
 
 " Let 'tl' toggle between this and the last accessed tab
