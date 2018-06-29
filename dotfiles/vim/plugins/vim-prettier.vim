@@ -24,3 +24,4 @@ let g:prettier#config#trailing_comma = 'all'
 " flow|babylon|typescript|postcss
 let g:prettier#config#parser = 'flow'
 
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync

@@ -187,7 +187,7 @@ Plug 'mxw/vim-jsx', {'for': 'javascript'}
 " Prettier is an opinionated code formatter with support for: JavaScript JSX Flow TypeScript CSS JSON GraphQL Markdown YAML
 Plug 'prettier/vim-prettier', {
     \ 'do': 'npm -g install',
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue']}
 
 " Provides support for expanding abbreviations similar to emmet.
 Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript']}
@@ -232,7 +232,6 @@ if exists('$TMUX')
   set  term=screen-256color
 endif
 
-" source ${MY_ENV_ROOT}/dotfiles/vim/features.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/general.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/nerdtree.vim
@@ -246,6 +245,8 @@ source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ale.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-commentary.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-easyalign.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/indentline.vim
+
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-go.vim
 
@@ -259,4 +260,3 @@ source ${MY_ENV_ROOT}/dotfiles/vim/plugins/emmet-vim.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-markdown.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/markdown_composer.vim
-

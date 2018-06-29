@@ -94,6 +94,7 @@ set autowrite
 
 " Fast saving
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>x :x<CR>
 " write file with sudo when open file readonly
 cmap sw w !sudo tee >/dev/null %
 " Switch CWD to the directory of the open buffer
