@@ -106,6 +106,9 @@ Plug 'tpope/vim-commentary'
 " Highlights trailing whitespace in red and provides :FixWhitespace to fix it.
 Plug 'bronson/vim-trailing-whitespace'
 
+" provides insert mode auto-completion for quotes, parens, brackets, etc.
+Plug 'Raimondi/delimitMate'
+
 " A Narrow Region Plugin for vim, focus on a selected region while making the rest inaccessible.
 Plug 'chrisbra/NrrwRgn'
 

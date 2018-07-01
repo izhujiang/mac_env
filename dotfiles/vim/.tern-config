@@ -1,10 +1,17 @@
 {
+  # test comment
   "libs": [
     "browser",
+    "underscore",
     "lodash",
     "moment"
   ],
   "plugins": {
-    "node": {}
+    "es_modules": {},
+    "node": {},
+    "doc_comment": {
+      "fullDocs": true,
+      "strong": true
+    }
   }
 }
