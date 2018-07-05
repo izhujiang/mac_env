@@ -107,7 +107,8 @@ Plug 'tpope/vim-commentary'
 Plug 'bronson/vim-trailing-whitespace'
 
 " provides insert mode auto-completion for quotes, parens, brackets, etc.
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
 
 " A Narrow Region Plugin for vim, focus on a selected region while making the rest inaccessible.
 Plug 'chrisbra/NrrwRgn'

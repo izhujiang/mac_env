@@ -1,5 +1,7 @@
 " emmet settings
-let g:user_emmet_leader_key='<Tab>'
+
+" defautl emmet leader key is <c-y>
+" let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
   \  'javascript.jsx' : {
   \      'extends' : 'jsx',

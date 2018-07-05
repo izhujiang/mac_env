@@ -141,3 +141,5 @@ if [ -d ${PYENV_ROOT} ]; then
   eval "$(pyenv init -)"
 fi
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

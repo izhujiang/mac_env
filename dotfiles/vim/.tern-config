@@ -1,5 +1,4 @@
 {
-  # test comment
   "libs": [
     "browser",
     "underscore",
@@ -8,10 +7,11 @@
   ],
   "plugins": {
     "es_modules": {},
-    "node": {},
     "doc_comment": {
       "fullDocs": true,
       "strong": true
-    }
+    },
+    "node": {},
+    "node_resolve": {}
   }
 }
