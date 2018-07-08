@@ -38,7 +38,7 @@ let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
 " YCM will use the first python executable it finds in the PATH to run jedi. This means that if you are in a virtual environment
 " and you start vim in that directory, the first python that YCM will find will be the one in the virtual environment,
 " so jedi will be able to provide completions for every package you have in the virtual environment.
-let g:ycm_python_binary_path = 'python'
+" let g:ycm_python_binary_path = 'python'
 
 " conflict with other dianostics plugins like Syntastic and other dianostics plugins like Eclim
 let g:syntastic_java_checkers = []

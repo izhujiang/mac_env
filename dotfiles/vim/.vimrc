@@ -142,7 +142,7 @@ function! BuildYCM(info)
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
     " "!./install.py --clang-completer --go-completer --js-completer
-    !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
+    !python ./install.py --clang-completer --go-completer --js-completer --java-completer
   endif
 endfunction
 
@@ -150,6 +150,8 @@ endfunction
 " A code-completion engine for Vim
 " Plug 'Valloric/YouCompleteMe', { 'branch': 'stable', 'do': function('BuildYCM') }
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+" Complete parameter after select the completion.
+" Plug 'tenfyzhong/CompleteParameter.vim'
 
 " It takes huge time to download jdt.ls to supporting YouCompleteMe for java, which is currently experimental.
 " Blocking YouCompleteMe in let g:ycm_filetype_blacklist and ycm_filetype_specific_completion_to_disable
@@ -244,6 +246,7 @@ source ${MY_ENV_ROOT}/dotfiles/vim/plugins/powerline.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ultrisnips.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ycm.vim
+" source ${MY_ENV_ROOT}/dotfiles/vim/plugins/completeparameter.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ale.vim
 

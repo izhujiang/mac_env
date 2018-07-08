@@ -10,7 +10,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 alias ll='ls -GFlas'
 # alias ll="ls -la"
 alias vi="vim"
-alias python="python3"
+# alias python="python3"
 
 alias gz="tar -xzvf"
 alias tgz="tar -xzvf"
