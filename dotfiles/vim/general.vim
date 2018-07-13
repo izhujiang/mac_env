@@ -224,7 +224,8 @@ set relativenumber
 
 " --folding
 set foldmethod=syntax       "代码折叠
-set foldlevel=99
+set foldlevel=10
+set foldnestmax=10
 
 " Enable folding with the spacebar
 nnoremap <space> za
@@ -372,32 +373,38 @@ map <leader>pp :setlocal paste!<cr>
 "------------------------------------------------------------------------------
 " Langs
 "------------------------------------------------------------------------------
-"" -------Python
-" for python ide configure
-au BufNewFile,BufRead *.py
-\ set textwidth=79 |
-\ set expandtab |
-\ set fileformat=unix |
+augroup configgroup
+    autocmd!
+    "" -------Python
+    " for python ide configure
+    au BufNewFile,BufRead *.py
+    \ set textwidth=79 |
+    " expandtab turns <TAB>s into spaces.
+    \ set expandtab |
+    \ set foldmethod=indent |  " fold based on indent level
+    \ set fileformat=unix |
+    autocmd FileType python setlocal commentstring=#\ %s
 
-au BufNewFile,BufRead *.go
-\ set noexpandtab |
-" "\ set fileformat=unix
+    au BufNewFile,BufRead *.go
+    \ set noexpandtab |
+    " "\ set fileformat=unix
 
-" ------js/html/css
-au BufNewFile,BufRead *.js,*.htm,*.html,*.css
-\ set tabstop=2 |
-\ set softtabstop=2 |
-\ set shiftwidth=2
+    " ------js/html/css
+    au BufNewFile,BufRead *.js,*.htm,*.html,*.css
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2
 
-autocmd BufNewFile,BufRead *.gradle setf groovy
+    autocmd BufNewFile,BufRead *.gradle setf groovy
 
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-autocmd FileType java,groovy :execute "compiler gradle"
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    autocmd FileType java,groovy :execute "compiler gradle"
 
-autocmd BufWrite *.go :call DeleteTrailingWS()
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
+    autocmd BufWrite *.go :call DeleteTrailingWS()
+    autocmd BufWrite *.py :call DeleteTrailingWS()
+    autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
+augroup END
 "------------------------------------------------------------------------------
 " Insert mode
 "------------------------------------------------------------------------------

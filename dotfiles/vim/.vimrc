@@ -183,7 +183,8 @@ Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 
 " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
 " Sorry. Waiting for stable version. master version does't support vim-plug.
-" Plug 'python-mode/python-mode', { 'branch': 'develop', 'do': 'git submodule update --init --recursive'}
+Plug 'python-mode/python-mode', { 'for': 'python', 'do': 'git submodule update --init --recursive'}
+" Plug 'python-mode/python-mode', { 'for': 'python' }
 
 "" ------------Html/css/Javascript Bundle ----------------------------------
 " Javascript Bundle, html/css

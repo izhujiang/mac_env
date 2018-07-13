@@ -23,8 +23,23 @@ let g:ale_set_quickfix = 1
 " ALE can fix files with the ALEFix command.
 " By default, all available tools for all supported languages will be run.
 " If you want to only select a subset of the tools, you can define b:ale_linters for a single buffer, or g:ale_linters globally
-" let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
-let g:ale_fixers = {'javascript': ['eslint', 'prettier'] }
+
+let g:ale_linters = {'javascript': ['eslint']}
+" This |Dictionary| will be merged with a default dictionary containing the
+" following values: 
+" {
+" \   'csh': ['shell'],
+" \   'go': ['gofmt', 'golint', 'go vet'],
+" \   'help': [],
+" \   'perl': ['perlcritic'],
+" \   'python': ['flake8', 'mypy', 'pylint'],
+" \   'rust': ['cargo'],
+" \   'spec': [],
+" \   'text': [],
+" \   'zsh': ['shell'],
+" \}
+let g:ale_fixers = {'javascript': ['eslint', 'prettier'], 'python': ['autopep8', 'yapf']}
+
 " let g:ale_fixers = {'javascript': ['eslint',' prettier'] }
 " let g:ale_fixers = {'javascript': ['standard']}
 

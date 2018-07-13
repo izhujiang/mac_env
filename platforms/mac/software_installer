@@ -20,8 +20,9 @@ brew install reattach-to-user-namespace
 brew install astyle
 
 # install vim with python3 support
-brew install vim --with-python3
-# brew install pyenv
+brew install python3 pipenv
+# brew install vim --enable-pythoninterp=dynamic --enable-python3interp=dynamic
+brew install vim --enable-pythoninterp=dynamic
 echo "" > ${HOME}/.vim_cfg
 
 brew install httpie
