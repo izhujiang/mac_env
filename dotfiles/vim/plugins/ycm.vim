@@ -102,15 +102,11 @@ inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDow
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 
-" let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
-" let g:ycm_key_list_accept_completion = ['<C-y>']
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+" let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 " let g:ycm_key_list_stop_completion = ['<C-y>']
-
-let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_key_list_stop_completion = ['<enter>']
+" let g:ycm_key_invoke_completion = '<C-Space>'
 
 let g:ycm_key_detailed_diagnostics = '<leader>d'
 

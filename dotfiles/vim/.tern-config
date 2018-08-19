@@ -1,4 +1,5 @@
 {
+  "ecmaVersion": 6,
   "libs": [
     "browser",
     "underscore",
@@ -12,6 +13,7 @@
       "strong": true
     },
     "node": {},
-    "node_resolve": {}
+    "node_resolve": {},
+    "node-express": {}
   }
 }

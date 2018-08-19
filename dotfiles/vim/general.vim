@@ -369,7 +369,6 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-
 "------------------------------------------------------------------------------
 " Langs
 "------------------------------------------------------------------------------
@@ -384,6 +383,11 @@ augroup configgroup
     \ set foldmethod=indent |  " fold based on indent level
     \ set fileformat=unix |
     autocmd FileType python setlocal commentstring=#\ %s
+    autocmd FileType python nnoremap <F5> :!python %<CR>
+    " confused: <localleader>r does work while <leader>r doesn't in case of pipenv.
+    " <leader>r runs the python of system instead of the current pipenv shell
+"    autocmd FileType python nnoremap <leader>r :!python %<CR>
+"    autocmd FileType python nnoremap <localleader>r :!python %<CR>
 
     au BufNewFile,BufRead *.go
     \ set noexpandtab |

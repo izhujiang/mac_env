@@ -245,7 +245,7 @@ source ${MY_ENV_ROOT}/dotfiles/vim/plugins/nerdtree.vim
 " source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ctrlp.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/powerline.vim
 
-source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ultrisnips.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ultisnips.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ycm.vim
 " source ${MY_ENV_ROOT}/dotfiles/vim/plugins/completeparameter.vim
 

@@ -13,6 +13,11 @@ brew install ruby
 brew install node
 brew install jq
 
+# install useful libs
+brew install pcre openssl gd geoip
+# install nginx, or install nginx manually from sourcecode, and fix --with-http_ssl_module bug referring to https://www.widlabs.com/article/mac-os-x-nginx-compile-symbol-not-found-for-architecture-x86_64
+brew install nginx
+
 brew install tmux
 brew install readline xz
 # reattach-to-user-namespace support copy and pasty

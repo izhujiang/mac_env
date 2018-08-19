@@ -10,3 +10,4 @@ npm -g install winston
 npm -g install colors
 npm -g install simplehttpserver
 npm -g install mongo-hacker
+npm -g install npx
