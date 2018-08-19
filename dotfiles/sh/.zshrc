@@ -132,14 +132,10 @@ PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
 PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
 POWERLINE_ZSH=${PY_PACKS_LOC}/powerline/bindings/zsh/powerline.zsh
 # echo '/usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh'
+
 # echo ${POWERLINE_ZSH}
 source ${POWERLINE_ZSH}
 
-export PYENV_ROOT=${HOME}/.pyenv
-if [ -d ${PYENV_ROOT} ]; then
-  export PATH=${PYENV_ROOT}/bin:${PATH}
-  eval "$(pyenv init -)"
-fi
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
