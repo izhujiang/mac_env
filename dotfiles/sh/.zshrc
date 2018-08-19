@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
@@ -56,6 +56,9 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions
         git git-flow golang docker tmux )
 source ${ZSH}/oh-my-zsh.sh
+# earse env variables $PAGER and $LESS setted by oh-my-zsh, which cause git branch/diff's output paged by less
+unset PAGER
+unset LESS
 
 set -o vi
 bindkey -v
