@@ -89,13 +89,15 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-rcfile="${HOME}/.zshrc"
-if [ -L $rcfile ] ; then
-	export MY_ENV_ROOT=$(dirname $(dirname $(dirname $(readlink ${rcfile}))))
-else
-	export MY_ENV_ROOT=$(dirname $(dirname $(dirname ${rcfile})))
-fi
-
+# dirname and leadlink just deal literally with the given file or softlink, that will return back wrong path when ln -s with relative path
+# rcfile="${HOME}/.zshrc"
+# if [ -L $rcfile ] ; then
+# 	export MY_ENV_ROOT=$(dirname $(dirname $(dirname $(readlink ${rcfile}))))
+#     echo $MY_ENV_ROOT
+# else
+# 	export MY_ENV_ROOT=$(dirname $(dirname $(dirname ${rcfile})))
+# fi
+export MY_ENV_ROOT=${HOME}/repo/my_env
 source ${MY_ENV_ROOT}/dotfiles/sh/.common_shrc
 
 # man page highlight
