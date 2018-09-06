@@ -15,5 +15,8 @@
     "node": {},
     "node_resolve": {},
     "node-express": {}
-  }
+  },
+  "dontLoad": [
+      "node_modules/**"
+  ]
 }

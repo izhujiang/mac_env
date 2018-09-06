@@ -398,6 +398,8 @@ augroup configgroup
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2
+    " --associate .handlebars(less abstract templating framework) with HTML, to enable syntax highlighting and other editor features.
+    au BufNewFile,BufRead *.handlebars set filetype=html
 
     autocmd BufNewFile,BufRead *.gradle setf groovy
 
