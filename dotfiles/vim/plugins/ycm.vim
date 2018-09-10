@@ -46,13 +46,13 @@ let g:EclimFileTypeValidate = 0
 
 let g:ycm_semantic_triggers = {
     \   'c' : ['->', '.'],
-    \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-    \             're!\[.*\]\s'],
+    \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s', 're!\[.*\]\s'],
     \   'ocaml' : ['.', '#'],
     \   'cpp,objcpp' : ['->', '.', '::'],
     \   'perl' : ['->'],
     \   'php' : ['->', '::'],
-    \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+    \   'java,javascript,javascript.jsx,txypescript,python,scala,go' : ['.', 're!\w{2}'],
+    \   'cs,d,perl6,vb,elixir' : ['.'],
     \   'ruby' : ['.', '::'],
     \   'lua' : ['.', ':'],
     \   'erlang' : [':'],
@@ -68,6 +68,27 @@ let g:ycm_semantic_triggers = {
     \   ]
     \ }
 
+" only allow c/c++/... files to enable YCM be turned on
+" add javascript.jsx setted by mxw/vim-jsx because *.js's filetype setted by mxw/vim-jsx
+let g:ycm_filetype_whitelist = {
+			\ "c":1,
+			\ "cpp":1,
+			\ "objc":1,
+			\ "sh":1,
+			\ "zsh":1,
+			\ "java":1,
+			\ "scala":1,
+			\ "javascript":1,
+            \ 'javascript.jsx':1,
+			\ "typescript":1,
+			\ "python":1,
+			\ "go":1,
+			\ "ruby":1,
+			\ "perl":1,
+			\ "php":1,
+			\ "vim":1
+			\ }
+
 " Same as default, but with "mail", "markdown" and "text" removed.
 let g:ycm_filetype_blacklist = {
     \   'notes': 1,
@@ -77,7 +98,16 @@ let g:ycm_filetype_blacklist = {
     \   'qf': 1,
     \   'vimwiki': 1,
     \   'infolog': 1,
+    \   'mail' : 1,
+    \   'markdown' : 1,
+    \   'text' : 1,
     \ }
+
+let g:ycm_filepath_blacklist = {
+      \ 'html' : 1,
+      \ 'jsx' : 1,
+      \ 'xml' : 1,
+      \}
 
 " Disable unhelpful semantic completions.
 let g:ycm_filetype_specific_completion_to_disable = {
@@ -106,9 +136,9 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 " let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 " let g:ycm_key_list_stop_completion = ['<C-y>']
 let g:ycm_key_list_stop_completion = ['<enter>']
-" let g:ycm_key_invoke_completion = '<C-Space>'
-
-let g:ycm_key_detailed_diagnostics = '<leader>d'
+let g:ycm_key_invoke_completion = '<C-,>'
+" This option controls the key mapping used to show the full diagnostic text when the user's cursor is on the line with the diagnostic. Default: <leader>d
+" let g:ycm_key_detailed_diagnostics = '<leader>d'
 
 nnoremap <leader>g :YcmCompleter GoTo<CR> " 跳转到定义处
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
