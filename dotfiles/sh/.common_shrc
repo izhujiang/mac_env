@@ -26,6 +26,8 @@ alias cl="clear"
 export GOPATH=$HOME/workspace/go
 export PATH=$PATH:$(go env GOPATH)/bin
 
+export PATH=${HOME}/.local/bin:$PATH
+
 # export JAVA_HOME=/opt/jdk
 # export JRE_HOME=${JAVA_HOME}/jre
 # export CLASSPATH=${JAVA_HOME}/lib:${JRE_HOME}/lib
