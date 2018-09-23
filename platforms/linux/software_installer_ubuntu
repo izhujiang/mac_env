@@ -13,7 +13,7 @@ echo "Download Oracle JDK from oracle website and install it to ${HOME}/java lik
 
 sudo apt install -y tmux autojump astyle
 
-sudo apt install -y libpcre3 libpcre3-dev openssl libssl-dev 
+sudo apt install -y libpcre3 libpcre3-dev openssl libssl-dev libcanberra-gtk-module
 echo "You may install nginx from sourcecode instead."
 sudo apt install -g nginx
 
