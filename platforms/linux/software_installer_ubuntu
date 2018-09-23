@@ -11,6 +11,10 @@ sudo apt-get update && sudo apt-get install yarn
 
 echo "Download Oracle JDK from oracle website and install it to ${HOME}/java like ${HOME}/java/jdk-10, if you prefer oracle jdk instead."
 
+curl -s "https://get.sdkman.io" | bash
+source "/home/hurricane/.sdkman/bin/sdkman-init.sh"
+sdk install gradle
+
 sudo apt install -y tmux autojump astyle
 
 sudo apt install -y libpcre3 libpcre3-dev openssl libssl-dev libcanberra-gtk-module
