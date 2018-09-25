@@ -193,7 +193,7 @@ Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'mxw/vim-jsx', {'for': 'javascript'}
 " Prettier is an opinionated code formatter with support for: JavaScript JSX Flow TypeScript CSS JSON GraphQL Markdown YAML
 Plug 'prettier/vim-prettier', {
-    \ 'do': 'npm -g install',
+    \ 'do': 'yarn install',
     \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue']}
 
 " Provides support for expanding abbreviations similar to emmet.

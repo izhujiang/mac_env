@@ -116,8 +116,11 @@ SYSOS=`uname -s`
 if [ ${SYSOS} = "Linux" ] ; then
   # for ubuntu
   [ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh
-  export JAVA_HOME=~/java/jdk-10
-  export PATH=${JAVA_HOME}/bin:${PATH}
+  export JAVA_HOME=/opt/jdk/jdk-10
+  export CLASSPATH=${JAVA_HOME}/lib
+  export PATH=${JAVA_HOME}/bin:$PATH
+  # export JAVA_HOME=~/java/jdk-10
+  # export PATH=${JAVA_HOME}/bin:${PATH}
 elif [ ${SYSOS} = "Darwin" ] ; then
   # enable autojump
   # for mac
@@ -146,3 +149,7 @@ function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/hurricane/.sdkman"
+[[ -s "/home/hurricane/.sdkman/bin/sdkman-init.sh" ]] && source "/home/hurricane/.sdkman/bin/sdkman-init.sh"
