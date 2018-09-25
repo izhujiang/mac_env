@@ -77,6 +77,7 @@ let g:ycm_filetype_whitelist = {
 			\ "sh":1,
 			\ "zsh":1,
 			\ "java":1,
+			\ "groovy":1,
 			\ "scala":1,
 			\ "javascript":1,
             \ 'javascript.jsx':1,
@@ -86,7 +87,8 @@ let g:ycm_filetype_whitelist = {
 			\ "ruby":1,
 			\ "perl":1,
 			\ "php":1,
-			\ "vim":1
+			\ "vim":1,
+			\ "xml":1
 			\ }
 
 " Same as default, but with "mail", "markdown" and "text" removed.
