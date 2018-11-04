@@ -12,3 +12,4 @@ yarn global add simplehttpserver
 yarn global add mongo-hacker
 yarn global add npx
 yarn global add grunt-cli
+yarn global add neovim

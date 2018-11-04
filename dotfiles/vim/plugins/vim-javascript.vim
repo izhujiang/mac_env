@@ -1,3 +1,17 @@
+augroup vim-javascript
+    autocmd!
+    autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
+        " for html files, 2 spaces
+    autocmd Filetype html setlocal ts=2 sw=2 expandtab
+    " ------js/html/css
+    autocmd BufNewFile,BufRead *.js,*.htm,*.html,*.css
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2
+   " --associate .handlebars(less abstract templating framework) with HTML, to enable syntax highlighting and other editor features.
+    au BufNewFile,BufRead *.handlebars set filetype=html
+augroup END
+
 " vim-javascript settings
 " https://github.com/pangloss/vim-javascript
 
@@ -24,7 +38,7 @@ let g:javascript_plugin_flow = 1
 " let g:javascript_conceal_noarg_arrow_function = '🞅'
 " let g:javascript_conceal_underscore_arrow_function = '🞅'
 
-" augroup javascript_folding
-"     au!
-"     au FileType javascript setlocal foldmethod=syntax
-" augroup END
+" javascript
+let g:javascript_enable_domhtmlcss = 1
+
+

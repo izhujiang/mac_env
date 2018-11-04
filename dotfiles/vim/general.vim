@@ -1,15 +1,28 @@
 "------------------------------------------------------------------------------
 " General
 "------------------------------------------------------------------------------
-
 " Enable filetype plugins
 filetype plugin indent on    " required
+
+" Encoding
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+""  setglobal fileencoding=utf-8
+  "setglobal bomb
+  set fileencodings=utf-8,gbk
+endif
 
 " Rebind <Leader> key, with a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ','
 " mapping the reverse character search command to another key.
 noremap \ ,
+
+" This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
+" inoremap jj <esc>
 
 " Disable arrowskeys
 noremap <Up> <Nop>
@@ -27,12 +40,29 @@ endif
 
 " set helplang=cn             "help file in chinese
 
+"*****************************************************************************
+"" Abbreviations
+"*****************************************************************************
+"" no one is really happy until you have this shortcuts
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
+
 "------------------------------------------------------------------------------
 " Sessions
 "------------------------------------------------------------------------------
-
-let g:session_autoload = 'no'
-let g:session_autosave = 'no'
+" session management
+let g:session_directory = "~/.session"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
 
 " Define what to save with :mksession
 " blank - empty windows
@@ -45,6 +75,12 @@ let g:session_autosave = 'no'
 " tabpages - all tab pages
 " slash and unix - share session file between unix and windows
 set sessionoptions=blank,buffers,curdir,folds,help,options,winsize,tabpages,slash,unix
+
+" session management
+nnoremap <leader>so :OpenSession<Space>
+nnoremap <leader>ss :SaveSession<Space>
+nnoremap <leader>sd :DeleteSession<CR>
+nnoremap <leader>sc :CloseSession<CR>
 
 " Remember things between sessions
 "
@@ -66,47 +102,48 @@ autocmd BufReadPost *
      \ endif
 
 "------------------------------------------------------------------------------
-" Files
+" Files and buffers
 "------------------------------------------------------------------------------
-set autoread                "reload file when modified out of vim
+"reload file when modified out of vim
+set autoread
+" writes the content of the file automatically if you call :make.   vim-go also makes use of this setting.
+set autowrite
+
 " Use Unix as the standard file type
 set ffs=unix,mac,dos
 
-if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding = &encoding
-  endif
-  set encoding=utf-8
-""  setglobal fileencoding=utf-8
-  "setglobal bomb
-  set fileencodings=utf-8,gbk
-endif
+"" Enable hidden buffers
+set hidden
 
-
-" Disable backup and swap files because of trigger too many events
-" for tfile system watchers
+"" Directories for swp files
 set nobackup
 set nowritebackup
 set noswapfile
-
-" writes the content of the file automatically if you call :make.   vim-go also makes use of this setting.
-set autowrite
 
 " Fast saving
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>x :x<CR>
 " write file with sudo when open file readonly
 cmap sw w !sudo tee >/dev/null %
+
 " Switch CWD to the directory of the open buffer
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
+"" Set working directory
+nnoremap <leader>. :lcd %:p:h<CR>
 
-
+"" Opens an edit command with the path of the currently edited file filled in
+noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+"" Opens a tab edit command with the path of the currently edited file filled
+noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 "------------------------------------------------------------------------------
 " Editing
 "------------------------------------------------------------------------------
 set clipboard=unnamed
 set nopaste
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
 
 " Don't redraw while executing macros, register and other command without
 " through input (good performance config)
@@ -116,7 +153,7 @@ set lazyredraw
 set backspace=eol,start,indent
 
 " Completion options (select longest + show menu even if a single match is found)
-set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+set completeopt=longest,menu
 " Set command-line completion mode
 
 set wildmode=list:longest,full
@@ -125,16 +162,16 @@ set whichwrap+=<,>,h,l
 " Enable Ctrl-A/Ctrl-X to work on octal and hex numbers, as well as characters
 set nrformats=octal,hex,alpha
 
-"------------------------------------------------------------------------------
-" This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
-" inoremap jj <esc>
+"" Copy/Paste/Cut
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
+if has('macunix')
+  " pbcopy for OSX copy/paste
+  vmap <C-x> :!pbcopy<CR>
+  vmap <C-c> :w !pbcopy<CR><CR>
+endif
 
-" move to begin and end of line
-noremap <C-h> ^
-noremap <C-l> $
-
-" inoremap <C-k> <Up>
-" inoremap <C-j> <Down>
 
 "------------------------------------------------------------------------------
 " Buffers, Windows and Tabs
@@ -154,17 +191,20 @@ nnoremap <leader>bj :bnext<cr>
 nnoremap <leader>bk :bprevious<cr>
 nnoremap <leader>bh :bfirst<cr>
 nnoremap <leader>bl :blast<cr>
-" Close the current buffer (w/o closingthe currentwindow)
+" Close the current buffer (w/o closing the currentwindow)
 nnoremap <leader>bd :bdelete<cr>
-
 " Close all the buffers
-nnoremap <leader>bda :1,1000 bd!<cr>
+nnoremap <leader>bc :1,1000 bd!<cr>
 
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " tabs
 " Useful mappings for managing tabs
+"" Tabs
+" nnoremap <Tab> gt
+" nnoremap <S-Tab> gT
+
 noremap <leader>tn :tabnew<Space>
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -176,12 +216,11 @@ nnoremap <leader>tj :tabnext<CR>
 nnoremap <leader>tk :tabprev<CR>
 nnoremap <leader>th :tabfirst<CR>
 nnoremap <leader>tl :tablast<CR>
-nnoremap <leader>te : tabe<CR>
+nnoremap <leader>te :tabedit<CR>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
-
  autocmd TabLeave * let g:lasttab = tabpagenr()
 
 " --windows
@@ -189,11 +228,16 @@ nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
 set splitbelow
 set splitright
 
-nnoremap <leader>wj <C-W>j
-nnoremap <leader>wk <C-W>k
-nnoremap <leader>wh <C-W>h
-nnoremap <leader>wl <C-W>l
+noremap <Leader>h :<C-u>split<CR>
+noremap <Leader>v :<C-u>vsplit<CR>
+
+"" Switching windows
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+" noremap <C-l> <C-w>l
+" noremap <C-h> <C-w>h
 nnoremap <leader>q <C-W>q
+
 
 "------------------------------------------------------------------------------
 " Editor UI
@@ -211,7 +255,6 @@ let g:rehash256 = 1
 let g:molokai_original = 1
 colorscheme molokai
 
-
 " Highlight current line - allows you to track cursor position more easily
 set cursorline
 
@@ -222,6 +265,19 @@ set ruler
 set number
 set relativenumber
 
+
+"" Disable the blinking cursor.
+set gcr=a:blinkon0
+set scrolloff=3
+
+"" Use modeline overrides
+set modeline
+set modelines=10
+
+set title
+set titleold="Terminal"
+set titlestring=%F
+
 " --folding
 set foldmethod=syntax       "代码折叠
 set foldlevel=10
@@ -230,20 +286,19 @@ set foldnestmax=10
 " Enable folding with the spacebar
 nnoremap <space> za
 
+"" Tabs. May be overriten by autocmd rules
+set tabstop=4
+" tab equals to 4 spaces
+set softtabstop=0
+set shiftwidth=4
 
-" --tab
 " Use spaces instead of tabs
 set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
-set tabstop=4
-set shiftwidth=4
 " Round indent to multiple of 'shiftwidth' for > and < commands
 set shiftround
-" tab equals to 4 spaces
-set softtabstop=4
 
 " --indent
 set autoindent "Auto indent
@@ -287,14 +342,20 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 " visual shifting (does not exit Visual mode)
 " easyly moving of code blocks in visual mode, not good, break the rule of dot command
-" vnoremap < <gv
-" vnoremap > >gv
+vnoremap < <gv
+vnoremap > >gv
+"" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 
 " Disable highlight when <leader><cr> is pressed
 nnoremap <silent> <leader><cr> :nohlsearch<cr>
+"" Clean search (highlight)
+nnoremap <silent> <leader><space> :nohlsearch<cr>
 
 
 " highlight trailing space
@@ -304,6 +365,11 @@ match ExtraWhitespace /\s\+$/
 "------------------------------------------------------------------------------
 " Fast movement
 "------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
+" move to begin and end of line
+noremap <C-h> ^
+noremap <C-l> $
+
 " 正向跳转至下一个更改的开始。
 nnoremap ]] ]c
 nnoremap [[ [c
@@ -315,6 +381,7 @@ nnoremap [[ [c
 set laststatus=2
 " Show (partial) commands (or size of selection in Visual mode) in the status line
 set showcmd
+set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 
 
 "------------------------------------------------------------------------------
@@ -345,7 +412,7 @@ nnoremap <leader>cp :cp<cr>
 nnoremap <leader>cc :botright copen<cr>
 
 ""------------------------------------------------------------------------------
-" Command mode related
+" Command-mode related
 "------------------------------------------------------------------------------
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
@@ -360,57 +427,27 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " Remove the Windows ^M - when the encodings gets messed up
 " noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-" Quickly open a buffer for scribble
-" map <leader>q :e ~/buffer<cr>
 
-
-" Quickly open a markdown buffer for scribble
-" map <leader>x :e ~/buffer.md<cr>
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-"------------------------------------------------------------------------------
-" Langs
-"------------------------------------------------------------------------------
-augroup configgroup
-    autocmd!
-    "" -------Python
-    " for python ide configure
-    au BufNewFile,BufRead *.py
-    \ set textwidth=79 |
-    " expandtab turns <TAB>s into spaces.
-    \ set expandtab |
-    \ set foldmethod=indent |  " fold based on indent level
-    \ set fileformat=unix |
-    autocmd FileType python setlocal commentstring=#\ %s
-    autocmd FileType python nnoremap <F5> :!python %<CR>
-    " confused: <localleader>r does work while <leader>r doesn't in case of pipenv.
-    " <leader>r runs the python of system instead of the current pipenv shell
-"    autocmd FileType python nnoremap <leader>r :!python %<CR>
-"    autocmd FileType python nnoremap <localleader>r :!python %<CR>
-
-    au BufNewFile,BufRead *.go
-    \ set noexpandtab |
-    " "\ set fileformat=unix
-
-    " ------js/html/css
-    au BufNewFile,BufRead *.js,*.htm,*.html,*.css
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2
-    " --associate .handlebars(less abstract templating framework) with HTML, to enable syntax highlighting and other editor features.
-    au BufNewFile,BufRead *.handlebars set filetype=html
-
-    autocmd BufNewFile,BufRead *.gradle setf groovy
-
-    autocmd FileType java setlocal omnifunc=javacomplete#Complete
-    autocmd FileType java,groovy :execute "compiler gradle"
-
-    autocmd BufWrite *.go :call DeleteTrailingWS()
-    autocmd BufWrite *.py :call DeleteTrailingWS()
-    autocmd BufWrite *.coffee :call DeleteTrailingWS()
-
+"" Remember cursor position
+augroup vim-remember-cursor-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
+
+"" txt
+augroup vim-text
+  autocmd!
+  autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
+augroup END
+
+if !exists('*s:setupWrapping')
+  function s:setupWrapping()
+    set wrap
+    set wm=2
+    set textwidth=79
+  endfunction
+endif
+
 "------------------------------------------------------------------------------
 " Insert mode
 "------------------------------------------------------------------------------
@@ -446,10 +483,3 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
-
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc

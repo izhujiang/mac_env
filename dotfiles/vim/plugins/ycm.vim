@@ -1,6 +1,10 @@
 let g:ycm_confirm_extra_conf = 0 "关闭加载.ycm_extra_conf.py提示
 " let g:ycm_global_ycm_extra_conf = ''
-let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+if has('nvim')
+    let g:ycm_global_ycm_extra_conf = '~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+else
+    let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+endif
 
 let g:ycm_error_symbol = '>>'
 let g:ycm_warning_symbol = '>*'

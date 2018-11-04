@@ -7,7 +7,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 alias ll='ls -GFlas'
 # alias ll="ls -la"
-alias vi="vim"
+alias vi="nvim"
 # alias python="python3"
 
 alias gz="tar -xzvf"
@@ -15,7 +15,7 @@ alias tgz="tar -xzvf"
 alias bz2="tar -xjvf"
 alias zip="unzip"
 alias cl="clear"
-
+alias idea="${HOME}/idea"
 # added by Anaconda3 4.2.0 installer
 # export PATH="/usr/local/opt/anaconda3/bin:$PATH"
 # export WORKON_HOME=$HOME/.local/virtualenvs

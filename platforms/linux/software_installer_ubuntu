@@ -25,7 +25,7 @@ sudo apt install -g nginx
 . ${MY_ENV_ROOT}/platforms/common/install_extras
 
 sudo apt install -y vim
-
+sudo apt-get install neovim python-neovim python3-neovim
 
 # setup my dev_env with tmux and vim
 # ln -s apps/my_ide ${HOME}/my_ide

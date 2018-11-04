@@ -1,3 +1,20 @@
+augroup vim-python
+  autocmd!
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+      \ formatoptions+=croq softtabstop=4
+      \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+  autocmd BufNewFile,BufRead *.py
+    \ set textwidth=79 |
+    " expandtab turns <TAB>s into spaces.
+    \ set expandtab |
+    \ set foldmethod=indent |  " fold based on indent level
+    \ set fileformat=unix
+    autocmd FileType python setlocal commentstring=#\ %s
+    autocmd FileType python nnoremap <F5> :!python %<CR>
+"    autocmd FileType python nnoremap <leader>r :!python %<CR>
+"    autocmd FileType python nnoremap <localleader>r :!python %<CR>
+augroup END
+
 " 2.common functionality.......................................|pymode-common|
     " let g:pymode = 1
     " let g:pymode_warnings = 1

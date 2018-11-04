@@ -1,4 +1,45 @@
 " ----Golong, vim-go settings
+augroup vim-go
+    autocmd!
+    autocmd BufNewFile,BufRead *.go
+     \ set noexpandtab |
+     \ set tabstop=4 |
+     \ set shiftwidth=4 |
+     \ set softtabstop=4 |
+     \ set fileformat=unix
+
+    autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+    " autocmd FileType go nmap <leader>gb  <Plug>(go-build)
+    autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+    autocmd FileType go nmap <leader>gt <Plug>(go-test)
+    " autocmd FileType go nmap <leader>gc <Plug>(go-coverage)
+    autocmd FileType go nmap <leader>gc <Plug>(go-coverage-toggle)
+    autocmd FileType go nmap <leader>gm :GoMetaLinter<cr>
+
+
+    autocmd FileType go nmap <leader>ga :GoAlternate<cr>
+    autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+    autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+    autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+    autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+    autocmd FileType go nmap <leader>go <Plug>(go-implements)
+    autocmd FileType go nmap <leader>gi <Plug>(go-info)
+    " vim-go overrides the default normal shortcut K so that it invokes :GoDoc instead of man
+    autocmd FileType go nmap <leader>gd <Plug>(go-doc)
+    autocmd FileType go nmap <leader>gdvv <Plug>(go-doc-vertical)
+    autocmd FileType go nmap <leader>gs  :GoSameIdsToggle<cr>
+    " vim builtin gd shortcut for go_def?
+    autocmd FileType go nmap <leader>gds <Plug>(go-def-split)
+    autocmd FileType go nmap <leader>gdv <Plug>(go-def-vertical)
+    autocmd FileType go nmap <leader>gdt <Plug>(go-def-tab)
+
+    autocmd FileType go nmap <leader>gdf :GoDecls<cr>
+    autocmd FileType go nmap <leader>gdd :GoDeclsDir<cr>
+
+    autocmd FileType go nmap <leader>gn <Plug>(go-rename)
+
+augroup END
 " Currently by default :GoDecls and :GoDeclsDir show type and function declarations.
 let g:go_decls_includes = "func,type"
 
@@ -16,6 +57,7 @@ let g:go_fmt_autosave = 1
 "
 " By default syntax-highlighting for Functions, Methods and Structs is disabled.
 " Let's enable them!
+let g:go_highlight_types = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -24,7 +66,12 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 " let g:go_highlight_generate_tags = 1
-
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_extra_types = 1
+"
 " There are two types of error lists in Vim: location list and quickfix
 " use only quickfix for Build, Check, Tests, et
 let g:go_list_type = "quickfix"
@@ -75,36 +122,9 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
 \ }
 
-autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
-" autocmd FileType go nmap <leader>gb  <Plug>(go-build)
-autocmd FileType go nmap <leader>gr  <Plug>(go-run)
-autocmd FileType go nmap <leader>gt <Plug>(go-test)
-" autocmd FileType go nmap <leader>gc <Plug>(go-coverage)
-autocmd FileType go nmap <leader>gc <Plug>(go-coverage-toggle)
-autocmd FileType go nmap <leader>gm :GoMetaLinter<cr>
-
-
-autocmd FileType go nmap <leader>ga :GoAlternate<cr>
-autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-
-autocmd FileType go nmap <leader>go <Plug>(go-implements)
-autocmd FileType go nmap <leader>gi <Plug>(go-info)
-" vim-go overrides the default normal shortcut K so that it invokes :GoDoc instead of man
-autocmd FileType go nmap <leader>gd <Plug>(go-doc)
-autocmd FileType go nmap <leader>gdvv <Plug>(go-doc-vertical)
-autocmd FileType go nmap <leader>gs  :GoSameIdsToggle<cr>
-" vim builtin gd shortcut for go_def?
-autocmd FileType go nmap <leader>gds <Plug>(go-def-split)
-autocmd FileType go nmap <leader>gdv <Plug>(go-def-vertical)
-autocmd FileType go nmap <leader>gdt <Plug>(go-def-tab)
-
-autocmd FileType go nmap <leader>gdf :GoDecls<cr>
-autocmd FileType go nmap <leader>gdd :GoDeclsDir<cr>
-
-autocmd FileType go nmap <leader>gn <Plug>(go-rename)
+augroup go
+    autocmd!
+augroup END
 
 " mapping to <leader>gb
 " run :GoBuild or :GoTestCompile based on the go file
@@ -116,4 +136,5 @@ function! s:build_go_files()
     call go#cmd#Build(0)
   endif
 endfunction
+
 
