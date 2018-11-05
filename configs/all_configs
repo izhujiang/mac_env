@@ -18,4 +18,5 @@ ln -s ${dotfiles_path}/sh/.zshrc ${HOME}/.zshrc
 ln -s ${dotfiles_path}/sh/.bash_profile ${HOME}/.bash_profile
 ln -s ${dotfiles_path}/tmux/.tmux.conf ${HOME}/.tmux.conf
 ln -s ${dotfiles_path}/vim/.vimrc ${HOME}/.vimrc
+ln -s ${dotfiles_path}/vim/init.vim ${HOME}/.config/nvim/init.vim
 ln -s ${dotfiles_path}/vim/.tern-config ${HOME}/.tern-config
