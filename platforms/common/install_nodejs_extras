@@ -1,5 +1,6 @@
 yarn global add typescript
 yarn global add create-react-app
+yarn global add npx
 yarn global add react-devtools
 yarn global add js-beautify
 yarn global add js2coffee
