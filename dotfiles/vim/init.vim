@@ -176,7 +176,6 @@ Plug 'tpope/vim-haml'
 " Javascript Bundle, html/css
 " Enhanced javascript syntax file for Vim
 Plug 'pangloss/vim-javascript', {'for': ['javascript', 'html', 'css']}
-" Plug 'jelera/vim-javascript-syntax'
 Plug 'mxw/vim-jsx', {'for': 'javascript'}
 " Prettier is an opinionated code formatter with support for: JavaScript JSX Flow TypeScript CSS JSON GraphQL Markdown YAML
 Plug 'prettier/vim-prettier', {
@@ -227,7 +226,6 @@ source ${MY_ENV_ROOT}/dotfiles/vim/plugins/grep.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ultisnips.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ycm.vim
 " source ${MY_ENV_ROOT}/dotfiles/vim/plugins/completeparameter.vim
-
 " source ${MY_ENV_ROOT}/dotfiles/vim/plugins/deoplete.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ale.vim
@@ -258,28 +256,46 @@ endif
 
 " terminal emulation
 if g:vim_bootstrap_editor == 'nvim'
-  nnoremap <silent> <leader>sh :terminal<CR>
+  nnoremap <silent> <leader>sh :split term://zsh<CR>
   " To map <Esc> to exit terminal-mode:
   tnoremap <Esc> <C-\><C-n>
+  tnoremap <M-[> <Esc>
+  tnoremap <C-v><Esc> <Esc>
+
   " To simulate |i_CTRL-R| in terminal-mode:
   tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
-  tnoremap <A-h> <C-\><C-N><C-w>h
-  tnoremap <A-j> <C-\><C-N><C-w>j
-  tnoremap <A-k> <C-\><C-N><C-w>k
-  tnoremap <A-l> <C-\><C-N><C-w>l
-  inoremap <A-h> <C-\><C-N><C-w>h
-  inoremap <A-j> <C-\><C-N><C-w>j
-  inoremap <A-k> <C-\><C-N><C-w>k
-  inoremap <A-l> <C-\><C-N><C-w>l
+  "
+  " Set option key act as +ESC in iterm2's profile(keys)
+  " " Terminal mode:
+  " tnoremap <M-h> <c-\><c-n><c-w>h
+  " tnoremap <M-j> <c-\><c-n><c-w>j
+  " tnoremap <M-k> <c-\><c-n><c-w>k
+  " tnoremap <M-l> <c-\><c-n><c-w>l
+  " " Insert mode:
+  " inoremap <M-h> <Esc><c-w>h
+  " inoremap <M-j> <Esc><c-w>j
+  " inoremap <M-k> <Esc><c-w>k
+  " inoremap <M-l> <Esc><c-w>l
+  " " Visual mode:
+  " vnoremap <M-h> <Esc><c-w>h
+  " vnoremap <M-j> <Esc><c-w>j
+  " vnoremap <M-k> <Esc><c-w>k
+  " vnoremap <M-l> <Esc><c-w>l
+  " " Normal mode:
+  " nnoremap <M-h> <c-w>h
+  " nnoremap <M-j> <c-w>j
+  " nnoremap <M-k> <c-w>k
+  " nnoremap <M-l> <c-w>l
+
 else
-  nnoremap <silent> <leader>sh :VimShellCreate<CR>
+  " nnoremap <silent> <leader>sh :VimShellCreate<CR>
 endif
 
-  " nnoremap <A-h> <C-w>h
-  " nnoremap <A-j> <C-w>j
-  " nnoremap <A-k> <C-w>k
-  " nnoremap <A-l> <C-w>l
+if has('nvim')
+    autocmd TermOpen term://* startinsert
+    autocmd TermOpen setlocal statusline=%{b:term_title}
 
+endif
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************

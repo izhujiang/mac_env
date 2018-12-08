@@ -48,7 +48,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Eclipse like task list
 Plug 'vim-scripts/TaskList.vim'
 
-" 
+"
 " Universal CTags: tagging engine that scans project files and generates tag files.
 " Autotag: automatically update the tag files after each save.
 " Tagbar: displays a window with a hierarchical list of tags in the current file.

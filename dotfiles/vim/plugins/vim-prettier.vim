@@ -23,5 +23,7 @@ let g:prettier#config#jsx_bracket_same_line = 'true'
 let g:prettier#config#trailing_comma = 'all'
 " flow|babylon|typescript|postcss
 let g:prettier#config#parser = 'flow'
+" always|never|preserve
+" let g:prettier#config#prose_wrap = 'preserve'
 
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
