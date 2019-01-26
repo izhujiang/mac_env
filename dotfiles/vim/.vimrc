@@ -142,7 +142,7 @@ function! BuildYCM(info)
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
     " "!./install.py --clang-completer --go-completer --js-completer
-    !python ./install.py --clang-completer --go-completer --js-completer --java-completer
+    !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
   endif
 endfunction
 
