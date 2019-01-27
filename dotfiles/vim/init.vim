@@ -190,7 +190,7 @@ Plug 'prettier/vim-prettier', {
     \ 'for': ['html', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue']}
 
 " Provides support for expanding abbreviations similar to emmet.
-Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript']}
+Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript','typescript']}
 " Beautify.vim is reformatter and converter.
 " Plug 'alpaca-tc/beautify.vim', {'for': ['html', 'css', 'javascript']}
 

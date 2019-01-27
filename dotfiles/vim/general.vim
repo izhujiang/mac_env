@@ -5,7 +5,7 @@
 filetype plugin indent on    " required
 
 " define specific file type
-autocmd BufRead,BufNewFile *.tsx		:set filetype=typescript
+autocmd BufRead,BufNewFile *.tsx		setfiletype typescript
 
 " Encoding
 if has("multi_byte")

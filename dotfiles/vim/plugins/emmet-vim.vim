@@ -1,9 +1,11 @@
 " emmet settings
+" Enable just for html/css/javascript/typescript
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,javascript EmmetInstall
+autocmd FileType html,css,javascript,typescript EmmetInstall
 
 " defautl emmet leader key is <c-y>
-let g:user_emmet_leader_key='<c-j>'
+" let g:user_emmet_leader_key='<c-j>'
+let g:user_emmet_leader_key=','
 
 let g:user_emmet_settings = {
   \  'javascript.jsx' : {
