@@ -51,6 +51,9 @@ let g:ycm_python_binary_path = 'python3'
 let g:syntastic_java_checkers = []
 let g:EclimFileTypeValidate = 0
 
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
 let g:ycm_semantic_triggers = {
     \   'c' : ['->', '.'],
     \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s', 're!\[.*\]\s'],
@@ -58,7 +61,8 @@ let g:ycm_semantic_triggers = {
     \   'cpp,objcpp' : ['->', '.', '::'],
     \   'perl' : ['->'],
     \   'php' : ['->', '::'],
-    \   'java,javascript,javascript,jsx,tsx,txypescript,python,scala,go' : ['.', 're!\w{2}'],
+    \   'java,python,scala,go' : ['.', 're!\w{2}'],
+    \   'javascript,jsx,javascript.jsx,typescript,typescript.tsx' : ['.', 're!\w{2}'],
     \   'cs,d,perl6,vb,elixir' : ['.'],
     \   'ruby' : ['.', '::'],
     \   'lua' : ['.', ':'],
@@ -74,6 +78,8 @@ let g:ycm_semantic_triggers = {
     \     ']('
     \   ]
     \ }
+" YCM is disable when filetype setting typescript.tsx even ycm_semantic_triggers['typescript.tsx'] has been set like following:
+" let g:ycm_semantic_triggers['typescript.tsx'] = ['.', 're!\w{2}']
 
 " only allow c/c++/... files to enable YCM be turned on
 " add javascript.jsx setted by mxw/vim-jsx because *.js's filetype setted by mxw/vim-jsx

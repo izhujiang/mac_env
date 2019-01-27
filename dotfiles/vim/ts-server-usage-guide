@@ -1,0 +1,10 @@
+NOTE: 
+JavaScript All JavaScript and TypeScript features are provided by the TSServer engine, which is included in the TypeScript SDK. To enable these features, install Node.js and npm and call the install.py script with the --ts-completer flag.
+
+TSServer relies on the jsconfig.json file for JavaScript and the tsconfig.json file for TypeScript to analyze your project. Ensure the file exists at the root of your project.
+
+To get diagnostics in JavaScript, set the checkJs option to true in your jsconfig.json file:
+
+Ref:
+https://github.com/Valloric/YouCompleteMe#javascript-and-typescript-semantic-completion
+

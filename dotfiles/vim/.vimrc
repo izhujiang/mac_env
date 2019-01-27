@@ -145,7 +145,8 @@ function! BuildYCM(info)
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
     " "!./install.py --clang-completer --go-completer --js-completer
-    !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
+    " !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
+    !python3 ./install.py --clang-completer --go-completer --ts-completer --java-completer
   endif
 endfunction
 
@@ -200,7 +201,7 @@ Plug 'prettier/vim-prettier', {
     \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue']}
 
 " Provides support for expanding abbreviations similar to emmet.
-Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript']}
+Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript', 'typescript']}
 " Beautify.vim is reformatter and converter.
 " Plug 'alpaca-tc/beautify.vim', {'for': ['html', 'css', 'javascript']}
 
@@ -209,7 +210,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript']}
 
 " plugs for TypeScript
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
-" Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
+Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
 
 " --------------Markdown----------------------------------------------
 " for makrdown and hugo

@@ -9,7 +9,7 @@ endif
 
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
-let g:vim_bootstrap_langs = "go,html,javascript,python,scala"
+let g:vim_bootstrap_langs = "go,html,javascript,typescript,python,scala"
 let g:vim_bootstrap_editor = "nvim"				" nvim or vim
 
 if(has("mac") || has("macunix"))
@@ -129,7 +129,8 @@ function! BuildYCM(info)
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
     " "!./install.py --clang-completer --go-completer --js-completer
-    !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
+    " !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
+    !python3 ./install.py --clang-completer --go-completer --ts-completer --java-completer
   endif
 endfunction
 " Todo: install(update and build automaticlly) YouCompleteMe like vimpro
@@ -199,6 +200,9 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript','typescript']}
 
 " plugs for TypeScript
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+
+" yast will set filetype as typescript.tsx which YouCompleteMe can't work with ycm_semantic_triggers
+" yast will set filetype=typescript.tsx
 " Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
 " --------------Markdown----------------------------------------------
 " for makrdown and hugo
