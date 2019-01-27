@@ -3,6 +3,8 @@ yarn global add create-react-app
 yarn global add npx
 yarn global add serve
 yarn global add react-devtools
+yarn global add eslint
+yarn global add prettier
 yarn global add js-beautify
 yarn global add js2coffee
 yarn global add commander
@@ -15,3 +17,5 @@ yarn global add mongo-hacker
 yarn global add npx
 yarn global add grunt-cli
 yarn global add neovim
+yarn global add gatsby-cli
+yarn global add surge

@@ -58,7 +58,7 @@ let g:ycm_semantic_triggers = {
     \   'cpp,objcpp' : ['->', '.', '::'],
     \   'perl' : ['->'],
     \   'php' : ['->', '::'],
-    \   'java,javascript,javascript.jsx,txypescript,python,scala,go' : ['.', 're!\w{2}'],
+    \   'java,javascript,javascript,jsx,tsx,txypescript,python,scala,go' : ['.', 're!\w{2}'],
     \   'cs,d,perl6,vb,elixir' : ['.'],
     \   'ruby' : ['.', '::'],
     \   'lua' : ['.', ':'],

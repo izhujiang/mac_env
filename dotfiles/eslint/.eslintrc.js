@@ -1,8 +1,8 @@
 module.exports = {
-  "extends": "fbjs",
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": ["error","fb"]
+  extends: 'fbjs',
+  plugins: ['prettier'],
+  rules: {
+    'prettier/prettier': ['error', 'fb'],
     /*   "prettier/prettier": ["error", {
     "singleQuote": true,
     "trailingComma": "all",
@@ -11,5 +11,5 @@ module.exports = {
     "parser": "flow"
     }
     ] */
-  }
+  },
 };

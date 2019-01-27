@@ -29,6 +29,9 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
+" Set general(built-in) options before plugins
+source ${MY_ENV_ROOT}/dotfiles/vim/general.vim
+
 " Required:
 call plug#begin(expand('~/.vim/plugged'))
 
@@ -204,6 +207,10 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript']}
 " Flow is a static type checker for your JavaScript code.
 " Plug 'flowtype/vim-flow', {'for': 'javascript'}
 
+" plugs for TypeScript
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+" Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
+
 " --------------Markdown----------------------------------------------
 " for makrdown and hugo
 " Plug 'robertbasic/vim-hugo-helper', {'for': 'Markdown'}
@@ -239,7 +246,8 @@ if exists('$TMUX')
   set  term=screen-256color
 endif
 
-source ${MY_ENV_ROOT}/dotfiles/vim/general.vim
+
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/molokai.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/nerdtree.vim
 " source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ctrlp.vim

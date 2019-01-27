@@ -16,6 +16,7 @@ alias bz2="tar -xjvf"
 alias zip="unzip"
 alias cl="clear"
 alias idea="${HOME}/idea"
+alias spring-start='curl https://start.spring.io/starter.zip -d type=gradle-project -d javaVersion=11 -d dependencies=web,devtools -o starter.zip'
 # added by Anaconda3 4.2.0 installer
 # export PATH="/usr/local/opt/anaconda3/bin:$PATH"
 # export WORKON_HOME=$HOME/.local/virtualenvs

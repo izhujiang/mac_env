@@ -32,6 +32,9 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
+" Set general(built-in) options before plugins
+source ${MY_ENV_ROOT}/dotfiles/vim/general.vim
+
 " Required:
 call plug#begin(expand('~/.config/nvim/plugged'))
 
@@ -134,6 +137,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+Plug 'bronson/vim-trailing-whitespace'
 
 "*****************************************************************************
 "" Custom bundles
@@ -150,7 +154,7 @@ Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for':'go'}
 " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
 " Sorry. Waiting for stable version. master version does't support vim-plug.
 " Plug 'python-mode/python-mode', { 'for': 'python', 'do': 'git submodule update --init --recursive'}
-" Plug 'python-mode/python-mode', { 'for': 'python' }
+Plug 'python-mode/python-mode', { 'for': 'python' }
 
 " --------------Java----------------------------------------------
 " Todo: config for multi-filetype and dorp other relative plugins as js-beautify
@@ -180,7 +184,7 @@ Plug 'mxw/vim-jsx', {'for': 'javascript'}
 " Prettier is an opinionated code formatter with support for: JavaScript JSX Flow TypeScript CSS JSON GraphQL Markdown YAML
 Plug 'prettier/vim-prettier', {
     \ 'do': 'yarn install',
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue']}
+    \ 'for': ['html', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue']}
 
 " Provides support for expanding abbreviations similar to emmet.
 Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript']}
@@ -190,6 +194,9 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript']}
 " Flow is a static type checker for your JavaScript code.
 " Plug 'flowtype/vim-flow', {'for': 'javascript'}
 
+" plugs for TypeScript
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+" Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
 " --------------Markdown----------------------------------------------
 " for makrdown and hugo
 " Plug 'robertbasic/vim-hugo-helper', {'for': 'Markdown'}
@@ -215,7 +222,7 @@ endif
 
 call plug#end()
 
-source ${MY_ENV_ROOT}/dotfiles/vim/general.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/molokai.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/nerdtree.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-airline.vim
@@ -242,6 +249,7 @@ source ${MY_ENV_ROOT}/dotfiles/vim/plugins/neoformat.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-javascript.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-prettier.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/emmet-vim.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/typescript-vim.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-markdown.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/markdown_composer.vim
 

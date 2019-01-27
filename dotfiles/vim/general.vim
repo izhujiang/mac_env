@@ -4,6 +4,9 @@
 " Enable filetype plugins
 filetype plugin indent on    " required
 
+" define specific file type
+autocmd BufRead,BufNewFile *.tsx		:set filetype=typescript
+
 " Encoding
 if has("multi_byte")
   if &termencoding == ""
@@ -267,8 +270,8 @@ nnoremap <M-l> <c-w>l
 
 let g:rehash256 = 1
 " prefer the scheme to match the original monokai background color, otherwith comment it.
-let g:molokai_original = 1
-colorscheme molokai
+" let g:molokai_original = 1
+" colorscheme molokai
 
 " Highlight current line - allows you to track cursor position more easily
 set cursorline
