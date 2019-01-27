@@ -116,7 +116,7 @@ SYSOS=`uname -s`
 if [ ${SYSOS} = "Linux" ] ; then
   # for ubuntu
   [ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh
-  export JAVA_HOME=/opt/jdk/jdk-10
+  export JAVA_HOME=/opt/jdk/jdk-11
   export CLASSPATH=${JAVA_HOME}/lib
   export PATH=${JAVA_HOME}/bin:$PATH
   # export JAVA_HOME=~/java/jdk-10

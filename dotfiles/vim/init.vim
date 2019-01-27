@@ -15,8 +15,11 @@ let g:vim_bootstrap_editor = "nvim"				" nvim or vim
 if(has("mac") || has("macunix"))
     let g:python2_host_prog = '/usr/local/bin/python'
     let g:python3_host_prog = '/usr/local/bin/python3'
+elseif(has("unix"))
+    let g:python2_host_prog = '/usr/bin/python'
+    let g:python3_host_prog = '/usr/bin/python3'
 else
-    echo("non-mac system, config python_host_prog plz")
+    echo "setting up python_host_prog plz"
 endif
 
 if !filereadable(vimplug_exists)
