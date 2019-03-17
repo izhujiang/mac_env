@@ -128,6 +128,7 @@ Plug 'chrisbra/NrrwRgn'
 " For each language, ALE will automatically detect linters that are installed on the system.
 Plug 'w0rp/ale'
 
+Plug 'ervandew/supertab'
 " ---------------------------------
 if v:version >= 704
   " The ultimate snippet solution for Vim
