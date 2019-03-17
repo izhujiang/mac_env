@@ -110,16 +110,8 @@ Plug 'chrisbra/NrrwRgn'
 " For each language, ALE will automatically detect linters that are installed on the system.
 Plug 'w0rp/ale'
 
-" much lighter than ycm
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
+" a suite consist of supertab, YouCompleteMe and ultisnips
+Plug 'ervandew/supertab'
 
 " Build YouCompleteMe
 function! BuildYCM(info)
@@ -135,7 +127,6 @@ function! BuildYCM(info)
 endfunction
 " Todo: install(update and build automaticlly) YouCompleteMe like vimpro
 " A code-completion engine for Vim
-" Plug 'Valloric/YouCompleteMe'
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 Plug 'SirVer/ultisnips'

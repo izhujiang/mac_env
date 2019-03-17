@@ -139,7 +139,8 @@ let g:ycm_filter_diagnostics = {}
 " \ }
 
 " ---YCM--------------
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
+"  don't use inoremap <expr> <CR>, which will disable <CR> to enter next line
+" inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
 "上下左右键的行为 会显示其他信息
 inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
@@ -150,8 +151,16 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 " let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 " let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 " let g:ycm_key_list_stop_completion = ['<C-y>']
-let g:ycm_key_list_stop_completion = ['<enter>']
+
 let g:ycm_key_invoke_completion = '<C-,>'
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_key_list_stop_completion = ['<C-y>', '<enter>']
+" avoid to use <enter>, which is confix with enter next line
+" let g:ycm_key_list_stop_completion = ['<enter>']
+" <c-n> is bind to tab again by SuperTab, which walk around the confix with UltiSnips
+let g:SuperTabDefaultCompletionType = '<C-n>'
 " This option controls the key mapping used to show the full diagnostic text when the user's cursor is on the line with the diagnostic. Default: <leader>d
 " let g:ycm_key_detailed_diagnostics = '<leader>d'
 
