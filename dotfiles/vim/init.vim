@@ -129,8 +129,9 @@ function! BuildYCM(info)
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
     " "!./install.py --clang-completer --go-completer --js-completer
-    " !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
-    !python3 ./install.py --clang-completer --go-completer --ts-completer --java-completer
+    !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
+    " ts-server with flag --ts-completer is two slow at this stag, waiting for coming version....
+    " !python3 ./install.py --clang-completer --go-completer --ts-completer --java-completer
   endif
 endfunction
 " Todo: install(update and build automaticlly) YouCompleteMe like vimpro
@@ -254,6 +255,7 @@ source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-go.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-java.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/neoformat.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-javascript.vim
+" source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-jsx.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-prettier.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/emmet-vim.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/typescript-vim.vim

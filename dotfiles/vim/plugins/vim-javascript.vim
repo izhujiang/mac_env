@@ -21,7 +21,7 @@ let g:javascript_plugin_jsdoc = 1
 " let g:javascript_plugin_ngdoc = 1
 
 "  Enables syntax highlighting for Flow.
-let g:javascript_plugin_flow = 1
+let g:javascript_plugin_flow = 0
 
 " conceal key words into glyph if you want to customize concealing characters
 " set conceallevel=2
