@@ -176,7 +176,7 @@ Plug 'tpope/vim-haml'
 " Javascript Bundle, html/css
 " Enhanced javascript syntax file for Vim
 Plug 'pangloss/vim-javascript', {'for': ['javascript', 'html', 'css']}
-Plug 'mxw/vim-jsx', {'for': 'javascript'}
+" Plug 'mxw/vim-jsx', {'for': 'javascript'}
 " Prettier is an opinionated code formatter with support for: JavaScript JSX Flow TypeScript CSS JSON GraphQL Markdown YAML
 Plug 'prettier/vim-prettier', {
     \ 'do': 'yarn install',

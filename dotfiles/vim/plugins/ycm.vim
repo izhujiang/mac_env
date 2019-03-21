@@ -54,6 +54,8 @@ let g:EclimFileTypeValidate = 0
 if !exists("g:ycm_semantic_triggers")
   let g:ycm_semantic_triggers = {}
 endif
+
+" semantic suggestion will override UltiSnips snippet suggestion, so don't trigger util more then 3 characters('re!/w{4}).
 let g:ycm_semantic_triggers = {
     \   'c' : ['->', '.'],
     \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s', 're!\[.*\]\s'],
@@ -61,8 +63,8 @@ let g:ycm_semantic_triggers = {
     \   'cpp,objcpp' : ['->', '.', '::'],
     \   'perl' : ['->'],
     \   'php' : ['->', '::'],
-    \   'java,python,scala,go' : ['.', 're!\w{2}'],
-    \   'javascript,jsx,javascript.jsx,typescript,typescript.tsx' : ['.', 're!\w{2}'],
+    \   'java,python,scala,go' : ['.', 're!\w{4}'],
+    \   'javascript,jsx,javascript.jsx,typescript,typescript.tsx' : ['.', 're!\w{4}'],
     \   'cs,d,perl6,vb,elixir' : ['.'],
     \   'ruby' : ['.', '::'],
     \   'lua' : ['.', ':'],
@@ -92,6 +94,7 @@ let g:ycm_filetype_whitelist = {
 			\ "java":1,
 			\ "groovy":1,
 			\ "scala":1,
+            \ "js":1,
 			\ "javascript":1,
             \ 'javascript.jsx':1,
 			\ "typescript":1,
@@ -154,13 +157,14 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 let g:ycm_key_invoke_completion = '<C-,>'
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_key_list_select_completion = ['<C-n>', '<C-j>',  '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<C-k>', '<Up>']
 let g:ycm_key_list_stop_completion = ['<C-y>', '<enter>']
 " avoid to use <enter>, which is confix with enter next line
 " let g:ycm_key_list_stop_completion = ['<enter>']
 " <c-n> is bind to tab again by SuperTab, which walk around the confix with UltiSnips
 let g:SuperTabDefaultCompletionType = '<C-n>'
+" let g:SuperTabCrMapping = 0
 " This option controls the key mapping used to show the full diagnostic text when the user's cursor is on the line with the diagnostic. Default: <leader>d
 " let g:ycm_key_detailed_diagnostics = '<leader>d'
 
