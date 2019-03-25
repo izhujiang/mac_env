@@ -252,10 +252,10 @@ vnoremap <M-j> <Esc><c-w>j
 vnoremap <M-k> <Esc><c-w>k
 vnoremap <M-l> <Esc><c-w>l
 " Normal mode:
-nnoremap <M-h> <c-w>h
-nnoremap <M-j> <c-w>j
-nnoremap <M-k> <c-w>k
-nnoremap <M-l> <c-w>l
+nnoremap <leader>wh <c-w>h
+nnoremap <leader>wj <c-w>j
+nnoremap <leader>wk <c-w>k
+nnoremap <leader>wl <c-w>l
 
 "------------------------------------------------------------------------------
 " Editor UI

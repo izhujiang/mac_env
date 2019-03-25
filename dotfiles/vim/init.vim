@@ -52,7 +52,8 @@ Plug 'MattesGroeger/vim-bookmarks'
 
 " Vim colorscheme
 " colorscheme
-Plug 'tomasr/molokai'
+" Plug 'tomasr/molokai'
+Plug 'fatih/molokai'
 
 " Eclipse like task list
 Plug 'vim-scripts/TaskList.vim'
@@ -76,6 +77,11 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
 " --------------------------------------------------------------------
+"  vim-go need ctrlp.vim
+" Fuzzy file, buffer, mru, tag, etc finder.
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Fuzzy Finding: CtrlP –> fzf, because it's asynchronous and fast
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -141,6 +147,7 @@ Plug 'bronson/vim-trailing-whitespace'
 
 "" ------------Golang Bundle ----------------------------------
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for':'go'}
+Plug 'AndrewRadev/splitjoin.vim', {'for': 'go'}
 
 "" ------------Python Bundle ----------------------------------
 " Python Lang Bundle

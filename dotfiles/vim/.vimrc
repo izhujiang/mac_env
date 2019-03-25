@@ -43,8 +43,9 @@ call plug#begin(expand('~/.vim/plugged'))
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+"  vim-go need ctrlp.vim
 " Fuzzy file, buffer, mru, tag, etc finder.
-" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " Fuzzy Finding: CtrlP –> fzf, because it's asynchronous and fast
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
@@ -169,6 +170,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 "" ------------Golang Bundle ----------------------------------
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for':'go'}
+Plug 'AndrewRadev/splitjoin.vim', {'for': 'go'}
 
 "" ------------Python Bundle ----------------------------------
 " Python Lang Bundle
