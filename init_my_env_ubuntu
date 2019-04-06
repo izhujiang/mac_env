@@ -1,0 +1,37 @@
+sudo apt update
+sudo apt upgrade
+# To be able to use add-apt-repository, need to install software-properties-common
+sudo apt install -y software-properties-common
+sudo apt install -y zsh git curl xclip
+
+
+# config git global settings.
+git config --global user.name "jiang zhu"
+git config --global user.email "m.zhujiang@gmail.com"
+git config --global color.ui true
+
+echo "generate ssh key to access github with git ssh protocol"
+cd ~/
+ssh-keygen -t rsa -b 4096 -C "m.zhujiang@gmail.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+xclip -sel clip < ~/.ssh/id_rsa.pub
+
+echo "add public ssh_key to github munually please ..."
+# and add ssh_key to github
+# ref: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-linux
+# for mac user: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-mac
+
+read -p "Press [Enter] key to continue after adding ssh key to github, ..."
+
+mkdir -p ~/repo
+cd ~/repo
+# git clone https://github.com/izhujiang/my_env.git
+git clone git@github.com:izhujiang/my_env.git
+cd my_env
+./prerequisite/init_git
+
+# ppa:neovim-ppa/stable to your system's Software Sources
+sudo add-apt-repository ppa:neovim-ppa/stable
+
+
