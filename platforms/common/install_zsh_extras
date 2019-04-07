@@ -3,6 +3,10 @@
 
 # install zsh plugins 
 # remember to update "plugins" items in .zshrc file
+echo "" 
+echo "installing plugins for zsh"
+export ZSH_CUSTOM=${ZSH}/custom
+# echo "ZSH_CUSTOM: ${ZSH_CUSTOM}"
 for plugin in zsh-autosuggestions zsh-syntax-highlighting zsh-completions
 do
   if [ ! -d ${ZSH_CUSTOM}/plugins/${plugin} ]; then
@@ -13,6 +17,7 @@ do
   fi
 done
 
+# echo "MY_ENV_ROOT: ${MY_ENV_ROOT}"
 cd ${MY_ENV_ROOT}/extras
 
 # install powerline theme
@@ -26,11 +31,11 @@ fi
 
 # echo $(pwd)
 # cp -f powerline.zsh-theme ${ZSH}/themes/
-. ./install_in_omz.sh
+source ./install_in_omz.sh
 cd ..
 
 # sleep for 2 seconds to avoid error "shell-init: error retrieving current directory" when rm powerline-theme directory
 sleep 2
-rm ${MY_ENV_ROOT}/extras/oh-my-zsh-powerline-theme
+rm -rf ${MY_ENV_ROOT}/extras/oh-my-zsh-powerline-theme
 
 cd ${MY_ENV_ROOT}/platforms/common

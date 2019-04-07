@@ -1,9 +1,27 @@
 #!/bin/bash
 
-sudo apt update
-sudo apt upgrade
+sudo apt update && sudo apt upgrade
 
-sudo apt install -y zsh git xclip
+sudo apt install -y curl wget
+
+CUR_SHELL=$(echo $SHELL)
+# echo ${CUR_SHELL}
+ZSH="zsh"
+if [[ ${CUR_SHELL} == *${ZSH}* ]]
+then
+        echo "zsh has been installed and set as default shell."
+else
+        echo "zsh has not been installed or set as default shell, so it will install zsh and oh-my-zsh first..."
+        sudo apt install -y zsh git xclip
+        rm -rf ~/.oh-my-zsh
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's:env zsh -l::g' | sed 's:chsh -s .*$::g' | sed '/chsh -s/d' )"
+        chsh -s $(which zsh)
+
+        echo ""
+        echo "zsh and oh-my-zsh has been installed and set as default shell, now quit gnome session automatically, please run the boot script again after re-login."
+        read -p "Press any key to continue ..."
+        gnome-session-quit
+fi
 
 # config git global settings.
 git config --global user.name "jiang zhu"
@@ -30,7 +48,10 @@ else
 	echo "ref: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-linux"
 	echo "for mac user: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-mac"
 
-	read -p "Press [Enter] key to continue after adding ssh key to github, ..."
+	echo ""
+	echo "Import!!!"
+	echo "Ensure adding ssh key to github before continuing..."
+	read -p "Once have privilege to access to github, Press [Enter] key to continue ..."
 fi
 
 REPO_DIR=~/repo/my_env
@@ -50,7 +71,7 @@ fi
 export MY_ENV_ROOT=$(cd "$(dirname '$0')";  pwd)
 echo "MY_ENV_ROOT location is:${MY_ENV_ROOT}"
 
-source ${MY_ENV_ROOT}/platforms/linux/software_installer_ubuntu
+source ${MY_ENV_ROOT}/platforms/linux/install_packages_ubuntu
 
 echo "clean up useless packages..."
-sudo apt autoremove
+sudo apt autoremove -y

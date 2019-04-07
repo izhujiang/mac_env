@@ -1,9 +1,9 @@
 #!/bin/sh
 
 COMMON_PATH=${MY_ENV_ROOT}/platforms/common
+
 # install python 3rd party packages
 source ${COMMON_PATH}/install_python_extras
-
 
 # install gem 3d party packages
 source ${COMMON_PATH}/install_gem_extras

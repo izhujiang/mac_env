@@ -1,11 +1,5 @@
 #!/bin/sh
 
-# if [ ! -d ~/.pyenv ]; then
-#  git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-# fi
-
-# todo; consider when vertualenv is already installed 
-# install 3rd party python packages
 pip3 install --user pipenv
 pip3 install --user flake8
 pip3 install --user future
