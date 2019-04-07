@@ -1,18 +1,18 @@
 #!/bin/sh
 
-common_path=${MY_ENV_ROOT}/platforms/common
+COMMON_PATH=${MY_ENV_ROOT}/platforms/common
 # install python 3rd party packages
-. ${common_path}/install_python_extras
+source ${COMMON_PATH}/install_python_extras
 
 
 # install gem 3d party packages
-. ${common_path}/install_gem_extras
+source ${COMMON_PATH}/install_gem_extras
 
 # install node.js 3d party packages
-. ${common_path}/install_nodejs_extras
+source ${COMMON_PATH}/install_nodejs_extras
 
 # install zsh and ohmyzsh as well as its custom plugins
-. ${common_path}/install_zsh_extras
+source ${COMMON_PATH}/install_zsh_extras
 
 # insatll powerline fonts and plugin
-. ${common_path}/install_powerline_extras
+source ${COMMON_PATH}/install_powerline_extras

@@ -26,6 +26,7 @@ ln -s ${MY_ENV_ROOT}/dotfiles/sh/.bash_profile ~/.bash_profile
 
 echo "install vim's plugins......"
 vim +PlugInstall +qall
+nvim +PlugInstall +qall
 sleep 1
 rm ~/.vimrc
 

@@ -1,13 +1,13 @@
 #!/bin/sh
 
-fonts_path=${MY_ENV_ROOT}/extras/fonts
-if [ -d ${fonts_path} ] ; then
-  cd ${fonts_path}
+FONTS_PATH=${MY_ENV_ROOT}/extras/fonts
+if [ -d ${FONTS_PATH} ] ; then
+  cd ${FONTS_PATH}
   git pull
 else
   # clone
-  git clone https://github.com/powerline/fonts.git ${fonts_path}
-  cd ${fonts_path}
+  git clone https://github.com/powerline/fonts.git ${FONTS_PATH}
+  cd ${FONTS_PATH}
 fi
 # install
 ./install.sh
@@ -15,7 +15,7 @@ fi
 
 cd ${MY_ENV_ROOT}/platforms/common
 sleep 2
-rm -rf ${fonts_path}
+rm -rf ${FONTS_PATH}
 
 SYSOS=`uname -s`
 if [ ${SYSOS} = "Darwin" ] ; then
