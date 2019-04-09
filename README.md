@@ -2,6 +2,16 @@
 
 # something to declare...
 
+# install my_env
+
+## for linux(ubuntu)
+
+sh -c "\$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/my_env_boot_ubuntu.sh)"
+
+or
+
+sh -c "\$(wget https://raw.githubusercontent.com/izhujiang/my_env/master/my_env_boot_ubuntu.sh)"
+
 # requirement:
 
     git, install git with sudo apt install git if it is not available

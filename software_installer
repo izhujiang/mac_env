@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/sh
 
 export MY_ENV_ROOT=$(cd "$(dirname '$0')";  pwd)
 echo "MY_ENV_ROOT location is:${MY_ENV_ROOT}"
@@ -19,7 +19,14 @@ fi
 
 cd ~/
 rm .zshrc .bash_profile .vimrc
-cp ${MY_ENV_ROOT}/dotfiles/vim/.vimrc-plugin-only .vimrc
+
+ln -s ${MY_ENV_ROOT}/dotfiles/vim/.vimrc_readonly ${HOME}/.vimrc
+
+NVIM_CFG_DIR=~/repo/my_env
+if [ ! -d ${NVIM_CFG_DIR} ]; then
+	mkdir -p ${NVIM_CFG_DIR}
+fi
+ln -s ${MY_ENV_ROOT}/dotfiles/vim/init_nvim_readonly ${HOME}/.config/nvim/init.vim
 
 ln -s ${MY_ENV_ROOT}/dotfiles/sh/.zshrc ~/.zshrc
 ln -s ${MY_ENV_ROOT}/dotfiles/sh/.bash_profile ~/.bash_profile
@@ -27,11 +34,13 @@ ln -s ${MY_ENV_ROOT}/dotfiles/sh/.bash_profile ~/.bash_profile
 echo "install vim's plugins......"
 vim +PlugInstall +qall
 nvim +PlugInstall +qall
-sleep 1
-rm ~/.vimrc
+sleep 2
+unlink ${HOME}/.vimrc
+unlink ${HOME}/.config/nvim/init.vim
 
-ln -s ${MY_ENV_ROOT}/dotfiles/vim/.vimrc ~/.vimrc
+ln -s ${MY_ENV_ROOT}/dotfiles/vim/.vimrc ${HOME}/.vimrc
+ln -s ${MY_ENV_ROOT}/dotfiles/vim/init.vim ${HOME}/.config/nvim/init.vim
 #source ${MY_ENV_ROOT}/configs/all_configs
 
-# setup my dev_env with tmux and vim 
+# setup my dev_env with tmux and vim
 # ln -s apps/my_ide ${HOME}/my_ide

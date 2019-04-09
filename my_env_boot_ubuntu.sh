@@ -73,5 +73,20 @@ echo "MY_ENV_ROOT location is:${MY_ENV_ROOT}"
 
 source ${MY_ENV_ROOT}/platforms/linux/install_packages_ubuntu
 
+
+for CFG_FILE in ${HOME}/.zshrc ${HOME}/.bash_profile
+do
+    if [ -L ${CFG_FILE} ]; then
+        unlink ${CFG_FILE}
+    else
+        if [ -f ${CFG_FILE} ]; then
+            rm ${CFG_FILE}
+        fi
+    fi
+done
+
+ln -s ${MY_ENV_ROOT}/dotfiles/sh/.bash_profile ~/.bash_profile
+ln -s ${MY_ENV_ROOT}/dotfiles/sh/.zshrc ~/.zshrc
+
 echo "clean up useless packages..."
 sudo apt autoremove -y
