@@ -24,7 +24,7 @@ sudo apt install -y libpcre3 libpcre3-dev openssl libssl-dev libcanberra-gtk-mod
 echo "You may install nginx from sourcecode instead."
 sudo apt install -y nginx
 
-source ${MY_ENV_ROOT}/platforms/common/install_extras
+. ${MY_ENV_ROOT}/platforms/common/install_extras
 
 sudo apt install -y vim neovim
 

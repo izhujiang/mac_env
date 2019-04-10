@@ -17,7 +17,7 @@ if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
         echo "zsh and oh-my-zsh has been installed and set as default shell, now quit gnome session automatically, please run the boot script again after re-login."
         read -p "Press any key to continue ..."
         gnome-session-quit
-then
+else
         echo "zsh has been installed and set as default shell."
 fi
 
@@ -52,13 +52,16 @@ else
 	read -p "Once have privilege to access to github, Press [Enter] key to continue ..."
 fi
 
-REPO_DIR=~/repo/my_env
-if [ -d ${REPO_DIR} ]
+export MY_ENV_ROOT=${HOME}/repo/my_env
+echo "MY_ENV_ROOT location is:${MY_ENV_ROOT}"
+if [ -d ${MY_ENV_ROOT} ];
 then
-	echo "${REPO_DIR} existed"
-	cd ${REPO_DIR}
+	echo "${MY_ENV_ROOT} existed"
+	cd ${MY_ENV_ROOT}
 	git pull
 else
+	echo "${MY_ENV_ROOT} not existed"
+	ls -la ${MY_ENV_ROOT}
 	mkdir -p ~/repo
 	cd ~/repo
 	# git clone https://github.com/izhujiang/my_env.git
@@ -66,10 +69,9 @@ else
 	cd my_env
 fi
 
-export MY_ENV_ROOT=$(cd "$(dirname '$0')";  pwd)
-echo "MY_ENV_ROOT location is:${MY_ENV_ROOT}"
-
-source ${MY_ENV_ROOT}/platforms/linux/install_packages_ubuntu
+echo "-----------------------------------------"
+echo " source ${MY_ENV_ROOT}/platforms/linux/install_packages_ubuntu"
+. ${MY_ENV_ROOT}/platforms/linux/install_packages_ubuntu
 
 
 for CFG_FILE in ${HOME}/.zshrc ${HOME}/.bash_profile

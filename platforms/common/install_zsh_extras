@@ -6,7 +6,8 @@
 echo "" 
 echo "installing plugins for zsh"
 export ZSH_CUSTOM=${ZSH}/custom
-# echo "ZSH_CUSTOM: ${ZSH_CUSTOM}"
+echo "----------------------------------------------------"
+echo "ZSH_CUSTOM: ${ZSH_CUSTOM}"
 for plugin in zsh-autosuggestions zsh-syntax-highlighting zsh-completions
 do
   if [ ! -d ${ZSH_CUSTOM}/plugins/${plugin} ]; then
@@ -19,23 +20,18 @@ done
 
 # echo "MY_ENV_ROOT: ${MY_ENV_ROOT}"
 cd ${MY_ENV_ROOT}/extras
-
+POWERLINE-THEME=${MY_ENV_ROOT}/extras/oh-my-zsh-powerline-theme 
 # install powerline theme
-if [ ! -d ${MY_ENV_ROOT}/extras/oh-my-zsh-powerline-theme ]; then
-  git clone git@github.com:jeremyFreeAgent/oh-my-zsh-powerline-theme.git
-  cd oh-my-zsh-powerline-theme
-else
-  cd oh-my-zsh-powerline-theme
-  git pull
+if [ ! -d ${POWERLINE_THEME} ]; then
+  git clone git@github.com:jeremyFreeAgent/oh-my-zsh-powerline-theme.git ${POWERLINE_THEME}
 fi
 
-# echo $(pwd)
-# cp -f powerline.zsh-theme ${ZSH}/themes/
-source ./install_in_omz.sh
-cd ..
+cd ${POWERLINE_THEME}
+git pull
+. ./install_in_omz.sh
+
+cd ${MY_ENV_ROOT}/platforms/common
 
 # sleep for 2 seconds to avoid error "shell-init: error retrieving current directory" when rm powerline-theme directory
 sleep 2
-rm -rf ${MY_ENV_ROOT}/extras/oh-my-zsh-powerline-theme
-
-cd ${MY_ENV_ROOT}/platforms/common
+rm -rf ${POWERLINE_THEME}
