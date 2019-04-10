@@ -4,13 +4,9 @@ sudo apt update && sudo apt upgrade
 
 sudo apt install -y curl wget
 
-CUR_SHELL=$(echo $SHELL)
+TEST_CURRENT_SHELL=$(basename "$SHELL")
 # echo ${CUR_SHELL}
-ZSH="zsh"
-if [[ ${CUR_SHELL} == *${ZSH}* ]]
-then
-        echo "zsh has been installed and set as default shell."
-else
+if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
         echo "zsh has not been installed or set as default shell, so it will install zsh and oh-my-zsh first..."
         sudo apt install -y zsh git xclip
         rm -rf ~/.oh-my-zsh
@@ -21,6 +17,8 @@ else
         echo "zsh and oh-my-zsh has been installed and set as default shell, now quit gnome session automatically, please run the boot script again after re-login."
         read -p "Press any key to continue ..."
         gnome-session-quit
+then
+        echo "zsh has been installed and set as default shell."
 fi
 
 # config git global settings.
