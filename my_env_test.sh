@@ -2,7 +2,8 @@
 
 
 CUR_SHELL=$(echo $SHELL)
-# echo ${CUR_SHELL}
+echo "Current shell is: ${CUR_SHELL}"
+
 ZSH="zsh"
 if [[ ${CUR_SHELL} == *${ZSH}* ]]
 then
