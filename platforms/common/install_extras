@@ -11,11 +11,8 @@ COMMON_PATH=${MY_ENV_ROOT}/platforms/common
 # install node.js 3d party packages
 . ${COMMON_PATH}/install_nodejs_extras
 
-# install zsh and ohmyzsh as well as its custom plugins
+# install zsh, ohmyzsh and powerline as well as its custom plugins
 . ${COMMON_PATH}/install_zsh_extras
 
-# insatll powerline fonts and plugins
-. ${COMMON_PATH}/install_powerline_extras
-
 # install vim and nvim plugins
-. ${COMMON_PATH}/install_powerline_extras
+. ${COMMON_PATH}/install_vim_extras
