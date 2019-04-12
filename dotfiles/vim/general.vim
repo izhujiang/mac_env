@@ -268,7 +268,7 @@ nnoremap <leader>wl <c-w>l
 " let g:solarized_termcolors=256
 " colorscheme solarized
 
-let g:rehash256 = 1
+" let g:rehash256 = 1
 " prefer the scheme to match the original monokai background color, otherwith comment it.
 " let g:molokai_original = 1
 " colorscheme molokai

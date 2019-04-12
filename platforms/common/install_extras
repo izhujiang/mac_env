@@ -1,18 +1,133 @@
 #!/bin/sh
 
-COMMON_PATH=${MY_ENV_ROOT}/platforms/common
+# Install 3d-party packages for Python, Node.js, Ruby, Zsh and vim/nvim.
 
 # install python 3rd party packages
-. ${COMMON_PATH}/install_python_extras
+printf "install 3d-party packages for python...... \n"
+pip3 install --user pipenv
+pip3 install --user flake8
+pip3 install --user future
+pip3 install --user pep8
+pip3 install --user jedi
+pip3 install --user mock
+pip3 install --user nose
+pip3 install --user PyHamcrest
+pip3 install --user powerline-status
+pip3 install --user neovim
 
 # install gem 3d party packages
-. ${COMMON_PATH}/install_gem_extras
+printf "install 3d-party packages for ruby...... \n"
+gem install html2haml
+gem install sass
+# sudo gem install html2haml
+# sudo gem install sass
 
 # install node.js 3d party packages
-. ${COMMON_PATH}/install_nodejs_extras
+printf "install nodejs 3d-party packages...... \n"
+yarn global add typescript
+yarn global add create-react-app
+yarn global add npx
+yarn global add serve
+yarn global add react-devtools
+yarn global add eslint
+yarn global add prettier
+yarn global add js-beautify
+yarn global add js2coffee
+yarn global add commander
+yarn global add async
+yarn global add rimraf
+yarn global add winston
+yarn global add colors
+yarn global add simplehttpserver
+yarn global add mongo-hacker
+yarn global add npx
+yarn global add grunt-cli
+yarn global add neovim
+yarn global add gatsby-cli
+yarn global add surge
+
+printf "install tools for golang ...... \n"
+go get -u golang.org/x/tools/cmd/goimports
+go get -u golang.org/x/tools/cmd/gorename
+go get -u github.com/sqs/goreturns
+go get -u github.com/nsf/gocode
+go get -u github.com/alecthomas/gometalinter
+go get -u github.com/zmb3/gogetdoc
+go get -u github.com/zmb3/goaddimport
+go get -u github.com/rogpeppe/godef
+go get -u golang.org/x/tools/cmd/guru
+go get -u github.com/fatih/gomodifytags
+go get -u github.com/tpng/gopkgs
+
+go get golang.org/x/tools/cmd/guru
+go get github.com/derekparker/delve/cmd/dlv
+
+go get -u -v github.com/gobuffalo/buffalo/buffalo
+
 
 # install zsh, ohmyzsh and powerline as well as its custom plugins
-. ${COMMON_PATH}/install_zsh_extras
+printf "install oh-my-zsh, powerline and other plugins for zsh ...... \n"
+# install zsh plugins 
+echo "" 
+echo "installing plugins for zsh"
+export ZSH=${HOME}/.oh-my-zsh
+export ZSH_CUSTOM=${ZSH}/custom
+echo "----------------------------------------------------"
+echo "ZSH_CUSTOM: ${ZSH_CUSTOM}"
+for plugin in zsh-autosuggestions zsh-syntax-highlighting zsh-completions
+do
+  if [ ! -d ${ZSH_CUSTOM}/plugins/${plugin} ]; then
+    git clone git://github.com/zsh-users/${plugin} ${ZSH_CUSTOM}/plugins/${plugin}
+  else
+    cd ${ZSH_CUSTOM}/plugins/${plugin}
+    git pull
+  fi
+done
+
+printf "install powerline fonts-------------------------------\n"
+FONTS_PATH=${HOME}/.fonts-powerline
+if [ -d ${FONTS_PATH} ] ; then
+  cd ${FONTS_PATH}
+  git pull
+else
+  # clone
+  git clone https://github.com/powerline/fonts.git --depth=1 ${FONTS_PATH}
+  cd ${FONTS_PATH}
+fi
+# install
+./install.sh
+# clean-up a bit
+
+SYSOS=`uname -s`
+if [ ${SYSOS} = "Darwin" ] ; then
+  printf "------------------------------------------------------\n"
+  printf "iTerm2 users need to set both the Regular font and the Non-ASCII Font in 'iTerm > Preferences > Profiles > Text' to use a patched font.\n"
+  printf "Ref: https://github.com/powerline/fonts\n" 
+  printf "------------------------------------------------------"
+fi     #ifend
+
+printf "install oh-my-zsh-powerline-theme status......\n"
+POWERLINE_THEME=${HOME}/.oh-my-zsh-powerline-theme 
+# install powerline theme
+if [ ! -d ${POWERLINE_THEME} ]; then
+  git clone git@github.com:jeremyFreeAgent/oh-my-zsh-powerline-theme.git ${POWERLINE_THEME}
+  cd ${POWERLINE_THEME}
+else
+  cd ${POWERLINE_THEME}
+  git pull
+fi
+. ./install_in_omz.sh
 
 # install vim and nvim plugins
-. ${COMMON_PATH}/install_vim_extras
+printf "Config my dev env......\n"
+printf "Install plugins for vim/nvim......\n"
+for CFG_FILE in ${HOME}/.vimrc ${HOME}/.config/nvim/init.vim
+do
+    if [ -f ${CFG_FILE} ]; then
+        mv ${CFG_FILE}
+    fi
+done
+
+vim +PlugInstall +qall
+nvim +PlugInstall +qall
+

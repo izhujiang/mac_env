@@ -11,7 +11,7 @@ augroup go
     autocmd FileType go nmap <leader>b  :<C-u>call <SID>build_go_files()<CR>
     " autocmd FileType go nmap <leader>gb  :<C-u>call <SID>build_go_files()<CR>
     " autocmd FileType go nmap <leader>gb  <Plug>(go-build)
-    autocmd FileType go nmap <leader>r  <Plug>(go-run)
+    autocmd FileType go nmap <leader>r  <Plug>(go-run-split) <esc>
     " autocmd FileType go nmap <leader>gr  <Plug>(go-run)
 
     autocmd FileType go nmap <leader>t <Plug>(go-test)
@@ -162,6 +162,9 @@ augroup go
         \ 'ctagsargs' : '-sort -silent'
     \ }
 augroup END
+
+"By default  syntax highlighting for Go HTML template is enabled for .tmpl files.
+" au BufRead,BufNewFile *.gohtml set filetype=gohtmltmpl
 
 " mapping to <leader>gb
 " run :GoBuild or :GoTestCompile based on the go file

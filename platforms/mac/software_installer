@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# xcode-select --install
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap caskroom/cask
 # springboot
@@ -7,10 +8,13 @@ brew tap caskroom/cask
 # brew install springboot
 brew install wget
 brew install cmake
+
+brew install zsh autojump
 # brew cask install java8
+
 brew install go
 brew install ruby
-brew install node
+brew install node yarn
 brew install jq
 
 # install useful libs
@@ -34,7 +38,6 @@ echo "" > ${HOME}/.vim_cfg
 
 brew install httpie
 
-brew install zsh autojump
 
 source ${MY_ENV_ROOT}/platforms/common/install_extras
 # source ${MY_ENV_ROOT}/configs/all_configs

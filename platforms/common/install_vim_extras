@@ -2,29 +2,14 @@
 
 # export MY_ENV_ROOT=${HOME}/repo/my_env
 
-for CFG_FILE in ${HOME}/.vimrc ${HOME}/.config/nvim/init.vim
-do
-    if [ -L ${CFG_FILE} ]; then
-        unlink ${CFG_FILE}
-    else
-        if [ -f ${CFG_FILE} ]; then
-            rm ${CFG_FILE}
-        fi
-    fi
-done
-
 
 ln -s ${MY_ENV_ROOT}/dotfiles/vim/.vimrc_readonly ${HOME}/.vimrc
 NVIM_CFG_DIR=${HOME}/.config/nvim
 if [ ! -d ${NVIM_CFG_DIR} ]; then
 	mkdir -p ${NVIM_CFG_DIR}
 fi
-ln -s ${MY_ENV_ROOT}/dotfiles/vim/init_nvim_readonly ${NVIM_CFG_DIR}/init.vim
 
 
-echo "install vim's plugins......"
-vim +PlugInstall +qall
-nvim +PlugInstall +qall
 sleep 2
 unlink ${HOME}/.vimrc
 unlink ${HOME}/.config/nvim/init.vim
