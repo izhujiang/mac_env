@@ -2,7 +2,7 @@
 
 
 MY_ENV_ROOT=${HOME}/repo/my_env
-printf "MY_ENV_ROOT: ${MY_ENV_ROOT}"
+printf "MY_ENV_ROOT: ${MY_ENV_ROOT}\n"
 SYSOS=`uname -s`
 # install specific platform tools and packages according to platform
 if [ ${SYSOS} = "Linux" ] ; then
@@ -29,7 +29,7 @@ elif [ ${SYSOS} = "Darwin" ] ; then
 
     # 0. check prerequuisites before installation.
     printf "0. Check prerequuisites before installation...\n"
-    printf "Todo: Check xcode-select"
+    printf "Todo: Check xcode-select\n"
     # xcode-select --install
     COMMANDLINETOOLS_HOME=/Library/Developer/CommandLineTools
     if [ ! -d ${COMMANDLINETOOLS_HOME} ]; then
@@ -53,8 +53,8 @@ elif [ ${SYSOS} = "Darwin" ] ; then
 
     # 2. config git and init my_env repo
     # addtional config for setup my ide
-    sh ${MY_ENV_ROOT}/install_ide.sh
-    sh ${MY_ENV_ROOT}/install_zsh.sh
+    sh ${MY_ENV_ROOT}/scripts/install_ide.sh
+    sh ${MY_ENV_ROOT}/scripts/install_zsh.sh
     # setup my tmux
 
     # 3. clean up
