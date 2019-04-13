@@ -9,8 +9,8 @@ if [ ${SYSOS} = "Linux" ] ; then
     printf "Working on Linux: ${SYSOS},only support ubuntu now. \n"
     # 1. install all libs, packages and tools
     # call:
-    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/script/install_packs_ubuntu.sh)"
-    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/script/install_extras.sh)"
+    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_packs_ubuntu.sh)"
+    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_extras.sh)"
     sh ./install_packs_ubuntu.sh
     sh ./init_repo.sh
     sh ./install_extras.sh
@@ -44,9 +44,9 @@ elif [ ${SYSOS} = "Darwin" ] ; then
 
     # 1. install all libs, packages and tools
     # call:
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/script/install_packs_mac.sh)"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/script/install_extras.sh)"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/script/init_repo.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_packs_mac.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_extras.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/init_repo.sh)"
     # sh ./install_packs_mac.sh
     # sh ./init_repo.sh
     # sh ./install_extras.sh

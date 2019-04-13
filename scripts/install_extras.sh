@@ -17,8 +17,8 @@ pip3 install --user neovim
 
 # install gem 3d party packages
 printf "install 3d-party packages for ruby...... \n"
-gem install html2haml
-gem install sass
+# gem install html2haml
+# gem install sass
 # sudo gem install html2haml
 # sudo gem install sass
 
