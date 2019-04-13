@@ -46,14 +46,15 @@ elif [ ${SYSOS} = "Darwin" ] ; then
     # call:
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/script/install_packs_mac.sh)"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/script/install_extras.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/script/init_repo.sh)"
     # sh ./install_packs_mac.sh
-    sh ./init_repo.sh
+    # sh ./init_repo.sh
     # sh ./install_extras.sh
 
     # 2. config git and init my_env repo
     # addtional config for setup my ide
-    sh ./install_ide.sh
-    sh ./install_zsh.sh
+    sh ${MY_ENV_ROOT}/install_ide.sh
+    sh ${MY_ENV_ROOT}/install_zsh.sh
     # setup my tmux
 
     # 3. clean up
