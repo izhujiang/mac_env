@@ -2,7 +2,7 @@
 
 
 MY_ENV_ROOT=${HOME}/repo/my_env
-
+printf "MY_ENV_ROOT: ${MY_ENV_ROOT}"
 SYSOS=`uname -s`
 # install specific platform tools and packages according to platform
 if [ ${SYSOS} = "Linux" ] ; then

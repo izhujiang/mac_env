@@ -7,6 +7,7 @@ printf "install oh-my-zsh, powerline and other plugins for zsh ...... \n"
 printf "installing plugins for zsh\n"
 export ZSH=${HOME}/.oh-my-zsh
 export ZSH_CUSTOM=${ZSH}/custom
+MY_EVN_ROOT=${HOME}/repo/my_env
 
 printf "ZSH_CUSTOM: ${ZSH_CUSTOM} ......\n"
 for plugin in zsh-autosuggestions zsh-syntax-highlighting zsh-completions
