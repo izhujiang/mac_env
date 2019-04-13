@@ -28,18 +28,27 @@ elif [ ${SYSOS} = "Darwin" ] ; then
     printf "Working on:\n${SYS_DETAIL}\n"
 
     # 0. check prerequuisites before installation.
-    printf "--------------------------------------------\n"
-    printf "0. Check prerequuisites before installation.\n"
+    printf "0. Check prerequuisites before installation...\n"
     printf "Todo: Check xcode-select"
     # xcode-select --install
+    COMMANDLINETOOLS_HOME=/Library/Developer/CommandLineTools
+    if [ ! -d ${COMMANDLINETOOLS_HOME} ]; then
+	xcode-select --install
+   fi
+
+    BREW_HOME=/usr/local/Cellar
+    if [ ! -d ${BREW_HOME} ]; then
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	brew tap caskroom/cask
+   fi
 
     # 1. install all libs, packages and tools
     # call:
-    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/script/install_packs_mac.sh)"
-    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/script/install_extras.sh)"
-    sh ./install_packs_mac.sh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/script/install_packs_mac.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/script/install_extras.sh)"
+    # sh ./install_packs_mac.sh
     sh ./init_repo.sh
-    sh ./install_extras.sh
+    # sh ./install_extras.sh
 
     # 2. config git and init my_env repo
     # addtional config for setup my ide

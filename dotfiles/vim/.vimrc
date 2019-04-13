@@ -29,6 +29,9 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
+" YouCompleteMe unavailable: requires UTF-8 encoding.
+set encoding=utf-8
+
 " Set general(built-in) options before plugins
 source ${MY_ENV_ROOT}/dotfiles/vim/general.vim
 
