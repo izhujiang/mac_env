@@ -15,6 +15,11 @@ brew install python3 pipenv go ruby node yarn jq
 # reattach-to-user-namespace support copy and pasty
 brew install reattach-to-user-namespace astyle readline xz pcre openssl gd geoip
 
+# Install fzf without vim/nvim. But install with vim's vim-plug.
+# brew install fzf
+# To install useful key bindings and fuzzy completion:
+# $(brew --prefix)/opt/fzf/install
+
 # springboot
 # brew tap pivotal/tap
 # brew install springboot

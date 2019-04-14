@@ -47,7 +47,7 @@ fi
 # clean-up a bit
 
 CURRENTDATE=`date +"%Y-%m-%d-%H%M"`
-for CFG_FILE in ${HOME}/.zshrc ${HOME}/.bash_profile
+for CFG_FILE in ${HOME}/.zshrc ${HOME}/.bash_profile ${HOME}/.profile.local
 do
     if [ -L ${CFG_FILE} ]; then
         unlink ${CFG_FILE}
@@ -58,6 +58,7 @@ do
     fi
 done
 
+ln -s ${MY_ENV_ROOT}/dotfiles/sh/.profile.local ${HOME}/.profile.local
 ln -s ${MY_ENV_ROOT}/dotfiles/sh/.bash_profile ${HOME}/.bash_profile
 ln -s ${MY_ENV_ROOT}/dotfiles/sh/.zshrc ${HOME}/.zshrc
 

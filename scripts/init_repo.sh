@@ -28,6 +28,8 @@ else
     git config --global user.name "jiang zhu"
     git config --global user.email "m.zhujiang@gmail.com"
     git config --global color.ui true
+    git config --global alias.ignore \
+	'!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi'
 fi
 
 MY_ENV_ROOT=${HOME}/repo/my_env

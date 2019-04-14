@@ -1,8 +1,7 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
+
+source ${HOME}/.profile.local
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -81,7 +80,7 @@ bindkey -v
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+#  export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -92,16 +91,10 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# dirname and leadlink just deal literally with the given file or softlink, that will return back wrong path when ln -s with relative path
-# rcfile="${HOME}/.zshrc"
-# if [ -L $rcfile ] ; then
-# 	export MY_ENV_ROOT=$(dirname $(dirname $(dirname $(readlink ${rcfile}))))
-#     echo $MY_ENV_ROOT
-# else
-# 	export MY_ENV_ROOT=$(dirname $(dirname $(dirname ${rcfile})))
-# fi
-export MY_ENV_ROOT=${HOME}/repo/my_env
-source ${MY_ENV_ROOT}/dotfiles/sh/.common_shrc
+# add fzf to zsh
+[ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # man page highlight
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
@@ -112,23 +105,7 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-SYSOS=`uname -s`
-if [ ${SYSOS} = "Linux" ] ; then
-  # for ubuntu
-  [ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh
-  export JAVA_HOME=/opt/jdk/jdk-11
-  export CLASSPATH=${JAVA_HOME}/lib
-  export PATH=${JAVA_HOME}/bin:$PATH
-  # export JAVA_HOME=~/java/jdk-10
-  # export PATH=${JAVA_HOME}/bin:${PATH}
-elif [ ${SYSOS} = "Darwin" ] ; then
-  # enable autojump
-  # for mac
-  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-else
-  echo "other OS: ${SYSOS}"
-fi
-
+test -s $(brew --prefix)/etc/profile.d/autojump.sh  && . $(brew --prefix)/etc/profile.d/autojump.sh
 #
 # Setting for autosuggestions
 #
@@ -144,12 +121,3 @@ POWERLINE_ZSH=${PY_PACKS_LOC}/powerline/bindings/zsh/powerline.zsh
 # echo ${POWERLINE_ZSH}
 source ${POWERLINE_ZSH}
 
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/hurricane/.sdkman"
-[[ -s "/home/hurricane/.sdkman/bin/sdkman-init.sh" ]] && source "/home/hurricane/.sdkman/bin/sdkman-init.sh"

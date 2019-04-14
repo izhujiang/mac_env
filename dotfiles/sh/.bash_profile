@@ -1,13 +1,4 @@
-
-
-rcfile=".bash_profile"
-if [ -L $rcfile ] ; then
-	export DOTFILES_DIR=$(dirname $(readlink ${rcfile}))
-else
-  export DOTFILES_DIR=$(dirname ${rcfile})
-fi
-
-source ${DOTFILES_DIR}/.common_shrc
+source ${HOME}/.profile.local
 
 export CLICOLOR=1
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD

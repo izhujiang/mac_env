@@ -1,0 +1,56 @@
+# 1. Set system-level env
+# fixing unknown locale: UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+unset LC_CTYPE
+export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+export MY_ENV_ROOT="${HOME}/repo/my_env"
+# export all variables from brew shellenv
+# eval $($(brew --prefix)/bin/brew shellenv)
+export HOMEBREW="/home/linuxbrew/.linuxbrew"
+export HOMEBREW_PREFIX=${HOMEBREW}
+export HOMEBREW_CELLAR="${HOMEBREW}/Cellar"
+export HOMEBREW_REPOSITORY="${HOMEBREW}/Homebrew"
+export PATH="${HOMEBREW}/bin:${HOMEBREW}/sbin:$PATH"
+export MANPATH="${HOMEBREW}/share/man:$MANPATH"
+export INFOPATH="${HOMEBREW}/share/info:$INFOPATH"
+
+
+
+# 2. Set ide-level env
+# added by Anaconda3 4.2.0 installer
+# export PATH="/usr/local/opt/anaconda3/bin:$PATH"
+# export WORKON_HOME=$HOME/.local/virtualenvs
+# export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+# source /usr/local/bin/virtualenvwrapper.sh
+
+# export GOROOT=$HOME/repo/golang/go
+export GOPATH=$HOME/workspace/go
+export PATH=$PATH:$(go env GOPATH)/bin
+
+
+# 3. Set usefull tools's env
+
+# add gi command to generate .gitignore file. ref: https://www.gitignore.io/
+function gi() { curl -sL https://www.gitignore.io/api/\$@ ;}
+
+# 4. Set alias
+alias ll='ls -GFlas'
+# alias ll="ls -la"
+alias gz="tar -xzvf"
+alias tgz="tar -xzvf"
+alias bz2="tar -xjvf"
+alias zip="unzip"
+alias cl="clear"
+# alias python="python3"
+
+alias vi="nvim"
+alias idea="${HOME}/idea"
+alias spring-start='curl https://start.spring.io/starter.zip -d type=gradle-project -d javaVersion=11 -d dependencies=web,devtools -o starter.zip'
+
+# 5. others
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
+
