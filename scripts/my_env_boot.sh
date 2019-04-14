@@ -35,15 +35,15 @@ if [ ${SYSOS} = "Linux" ] ; then
     printf "\nWorking on ${SYSOS}:\n${SYS_DETAIL}\n"
     printf "0. Check prerequuisites before installation...\n"
 
-    BREW_HOME=/home/linuxbrew/.linuxbrew
-    if [ ! -d ${BREW_HOME} ]; then
+    HOMEBREW=/home/linuxbrew/.linuxbrew
+    if [ ! -d ${HOMEBREW} ]; then
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-	eval $(${BREW_HOME}/bin/brew shellenv)
+	eval $(${HOMEBREW}/bin/brew shellenv)
 	sudo apt-get install build-essential 
 	brew tap caskroom/cask
 	brew install gcc
     fi
-    export PATH=/home/linuxbrew/.linuxbrew/bin:${PATH}
+    export PATH=${HOMEBREW}/bin:${PATH}
     installWithBrew
 
 elif [ ${SYSOS} = "Darwin" ] ; then

@@ -43,5 +43,5 @@ else
 	printf "${MY_ENV_ROOT} not existed"
 	ls -la ${MY_ENV_ROOT}
 	# git clone https://github.com/izhujiang/my_env.git
-	git clone git@github.com:izhujiang/my_env.git ${MY_ENV_ROOT}
+	git clone https://github.com/izhujiang/my_env.git ${MY_ENV_ROOT}
 fi

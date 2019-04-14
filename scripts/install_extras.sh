@@ -46,7 +46,9 @@ yarn global add neovim
 yarn global add gatsby-cli
 yarn global add surge
 
-printf "install tools for golang ...... \n"
+
+export GOPATH=$HOME/workspace/go
+printf "install tools to GOPATH(${GOPATH}) for golang ...... \n"
 go get -u golang.org/x/tools/cmd/goimports
 go get -u golang.org/x/tools/cmd/gorename
 go get -u github.com/sqs/goreturns
