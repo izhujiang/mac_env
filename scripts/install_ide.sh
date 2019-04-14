@@ -23,6 +23,8 @@ if [ ! -d ${NVIM_CFG_DIR} ]; then
 fi
 ln -s ${MY_ENV_ROOT}/dotfiles/vim/init_nvim_readonly ${NVIM_CFG_DIR}/init.vim
 
+printf "vim-go check GOPATH: ${GOPATH}\n"
+export GOPATH=${HOME}/workspace/go
 vim +PlugInstall +qall
 nvim +PlugInstall +qall
 

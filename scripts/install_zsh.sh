@@ -13,7 +13,8 @@ printf "ZSH_CUSTOM: ${ZSH_CUSTOM} ......\n"
 for plugin in zsh-autosuggestions zsh-syntax-highlighting zsh-completions
 do
   if [ ! -d ${ZSH_CUSTOM}/plugins/${plugin} ]; then
-    git clone git://github.com/zsh-users/${plugin} ${ZSH_CUSTOM}/plugins/${plugin}
+    # git clone git://github.com/zsh-users/${plugin} ${ZSH_CUSTOM}/plugins/${plugin}
+    git clone https://github.com/zsh-users/${plugin}.git ${ZSH_CUSTOM}/plugins/${plugin}
   else
     cd ${ZSH_CUSTOM}/plugins/${plugin}
     git pull
@@ -24,7 +25,8 @@ printf "install oh-my-zsh-powerline-theme status......\n"
 POWERLINE_THEME=${HOME}/.oh-my-zsh-powerline-theme
 # install powerline theme
 if [ ! -d ${POWERLINE_THEME} ]; then
-  git clone git@github.com:jeremyFreeAgent/oh-my-zsh-powerline-theme.git ${POWERLINE_THEME}
+  # git clone git@github.com:jeremyFreeAgent/oh-my-zsh-powerline-theme.git ${POWERLINE_THEME}
+  git clone https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme.git ${POWERLINE_THEME}
   cd ${POWERLINE_THEME}
 else
   cd ${POWERLINE_THEME}
