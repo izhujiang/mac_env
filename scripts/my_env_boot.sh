@@ -37,11 +37,12 @@ if [ ${SYSOS} = "Linux" ] ; then
 
     HOMEBREW=/home/linuxbrew/.linuxbrew
     if [ ! -d ${HOMEBREW} ]; then
+	sudo apt-get install build-essential 
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 	eval $(${HOMEBREW}/bin/brew shellenv)
-	sudo apt-get install build-essential 
 	brew tap caskroom/cask
-	brew install gcc
+	# using system gcc which is new enough
+	# brew install gcc
     fi
     export PATH=${HOMEBREW}/bin:${PATH}
     installWithBrew
