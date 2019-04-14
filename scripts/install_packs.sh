@@ -11,7 +11,8 @@ brew update && brew upgrade
 printf "Start installing libs, packages and tools......\n"
 
 brew install cmake wget git xclip zsh autojump tmux httpie
-brew install python3 pipenv go ruby node yarn jq 
+brew install python3 pipenv go ruby rust node yarn jq 
+
 # reattach-to-user-namespace support copy and pasty
 brew install reattach-to-user-namespace astyle readline xz pcre openssl gd geoip
 

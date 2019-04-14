@@ -33,15 +33,14 @@ else
 fi
 
 MY_ENV_ROOT=${HOME}/repo/my_env
-printf "MY_ENV_ROOT location is:${MY_ENV_ROOT}"
+printf "MY_ENV_ROOT location is:${MY_ENV_ROOT}\n"
 if [ -d ${MY_ENV_ROOT} ];
 then
-	printf "${MY_ENV_ROOT} existed"
+	printf "${MY_ENV_ROOT} existed\n"
 	cd ${MY_ENV_ROOT}
 	git pull
 else
-	printf "${MY_ENV_ROOT} not existed"
-	ls -la ${MY_ENV_ROOT}
+	printf "${MY_ENV_ROOT} not existed\n"
 	# git clone https://github.com/izhujiang/my_env.git
 	git clone https://github.com/izhujiang/my_env.git ${MY_ENV_ROOT}
 fi
