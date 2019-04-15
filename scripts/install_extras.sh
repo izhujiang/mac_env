@@ -4,16 +4,16 @@
 
 # install python 3rd party packages
 printf "install 3d-party packages for python...... \n"
-pip3 install --user pipenv
-pip3 install --user flake8
-pip3 install --user future
-pip3 install --user pep8
-pip3 install --user jedi
-pip3 install --user mock
-pip3 install --user nose
-pip3 install --user PyHamcrest
-pip3 install --user powerline-status
-pip3 install --user neovim
+pip3 install -U --user pipenv
+pip3 install -U --user flake8
+pip3 install -U --user future
+pip3 install -U --user pep8
+pip3 install -U --user jedi
+pip3 install -U --user mock
+pip3 install -U --user nose
+pip3 install -U --user PyHamcrest
+pip3 install -U --user powerline-status
+pip3 install -U --user neovim
 
 # install gem 3d party packages
 printf "install 3d-party packages for ruby...... \n"
