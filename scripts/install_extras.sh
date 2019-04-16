@@ -4,16 +4,16 @@
 
 # install python 3rd party packages
 printf "install 3d-party packages for python...... \n"
-pip3 install --user pipenv
-pip3 install --user flake8
-pip3 install --user future
-pip3 install --user pep8
-pip3 install --user jedi
-pip3 install --user mock
-pip3 install --user nose
-pip3 install --user PyHamcrest
-pip3 install --user powerline-status
-pip3 install --user neovim
+pip3 install -U --user pipenv
+pip3 install -U --user flake8
+pip3 install -U --user future
+pip3 install -U --user pep8
+pip3 install -U --user jedi
+pip3 install -U --user mock
+pip3 install -U --user nose
+pip3 install -U --user PyHamcrest
+pip3 install -U --user powerline-status
+pip3 install -U --user neovim
 
 # install gem 3d party packages
 printf "install 3d-party packages for ruby...... \n"
@@ -24,27 +24,27 @@ printf "install 3d-party packages for ruby...... \n"
 
 # install node.js 3d party packages
 printf "install nodejs 3d-party packages...... \n"
-yarn global add typescript
-yarn global add create-react-app
-yarn global add npx
-yarn global add serve
-yarn global add react-devtools
-yarn global add eslint
-yarn global add prettier
-yarn global add js-beautify
-yarn global add js2coffee
-yarn global add commander
-yarn global add async
-yarn global add rimraf
-yarn global add winston
-yarn global add colors
-yarn global add simplehttpserver
-yarn global add mongo-hacker
-yarn global add npx
-yarn global add grunt-cli
-yarn global add neovim
-yarn global add gatsby-cli
-yarn global add surge
+npm install -g typescript
+npm install -g create-react-app
+npm install -g npx
+npm install -g serve
+npm install -g react-devtools
+npm install -g eslint
+npm install -g prettier
+npm install -g js-beautify
+npm install -g js2coffee
+npm install -g commander
+npm install -g async
+npm install -g rimraf
+npm install -g winston
+npm install -g colors
+npm install -g simplehttpserver
+npm install -g mongo-hacker
+npm install -g npx
+npm install -g grunt-cli
+npm install -g neovim
+npm install -g gatsby-cli
+npm install -g surge
 
 
 export GOPATH=$HOME/workspace/go
