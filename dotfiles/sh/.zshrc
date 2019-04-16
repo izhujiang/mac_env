@@ -91,11 +91,6 @@ bindkey -v
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# add fzf to zsh
-[ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 # man page highlight
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
 export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
@@ -105,10 +100,10 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 test -s $(brew --prefix)/etc/profile.d/autojump.sh  && . $(brew --prefix)/etc/profile.d/autojump.sh
 #
 # Setting for autosuggestions
-#
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 
 # source /usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
@@ -117,7 +112,9 @@ PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
 PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
 POWERLINE_ZSH=${PY_PACKS_LOC}/powerline/bindings/zsh/powerline.zsh
 # echo '/usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh'
-
 # echo ${POWERLINE_ZSH}
 source ${POWERLINE_ZSH}
 
+
+# add fzf to zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
