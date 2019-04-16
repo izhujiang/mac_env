@@ -4,6 +4,8 @@
 
 # install my_env
 
+## for administor user
+
 sh -c "\$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh)"
 
 or
@@ -14,6 +16,12 @@ otherwise,
 
 save and run the my_env_boot.sh script downlaod from without curl or wget:
 https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh
+
+## for non-administor user
+
+For those, who are not administor user or have all the prerequisite, system and user software/tools installed, Use the following script to initialize git, zsh and vim/nvim.
+
+sh -c "\$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot_user.sh)"
 
 ## Trouble shooting:
 
