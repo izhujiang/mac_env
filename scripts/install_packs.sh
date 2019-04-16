@@ -10,8 +10,14 @@ brew update && brew upgrade
 # 1. install all libs, packages and tools
 printf "Start installing libs, packages and tools......\n"
 
-brew install cmake wget git xclip zsh autojump tmux httpie
-brew install python3 pipenv go ruby rust node yarn jq 
+brew install cmake wget git xclip
+brew install zsh
+printf "put the installed zsh into /etc/shells, then the command `chsh -s $(which zsh)` does work.\n"
+# grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
+grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells"
+
+brew install autojump tmux httpie
+brew install python3 pipenv go ruby rust node yarn jq
 
 # reattach-to-user-namespace support copy and pasty
 brew install reattach-to-user-namespace astyle readline xz pcre openssl gd geoip

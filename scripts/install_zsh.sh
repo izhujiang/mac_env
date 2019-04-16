@@ -9,7 +9,13 @@ export ZSH=${HOME}/.oh-my-zsh
 export ZSH_CUSTOM=${ZSH}/custom
 MY_ENV_ROOT=${HOME}/repo/my_env
 
+rm -rf ${ZSH}
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's:env zsh -l::g' | sed 's:chsh -s .*$::g' | sed '/chsh -s/d' )"
+chsh -s $(which zsh)
+
+printf "zsh and oh-my-zsh has been installed and set as default shell, now quit gnome session automatically, \nplease run the boot script again after re-login.\n\n"
 printf "ZSH_CUSTOM: ${ZSH_CUSTOM} ......\n"
+
 for plugin in zsh-autosuggestions zsh-syntax-highlighting zsh-completions
 do
   if [ ! -d ${ZSH_CUSTOM}/plugins/${plugin} ]; then

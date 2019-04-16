@@ -12,5 +12,4 @@ PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
 PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
 POWERLINE_BASH=${PY_PACKS_LOC}/powerline/bindings/bash/powerline.sh
 # echo '/usr/local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.zsh'
-# echo ${POWERLINE_BASH}
 source ${POWERLINE_BASH}
