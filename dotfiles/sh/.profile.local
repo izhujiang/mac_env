@@ -6,8 +6,20 @@ unset LC_CTYPE
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 export MY_ENV_ROOT="${HOME}/repo/my_env"
+
 # export all variables from brew shellenv
 # eval $($(brew --prefix)/bin/brew shellenv)
+SYSOS=`uname -s`
+if [ ${SYSOS} = "Linux" ] ; then
+    HOMEBREW=/home/linuxbrew/.linuxbrew
+elif [ ${SYSOS} = "Darwin" ] ; then
+    HOMEBREW=/usr/local
+else
+  printf "${SYSOS} not support now.\n"
+  exit
+fi
+
+export PATH=${HOMEBREW}/bin:${PATH}
 export HOMEBREW="/home/linuxbrew/.linuxbrew"
 export HOMEBREW_PREFIX=${HOMEBREW}
 export HOMEBREW_CELLAR="${HOMEBREW}/Cellar"
