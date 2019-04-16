@@ -29,3 +29,31 @@ sh -c "\$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/s
 
 To set zsh as your default shell, execute the following.
 grep -q "$(which zsh)" /etc/shells || sudo -s 'echo $(which zsh) >> /etc/shells' && chsh -s \$(which zsh)
+
+### Other issues:
+
+--- issue 1:
+Problem:
+permission denied: /usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/sitecustomize.py
+Solution:
+chmod 644 /usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/sitecustomize.py
+
+-- issue 2:
+Problem:
+[oh-my-zsh] Insecure completion-dependent directories detected:
+lrwxr-xr-x 1 apple admin 68 Apr 2 03:13 /usr/local/share/zsh/site-functions/\_pipenv -> ../../../Cellar/pipenv/2018.11.26_2/share/zsh/site-functions/\_pipenv
+
+[oh-my-zsh] For safety, we will not load completions from these directories until
+[oh-my-zsh] you fix their permissions and ownership and restart zsh.
+[oh-my-zsh] See the above list for directories with group or other writability.
+
+Solution:
+To fix your permissions you can do so by disabling
+the write permission of "group" and "others" and making sure that the
+owner of these directories is either root or your current user.
+The following command may help:
+compaudit | xargs chmod g-w,o-w
+
+If the above didn't help or you want to skip the verification of
+insecure directories you can set the variable ZSH_DISABLE_COMPFIX to
+"true" before oh-my-zsh is sourced in your .zshrc file.

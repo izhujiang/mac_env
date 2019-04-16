@@ -2,6 +2,12 @@
 export ZSH=${HOME}/.oh-my-zsh
 
 source ${HOME}/.profile.local
+#
+# [oh-my-zsh] Insecure completion-dependent directories detected:
+# [oh-my-zsh] If the above didn't help or you want to skip the verification of
+# [oh-my-zsh] insecure directories you can set the variable ZSH_DISABLE_COMPFIX to
+# [oh-my-zsh] "true" before oh-my-zsh is sourced in your zshrc file.
+# ZSH_DISABLE_COMPFIX=true
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
