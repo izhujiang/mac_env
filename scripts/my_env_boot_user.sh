@@ -21,11 +21,22 @@ installWithBrew(){
 MY_ENV_ROOT=${HOME}/repo/my_env
 printf "MY_ENV_ROOT: ${MY_ENV_ROOT}\n"
 
-SYS_DETAIL=`uname -a` 
+SYSOS=`uname -s`
+SYS_DETAIL=`uname -a`
 printf "\nWorking on:\n${SYS_DETAIL}\n"
 
 # 0. check prerequuisites before installation.
 printf "0. Check prerequuisites and necessary packages before installing customed environment...\n"
 
-installWithBrew
+if [ ${SYSOS} = "Linux" ] ; then
+    HOMEBREW=/home/linuxbrew/.linuxbrew
 
+elif [ ${SYSOS} = "Darwin" ] ; then
+    BREW_HOME=/usr/local/Cellar
+else
+  printf "${SYSOS} not support now.\n"
+  exit
+fi
+
+export PATH=${HOMEBREW}/bin:${PATH}
+installWithBrew

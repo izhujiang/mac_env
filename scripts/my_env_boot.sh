@@ -71,6 +71,3 @@ else
   printf "${SYSOS} not support now.\n"
   exit
 fi
-
-
-
