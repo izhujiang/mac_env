@@ -47,21 +47,35 @@ npm install -g gatsby-cli
 npm install -g surge
 
 
+printf "install go tools packages...... \n"
 export GOPATH=$HOME/workspace/go
 printf "install tools to GOPATH(${GOPATH}) for golang ...... \n"
+go get -u golang.org/x/lint/golint
+go get -u golang.org/x/tools/cmd/godoc
 go get -u golang.org/x/tools/cmd/goimports
 go get -u golang.org/x/tools/cmd/gorename
-go get -u github.com/sqs/goreturns
-go get -u github.com/nsf/gocode
-go get -u github.com/alecthomas/gometalinter
-go get -u github.com/zmb3/gogetdoc
-go get -u github.com/zmb3/goaddimport
-go get -u github.com/rogpeppe/godef
 go get -u golang.org/x/tools/cmd/guru
+go get -u github.com/acroca/go-symbols
+go get -u github.com/alecthomas/gometalinter
+gometalinter --install
+
+go get -u github.com/cweill/gotests/...
+go get -u github.com/davidrjenni/reftools/cmd/fillstruct
+go get -u github.com/derekparker/delve/cmd/dlv
 go get -u github.com/fatih/gomodifytags
+go get -u github.com/gobuffalo/buffalo/buffalo
+go get -u github.com/haya14busa/goplay/cmd/goplay
+go get -u github.com/josharian/impl
+go get -u github.com/mdempsky/gocode
+go get -u github.com/nsf/gocode
+go get -u github.com/ramya-rao-a/go-outline
+go get -u github.com/rogpeppe/godef
+go get -u github.com/sqs/goreturns
 go get -u github.com/tpng/gopkgs
+go get -u github.com/uudashr/gopkgs/cmd/gopkgs
+go get -u github.com/zmb3/goaddimport
+go get -u github.com/zmb3/gogetdoc
+go get -u sourcegraph.com/sqs/goreturns
 
-go get golang.org/x/tools/cmd/guru
-go get github.com/derekparker/delve/cmd/dlv
-
-go get -u -v github.com/gobuffalo/buffalo/buffalo
+printf "install extension for code ...... \n"
+code --install-extension ms-vscode.go

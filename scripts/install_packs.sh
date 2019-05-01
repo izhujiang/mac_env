@@ -38,3 +38,9 @@ brew install vim
 # maybe better choice for nvim
 brew install neovim
 # install vim with python3 support
+
+# install vscode
+brew cask install visual-studio-code
+
+# install other useful tools
+# brew cask install alfred
