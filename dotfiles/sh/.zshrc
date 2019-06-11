@@ -58,8 +58,7 @@ DISABLE_AUTO_UPDATE="true"
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git zsh-autosuggestions)
 # plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions extract vi-mode docker)
-plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions
-        git git-flow golang docker tmux )
+plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions git git-flow golang docker tmux buffalo)
 source ${ZSH}/oh-my-zsh.sh
 # earse env variables $PAGER and $LESS setted by oh-my-zsh, which cause git branch/diff's output paged by less
 unset PAGER

@@ -15,9 +15,9 @@ augroup go
     " autocmd FileType go nmap <leader>r  <Plug>(go-run-split) <esc>
     " don't use <Plug> go-run command, it is better to run with go run in term which will close by clicking anyke which will close by clicking any key
     " execute the whole project
-    autocmd Filetype go nmap <silent><Leader>r :w<cr>:split term://go run *.go<CR>
+    " autocmd Filetype go nmap <silent><Leader>r :w<cr>:split term://go run *.go<CR>
     " execute current file
-    autocmd Filetype go nmap <silent><Leader>j :split term://go run %<CR>
+    autocmd Filetype go nmap <silent><Leader>r :w<cr>:split term://go run %<CR>
     " autocmd Filetype go nmap <silent><Leader>r :vsplit term://go run *.go<CR>
     " autocmd FileType go nmap <leader>gr  <Plug>(go-run)
 

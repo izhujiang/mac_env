@@ -27,6 +27,17 @@ do
   fi
 done
 
+
+printf "install buffalo plugin ..."
+BUFFALO=${HOME}/.oh-my-zsh/custom/plugins/buffalo
+if [ ! -d ${BUFFALO} ]; then
+    git clone https://github.com/1995parham/buffalo.zsh ~/.oh-my-zsh/custom/plugins/buffalo
+  cd ${BUFFALO}
+else
+  cd ${BUFFALO}
+  git pull
+fi
+
 printf "install oh-my-zsh-powerline-theme status......\n"
 POWERLINE_THEME=${HOME}/.oh-my-zsh-powerline-theme
 # install powerline theme
