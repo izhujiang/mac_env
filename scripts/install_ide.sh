@@ -31,5 +31,7 @@ nvim +PlugInstall +qall
 sleep 2
 unlink ${HOME}/.vimrc
 unlink ${HOME}/.config/nvim/init.vim
+unlink ${HOME}/.eslintrc.js
 ln -s ${MY_ENV_ROOT}/dotfiles/vim/.vimrc ${HOME}/.vimrc
 ln -s ${MY_ENV_ROOT}/dotfiles/vim/init.vim ${HOME}/.config/nvim/init.vim
+ln -s ${MY_ENV_ROOT}/dotfiles/eslint/.eslintrc.js ${HOME}/.eslintrc.js

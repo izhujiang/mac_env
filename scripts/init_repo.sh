@@ -28,6 +28,10 @@ else
     git config --global user.name "jiang zhu"
     git config --global user.email "m.zhujiang@gmail.com"
     git config --global color.ui true
+    git config --global alias.st status
+    git config --global alias.co checkout
+    git config --global alias.ci commit
+    git config --global alias.br branch
     git config --global alias.ignore \
 	'!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi'
 fi

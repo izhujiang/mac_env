@@ -48,8 +48,9 @@ export PATH=$PATH:$(go env GOPATH)/bin
 function gi() { curl -sL https://www.gitignore.io/api/\$@ ;}
 
 # 4. Set alias
-alias ll='ls -GFlas'
-# alias ll="ls -la"
+# alias ll='ls -GFlas'
+# alias la="ls -la"
+
 alias gz="tar -xzvf"
 alias tgz="tar -xzvf"
 alias bz2="tar -xjvf"
@@ -65,4 +66,3 @@ alias spring-start='curl https://start.spring.io/starter.zip -d type=gradle-proj
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
-

@@ -146,6 +146,7 @@ Plug 'bronson/vim-trailing-whitespace'
 "*****************************************************************************
 
 "" ------------Golang Bundle ----------------------------------
+Plug 'sebdah/vim-delve'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for':'go'}
 Plug 'AndrewRadev/splitjoin.vim', {'for': 'go'}
 

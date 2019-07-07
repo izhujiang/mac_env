@@ -32,7 +32,7 @@ augroup go
 
     " go-coverage-toggle, Calls go test -coverprofile-temp.out for the current package and shows the coverage annotation.
     " If run again it acts as a toggle and clears the annotation.
-    
+
     " autocmd FileType go nmap <leader>gc <Plug>(go-coverage)
     autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
     " autocmd FileType go nmap <leader>gc <Plug>(go-coverage-clear)
@@ -55,7 +55,7 @@ augroup go
     autocmd FileType go nmap <leader>d <Plug>(go-doc)
     autocmd FileType go nmap <leader>dv <Plug>(go-doc-vertical)
     autocmd FileType go nmap <leader>s  :GoSameIdsToggle<cr>
-    
+
     " vim builtin gd shortcut for go_def?
     " autocmd FileType go nmap <leader>gds <Plug>(go-def-split)
     " autocmd FileType go nmap <leader>gdv <Plug>(go-def-vertical)
@@ -84,10 +84,10 @@ augroup go
     " whenever save file, goimports will automatically format as well as rewrite import declarations.
     " goimports is a replacement for gofmt
     let g:go_fmt_command = "goimports"
-    
+
     " stop fmt show errors in quickfix list
     " let g:go_fmt_fail_silently = 1
-    
+
     "  expanded to valid field tag, default vim-go uses snake_case transform
     let g:go_addtags_transform = "snake_case"
     " let g:go_addtags_transform = "camelcase"

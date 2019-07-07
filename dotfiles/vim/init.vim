@@ -149,6 +149,7 @@ Plug 'bronson/vim-trailing-whitespace'
 "*****************************************************************************
 
 "" ------------Golang Bundle ----------------------------------
+Plug 'sebdah/vim-delve'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for':'go'}
 Plug 'AndrewRadev/splitjoin.vim', {'for': 'go'}
 
@@ -188,9 +189,9 @@ Plug 'tpope/vim-haml'
 Plug 'pangloss/vim-javascript', {'for': ['javascript', 'html', 'css']}
 " Plug 'mxw/vim-jsx', {'for': 'javascript'}
 " Prettier is an opinionated code formatter with support for: JavaScript JSX Flow TypeScript CSS JSON GraphQL Markdown YAML
-Plug 'prettier/vim-prettier', {
-    \ 'do': 'yarn install',
-    \ 'for': ['html', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue']}
+" Plug 'prettier/vim-prettier', {
+    " \ 'do': 'yarn install',
+    " \ 'for': ['html', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue']}
 
 " Provides support for expanding abbreviations similar to emmet.
 Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript','typescript']}
@@ -202,6 +203,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript','typescript']}
 
 " plugs for TypeScript
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+" Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
 
 " yast will set filetype as typescript.tsx which YouCompleteMe can't work with ycm_semantic_triggers
 " yast will set filetype=typescript.tsx
@@ -256,10 +258,10 @@ source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-go.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-java.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/neoformat.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-javascript.vim
-" source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-jsx.vim
-source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-prettier.vim
-source ${MY_ENV_ROOT}/dotfiles/vim/plugins/emmet-vim.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/typescript-vim.vim
+" source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-jsx.vim
+" source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-prettier.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/emmet-vim.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-markdown.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/markdown_composer.vim
 

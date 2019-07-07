@@ -1,7 +1,9 @@
 " https://github.com/w0rp/ale
 let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_on_save = 1
-" let g:ale_fix_on_save = 1
+
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
+
 let g:ale_lint_on_enter = 0
 let g:ale_completion_enabled = 0
 
@@ -26,6 +28,7 @@ let g:ale_open_list = 1
 " If you want to only select a subset of the tools, you can define b:ale_linters for a single buffer, or g:ale_linters globally
 
 let g:ale_linters = {'javascript': ['eslint'],
+                 \   'typescript': ['tsserver', 'tslint'],
                  \   'go': ['gofmt', 'golint', 'go vet'],
                  \   'python': ['flake8', 'pylint'],
                  \   'java': ['checkstyle', 'javac', 'google-java-format']
@@ -44,6 +47,10 @@ let g:ale_linters = {'javascript': ['eslint'],
 " \}
 let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'],
                  \ 'javascript': ['prettier', 'eslint'],
+                 \ 'typescript': ['prettier'],
+                 \ 'scss': ['prettier'],
+                 \ 'html': ['prettier'],
+                 \  'css': ['prettier'],
                  \ 'python': ['autopep8', 'yapf']
                  \ }
 

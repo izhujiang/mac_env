@@ -81,13 +81,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
-" Vim8 has builtin terminal support
-" " Install VimShell and its depencency vimproc
-" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-" "  Powerful shell in vim
-" if v:version >= 703
-"   Plug 'Shougo/vimshell.vim'
-" endif
 
 " vim plugin to interact with tmux
 Plug 'benmills/vimux'
@@ -172,6 +165,14 @@ Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 "*****************************************************************************
 
 "" ------------Golang Bundle ----------------------------------
+Plug 'sebdah/vim-delve'
+" Vim8 has builtin terminal support
+" " Install VimShell and its depencency vimproc
+" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" "  Powerful shell in vim
+" if v:version >= 703
+"   Plug 'Shougo/vimshell.vim'
+" endif
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for':'go'}
 Plug 'AndrewRadev/splitjoin.vim', {'for': 'go'}
 
