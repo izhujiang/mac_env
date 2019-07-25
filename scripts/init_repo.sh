@@ -34,6 +34,16 @@ else
     git config --global alias.br branch
     git config --global alias.ignore \
 	'!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi'
+    git config --global alias.last 'log -1 HEAD'
+    git config --global alias.unstage 'reset HEAD --'
+    git config --global merge.conflictstyle diff3
+    git config --global diff.submodule log
+
+    git config --global alias.sdiff '!'"git diff && git submodule foreach 'git diff'"
+    git config --global alias.spush 'push --recurse-submodules=on-demand'
+    git config --global alias.supdate 'submodule update --remote --merge'
+
+    git config --global rerere.enabled true
 fi
 
 MY_ENV_ROOT=${HOME}/repo/my_env
