@@ -130,7 +130,9 @@ function! BuildYCM(info)
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
     " "!./install.py --clang-completer --go-completer --js-completer
-    !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
+    " !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
+    !python3 ./install.py --clang-completer --go-completer
+    " ts-server with flag --ts-completer is two slow at this stag, waiting for coming version....
     " ts-server with flag --ts-completer is two slow at this stag, waiting for coming version....
     " !python3 ./install.py --clang-completer --go-completer --ts-completer --java-completer
   endif

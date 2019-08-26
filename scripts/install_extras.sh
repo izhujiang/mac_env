@@ -40,11 +40,11 @@ npm install -g winston
 npm install -g colors
 npm install -g simplehttpserver
 npm install -g mongo-hacker
-npm install -g npx
 npm install -g grunt-cli
 npm install -g neovim
 npm install -g gatsby-cli
 npm install -g surge
+npm install -g lighthouse
 
 
 printf "install go tools packages...... \n"
