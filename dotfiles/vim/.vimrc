@@ -90,6 +90,8 @@ Plug 'benmills/vimux'
 " Grep search tools integration with Vim
 Plug 'vim-scripts/grep.vim'
 
+Plug 'easymotion/vim-easymotion'
+
 " Display the indention levels with thin vertical lines
 Plug 'Yggdroot/indentLine'
 

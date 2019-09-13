@@ -93,6 +93,8 @@ else
 endif
 " Grep search tools integration with Vim
 Plug 'vim-scripts/grep.vim'
+Plug 'easymotion/vim-easymotion'
+
 
 " --------------------------------------------------------------------
 " Display the indention levels with thin vertical lines
@@ -131,8 +133,8 @@ function! BuildYCM(info)
   if a:info.status == 'installed' || a:info.force
     " "!./install.py --clang-completer --go-completer --js-completer
     " !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
-    !python3 ./install.py --clang-completer --go-completer
-    " ts-server with flag --ts-completer is two slow at this stag, waiting for coming version....
+    "python3 ./install.py --c !python3 ./install.py --clang-completer --go-completer
+    !python3 ./install.py --clang-completer --go-completer --ts-completer
     " ts-server with flag --ts-completer is two slow at this stag, waiting for coming version....
     " !python3 ./install.py --clang-completer --go-completer --ts-completer --java-completer
   endif
@@ -241,6 +243,7 @@ source ${MY_ENV_ROOT}/dotfiles/vim/plugins/nerdtree.vim
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/vim-airline.vim
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/grep.vim
+source ${MY_ENV_ROOT}/dotfiles/vim/plugins/easymotion.vim
 
 
 source ${MY_ENV_ROOT}/dotfiles/vim/plugins/ultisnips.vim
