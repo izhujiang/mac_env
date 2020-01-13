@@ -17,7 +17,10 @@ let g:ycm_cache_omnifunc = 0    " 禁止缓存匹配项,每次都重新生成匹
 
 let g:ycm_complete_in_comments = 1 " Completion in comments
 let g:ycm_complete_in_strings = 1 " Completion in string
+
 let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+" let g:ycm_collect_identifiers_from_tags_files = 0 " it makes vim slower if the tags on a network directory
+
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
 

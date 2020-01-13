@@ -1,12 +1,13 @@
 " ----Golong, vim-go settings
 augroup go
     autocmd!
-    autocmd BufNewFile,BufRead *.go
-     \ set noexpandtab |
-     \ set tabstop=4 |
-     \ set shiftwidth=4 |
-     \ set softtabstop=4 |
-     \ set fileformat=unix
+    " override by .editorconfig
+    " autocmd BufNewFile,BufRead *.go
+    "  \ set noexpandtab |
+    "  \ set tabstop=4 |
+    "  \ set shiftwidth=4 |
+    "  \ set softtabstop=4 |
+    "  \ set fileformat=unix
 
     autocmd FileType go nmap <leader>b  :<C-u>call <SID>build_go_files()<CR>
     " autocmd FileType go nmap <leader>gb  :<C-u>call <SID>build_go_files()<CR>
@@ -185,5 +186,3 @@ function! s:build_go_files()
     call go#cmd#Build(0)
   endif
 endfunction
-
-

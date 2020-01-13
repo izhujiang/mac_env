@@ -1,9 +1,13 @@
 "------------------------------------------------------------------------------
 " General
 "------------------------------------------------------------------------------
+syn on                      "语法支持
 " Enable filetype plugins
 filetype plugin indent on    " required
 
+" YouCompleteMe unavailable: requires UTF-8 encoding.
+set encoding=utf-8
+"
 " define specific file type
 autocmd BufRead,BufNewFile *.tsx		setfiletype typescript
 
@@ -124,6 +128,10 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" When using automatic compilation of your code, some editors have a 'safe write' feature
+" that can potentially interfere with recompilation. for Vim :
+set backupcopy=yes
+
 " Fast saving
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>x :x<CR>
@@ -135,11 +143,21 @@ nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
 
-"" Opens an edit command with the path of the currently edited file filled in
+" set sub-directories will search for gf, :find command
+set path+=**
+" set suffixesadd+=.js,.go
+
+" todo: set suffixes
+" set suffixes+=
+
+
+" Opens an edit command with the path of the currently edited file filled in
 noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 "" Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
+" type %% on vim's command-line prompt, automaticlly expands to the path of the active buffer, just as %:h<tab>.
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/': '%%'
 "------------------------------------------------------------------------------
 " Editing
 "------------------------------------------------------------------------------
@@ -156,12 +174,13 @@ set lazyredraw
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 
+set complete+=i,k
 " Completion options (select longest + show menu even if a single match is found)
 set completeopt=longest,menu
 " Set command-line completion mode
-
 set wildmode=list:longest,full
 set whichwrap+=<,>,h,l
+set dictionary=/usr/share/dict/words,/usr/share/dict/words
 
 " Enable Ctrl-A/Ctrl-X to work on octal and hex numbers, as well as characters
 set nrformats=octal,hex,alpha
@@ -192,9 +211,17 @@ catch
 endtry
 " move between buffers
 nnoremap <leader>bj :bnext<cr>
+nnoremap <silent> ]b :bnext<cr>
+
 nnoremap <leader>bk :bprevious<cr>
+nnoremap <silent> [b :bprevious<cr>
+
 nnoremap <leader>bh :bfirst<cr>
+nnoremap <silent> [B :bfirst<cr>
+
 nnoremap <leader>bl :blast<cr>
+nnoremap <silent> ]B :blast<cr>
+
 " Close the current buffer (w/o closing the currentwindow)
 nnoremap <leader>bd :bdelete<cr>
 " Close all the buffers
@@ -235,6 +262,14 @@ set splitright
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
+" To map <Esc> to exit terminal-mode:
+tnoremap <Esc> <C-\><C-n>
+tnoremap <M-[> <Esc>
+" <C-v> means Verbatim.
+" <C-v><Esc> send an Escape key to the program running inside the terminal buffer.
+tnoremap <C-v><Esc> <Esc>
+" To simulate |i_CTRL-R| in terminal-mode:
+tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 "" Switching windows
 " Terminal mode under neovim
 tnoremap <M-h> <c-\><c-n><c-w>h
@@ -252,11 +287,14 @@ vnoremap <M-j> <Esc><c-w>j
 vnoremap <M-k> <Esc><c-w>k
 vnoremap <M-l> <Esc><c-w>l
 " Normal mode:
+nnoremap <M-h> <C-w>h
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k
+nnoremap <M-l> <C-w>l
 nnoremap <leader>wh <c-w>h
 nnoremap <leader>wj <c-w>j
 nnoremap <leader>wk <c-w>k
 nnoremap <leader>wl <c-w>l
-
 "------------------------------------------------------------------------------
 " Editor UI
 "------------------------------------------------------------------------------
@@ -304,11 +342,11 @@ set foldnestmax=10
 " Enable folding with the spacebar
 nnoremap <space> za
 
-"" Tabs. May be overriten by autocmd rules
-set tabstop=4
+" replaced by .editorconfig
+" set tabstop=4
 " tab equals to 4 spaces
-set softtabstop=0
-set shiftwidth=4
+" set softtabstop=0
+" set shiftwidth=4
 
 " Use spaces instead of tabs
 set expandtab
@@ -336,7 +374,6 @@ set foldcolumn=0
 "------------------------------------------------------------------------------
 " Ignore case when searching
 set ignorecase
-
 " When searching try to be smart about cases
 set smartcase
 
@@ -352,19 +389,33 @@ set magic
 " Show matching brackets when text indicator is over them
 set showmatch
 
+" using ack instead of grep
+" ack is a grep-like source code search tool.
+" Attention: grep uses POSIX regular expressions, while ack uses Perl regular expressions
+" set grepprg=ack\ --nogroup\ --column\ $*
+" set grepformat=%f:%l:%c:%m
+
+" overwrite vim' grep command output on Unix: grep -n $* /dev/null
+" vim/nvim will collect result from external grepprg's standard output.
+" which will be overwritten by fzf.vim with 'set grepprg=rg\ --vimgrep' when rg exists
+set grepprg=grep\ -n
+set grepformat=%f:%l:%m
+
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :call VisualSelection('f', '')<CR>
-vnoremap <silent> # :call VisualSelection('b', '')<CR>
+" vnoremap <silent> * :call VisualSelection('f', '')<CR>
+" vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 
 " visual shifting (does not exit Visual mode)
 " easyly moving of code blocks in visual mode, not good, break the rule of dot command
 vnoremap < <gv
 vnoremap > >gv
+
+" not good to override J command in ( vipJ, whichi is quiet useful to join multiply lines)
 "" Move visual block
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+vnoremap JJ :m '>+1<CR>gv=gv
+vnoremap KK :m '<-2<CR>gv=gv
 
 
 " When you press <leader>r you can search and replace the selected text
@@ -392,7 +443,14 @@ noremap <C-l> $
 nnoremap ]] ]c
 nnoremap [[ [c
 
-"------------------------------------------------------------------------------
+" execute last substitute
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+
+" ctags
+nnoremap <leader>c :!ctags -R --exclude=.git<CR>
+" autocmd BufWritePost * call system("ctags -R")
+" ------------------------------------------------------------------------------
 " Status line
 "------------------------------------------------------------------------------
 " Always show the status line
@@ -405,6 +463,11 @@ set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 "------------------------------------------------------------------------------
 " Spell checking
 "------------------------------------------------------------------------------
+" set spell
+set nospell
+" set spelllang=en_ca
+" set spelllang=fr
+" setlocal spellfile+=~/.dict/spellfile/fr.utf-8.add
 
 " Pressing ,ss will toggle and untoggle spell checking
 nnoremap <leader>ss :setlocal spell!<cr>
@@ -432,6 +495,10 @@ nnoremap <leader>cc :botright copen<cr>
 ""------------------------------------------------------------------------------
 " Command-mode related
 "------------------------------------------------------------------------------
+"for easily invoke up command_window
+cnoremap <C-o> <C-f>
+cnoremap <C-w> <C-f>
+
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 " type %% on Vim’s : command-line prompt, it automatically expands to the path of the active buffer,

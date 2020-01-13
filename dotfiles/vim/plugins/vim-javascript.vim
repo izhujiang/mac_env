@@ -1,13 +1,13 @@
 augroup vim-javascript
     autocmd!
-    autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
+    " autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
         " for html files, 2 spaces
-    autocmd Filetype html setlocal ts=2 sw=2 expandtab
+    " autocmd Filetype html setlocal ts=2 sw=2 expandtab
     " ------js/html/css
-    autocmd BufNewFile,BufRead *.js,*.htm,*.html,*.css
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2
+    " autocmd BufNewFile,BufRead *.js,*.htm,*.html,*.css
+    " \ set tabstop=2 |
+    " \ set softtabstop=2 |
+    " \ set shiftwidth=2
    " --associate .handlebars(less abstract templating framework) with HTML, to enable syntax highlighting and other editor features.
     au BufNewFile,BufRead *.handlebars set filetype=html
 augroup END
@@ -40,5 +40,3 @@ let g:javascript_plugin_flow = 0
 
 " javascript
 let g:javascript_enable_domhtmlcss = 1
-
-

@@ -8,8 +8,8 @@ let g:ale_lint_on_enter = 0
 let g:ale_completion_enabled = 0
 
 " use the quickfix list instead of the loclist
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
 
 " show Vim windows for the loclist or quickfix items when a file contains warnings or errors
 let g:ale_open_list = 1

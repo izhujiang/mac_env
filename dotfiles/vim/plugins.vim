@@ -1,54 +1,12 @@
-" vim-bootstrap b0a75e4
-
 "*****************************************************************************
-"" Vim-PLug core
-"*****************************************************************************
-if has('vim_starting')
-  set nocompatible               " Be iMproved
-endif
-
-let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-
-let g:vim_bootstrap_langs = "go,html,javascript,typescript,python,scala"
-let g:vim_bootstrap_editor = "nvim"				" nvim or vim
-
-if(has("mac") || has("macunix"))
-    let g:python2_host_prog = '/usr/local/bin/python'
-    let g:python3_host_prog = '/usr/local/bin/python3'
-elseif(has("unix"))
-    let g:python2_host_prog = '/usr/bin/python'
-    let g:python3_host_prog = '/usr/bin/python3'
-else
-    echo "setting up python_host_prog plz"
-endif
-
-if !filereadable(vimplug_exists)
-  if !executable("curl")
-    echoerr "You have to install curl or first install vim-plug yourself!"
-    execute "q!"
-  endif
-  echo "Installing Vim-Plug..."
-  echo ""
-  silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  let g:not_finish_vimplug = "yes"
-
-  autocmd VimEnter * PlugInstall
-endif
-
-" YouCompleteMe unavailable: requires UTF-8 encoding.
-set encoding=utf-8
-
-" Required:
-call plug#begin(expand('~/.config/nvim/plugged'))
-
-"*****************************************************************************
-"" Plug install packages
-"*****************************************************************************
+Plug 'editorconfig/editorconfig-vim'
+" https://blog.stevenocchipinti.com/2016/12/28/using-netrw-instead-of-nerdtree-for-vim/
+" using builtin file explorer(netrw) instead. However, what about the nerdtree-git
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" Bookmark plugin
-Plug 'MattesGroeger/vim-bookmarks'
+" Bookmark plugin, config it later.
+" Plug 'MattesGroeger/vim-bookmarks'
 
 " Vim colorscheme
 " colorscheme
@@ -64,14 +22,18 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
 Plug 'airblade/vim-gitgutter'
-
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 
+" Universal CTags: tagging engine that scans project files and generates tag files.
+" Autotag: automatically update the tag files after each save.
+" Tagbar: displays a window with a hierarchical list of tags in the current file.
 Plug 'majutsushi/tagbar'
 
 " Dark powered shell interface for NeoVim and Vim8.
-Plug 'Shougo/deol.nvim'
+if has('nvim-0.1')
+    Plug 'Shougo/deol.nvim'
+endif
 " Extended session management for Vim, require vmi-misc
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -88,16 +50,30 @@ else
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
 endif
+
 " Grep search tools integration with Vim
-Plug 'vim-scripts/grep.vim'
+" Plug 'vim-scripts/grep.vim'
+" ack is a grep-like source code search tool, which is designed for programmers with large heterogeneous trees of source code.
+" awk is written in portable Perl 5 and takes advantage of the power of Perl's regular expressions.
+" Plug 'mileszs/ack.vim'
+
+" Use your favorite grep tool (ag, ack, git grep, ripgrep, pt, sift, findstr, grep) to start an 'asynchronous' search.
+" All matches will be put in a quickfix or location list.
+Plug 'mhinz/vim-grepper'
+" lazy loading, but grepper convenience command will be disable.
+" Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+
 Plug 'easymotion/vim-easymotion'
+
 
 " --------------------------------------------------------------------
 " Display the indention levels with thin vertical lines
 Plug 'Yggdroot/indentLine'
 "A simple, easy-to-use Vim alignment plugin
 Plug 'junegunn/vim-easy-align'
-" Comment stuff out
+
+" Comment stuff out, Use gcc to comment out a line (takes a count), gc to comment out the target of a motion(likes gcap),
+" gc in visual mode to comment out the selection, and gc in operator pending mode to target a comment.
 Plug 'tpope/vim-commentary'
 " provides insert mode auto-completion for quotes, parens, brackets, etc.
 " Plug 'Raimondi/delimitMate'
@@ -128,7 +104,9 @@ function! BuildYCM(info)
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
     " "!./install.py --clang-completer --go-completer --js-completer
-    !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
+    " !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
+    "python3 ./install.py --c !python3 ./install.py --clang-completer --go-completer
+    !python3 ./install.py --clang-completer --go-completer --ts-completer
     " ts-server with flag --ts-completer is two slow at this stag, waiting for coming version....
     " !python3 ./install.py --clang-completer --go-completer --ts-completer --java-completer
   endif
@@ -137,13 +115,32 @@ endfunction
 " A code-completion engine for Vim
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+if has('nvim-0.1') || v:version >= 704
+  " The ultimate snippet solution for Vim
+  " Snippet engines
+    Plug 'SirVer/ultisnips'
+    " vim-snipmate default snippets
+    Plug 'honza/vim-snippets'
+endif
 
-Plug 'bronson/vim-trailing-whitespace'
+" Asynchronous build and test dispatcher
+Plug 'tpope/vim-dispatch'
+
+if has('nvim-0.1')
+    Plug 'radenling/vim-dispatch-neovim'
+endif
+
+" ale_fixer does ['remove_trailing_lines', 'trim_whitespace'] when on_save.
+" Plug 'bronson/vim-trailing-whitespace'
+" A Vim wrapper for running tests on different granularities.
+Plug 'janko/vim-test'
+
+" vim plugin to interact with tmux
+Plug 'benmills/vimux'
+" Plug 'vimcn/vimcdoc'
 
 "*****************************************************************************
-"" Custom bundles
+"" Custom Language bundles
 "*****************************************************************************
 
 "" ------------Golang Bundle ----------------------------------
@@ -170,7 +167,6 @@ Plug 'sbdchd/neoformat', {'for': 'java'}
 Plug 'tfnico/vim-gradle', { 'for': [ 'java', 'groovy' ] }
 Plug 'airblade/vim-rooter', { 'for': [ 'java', 'groovy' ] }
 
-
 "     " sbt-vim
 "     Plug 'ktvoelker/sbt-vim' , { 'for': 'scala' }
 " endif
@@ -187,20 +183,16 @@ Plug 'tpope/vim-haml'
 Plug 'pangloss/vim-javascript', {'for': ['javascript', 'html', 'css']}
 " Plug 'mxw/vim-jsx', {'for': 'javascript'}
 " Prettier is an opinionated code formatter with support for: JavaScript JSX Flow TypeScript CSS JSON GraphQL Markdown YAML
-Plug 'prettier/vim-prettier', {
-    \ 'do': 'yarn install',
-    \ 'for': ['html', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue']}
+" Plug 'prettier/vim-prettier', {
+    " \ 'do': 'yarn install',
+    " \ 'for': ['html', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue']}
 
 " Provides support for expanding abbreviations similar to emmet.
 Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript','typescript']}
-" Beautify.vim is reformatter and converter.
-" Plug 'alpaca-tc/beautify.vim', {'for': ['html', 'css', 'javascript']}
-
-" Flow is a static type checker for your JavaScript code.
-" Plug 'flowtype/vim-flow', {'for': 'javascript'}
 
 " plugs for TypeScript
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+" Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
 
 " yast will set filetype as typescript.tsx which YouCompleteMe can't work with ycm_semantic_triggers
 " yast will set filetype=typescript.tsx
@@ -210,22 +202,13 @@ Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 " Plug 'robertbasic/vim-hugo-helper', {'for': 'Markdown'}
 
 " Build MarkdownComposer
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release
-    else
-      !cargo build --release --no-default-features --features json-rpc
-    endif
-  endif
-endfunction
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'for': 'Markdown' }
-
-
-"*****************************************************************************
-"" Include user's extra bundle
-if filereadable(expand("~/.config/nvim/local_bundles.vim"))
-  source ~/.config/nvim/local_bundles.vim
-endif
-
-call plug#end()
+" function! BuildComposer(info)
+"   if a:info.status != 'unchanged' || a:info.force
+"     if has('nvim-0.1')
+"       !cargo build --release
+"     else
+"       !cargo build --release --no-default-features --features json-rpc
+"     endif
+"   endif
+" endfunction
+" Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'for': 'Markdown' }
