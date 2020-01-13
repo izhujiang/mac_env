@@ -115,11 +115,19 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
 # PY_PACKS_LOC=$(pip show powerline-status | grep Location)
 PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
-POWERLINE_ZSH=${PY_PACKS_LOC}/powerline/bindings/zsh/powerline.zsh
-# echo '/usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh'
-# echo ${POWERLINE_ZSH}
-source ${POWERLINE_ZSH}
 
+if [ "$PY_PACKS_LOC" = "" ]; then
+    echo "powerline-status does not exist, install it with pip3 install powerline-status"
+else
+    POWERLINE_ZSH=${PY_PACKS_LOC}/powerline/bindings/zsh/powerline.zsh
+    # echo '/usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh'
+    # echo ${POWERLINE_ZSH}
+    source ${POWERLINE_ZSH}
+fi
+
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
 
 # add fzf to zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

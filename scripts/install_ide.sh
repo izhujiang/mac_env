@@ -16,12 +16,12 @@ do
         fi
     fi
 done
-ln -s ${MY_ENV_ROOT}/dotfiles/vim/.vimrc_readonly ${HOME}/.vimrc
+# ln -s ${MY_ENV_ROOT}/dotfiles/vim/.vimrc_readonly ${HOME}/.vimrc
 NVIM_CFG_DIR=${HOME}/.config/nvim
 if [ ! -d ${NVIM_CFG_DIR} ]; then
 	mkdir -p ${NVIM_CFG_DIR}
 fi
-ln -s ${MY_ENV_ROOT}/dotfiles/vim/init_nvim_readonly ${NVIM_CFG_DIR}/init.vim
+# ln -s ${MY_ENV_ROOT}/dotfiles/vim/init_nvim_readonly ${NVIM_CFG_DIR}/init.vim
 
 printf "vim-go check GOPATH: ${GOPATH}\n"
 export GOPATH=${HOME}/workspace/go
@@ -29,9 +29,10 @@ vim +PlugInstall +qall
 nvim +PlugInstall +qall
 
 sleep 2
-unlink ${HOME}/.vimrc
-unlink ${HOME}/.config/nvim/init.vim
+# unlink ${HOME}/.vimrc
+# unlink ${HOME}/.config/nvim/init.vim
 unlink ${HOME}/.eslintrc.js
-ln -s ${MY_ENV_ROOT}/dotfiles/vim/.vimrc ${HOME}/.vimrc
-ln -s ${MY_ENV_ROOT}/dotfiles/vim/init.vim ${HOME}/.config/nvim/init.vim
+ln -s ${MY_ENV_ROOT}/dotfiles/vim/vi_cfg.vim ${HOME}/.vimrc
+ln -s ${MY_ENV_ROOT}/dotfiles/vim/vi_cfg.vim ${HOME}/.config/nvim/init.vim
+ln -s ${MY_ENV_ROOT}/dotfiles/vim/.editorconfig ${HOME}/.editorconfig
 ln -s ${MY_ENV_ROOT}/dotfiles/eslint/.eslintrc.js ${HOME}/.eslintrc.js

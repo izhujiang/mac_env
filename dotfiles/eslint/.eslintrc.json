@@ -1,11 +1,16 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "mocha": true
     },
     "extends": [
+        "eslint:recommended",
+        "airbnb",
+        "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "airbnb"
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -22,6 +27,7 @@
     },
     "plugins": [
         "react",
+        "react-hooks",
         "@typescript-eslint",
         "prettier"
     ],
@@ -31,12 +37,35 @@
           },
           "import/resolver": {
             "typescript": {}
+          },
+          "react": {
+            "pragma": "React",
+            "version": "detect"
           }
     },
     "rules": {
-        "@typescript-eslint/restrict-plus-operands": "error",
+        "no-console":"off",
         "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+        "react/prop-types": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
         "import/no-extraneous-dependencies": [2, { "devDependencies": ["**/test.tsx", "**/test.ts"] }],
-        "@typescript-eslint/indent": [2, 2]
+        "@typescript-eslint/restrict-plus-operands": "error",
+        "@typescript-eslint/explicit-member-accessibility": 0,
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/indent": [2, 2],
+        "prettier/prettier": [
+            "error",
+            {
+                "singleQuote": true,
+                "jsx-max-props-per-line": [
+                    1,
+                    {
+                        "maximum": "1",
+                        "when": "always"
+                    }
+                ]
+            }
+        ]
     }
 }

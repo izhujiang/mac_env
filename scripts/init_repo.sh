@@ -25,6 +25,8 @@ else
 	read -p "Once have privilege to access to github, Press [Enter] key to continue ...\n"
 
     # config git global settings.
+    # git config --global core.editor vi
+    # using system $VISUAL variable is better, which maybe nvim or nvr dynamiclly
     git config --global user.name "jiang zhu"
     git config --global user.email "m.zhujiang@gmail.com"
     git config --global color.ui true

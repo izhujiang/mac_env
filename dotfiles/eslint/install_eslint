@@ -24,15 +24,18 @@ echo "npm install --save-dev eslint babel-eslint eslint-config-fbjs eslint-plugi
 #   eslint-plugin-prettier \
 #   babel-eslint
 
-yarn add -D @typescript-eslint/eslint-plugin \
-    @typescript-eslint/parser \
+yarn add -D \
     eslint \
+    prettier \
+    eslint-import-resolver-typescript \
+    eslint-config-react \
     eslint-config-airbnb \
     eslint-config-prettier \
-    eslint-import-resolver-typescript \
     eslint-plugin-import \
     eslint-plugin-json \
     eslint-plugin-jsx-a11y \
     eslint-plugin-prettier \
     eslint-plugin-react \
-    prettier
+    eslint-plugin-react-hooks \
+    @typescript-eslint/eslint-plugin \
+    @typescript-eslint/parser

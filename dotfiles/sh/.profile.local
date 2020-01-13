@@ -20,7 +20,6 @@ else
 fi
 
 export PATH=${HOMEBREW}/bin:${PATH}
-export HOMEBREW="/home/linuxbrew/.linuxbrew"
 export HOMEBREW_PREFIX=${HOMEBREW}
 export HOMEBREW_CELLAR="${HOMEBREW}/Cellar"
 export HOMEBREW_REPOSITORY="${HOMEBREW}/Homebrew"
@@ -28,7 +27,12 @@ export PATH="${HOMEBREW}/bin:${HOMEBREW}/sbin:$PATH"
 export MANPATH="${HOMEBREW}/share/man:$MANPATH"
 export INFOPATH="${HOMEBREW}/share/info:$INFOPATH"
 
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
+# eval "$(pyenv init -)"
 
+export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
 
 # 2. Set ide-level env
 # added by Anaconda3 4.2.0 installer
@@ -58,7 +62,18 @@ alias zip="unzip"
 alias cl="clear"
 # alias python="python3"
 
-alias vi="nvim"
+alias vi=nvim
+export VISUAL=vi
+# don't run nvim inside nvim
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    # if [ -x "$(command -v nvr)" ]; then
+    #     # echo "using nvr instead nvim"
+    #     alias nvim=nvr
+    # else
+    alias nvim='echo "No nesting nvim!\nUsing:\nnvr [-loOp] <file> [<file>...]"'
+    # fi
+fi
+
 alias idea="${HOME}/idea"
 alias spring-start='curl https://start.spring.io/starter.zip -d type=gradle-project -d javaVersion=11 -d dependencies=web,devtools -o starter.zip'
 

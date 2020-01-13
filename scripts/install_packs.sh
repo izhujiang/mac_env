@@ -10,7 +10,7 @@ brew update && brew upgrade
 # 1. install all libs, packages and tools
 printf "Start installing libs, packages and tools......\n"
 
-brew install cmake wget git xclip
+brew install cmake wget git xclip ripgrep
 brew install zsh
 printf "put the installed zsh into /etc/shells, then the command `chsh -s $(which zsh)` does work.\n"
 # grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
@@ -41,6 +41,8 @@ brew install neovim
 
 # install vscode
 brew cask install visual-studio-code
+
+brew install pyenv
 
 # install other useful tools
 # brew cask install alfred

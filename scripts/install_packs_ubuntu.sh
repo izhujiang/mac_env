@@ -2,10 +2,12 @@
 
 sudo apt update -y && sudo apt upgrade -y
 
-sudo apt install -y cmake autoconf curl wget zsh git xclip net-tools libtool libtool-bin libbz2-dev zlib1g-dev libgd-dev libreadline-dev libsqlite3-dev libssl-dev cargo
+sudo apt install -y cmake autoconf curl wget zsh git xclip net-tools ack libtool libtool-bin libbz2-dev zlib1g-dev libgd-dev libreadline-dev libsqlite3-dev libssl-dev cargo
 
 # To be able to use add-apt-repository, need to install software-properties-common
 sudo apt install -y software-properties-common
+# support vim to enable the built-in autocomplete and spell
+sudo apt install spell
 # ppa:neovim-ppa/stable to your system's Software Sources
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 
