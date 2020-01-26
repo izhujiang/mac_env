@@ -538,6 +538,16 @@ endif
 "------------------------------------------------------------------------------
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+
+"------------------------------------------------------------------------------
+" IDE windows
+" TODO: like https://gist.github.com/cridenour/74e7635275331d5afa6b or
+"            https://coderoncode.com/posts/vim-is-the-perfect-ide
+"------------------------------------------------------------------------------
+" Netrw Style Listing
+ let g:netrw_liststyle = 3
+
+ " nnoremap <Leader><Leader> :Tlist<CR><C-W>h<C-W>s:e .<CR><C-W>l:let g:netrw_chgwin=winnr()<CR><C-W>h
 "------------------------------------------------------------------------------
 " Helper functions
 "------------------------------------------------------------------------------

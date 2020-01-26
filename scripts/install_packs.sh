@@ -10,8 +10,10 @@ brew update && brew upgrade
 # 1. install all libs, packages and tools
 printf "Start installing libs, packages and tools......\n"
 
-brew install cmake wget git xclip ripgrep
+brew install cmake wget git xclip ripgrep bat
 brew install zsh
+# brew install zsh zplug
+
 printf "put the installed zsh into /etc/shells, then the command `chsh -s $(which zsh)` does work.\n"
 # grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells"
@@ -22,10 +24,12 @@ brew install python3 pipenv go ruby rust node yarn jq
 # reattach-to-user-namespace support copy and pasty
 brew install reattach-to-user-namespace astyle readline xz pcre openssl gd geoip
 
-# Install fzf without vim/nvim. But install with vim's vim-plug.
-# brew install fzf
+# Install fzf, A command-line fuzzy finder.
+# An interactive Unix filter for command-line that can be used with any list:
+# files, command history, processes, hostnames, bookmarks, git commits, etc.
+brew install fzf
 # To install useful key bindings and fuzzy completion:
-# $(brew --prefix)/opt/fzf/install
+$(brew --prefix)/opt/fzf/install
 
 # springboot
 # brew tap pivotal/tap

@@ -1,4 +1,5 @@
 #!/bin/sh
+SYSOS=`uname -s`
 
 # install zsh, ohmyzsh and powerline as well as its custom plugins
 printf "install oh-my-zsh, powerline and other plugins for zsh ...... \n"
@@ -13,9 +14,11 @@ rm -rf ${ZSH}
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's:env zsh -l::g' | sed 's:chsh -s .*$::g' | sed '/chsh -s/d' )"
 chsh -s $(which zsh)
 
+# todo: only print out in case of ubuntu
 printf "zsh and oh-my-zsh has been installed and set as default shell, now quit gnome session automatically, \nplease run the boot script again after re-login.\n\n"
 printf "ZSH_CUSTOM: ${ZSH_CUSTOM} ......\n"
 
+# manage zsh_plugins with zplug instead.
 for plugin in zsh-autosuggestions zsh-syntax-highlighting zsh-completions
 do
   if [ ! -d ${ZSH_CUSTOM}/plugins/${plugin} ]; then
@@ -28,15 +31,15 @@ do
 done
 
 
-printf "install buffalo plugin ..."
-BUFFALO=${HOME}/.oh-my-zsh/custom/plugins/buffalo
-if [ ! -d ${BUFFALO} ]; then
-    git clone https://github.com/1995parham/buffalo.zsh ~/.oh-my-zsh/custom/plugins/buffalo
-  cd ${BUFFALO}
-else
-  cd ${BUFFALO}
-  git pull
-fi
+# printf "install buffalo plugin ..."
+# BUFFALO=${HOME}/.oh-my-zsh/custom/plugins/buffalo
+# if [ ! -d ${BUFFALO} ]; then
+#     git clone https://github.com/1995parham/buffalo.zsh ~/.oh-my-zsh/custom/plugins/buffalo
+#   cd ${BUFFALO}
+# else
+#   cd ${BUFFALO}
+#   git pull
+# fi
 
 printf "install oh-my-zsh-powerline-theme status......\n"
 POWERLINE_THEME=${HOME}/.oh-my-zsh-powerline-theme
@@ -66,7 +69,7 @@ fi
 # clean-up a bit
 
 CURRENTDATE=`date +"%Y-%m-%d-%H%M"`
-for CFG_FILE in ${HOME}/.zshrc ${HOME}/.bash_profile ${HOME}/.profile.local
+for CFG_FILE in ${HOME}/.zshrc ${HOME}/.bash_profile ${HOME}/.profile.local ${HOME}/.zplug
 do
     if [ -L ${CFG_FILE} ]; then
         unlink ${CFG_FILE}
@@ -77,11 +80,13 @@ do
     fi
 done
 
+mkdir ${HOME}/.zsh
+# zplug is slower than oh-my-zsh built-in plugins manager
+# ln -s ${MY_ENV_ROOT}/dotfiles/sh/.zplug ${HOME}/.zplug
 ln -s ${MY_ENV_ROOT}/dotfiles/sh/.profile.local ${HOME}/.profile.local
 ln -s ${MY_ENV_ROOT}/dotfiles/sh/.bash_profile ${HOME}/.bash_profile
 ln -s ${MY_ENV_ROOT}/dotfiles/sh/.zshrc ${HOME}/.zshrc
 
-SYSOS=`uname -s`
 if [ ${SYSOS} = "Darwin" ] ; then
   printf "Addiontal config for Dawrin--------------------------\n"
   printf "iTerm2 users need to set both the Regular font and the Non-ASCII Font in 'iTerm > Preferences > Profiles > Text' to use a patched font.\n"

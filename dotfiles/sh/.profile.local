@@ -1,67 +1,31 @@
-# 1. Set system-level env
+# 1. system-level env
 # fixing unknown locale: UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 unset LC_CTYPE
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="${HOME}/.ssh/rsa_id"
 
-export MY_ENV_ROOT="${HOME}/repo/my_env"
+# export MY_ENV_ROOT="${HOME}/repo/my_env"
+# export SYSOS=`uname -s`
 
 # export all variables from brew shellenv
 # eval $($(brew --prefix)/bin/brew shellenv)
-SYSOS=`uname -s`
-if [ ${SYSOS} = "Linux" ] ; then
-    HOMEBREW=/home/linuxbrew/.linuxbrew
-elif [ ${SYSOS} = "Darwin" ] ; then
-    HOMEBREW=/usr/local
-else
-  printf "${SYSOS} not support now.\n"
-  exit
-fi
-
-export PATH=${HOMEBREW}/bin:${PATH}
 export HOMEBREW_PREFIX=${HOMEBREW}
-export HOMEBREW_CELLAR="${HOMEBREW}/Cellar"
-export HOMEBREW_REPOSITORY="${HOMEBREW}/Homebrew"
-export PATH="${HOMEBREW}/bin:${HOMEBREW}/sbin:$PATH"
-export MANPATH="${HOMEBREW}/share/man:$MANPATH"
-export INFOPATH="${HOMEBREW}/share/info:$INFOPATH"
-
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
-# eval "$(pyenv init -)"
-
+export HOMEBREW_CELLAR=${HOMEBREW}/Cellar
+export HOMEBREW_REPOSITORY=${HOMEBREW}/Homebrew
+export PATH=${HOMEBREW}/bin:${HOMEBREW}/sbin:${PATH}
+export MANPATH=${HOMEBREW}/share/man:${MANPATH}
+export INFOPATH=${HOMEBREW}/share/info:${INFOPATH}
 export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
 
-# 2. Set ide-level env
-# added by Anaconda3 4.2.0 installer
-# export PATH="/usr/local/opt/anaconda3/bin:$PATH"
-# export WORKON_HOME=$HOME/.local/virtualenvs
-# export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-# source /usr/local/bin/virtualenvwrapper.sh
-
-# export GOROOT=$HOME/repo/golang/go
-export GOPATH=$HOME/workspace/go
-export PATH=$PATH:$(go env GOPATH)/bin
-
-
-# 3. Set usefull tools's env
-
-# add gi command to generate .gitignore file. ref: https://www.gitignore.io/
-function gi() { curl -sL https://www.gitignore.io/api/\$@ ;}
-
-# 4. Set alias
-# alias ll='ls -GFlas'
-# alias la="ls -la"
-
+# 2. usefull shell tools
 alias gz="tar -xzvf"
 alias tgz="tar -xzvf"
 alias bz2="tar -xjvf"
 alias zip="unzip"
 alias cl="clear"
-# alias python="python3"
 
+# alias python="python3"
 alias vi=nvim
 export VISUAL=vi
 # don't run nvim inside nvim
@@ -74,10 +38,32 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     # fi
 fi
 
+alias f="fzf"
+alias ff="fzf --preview 'bat --color always {}'"
+# find file with preview, then open with vim/nvim
+alias fv="nvim \$(fzf --preview 'bat --color always {}')"
+alias gd="git status -s | fzf --no-sort --reverse --preview 'git diff --color=always {+2} | diff-so-fancy' --bind=ctrl-j:preview-down --bind=ctrl-k:preview-up --preview-window=right:60%:wrap"
+
+# 3. ide-level env and tools
+
 alias idea="${HOME}/idea"
+# add gi command to generate .gitignore file. ref: https://www.gitignore.io/
+# function gi() { curl -sL https://www.gitignore.io/api/\$@ ;}
+
+# golang
+# export GOROOT=$HOME/repo/golang/go
+export GOPATH=$HOME/workspace/go
+export PATH=$PATH:$(go env GOPATH)/bin
+
+# python
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
+# eval "$(pyenv init -)"
+
+# java like
 alias spring-start='curl https://start.spring.io/starter.zip -d type=gradle-project -d javaVersion=11 -d dependencies=web,devtools -o starter.zip'
 
-# 5. others
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
