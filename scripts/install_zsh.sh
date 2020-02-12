@@ -69,7 +69,7 @@ fi
 # clean-up a bit
 
 CURRENTDATE=`date +"%Y-%m-%d-%H%M"`
-for CFG_FILE in ${HOME}/.zshrc ${HOME}/.bash_profile ${HOME}/.profile.local ${HOME}/.zplug
+for CFG_FILE in ${HOME}/.zshrc ${HOME}/.bash_profile ${HOME}/.profile.local
 do
     if [ -L ${CFG_FILE} ]; then
         unlink ${CFG_FILE}

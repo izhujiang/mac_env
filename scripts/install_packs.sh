@@ -10,7 +10,7 @@ brew update && brew upgrade
 # 1. install all libs, packages and tools
 printf "Start installing libs, packages and tools......\n"
 
-brew install cmake wget git xclip ripgrep bat
+brew install cmake wget git xclip ripgrep bat fd z
 brew install zsh
 # brew install zsh zplug
 
@@ -18,7 +18,7 @@ printf "put the installed zsh into /etc/shells, then the command `chsh -s $(whic
 # grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells"
 
-brew install autojump tmux httpie
+brew install autojump tmux tmuxinator httpie
 brew install python3 pipenv go ruby rust node yarn jq
 
 # reattach-to-user-namespace support copy and pasty

@@ -14,8 +14,8 @@ function installWithBrew(){
     # 2. config git and init my_env repo
     # addtional config for setup my ide
     sh ${MY_ENV_ROOT}/scripts/install_zsh.sh
+    sh ${MY_ENV_ROOT}/scripts/install_tmux.sh
     sh ${MY_ENV_ROOT}/scripts/install_ide.sh
-    # setup my tmux
 
     # 3. clean up
     printf "Cleaning up-------------------------------------\n"

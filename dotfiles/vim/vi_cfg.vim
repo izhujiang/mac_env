@@ -86,9 +86,10 @@ endfor
 
 " Enable matchit plugin shiped with vim
 runtime macros/matchit.vim
-if exists('$TMUX')
-    set  term=screen-256color
-endif
+
+" if exists('$TMUX')
+"     set  term=screen-256color
+" endif
 
 "*****************************************************************************
 "" Basic Setup

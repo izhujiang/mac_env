@@ -2,7 +2,7 @@
 
 sudo apt update -y && sudo apt upgrade -y
 
-sudo apt install -y cmake autoconf curl wget zsh git xclip net-tools ack fzf bat
+sudo apt install -y cmake autoconf curl wget zsh git xclip net-tools ack z fzf bat fd-find
 sudo apt install -y libtool libtool-bin libbz2-dev zlib1g-dev libgd-dev libreadline-dev libsqlite3-dev libssl-dev cargo
 
 # To be able to use add-apt-repository, need to install software-properties-common
