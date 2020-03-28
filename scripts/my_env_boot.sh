@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # installWithBrew is the process to install and config my_env
-function installWithBrew(){
+installWithBrew(){
     # 1. install all libs, packages and tools
     # call:
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_packs.sh)"
@@ -25,7 +25,7 @@ function installWithBrew(){
     printf "Congratulation!: Well done. Enjoy your journey!-----\n"
 }
 
-function initEnv(){
+initEnv(){
     # todo: fetch current path of my_env_boot.sh
     export MY_ENV_ROOT=${HOME}/repo/my_env
     # printf "MY_ENV_ROOT: ${MY_ENV_ROOT}\n"
@@ -50,7 +50,7 @@ function initEnv(){
 
 }
 
-function postInstall(){
+postInstall(){
     PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
     # PY_PACKS_LOC=$(pip show powerline-status | grep Location)
     PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
@@ -69,7 +69,7 @@ function postInstall(){
     printf "export PY_PACKS_LOC=%s\n" ${PY_PACKS_LOC} >> ${HOME}/.env
 }
 
-function bootupOnMac(){
+bootupOnMac(){
     # printf "Working on MacOS\n"
     printf "\nWorking on:\n${SYS_DETAIL}\n"
     initEnv
@@ -87,42 +87,81 @@ function bootupOnMac(){
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew tap caskroom/cask
     fi
-    # installWithBrew
+    installWithBrew
 
     postInstall
 }
 
-function bootupOnLinux(){
+bootupOnLinux(){
     printf "\nWorking on ${SYSOS}:\n${SYS_DETAIL}\n"
     printf "0. Check prerequuisites before installation...\n"
-    initEnv
 
+    getLinuxDist
+    printf "Running on %s ...\n " $DISTRO
+    # if [ $DISTRO = "Arch" ]; then
+    #     # printf "Install essential packages with command: sudo pacman -S base-dev\n"
+    # elif [ $DISTRO = "Ubuntu" ]; then
+    #     # printf "Install essential packages with command: sudo apt install build-essential\n"
+    # else
+    #     printf "Running on %s..." $DISTRO
+    # fi
+
+    initEnv
     if [ ! -d ${HOMEBREW} ]; then
-	sudo apt-get install build-essential
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-	eval $(${HOMEBREW}/bin/brew shellenv)
-	brew tap caskroom/cask
-	# using system gcc which is new enough
-	# brew install gcc
+        # sudo apt-get install build-essential
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+        eval $(${HOMEBREW}/bin/brew shellenv)
+        brew tap caskroom/cask
+        # using system gcc which is new enough
+        # brew install gcc
     fi
     export PATH=${HOMEBREW}/bin:${PATH}
     installWithBrew
 
     postInstall
 }
+
+getLinuxDist()
+{
+    if grep -Eq "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release; then
+        DISTRO='CentOS'
+        PM='yum'
+    elif grep -Eq "Red Hat Enterprise Linux Server" /etc/issue || grep -Eq "Red Hat Enterprise Linux Server" /etc/*-release; then
+        DISTRO='RHEL'
+        PM='yum'
+    elif grep -Eq "Fedora" /etc/issue || grep -Eq "Fedora" /etc/*-release; then
+        DISTRO='Fedora'
+        PM='yum'
+    elif grep -Eq "Debian" /etc/issue || grep -Eq "Debian" /etc/*-release; then
+        DISTRO='Debian'
+        PM='apt'
+    elif grep -Eq "Ubuntu" /etc/issue || grep -Eq "Ubuntu" /etc/*-release; then
+        DISTRO='Ubuntu'
+        PM='apt'
+    elif grep -Eq "Raspbian" /etc/issue || grep -Eq "Raspbian" /etc/*-release; then
+        DISTRO='Raspbian'
+        PM='apt'
+    elif grep -Eq "Arch" /etc/issue || grep -Eq "Arch" /etc/*-release; then
+        DISTRO='Arch'
+        PM='pacman'
+    else
+        DISTRO='unknow'
+    fi
+}
 # entry of main script
 export SYSOS=`uname -s`
 SYS_DETAIL=`uname -a`
 # install specific platform tools and packages according to platform
 if [ ${SYSOS} = "Linux" ] ; then
-    export HOMEBREW=/home/linuxbrew/.linuxbrew
+    export HOMEBREW=${HOME}/.linuxbrew
+    echo "boot up on linux"
     bootupOnLinux
 elif [ ${SYSOS} = "Darwin" ] ; then
     export HOMEBREW=/usr/local
     echo "boot up on mac"
-    initEnv
-    # bootupOnMac
-    postInstall
+    # initEnv  // for test
+    bootupOnMac
+    # postInstall  // for test
 else
   printf "${SYSOS} not support now.\n"
   exit

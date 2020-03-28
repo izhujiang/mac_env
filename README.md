@@ -3,8 +3,20 @@
 # something to declare...
 
 # install my_env
+## Requirements
+GCC 4.7.0 or newer
+Linux 2.6.32 or newer
+Glibc 2.13 or newer
+64-bit x86_64 CPU
 
-## for administor user
+- For Ubuntu:
+apt install build-essential
+
+- For ArchLinux:
+pacman -S base-devel
+
+
+## Installation
 
 sh -c "\$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh)"
 
@@ -16,12 +28,6 @@ otherwise,
 
 save and run the my_env_boot.sh script downlaod from without curl or wget:
 https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh
-
-## for non-administor user
-
-For those, who are not administor user or have all the prerequisite, system and user software/tools installed, Use the following script to initialize git, zsh and vim/nvim.
-
-sh -c "\$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot_user.sh)"
 
 ## Trouble shooting:
 
