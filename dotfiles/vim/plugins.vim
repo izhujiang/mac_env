@@ -51,12 +51,6 @@ else
   Plug 'junegunn/fzf.vim'
 endif
 
-" Grep search tools integration with Vim
-" Plug 'vim-scripts/grep.vim'
-" ack is a grep-like source code search tool, which is designed for programmers with large heterogeneous trees of source code.
-" awk is written in portable Perl 5 and takes advantage of the power of Perl's regular expressions.
-" Plug 'mileszs/ack.vim'
-
 " Use your favorite grep tool (ag, ack, git grep, ripgrep, pt, sift, findstr, grep) to start an 'asynchronous' search.
 " All matches will be put in a quickfix or location list.
 Plug 'mhinz/vim-grepper'

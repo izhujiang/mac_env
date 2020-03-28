@@ -18,7 +18,7 @@ endif
 
 
 nnoremap <silent> <leader>f :FZF<CR>
-" nnoremap <silent> <leader>F :FZF ~<CR>
+nnoremap <silent> <leader>F :FZF ~/workspace<CR>
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>

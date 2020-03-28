@@ -29,7 +29,23 @@ else
     # using system $VISUAL variable is better, which maybe nvim or nvr dynamiclly
     git config --global user.name "jiang zhu"
     git config --global user.email "m.zhujiang@gmail.com"
+
+    git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
     git config --global color.ui true
+    git config --global color.ui true
+    git config --global color.diff-highlight.oldNormal    "red bold"
+    git config --global color.diff-highlight.oldHighlight "red bold 52"
+    git config --global color.diff-highlight.newNormal    "green bold"
+    git config --global color.diff-highlight.newHighlight "green bold 22"
+    git config --global color.diff.meta       "11"
+    git config --global color.diff.frag       "magenta bold"
+    git config --global color.diff.commit     "yellow bold"
+    git config --global color.diff.old        "red bold"
+    git config --global color.diff.new        "green bold"
+    git config --global color.diff.whitespace "red reverse"
+    git config --bool --global diff-so-fancy.stripLeadingSymbols false
+    git config --bool --global diff-so-fancy.useUnicodeRuler false
+
     git config --global alias.st status
     git config --global alias.co checkout
     git config --global alias.ci commit
@@ -38,12 +54,12 @@ else
 	'!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi'
     git config --global alias.last 'log -1 HEAD'
     git config --global alias.unstage 'reset HEAD --'
-    git config --global merge.conflictstyle diff3
-    git config --global diff.submodule log
-
     git config --global alias.sdiff '!'"git diff && git submodule foreach 'git diff'"
     git config --global alias.spush 'push --recurse-submodules=on-demand'
     git config --global alias.supdate 'submodule update --remote --merge'
+
+    git config --global merge.conflictstyle diff3
+    git config --global diff.submodule log
 
     git config --global rerere.enabled true
 fi

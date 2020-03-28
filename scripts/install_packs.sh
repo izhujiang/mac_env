@@ -25,9 +25,8 @@ brew install python3 pipenv go ruby rust node yarn jq
 brew install reattach-to-user-namespace astyle readline xz pcre openssl gd geoip
 
 # Install fzf, A command-line fuzzy finder.
-# An interactive Unix filter for command-line that can be used with any list:
-# files, command history, processes, hostnames, bookmarks, git commits, etc.
-brew install fzf
+# An interactive Unix filter for command-line that can be used with any list: files, command history, processes, hostnames, bookmarks, git commits, etc.
+brew install fzf diff-so-fancy
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install
 
