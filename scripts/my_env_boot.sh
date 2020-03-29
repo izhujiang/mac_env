@@ -86,7 +86,9 @@ bootupOnMac(){
     if [ ! -d ${HOMEBREW} ]; then
         # /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        brew tap caskroom/cask
+        # brew tap caskroom/cask
+        brew tap homebrew/cask-cask
+
     fi
     installWithBrew
 
@@ -114,9 +116,8 @@ bootupOnLinux(){
         # sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
         eval $(${HOMEBREW}/bin/brew shellenv)
-        brew tap caskroom/cask
-        # using system gcc which is new enough
-        # brew install gcc
+        # brew tap caskroom/cask
+        brew tap homebrew/cask-cask
     fi
     export PATH=${HOMEBREW}/bin:${PATH}
     installWithBrew
