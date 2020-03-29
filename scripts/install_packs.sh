@@ -19,7 +19,7 @@ printf "put the installed zsh into /etc/shells, then the command `chsh -s $(whic
 grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells"
 
 brew install autojump tmux tmuxinator httpie
-brew install python3 pipenv go ruby rust node yarn jq
+brew install node yarn python3 pyenv pipenv go ruby rust jq
 
 # reattach-to-user-namespace support copy and pasty
 brew install reattach-to-user-namespace astyle readline xz pcre openssl gd geoip
@@ -44,8 +44,6 @@ brew install neovim
 
 # install vscode
 brew cask install visual-studio-code
-
-brew install pyenv
 
 # install other useful tools
 # brew cask install alfred
