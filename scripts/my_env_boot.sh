@@ -34,6 +34,15 @@ checkPrerequisites(){
 
     printf "checking zsh...\n"
 
+    printf "todo: put the installed zsh into /etc/shells, then the command `chsh -s $(which zsh)` does work.\n"
+    printf "otherwise skip it and use bash instead, if have no sudo privileges"
+    # grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
+    # grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells"
+
+    printf "checking git...\n"
+    printf "todo: check git config...\n"
+
+
     if [ ${SYSOS} = "Linux" ] ; then
         getLinuxDist
         HOMEBREW=${HOME}/.linuxbrew
@@ -69,8 +78,12 @@ checkPrerequisites(){
     if [ ! -d ${HOMEBREW} ]; then
         # /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        # brew tap caskroom/cask
-        brew tap homebrew/cask-cask
+        # Homebrew Cask extends Homebrew and brings its elegance, simplicity,
+        # and speed to the installation and management of GUI macOS applications such as Atom and Google Chrome.
+        brew tap homebrew/cask
+        brew tap go-delve/delve
+        brew tap mongodb/brew
+        brew tap pivotal/tap
     fi
     export PATH=${HOMEBREW}/bin:${PATH}
 }
@@ -95,8 +108,8 @@ initEnv(){
     printf "export MANPATH=\${HOMEBREW}/share/man:\${MANPATH}\n" >> ${HOME}/.env
     printf "export INFOPATH=\${HOMEBREW}/share/info:\${INFOPATH}\n" >> ${HOME}/.env
 
-    printf "export MY_ENV_ROOT=%s\n" ${MY_ENV_ROOT} >> ${HOME}/.env
-
+    printf "export MY_ENV_ROOT=\${HOME}/repo/my_env\n" >> ${HOME}/.env
+    printf "export XML_CATALOG_FILES=\${HOMEBREW}/etc/xml/catalog\n" >> ${HOME}/.env
 }
 
 postInstall(){

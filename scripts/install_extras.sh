@@ -1,7 +1,7 @@
 #!/bin/sh
-
 # Install 3d-party packages for Python, Node.js, Ruby, Zsh and vim/nvim.
 
+SYSOS=`uname -s`
 # install python 3rd party packages
 printf "install 3d-party packages for python...... \n"
 # pip3 install -U pipenv
@@ -83,4 +83,10 @@ go get -u github.com/zmb3/gogetdoc
 go get -u sourcegraph.com/sqs/goreturns
 
 printf "install extension for code ...... \n"
-code --install-extension ms-vscode.go
+if [ ${SYSOS} = "Darwin" ] ; then
+    code --install-extension ms-vscode.go
+else
+    printf "todo: check if vscode exists..."
+    # code --install-extension ms-vscode.go
+    printf "install vscode with sudo privilege in GUI mode, following the instruction: \n"
+fi

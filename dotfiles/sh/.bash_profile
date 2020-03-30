@@ -1,3 +1,6 @@
+# init global environment variables
+source ${HOME}/.env
+
 source ${HOME}/.profile.local
 
 export CLICOLOR=1

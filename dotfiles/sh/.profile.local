@@ -74,8 +74,8 @@ alias idea="${HOME}/idea"
 
 # golang
 # export GOROOT=$HOME/repo/golang/go
-export GOPATH=$HOME/workspace/go
-export PATH=$PATH:$(go env GOPATH)/bin
+export GOPATH=${HOME}/workspace/go
+export PATH=${PATH}:$(go env GOPATH)/bin
 
 # python
 if command -v pyenv 1>/dev/null 2>&1; then

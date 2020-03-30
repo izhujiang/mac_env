@@ -19,9 +19,9 @@ Note that this will not work if Zsh is not in your authorized shells list (/etc/
 
 ## Installation
 run:<br>
-  `sh -c "\$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh)"`<br>
+  `curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh | sh`<br>
 or<br>
-  `sh -c "\$(wget https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh)"`<br>
+  `wget https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh | sh`<br>
 otherwise,<br>
 save and run the my_env_boot.sh script:<br>
   `wget:
