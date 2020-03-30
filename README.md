@@ -3,38 +3,33 @@
 # something to declare...
 
 # install my_env
-## Requirements
-+ GCC 4.7.0 or newer
-+ Linux 2.6.32 or newer
-+ Glibc 2.13 or newer
-+ 64-bit x86_64 CPU
-
-- For Ubuntu:
-apt install build-essential
-
-- For ArchLinux:
-pacman -S base-devel
-
+## Prerequisites
++ A Unix-like operating system: macOS, Linux, BSD, WSL
++ Zsh should be installed (v4.3.9+).
+  * check and confirm zsh: zsh --version
+  * check the following instructions here: [Installing ZSH](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
+  * Make it your default shell: chsh -s $(which zsh)<br>
+Note that this will not work if Zsh is not in your authorized shells list (/etc/shells) or if you don't have permission to use chsh. If that's the case you'll need to use a different procedure.
+  * Log out and login back again to use your new default shell.
++ build-essential package
+  * For Ubuntu:
+        apt install build-essential
+  * For ArchLinux:
+        pacman -S base-devel
 
 ## Installation
-
-sh -c "\$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh)"
-
-or
-
-sh -c "\$(wget https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh)"
-
-otherwise,
-
-save and run the my_env_boot.sh script downlaod from without curl or wget:
-https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh
+run:<br>
+  `sh -c "\$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh)"`<br>
+or<br>
+  `sh -c "\$(wget https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh)"`<br>
+otherwise,<br>
+save and run the my_env_boot.sh script:<br>
+  `wget:
+https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh`
 
 ## Trouble shooting:
 
 ### Can't set zsh as default shell
-
-To set zsh as your default shell, execute the following.
-grep -q "$(which zsh)" /etc/shells || sudo -s 'echo $(which zsh) >> /etc/shells' && chsh -s \$(which zsh)
 
 ### Other issues:
 

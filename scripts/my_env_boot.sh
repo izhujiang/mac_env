@@ -1,11 +1,14 @@
 #!/bin/sh
 
 # installWithBrew is the process to install and config my_env
-installWithBrew(){
+install(){
     # 1. install all libs, packages and tools
     # call:
+    printf "install essential packages...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_packs.sh)"
+    printf "install extras packages...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_extras.sh)"
+    printf "install repo...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/init_repo.sh)"
     # sh ${MY_ENV_ROOT}/scripts/install_packs.sh
     # sh ${MY_ENV_ROOT}/scripts/init_repo.sh
@@ -13,18 +16,64 @@ installWithBrew(){
 
     # 2. config git and init my_env repo
     # addtional config for setup my ide
+    printf "conifg zsh...\n"
     sh ${MY_ENV_ROOT}/scripts/install_zsh.sh
+    printf "conifg tmux...\n"
     sh ${MY_ENV_ROOT}/scripts/install_tmux.sh
+    printf "conifg IDE...\n"
     sh ${MY_ENV_ROOT}/scripts/install_ide.sh
 
-    # 3. clean up
-    printf "Cleaning up-------------------------------------\n"
-    brew cleanup
-
-    # 4. That's it. Congratulation
-    printf "Congratulation!: Well done. Enjoy your journey!-----\n"
 }
 
+checkPrerequisites(){
+    SYSOS=`uname -s`
+    printf "boot up on %s...\n" $SYSOS
+    printf "0. Check prerequisites before installation...\n"
+
+    SYS_DETAIL=`uname -a`
+
+    printf "checking zsh...\n"
+
+    if [ ${SYSOS} = "Linux" ] ; then
+        getLinuxDist
+        HOMEBREW=${HOME}/.linuxbrew
+
+        # todo: check build-essential packages, install it with superuser priviledges if possible
+        if [ $DISTRO = "Ubuntu" ]; then
+            # sudo apt-get install build-essential
+            printf "checking build-essential package..."
+        elif [ $DISTRO = "Arch" ]; then
+            # todo: check base-devl
+            printf "checking base-devel..."
+        else
+            printf "plz install manually the essential package on %s for building and compiling program\n. Run the script again after that.\n" $DISTRO
+            return 1
+        fi
+
+    elif [ ${SYSOS} = "Darwin" ] ; then
+        printf "boot up on mac...\n"
+        printf "todo: check xcode-select\n"
+        # xcode-select --install
+        COMMANDLINETOOLS_HOME=/Library/Developer/CommandLineTools
+        if [ ! -d ${COMMANDLINETOOLS_HOME} ]; then
+            xcode-select --install
+        fi
+
+        export HOMEBREW=/usr/local
+    else
+        printf "${SYSOS} not support now.\n"
+        return 1
+    fi
+
+    # setup homebrew
+    if [ ! -d ${HOMEBREW} ]; then
+        # /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        # brew tap caskroom/cask
+        brew tap homebrew/cask-cask
+    fi
+    export PATH=${HOMEBREW}/bin:${PATH}
+}
 initEnv(){
     # todo: fetch current path of my_env_boot.sh
     export MY_ENV_ROOT=${HOME}/repo/my_env
@@ -67,62 +116,13 @@ postInstall(){
 
     # echo ${PY_PACKS_LOC}
     printf "export PY_PACKS_LOC=%s\n" ${PY_PACKS_LOC} >> ${HOME}/.env
-}
 
-bootupOnMac(){
-    # printf "Working on MacOS\n"
-    printf "\nWorking on:\n${SYS_DETAIL}\n"
-    initEnv
+    # 3. clean up
+    printf "Cleaning up-------------------------------------\n"
+    brew cleanup
 
-    # 0. check prerequuisites before installation.
-    printf "0. Check prerequuisites before installation...\n"
-    printf "Todo: Check xcode-select\n"
-    # xcode-select --install
-    COMMANDLINETOOLS_HOME=/Library/Developer/CommandLineTools
-    if [ ! -d ${COMMANDLINETOOLS_HOME} ]; then
-        xcode-select --install
-    fi
-
-    if [ ! -d ${HOMEBREW} ]; then
-        # /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        # brew tap caskroom/cask
-        brew tap homebrew/cask-cask
-
-    fi
-    installWithBrew
-
-    postInstall
-}
-
-bootupOnLinux(){
-    printf "\nWorking on ${SYSOS}:\n${SYS_DETAIL}\n"
-    printf "0. Check prerequuisites before installation...\n"
-
-    getLinuxDist
-    printf "Running on %s ...\n " $DISTRO
-    # if [ $DISTRO = "Arch" ]; then
-    #     # printf "Install essential packages with command: sudo pacman -S base-dev\n"
-    # elif [ $DISTRO = "Ubuntu" ]; then
-    #     # printf "Install essential packages with command: sudo apt install build-essential\n"
-    # else
-    #     printf "Running on %s..." $DISTRO
-    # fi
-
-    initEnv
-    if [ ! -d ${HOMEBREW} ]; then
-        # sudo apt-get install build-essential
-
-        # sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        eval $(${HOMEBREW}/bin/brew shellenv)
-        # brew tap caskroom/cask
-        brew tap homebrew/cask-cask
-    fi
-    export PATH=${HOMEBREW}/bin:${PATH}
-    installWithBrew
-
-    postInstall
+    # 4. That's it. Congratulation
+    printf "Congratulation!: Well done. Enjoy your journey!-----\n"
 }
 
 getLinuxDist()
@@ -152,21 +152,19 @@ getLinuxDist()
         DISTRO='unknow'
     fi
 }
+
+bootup(){
+    # 0. check prerequuisites before installation.
+    checkPrerequisites
+    if [ $? != 0 ]; then
+        exit 1
+    fi
+
+    initEnv
+    install
+    postInstall
+
+    exit 0
+}
 # entry of main script
-export SYSOS=`uname -s`
-SYS_DETAIL=`uname -a`
-# install specific platform tools and packages according to platform
-if [ ${SYSOS} = "Linux" ] ; then
-    export HOMEBREW=${HOME}/.linuxbrew
-    echo "boot up on linux"
-    bootupOnLinux
-elif [ ${SYSOS} = "Darwin" ] ; then
-    export HOMEBREW=/usr/local
-    echo "boot up on mac"
-    # initEnv  // for test
-    bootupOnMac
-    # postInstall  // for test
-else
-  printf "${SYSOS} not support now.\n"
-  exit
-fi
+bootup

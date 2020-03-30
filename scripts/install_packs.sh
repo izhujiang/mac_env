@@ -2,7 +2,7 @@
 
 # 0. check prerequuisites before installation.
 # printf "--------------------------------------------\n"
-# printf "0. Check prerequuisites before installation.\n"
+SYSOS=`uname -s`
 
 printf "updating brew and upgrade formulaes---------\n"
 brew update && brew upgrade
@@ -10,17 +10,27 @@ brew update && brew upgrade
 # 1. install all libs, packages and tools
 printf "Start installing libs, packages and tools......\n"
 
-brew install cmake wget git xclip ripgrep bat fd z
-brew install zsh
+# zsh should be installed as one of prerequisites
+# brew install zsh
 # brew install zsh zplug
+brew install cmake wget git xclip ripgrep bat fd z
 
 printf "put the installed zsh into /etc/shells, then the command `chsh -s $(which zsh)` does work.\n"
 # grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells"
 
 brew install autojump tmux tmuxinator httpie
-brew install node yarn python3 pyenv pipenv go ruby rust jq
+# brew install node yarn python3 pyenv pipenv go ruby rust jq
+curl https://sh.rustup.rs -sSf | sh
+brew install node yarn python3 pyenv pipenv go ruby
 
+if [ ${SYSOS} = "Linux" ] ; then
+    curl https://sh.rustup.rs -sSf | sh
+elif [ ${SYSOS} = "Darwin" ] ; then
+    brew install rust
+else
+    printf "rust, autojump and ...  not installed on %s...\n" ${SYSOS}
+fi
 # reattach-to-user-namespace support copy and pasty
 brew install reattach-to-user-namespace astyle readline xz pcre openssl gd geoip
 
