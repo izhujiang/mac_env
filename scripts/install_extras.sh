@@ -27,24 +27,29 @@ printf "install 3d-party packages for ruby...... \n"
 printf "install nodejs 3d-party packages...... \n"
 npm install -g typescript
 npm install -g create-react-app
-npm install -g npx
-npm install -g serve
 npm install -g react-devtools
+npm install -g serve
 npm install -g eslint
 npm install -g prettier
 npm install -g js-beautify
-npm install -g js2coffee
-npm install -g commander
-npm install -g async
-npm install -g rimraf
-npm install -g winston
-npm install -g colors
-npm install -g simplehttpserver
+# command-line interfaces
+# npm install -g commander
+# npm install -g async
+# The UNIX command rm -rf for node
+# npm install -g rimraf
+# A logger for just about everything.
+# npm install -g winston
+# npm install -g colors
+# MongoDB Shell Enhancements
 npm install -g mongo-hacker
 npm install -g grunt-cli
-npm install -g neovim
+# Nvim Node.js client and plugin host
+# npm install -g neovim
 npm install -g gatsby-cli
+# Static web publishing for Front-End Developers
 npm install -g surge
+# The Node CLI provides the most flexibility in how Lighthouse runs can be configured and reported.
+# Users who want more advanced usage, or want to run Lighthouse in an automated fashion should use the Node CLI.
 npm install -g lighthouse
 
 

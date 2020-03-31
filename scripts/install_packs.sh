@@ -15,14 +15,13 @@ printf "Start installing libs, packages and tools......\n"
 brew install gcc cmake wget git xclip bat fd z
 brew install tmux tmuxinator
 
-brew install astyle readline xz pcre openssl gd geoip httpie
-
 # brew install node yarn python3 pyenv pipenv go ruby rust jq
-brew install node yarn python3 pyenv pipenv go ruby
+brew install node yarn python3 pyenv pipenv go
 
+brew install astyle readline xz pcre openssl gd geoip httpie
 if [ ${SYSOS} = "Linux" ] ; then
     # install rust
-    curl https://sh.rustup.rs -sSf | sh
+    curl https://sh.rustup.rs -sSf | sh -s -- -y
     printf "Updating ripgrep 11.0.2 to 12.0.0 failed in homebrew Ubuntu due to asciidoc, install ripgrep later plz..."
 elif [ ${SYSOS} = "Darwin" ] ; then
     brew install ripgrep

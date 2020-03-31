@@ -6,7 +6,7 @@ printf "Install plugins for vim/nvim......\n"
 
 MY_ENV_ROOT=${HOME}/repo/my_env
 CURRENTDATE=`date +"%Y-%m-%d-%H%M"`
-for CFG_FILE in ${HOME}/.vimrc ${HOME}/.config/nvim/init.vim
+for CFG_FILE in ${HOME}/.vimrc ${HOME}/.config/nvim/init.vim ${HOME}/.editorconfig ${HOME}/.eslintrc.js
 do
     if [ -L ${CFG_FILE} ]; then
         unlink ${CFG_FILE}
@@ -16,22 +16,21 @@ do
         fi
     fi
 done
-# ln -s ${MY_ENV_ROOT}/dotfiles/vim/.vimrc_readonly ${HOME}/.vimrc
+
 NVIM_CFG_DIR=${HOME}/.config/nvim
 if [ ! -d ${NVIM_CFG_DIR} ]; then
 	mkdir -p ${NVIM_CFG_DIR}
 fi
-# ln -s ${MY_ENV_ROOT}/dotfiles/vim/init_nvim_readonly ${NVIM_CFG_DIR}/init.vim
 
 printf "vim-go check GOPATH: ${GOPATH}\n"
 export GOPATH=${HOME}/workspace/go
+printf "install plugins for vim...\n"
 vim +PlugInstall +qall
+printf "install plugins for nvim...\n"
 nvim +PlugInstall +qall
 
 sleep 2
-# unlink ${HOME}/.vimrc
-# unlink ${HOME}/.config/nvim/init.vim
-unlink ${HOME}/.eslintrc.js
+
 ln -s ${MY_ENV_ROOT}/dotfiles/vim/vi_cfg.vim ${HOME}/.vimrc
 ln -s ${MY_ENV_ROOT}/dotfiles/vim/vi_cfg.vim ${HOME}/.config/nvim/init.vim
 ln -s ${MY_ENV_ROOT}/dotfiles/vim/.editorconfig ${HOME}/.editorconfig
