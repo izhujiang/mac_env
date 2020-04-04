@@ -12,7 +12,8 @@ brew update && brew upgrade
 # 1. install all libs, packages and tools
 printf "Start installing libs, packages and tools......\n"
 # brew install gcc cmake wget git xclip ripgrep bat fd z
-brew install gcc cmake wget git xclip bat fd z
+brew install gcc cmake curl wget git
+brew install bat fd z
 brew install tmux tmuxinator
 
 # brew install node yarn python3 pyenv pipenv go ruby rust jq
@@ -23,6 +24,7 @@ if [ ${SYSOS} = "Linux" ] ; then
     # install rust
     curl https://sh.rustup.rs -sSf | sh -s -- -y
     printf "Updating ripgrep 11.0.2 to 12.0.0 failed in homebrew Ubuntu due to asciidoc, install ripgrep later plz..."
+    brew install xclip
 elif [ ${SYSOS} = "Darwin" ] ; then
     brew install ripgrep
     # reattach-to-user-namespace support copy and pasty

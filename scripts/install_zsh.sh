@@ -1,7 +1,23 @@
 #!/bin/sh
 SYSOS=`uname -s`
 
-# install zsh, ohmyzsh and powerline as well as its custom plugins
+printf "\nchecking zsh...\n"
+if [[ -x /bin/zsh || -x /usr/bin/zsh ]]; then
+    printf "$(zsh --version)\n"
+    # chsh -s $(which zsh)
+    chsh -s $(grep zsh /etc/shells | head -n1)
+
+else
+    printf "No zsh found /bin/zsh or /usr/bin/zsh. Install zsh and oh-my-zsh for more productive.\n"
+    printf "Otherwise, just skip it and use bash instead, if have no sudo privilege.\n"
+
+    # todo: install zsh if have sudo privilege
+        # grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
+        # grep -q "$(which zsh)" /etc/shells || sudo -s "echo $(which zsh) >> /etc/shells"
+    return 1
+fi
+# yes, zsh exists in /etc/shells
+# install ohmyzsh and powerline as well as its custom plugins
 printf "install oh-my-zsh, powerline and other plugins for zsh ...... \n"
 
 # install zsh plugins
@@ -11,8 +27,9 @@ export ZSH_CUSTOM=${ZSH}/custom
 MY_ENV_ROOT=${HOME}/repo/my_env
 
 rm -rf ${ZSH}
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's:env zsh -l::g' | sed 's:chsh -s .*$::g' | sed '/chsh -s/d' )"
-chsh -s $(which zsh)
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's:env zsh -l::g' | sed 's:chsh -s .*$::g' | sed '/chsh -s/d' )"
+# todo: install oh-my-zsh silently
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # todo: only print out in case of ubuntu
 printf "zsh and oh-my-zsh has been installed and set as default shell, now quit gnome session automatically, \nplease run the boot script again after re-login.\n\n"
@@ -80,7 +97,7 @@ do
     fi
 done
 
-mkdir ${HOME}/.zsh
+# mkdir ${HOME}/.zsh
 # zplug is slower than oh-my-zsh built-in plugins manager
 # ln -s ${MY_ENV_ROOT}/dotfiles/sh/.zplug ${HOME}/.zplug
 ln -s ${MY_ENV_ROOT}/dotfiles/sh/.profile.local ${HOME}/.profile.local
@@ -92,3 +109,7 @@ if [ ${SYSOS} = "Darwin" ] ; then
   printf "iTerm2 users need to set both the Regular font and the Non-ASCII Font in 'iTerm > Preferences > Profiles > Text' to use a patched font.\n"
   printf "Ref: https://github.com/powerline/fonts\n"
 fi     #ifend
+
+printf "\n"
+printf "--------------------------------------------------------\n"
+printf "Logout(use logout command) and start a new login session for a change(\$SHELL) to take effect. Because chsh command have updated /etc/passwd for current user.\n"
