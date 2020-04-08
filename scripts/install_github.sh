@@ -20,7 +20,7 @@ else
 	printf "ref: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-linux\n"
 	printf "for mac user: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-mac\n"
 
-	printf "\nImport!!!\n"
+	printf "\n\nImport!!!    -------------------- \n"
 	printf "Ensure adding ssh key to github before continuing...\n"
 	read -p "Once have privilege to access to github, Press [Enter] key to continue ...\n"
 
@@ -64,15 +64,14 @@ else
     git config --global rerere.enabled true
 fi
 
-MY_ENV_ROOT=${HOME}/repo/my_env
-printf "MY_ENV_ROOT location is:${MY_ENV_ROOT}\n"
-if [ -d ${MY_ENV_ROOT} ];
-then
-	printf "${MY_ENV_ROOT} existed\n"
-	cd ${MY_ENV_ROOT}
-	git pull
-else
-	printf "${MY_ENV_ROOT} not existed\n"
-	# git clone https://github.com/izhujiang/my_env.git
-	git clone https://github.com/izhujiang/my_env.git ${MY_ENV_ROOT}
-fi
+# MY_ENV_ROOT=${HOME}/repo/my_env
+# printf "MY_ENV_ROOT location is:${MY_ENV_ROOT}\n"
+# if [ -d ${MY_ENV_ROOT} ]; then
+# 	printf "${MY_ENV_ROOT} existed\n"
+# 	cd ${MY_ENV_ROOT}
+# 	git pull
+# else
+# 	printf "${MY_ENV_ROOT} not existed\n"
+# 	# git clone https://github.com/izhujiang/my_env.git
+# 	git clone https://github.com/izhujiang/my_env.git ${MY_ENV_ROOT}
+# fi

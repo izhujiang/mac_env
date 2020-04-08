@@ -17,18 +17,18 @@ pip3 install -U neovim
 pip3 install -U neovim-remote
 
 # install gem 3d party packages
-printf "install 3d-party packages for ruby...... \n"
+printf "install 3d-party packages for ruby ...\n"
 # gem install html2haml
 # gem install sass
 # sudo gem install html2haml
 # sudo gem install sass
 
 # install node.js 3d party packages
-printf "install nodejs 3d-party packages...... \n"
+printf "install nodejs 3d-party packages ...\n"
 npm install -g typescript
 npm install -g create-react-app
 npm install -g react-devtools
-npm install -g serve
+ npm install -g serve
 npm install -g eslint
 npm install -g prettier
 npm install -g js-beautify
@@ -53,9 +53,9 @@ npm install -g surge
 npm install -g lighthouse
 
 
-printf "install go tools packages...... \n"
+printf "install go tools packages ...\n"
 export GOPATH=$HOME/workspace/go
-printf "install tools to GOPATH(${GOPATH}) for golang ...... \n"
+printf "install tools to GOPATH(${GOPATH}) for golang ...\n"
 go get -u golang.org/x/lint/golint
 go get -u golang.org/x/tools/cmd/godoc
 go get -u golang.org/x/tools/cmd/goimports
@@ -67,8 +67,9 @@ go get -u github.com/acroca/go-symbols
 # go get -u github.com/alecthomas/gometalinter
 # gometalinter --install
 # using golangci-lint instead of gemetalinter
-go get -u golangci/golangci-lint
-go get -u github.com/cweill/gotests/...
+# go get -u golangci/golangci-lint
+brew install golangci-lint
+go get -u github.com/cweill/gotests
 go get -u github.com/davidrjenni/reftools/cmd/fillstruct
 go get -u github.com/go-delve/delve/cmd/dlv
 go get -u github.com/fatih/gomodifytags
@@ -87,11 +88,11 @@ go get -u github.com/zmb3/goaddimport
 go get -u github.com/zmb3/gogetdoc
 go get -u sourcegraph.com/sqs/goreturns
 
-printf "install extension for code ...... \n"
+printf "install extension for code ...\n"
 if [ ${SYSOS} = "Darwin" ] ; then
     code --install-extension ms-vscode.go
 else
-    printf "todo: check if vscode exists..."
+    printf "todo: check if vscode exists ..."
     # code --install-extension ms-vscode.go
     printf "install vscode with sudo privilege in GUI mode, following the instruction: \n"
 fi

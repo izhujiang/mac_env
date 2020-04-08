@@ -4,15 +4,16 @@
 # printf "--------------------------------------------\n"
 SYSOS=`uname -s`
 
-printf "updating brew and upgrade formulaes---------\n"
+printf "Updating brew and upgrade formulaes ...\n"
 brew update && brew upgrade
 
 # zsh should be installed as one of prerequisites
 # brew install zsh zplug
 # 1. install all libs, packages and tools
-printf "Start installing libs, packages and tools......\n"
-# brew install gcc cmake wget git xclip ripgrep bat fd z
+printf "\nStart installing libs, packages and tools ...\n"
+# brew install binutils gcc cmake curl wget git
 brew install gcc cmake curl wget git
+# brew install ripgrep bat fd z
 brew install bat fd z
 brew install tmux tmuxinator
 
@@ -23,7 +24,7 @@ brew install astyle readline xz pcre openssl gd geoip httpie
 if [ ${SYSOS} = "Linux" ] ; then
     # install rust
     curl https://sh.rustup.rs -sSf | sh -s -- -y
-    printf "Updating ripgrep 11.0.2 to 12.0.0 failed in homebrew Ubuntu due to asciidoc, install ripgrep later plz..."
+    printf "Updating ripgrep 11.0.2 to 12.0.0 failed in homebrew Ubuntu due to asciidoc, install ripgrep later plz ...\n"
     brew install xclip
 elif [ ${SYSOS} = "Darwin" ] ; then
     brew install ripgrep
@@ -31,7 +32,7 @@ elif [ ${SYSOS} = "Darwin" ] ; then
     brew install autojump reattach-to-user-namespace
     brew install rust
 else
-    printf "autojump rust and reattach-to-user-namespace ...  not installed on %s...\n" ${SYSOS}
+    printf "autojump rust and reattach-to-user-namespace ...  not installed on %s ...\n" ${SYSOS}
 fi
 
 # Install fzf, A command-line fuzzy finder.
@@ -41,7 +42,7 @@ brew install fzf diff-so-fancy
 $(brew --prefix)/opt/fzf/install --all
 
 # install nginx, or install nginx manually from sourcecode, and fix --with-http_ssl_module bug referring to https://www.widlabs.com/article/mac-os-x-nginx-compile-symbol-not-found-for-architecture-x86_64
-brew install nginx
+brew install luarocks nginx
 # brew install vim --enable-pythoninterp=dynamic --enable-python3interp=dynamic
 brew install vim
 # maybe better choice for nvim
@@ -55,7 +56,7 @@ if [ ${SYSOS} = "Darwin" ] ; then
     # brew cask install alfred
     # brew install springboot
 elif [ ${SYSOS} = "Linux" ] ; then
-    printf "install vscode with sudo privilege in GUI mode, following the instruction: \n"
+    printf "Install vscode with sudo privilege in GUI mode, following the instruction: \n"
     printf "https://code.visualstudio.com/docs/setup/linux\n"
 else
     printf "vscode only support window, linux and macOS.\n"

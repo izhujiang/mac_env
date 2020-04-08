@@ -2,8 +2,8 @@
 
 checkPrerequisites(){
     SYSOS=`uname -s`
-    printf "boot up on %s...\n" $SYSOS
-    printf "0. checking prerequisites before installation...\n"
+    printf "boot up on %s ...\n" $SYSOS
+    printf "0. checking prerequisites before installation ...\n"
 
     # checking packages for build programmes, and install it if not available
     checkAndInstallEssentialPackages || return 1
@@ -11,14 +11,16 @@ checkPrerequisites(){
     # checking git, and install it if not available
     # checkAndInstallGit || return 1
 
-
     installHomebrew || return 1
 }
 
 installHomebrew(){
+    # todo: install homebrew silently
     if [ ${SYSOS} = "Linux" ] ; then
         # todo: enable install linuxbrew silently into HOMEBREW
         HOMEBREW=${HOME}/.linuxbrew
+
+        # install by git clnoe
         # if [ ! -d ${HOMEBREW} ]; then
         #     git clone https://github.com/Homebrew/brew ${HOMEBREW}/Homebrew
         #     mkdir ${HOMEBREW}/bin
@@ -34,10 +36,12 @@ installHomebrew(){
 
     if [ ! -d ${HOMEBREW} ]; then
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        brew analytics off    # disable Homebrew’s analytics
         brew tap homebrew/cask
         brew tap go-delve/delve
         brew tap mongodb/brew
         brew tap pivotal/tap
+        brew tap golangci/tap
         export PATH=${HOMEBREW}/bin:${PATH}
     fi
 }
@@ -52,33 +56,32 @@ checkAndInstallEssentialPackages(){
         # todo: checking build-essential packages, install it with superuser priviledges if possible
         if [ $DISTRO = "Ubuntu" ]; then
             if [[ -x /usr/bin/apt || -x /bin/apt ]]; then
-                printf "checking build-essential git...\n"
-                apt list --installed build-essential | grep build-essential > /dev/null || (printf "installing build-essential...\n";
-                    sudo apt install build-essential)|| (printf "\nFailed to install build-essential package... \n "; return 1)
-                apt list --installed git | grep git > /dev/null || (printf "installing git...\n";
+                printf "checking build-essential, git ...\n"
+                apt list --installed build-essential | grep build-essential > /dev/null || (printf "installing build-essential ...\n";
+                    sudo apt install build-essential)|| (printf "\nFailed to install build-essential package ... \n "; return 1)
+                apt list --installed git | grep git > /dev/null || (printf "installing git ...\n";
                     sudo apt install git)|| (printf "\nFailed to install git. \n "; return 1)
-                # apt list --installed file | grep file || (printf "installing file...\n";
+                # apt list --installed file | grep file || (printf "installing file ...\n";
                     # sudo apt install file)|| (printf "\nFailed to install file. \n "; return 1)
-                # apt list --installed curl | grep curl || (printf "installing curl...\n";,
+                # apt list --installed curl | grep curl || (printf "installing curl ...\n";,
                     # sudo apt install curl)|| (printf "\nFailed to install curl. \n "; return 1)
             fi
         elif [ $DISTRO = "Arch" ]; then
-            printf "checking base-devel git ...\n"
+            printf "checking base-devel, git ...\n"
             if [[ -x /usr/bin/pacman || -x /bin/pacman ]]; then
-                pacman -Q -g base-devel | grep base-devel > /dev/null || (printf "installing base-devel...\n";
-                    sudo pacman -S base-devel )|| (printf "\nFailed to install base-devel package... \n "; return 1)
-                pacman -Q git | grep git > /dev/null || (printf "installing git...\n"; sudo pacman -S git )|| (printf "\nFailed to install git. \n "; return 1)
-                # pacman -Q curl || (printf "installing curl...\n"; sudo pacman -S curl )|| (printf "\nFailed to install curl. \n "; return 1)
-                # pacman -Q file || (printf "installing file...\n"; sudo pacman -S file) || (printf "\nFailed to install file. \n "; return 1)
+                pacman -Q -g base-devel | grep base-devel > /dev/null || (printf "installing base-devel ...\n";
+                    sudo pacman -S base-devel )|| (printf "\nFailed to install base-devel package ...\n "; return 1)
+                pacman -Q git | grep git > /dev/null || (printf "installing git ...\n"; sudo pacman -S git )|| (printf "\nFailed to install git. \n "; return 1)
+                # pacman -Q curl || (printf "installing curl ...\n"; sudo pacman -S curl )|| (printf "\nFailed to install curl. \n "; return 1)
+                # pacman -Q file || (printf "installing file ...\n"; sudo pacman -S file) || (printf "\nFailed to install file. \n "; return 1)
             fi
-
         else
-            printf "plz install the essential package manually on %s for building and compiling program\n. Run the script again after that.\n" $DISTRO
+            printf "plz install the essential packages, including git,  manually on %s for building and compiling program\n. Run the script again after that.\n" $DISTRO
             return 1
         fi
 
     elif [ ${SYSOS} = "Darwin" ] ; then
-        printf "boot up on mac...\n"
+        printf "boot up on mac ...\n"
         printf "todo: checking xcode-select\n"
         # xcode-select --install
         COMMANDLINETOOLS_HOME=/Library/Developer/CommandLineTools
@@ -118,7 +121,7 @@ checkAndInstallEssentialPackages(){
 #     # fi
 #     command -v git | grep git && return 0
 
-#     printf "No system git exists. \n installing git...\n";
+#     printf "No system git exists. \n installing git ...\n";
 #     # cann't install homebrew using homebrew's installation script without git in system path
 #     # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
@@ -137,27 +140,29 @@ checkAndInstallEssentialPackages(){
 install(){
     # 1. install all libs, packages and tools
     # call:
-    printf "install essential packages...\n"
+    printf "install essential packages ...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_packs.sh)"
-    printf "install extras packages...\n"
+    printf "install extras packages ...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_extras.sh)"
-    # printf "install repo...\n"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_repo.sh)"
+    printf "todo: install and config git ...\n"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_github.sh)"
 
     # sh ${MY_ENV_ROOT}/scripts/install_packs.sh
     # sh ${MY_ENV_ROOT}/scripts/install_repo.sh
     # sh ${MY_ENV_ROOT}/scripts/install_extras.sh
 
+    printf "install zsh plugins ...\n"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_zsh.sh)"
     # 2. config git and init my_env repo
     # addtional config for setup my ide
-    # printf "conifg tmux...\n"
+    # printf "conifg tmux ...\n"
     # sh ${MY_ENV_ROOT}/scripts/install_tmux.sh
-    # printf "conifg IDE...\n"
+    # printf "conifg IDE ...\n"
     # sh ${MY_ENV_ROOT}/scripts/install_ide.sh
 }
 
 installZsh(){
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_zsh.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_zsh.sh)" || return 1
 }
 
 
@@ -178,9 +183,9 @@ initEnv(){
     printf "export HOMEBREW_PREFIX=\${HOMEBREW}\n" >> ${HOME}/.env
     printf "export HOMEBREW_CELLAR=\${HOMEBREW_CELLAR}\n" >> ${HOME}/.env
     printf "export HOMEBREW_REPOSITORY=\${HOMEBREW_REPOSITORY}\n" >> ${HOME}/.env
-    printf "export PATH=\${HOMEBREW}/bin:\${HOMEBREW}/sbin:\${PATH}\n" >> ${HOME}/.env
-    printf "export MANPATH=\${HOMEBREW}/share/man:\${MANPATH}\n" >> ${HOME}/.env
-    printf "export INFOPATH=\${HOMEBREW}/share/info:\${INFOPATH}\n" >> ${HOME}/.env
+    # printf "export PATH=\${HOMEBREW}/bin:\${HOMEBREW}/sbin:\${PATH}\n" >> ${HOME}/.env
+    # printf "export MANPATH=\${HOMEBREW}/share/man:\${MANPATH}\n" >> ${HOME}/.env
+    # printf "export INFOPATH=\${HOMEBREW}/share/info:\${INFOPATH}\n" >> ${HOME}/.env
 
     printf "export MY_ENV_ROOT=\${HOME}/repo/my_env\n" >> ${HOME}/.env
     printf "export XML_CATALOG_FILES=\${HOMEBREW}/etc/xml/catalog\n" >> ${HOME}/.env

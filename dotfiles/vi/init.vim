@@ -5,24 +5,28 @@ if has('vim_starting')
   set nocompatible               " Be iMproved
 endif
 
-let g:vim_bootstrap_langs = "go,html,javascript,typescript,python,scala"
+let g:vim_bootstrap_langs = 'go,html,javascript,typescript,python,scala'
 
 " let vimplug_exists
 if has('nvim')
-    let g:vim_bootstrap_editor = "nvim"
-    let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-    map <silent> <leader>sv :source ~/.config/nvim/init.vim<cr>
+  let g:vim_bootstrap_editor = 'nvim'
+  let $VI_HOME = expand('~/.config/nvim')
 else
-    let g:vim_bootstrap_editor = "vim"
-    let vimplug_exists=expand('~/.vim/autoload/plug.vim')
-    map <silent> <leader>sv :source ~/.vimrc<cr>
+  let g:vim_bootstrap_editor = "vim"
+  let $VI_HOME = expand('~/.vim')
 endif
-"*****************************************************************************
-"" Vim-PLug core
-"*****************************************************************************
+" plugin manager
+let vimplug_exists = $VI_HOME .. '/autoload/plug.vim'
+" nvim and vim use the same vimrc file
+let $VI_CFG_DIR = expand('~/.config/nvim')
+map <silent> <leader>sv :source $MYVIMRC<cr>
+
+" *****************************************************************************
+" Vim-PLug core
+" ****************************************************************************
 
 " Todo: Fixing bug with pyenv plz: ~/.pyenv/shims/python
-if(has("mac") || has("macunix"))
+" if(has("mac") || has("macunix"))
     " if filereadable(expand("~/.pyenv/shims/python3"))
     "     echo 'using python3: ~/.pyenv/shims/python3'
         " let g:python2_host_prog = '~/.pyenv/shims/python'
@@ -31,54 +35,68 @@ if(has("mac") || has("macunix"))
         " let g:python2_host_prog = '/usr/local/bin/python'
         " let g:python3_host_prog = '/usr/local/bin/python3'
     " endif
-elseif(has("unix"))
+" elseif(has("unix"))
     " let g:python2_host_prog = '/usr/bin/python'
     " let g:python3_host_prog = '/usr/bin/python3'
-else
-    echo "setting up python_host_prog plz"
-endif
+" else
+    " echo 'setting up python_host_prog plz'
+" endif
 
 if !filereadable(vimplug_exists)
-  if !executable("curl")
-    echoerr "You have to install curl or first install vim-plug yourself!"
-    execute "q!"
-  endif
-  echo "Installing Vim-Plug..."
-  echo ""
-
-  if has('nvim')
-    silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  else
-    silent !\curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  if !executable('curl')
+    echoerr 'You have to install curl or first install vim-plug yourself!'
+    execute 'q!'
   endif
 
-  let g:not_finish_vimplug = "yes"
+  echo "Installing Vim-Plug...\n"
+
+  " if has('nvim')
+  "   silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  " else
+  "   silent !\curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  " endif
+  silent !\curl -fLo vimplug_exists --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  let g:not_finish_vimplug = 'yes'
 
   autocmd VimEnter * PlugInstall
 endif
 
 
 " Set general(built-in) options before plugins
-source ${MY_ENV_ROOT}/dotfiles/vim/general.vim
+" let vi_cfg_root = '~/.config/nvim'
+" execute 'source' $VI_CFG_DIR .. '/general.vim'
+" or
+source $VI_CFG_DIR/general.vim
+call plug#begin(expand('$VI_CFG_DIR/plugged'))
+    " execute 'source' vi_cfg_root .. '/plugins.vim'
+    " or
+    source $VI_CFG_DIR/plugins.vim
+    ""*****************************************************************************
+    "" Include user's extra bundle
+    if filereadable(expand($VI_CFG_DIR .. '/local_bundles.vim'))
+        source $VI_CFG_DIR/local_bundles.vim
+    endif
+call plug#end()
 
-if has('nvim')
-    call plug#begin(expand('~/.config/nvim/plugged'))
-        source ${MY_ENV_ROOT}/dotfiles/vim/plugins.vim
-        "*****************************************************************************
-        "" Include user's extra bundle
-        if filereadable(expand("~/.config/nvim/local_bundles.vim"))
-            source ~/.config/nvim/local_bundles.vim
-        endif
-    call plug#end()
-else
-    call plug#begin(expand('~/.vim/plugged'))
-        source ${MY_ENV_ROOT}/dotfiles/vim/plugins.vim
-    call plug#end()
-endif
+"if has('nvim')
+"    call plug#begin(expand('~/.config/nvim/plugged'))
+"        source ${MY_ENV_ROOT}/dotfiles/vi/plugins.vim
+"        "*****************************************************************************
+"        "" Include user's extra bundle
+"        if filereadable(expand("~/.config/nvim/local_bundles.vim"))
+"            source ~/.config/nvim/local_bundles.vim
+"        endif
+"    call plug#end()
+"else
+"    call plug#begin(expand('~/.vim/plugged'))
+"        source ${MY_ENV_ROOT}/dotfiles/vi/plugins.vim
+"    call plug#end()
+"endif
 
 " Required:
-" for plugin in split(globpath('$MY_ENV_ROOT/dotfiles/vim/plugins', '/*.vim'), '\n')
-for plugin in split(glob('$MY_ENV_ROOT/dotfiles/vim/plugins/*.vim'), '\n')
+" for plugin in split(globpath('$MY_ENV_ROOT/dotfiles/vi/plugins', '/*.vim'), '\n')
+for plugin in split(glob($VI_CFG_DIR .. '/plugins/*.vim'), '\n')
     " echo plugin
     exe 'source'.plugin
 endfor
@@ -111,6 +129,7 @@ elseif v:version >= 800
   nnoremap <silent> <leader>sv :vertical terminal<CR>
 endif
 
+" only work with nvim
 if has('nvim')
     autocmd TermOpen term://* startinsert
     autocmd TermOpen setlocal statusline=%{b:term_title}
@@ -136,9 +155,9 @@ augroup completion_preview_close
 augroup END
 
 "*****************************************************************************
-if has('nvim')
+if g:vim_bootstrap_editor == 'nvim'
     "" Include user's local vim config
-    if filereadable(expand("~/.config/nvim/local_init.vim"))
-        source ~/.config/nvim/local_init.vim
+    if filereadable(expand($VI_CFG_DIR .. '/local_init.vim'))
+        source $VI_CFG_DIR/local_init.vim
     endif
 endif
