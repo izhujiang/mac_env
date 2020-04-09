@@ -55,7 +55,8 @@ if !filereadable(vimplug_exists)
   " else
   "   silent !\curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   " endif
-  silent !\curl -fLo vimplug_exists --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  silent !\curl -fLo ${VI_HOME}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   let g:not_finish_vimplug = 'yes'
 

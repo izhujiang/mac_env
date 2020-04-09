@@ -13,7 +13,7 @@ do
     if [ -L ${CFG_FILE} ]; then
         unlink ${CFG_FILE}
     else
-        if [ -f ${CFG_FILE} || -d ${CFG_FILE} ]; then
+        if [[ -f ${CFG_FILE} || -d ${CFG_FILE} ]]; then
             mv ${CFG_FILE} ${CFG_FILE}.bak.${CURRENTDATE}
         fi
     fi
@@ -22,7 +22,7 @@ done
 
 for CFG_FILE in init.vim general.vim plugins.vim
 do
-    curl -fsSL -o ${NVIM_CFG_DIR}/${CFG_FILE} https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/vi/${CFG_FILE}
+    curl -fsSL --create-dirs -o ${NVIM_CFG_DIR}/${CFG_FILE} https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/vi/${CFG_FILE}
 done
 ln -s ${NVIM_CFG_DIR}/init.vim ${HOME}/.vim/.vimrc
 
@@ -31,12 +31,12 @@ for CFG_FILE in ale.vim ctrlp.vim easymotion.vim editorconfig.vim emmet-vim.vim 
                 vim-airline.vim vim-c.vim vim-commentary.vim vim-easyalign.vim vim-fugitive.vim vim-go.vim vim-java.vim \
                 vim-javascript.vim vim-jsx.vim vim-markdown.vim vim-prettier.vim vim-test.vim vim-tsx.vim vimshell.vim ycm.vim
 do
-    curl -fsSL -o ${NVIM_CFG_DIR}/plugins/${CFG_FILE} https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/vi/plugins/${CFG_FILE}
+    curl -fsSL --create-dirs -o ${NVIM_CFG_DIR}/plugins/${CFG_FILE} https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/vi/plugins/${CFG_FILE}
 done
 
 for CFG_FILE in .editorconfig .eslintrc
 do
-    curl -fsSL -o ${HOME}/${CFG_FILE} https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/vi/${CFG_FILE}
+    curl -fsSL --create-dirs -o ${HOME}/${CFG_FILE} https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/vi/${CFG_FILE}
 done
 
 printf "vim-go check GOPATH: ${GOPATH}\n"

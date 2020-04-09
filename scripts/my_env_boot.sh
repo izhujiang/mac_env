@@ -36,13 +36,14 @@ installHomebrew(){
 
     if [ ! -d ${HOMEBREW} ]; then
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        eval $(\${HOMEBREW}/bin/brew shellenv)
+        # export PATH=${HOMEBREW}/bin:${PATH}
         brew analytics off    # disable Homebrew’s analytics
         brew tap homebrew/cask
         brew tap go-delve/delve
         brew tap mongodb/brew
         brew tap pivotal/tap
         brew tap golangci/tap
-        export PATH=${HOMEBREW}/bin:${PATH}
     fi
 }
 
