@@ -69,7 +69,7 @@ endif
 " execute 'source' $VI_CFG_DIR .. '/general.vim'
 " or
 source $VI_CFG_DIR/general.vim
-call plug#begin(expand('$VI_CFG_DIR/plugged'))
+call plug#begin(expand('$VI_HOME/plugged'))
     " execute 'source' vi_cfg_root .. '/plugins.vim'
     " or
     source $VI_CFG_DIR/plugins.vim
