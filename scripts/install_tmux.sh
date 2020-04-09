@@ -1,10 +1,13 @@
 #!/bin/sh
 
 TMUX_CONF=${HOME}/.tmux.conf
-if [ -L $TMUX_CONF ]; then
-    unlink $TMUX_CONF
+CURRENTDATE=`date +"%Y-%m-%d-%H%M"`
+
+if [[ -f ${TMUX_CONF} ]]; then
+    mv ${TMUX_CONF} ${TMUX_CONF}.${CURRENTDATE}
 fi
-ln -s ${MY_ENV_ROOT}/dotfiles/tmux/.tmux.conf ${HOME}/.tmux.conf
+
+curl -fsSL --create-dirs -o $TMUX_CONF https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/tmux/.tmux.conf
 
 # Installs and loads tmux plugins.
 # https://github.com/tmux-plugins/tpm

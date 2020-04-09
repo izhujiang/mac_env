@@ -152,17 +152,16 @@ install(){
     # sh ${MY_ENV_ROOT}/scripts/install_repo.sh
     # sh ${MY_ENV_ROOT}/scripts/install_extras.sh
 
-    printf "install zsh plugins ...\n"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_zsh.sh)"
     # 2. config git and init my_env repo
     # addtional config for setup my ide
-    # printf "conifg tmux ...\n"
-    # sh ${MY_ENV_ROOT}/scripts/install_tmux.sh
-    # printf "conifg IDE ...\n"
-    # sh ${MY_ENV_ROOT}/scripts/install_ide.sh
+    printf "install tmux ...\n"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_tmux.sh)"
+    printf "install IDE ...\n"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_ide.sh)"
 }
 
 installZsh(){
+    printf "install zsh plugins ...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_zsh.sh)" || return 1
 }
 

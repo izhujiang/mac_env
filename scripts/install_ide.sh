@@ -14,7 +14,7 @@ do
         unlink ${CFG_FILE}
     else
         if [[ -f ${CFG_FILE} || -d ${CFG_FILE} ]]; then
-            mv ${CFG_FILE} ${CFG_FILE}.bak.${CURRENTDATE}
+            mv ${CFG_FILE} ${CFG_FILE}.${CURRENTDATE}
         fi
     fi
 done
@@ -24,7 +24,7 @@ for CFG_FILE in init.vim general.vim plugins.vim
 do
     curl -fsSL --create-dirs -o ${NVIM_CFG_DIR}/${CFG_FILE} https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/vi/${CFG_FILE}
 done
-ln -s ${NVIM_CFG_DIR}/init.vim ${HOME}/.vim/.vimrc
+ln -s ${NVIM_CFG_DIR}/init.vim ${HOME}/.vimrc
 
 for CFG_FILE in ale.vim ctrlp.vim easymotion.vim editorconfig.vim emmet-vim.vim fzf.vim grepper.vim indentline.vim jedi.vim \
                 molokai.vim neoformat.vim nerdtree.vim python-mode.vim syntastic.vim tagbar.vim typescript.vim ultisnips.vim \
