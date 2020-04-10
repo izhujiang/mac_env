@@ -1,7 +1,6 @@
 # init global environment variables
 source ${HOME}/.env
 
-source ${HOME}/.profile.local
 
 export CLICOLOR=1
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
@@ -11,8 +10,10 @@ POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 
 #source /usr/local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
-PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
-PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
+# PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
+# PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
 POWERLINE_BASH=${PY_PACKS_LOC}/powerline/bindings/bash/powerline.sh
 # echo '/usr/local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.zsh'
-source ${POWERLINE_BASH}
+
+test -e "${HOME}/.profile.local" && source "${HOME}/.profile.local"
+test -e ${POWERLINE_BASH} source ${POWERLINE_BASH}

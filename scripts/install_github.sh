@@ -10,9 +10,10 @@ else
 	ssh-keygen -t rsa -b 4096 -C "m.zhujiang@gmail.com"
 	eval "$(ssh-agent -s)"
 	ssh-add ${HOME}/.ssh/id_rsa
-	xclip -sel clip < ~/.ssh/id_rsa.pub
+	# xclip -sel clip < ~/.ssh/id_rsa.pub
 
-	printf "add public ssh_key to github munually please ...\n"
+	printf "add public ssh_key in ${HOME}/.ssh/id_rsa.pub to the projects in github munually please,\n"
+	printf "otherwise just skip it and continue ...\n"
 	# and add ssh_key to github
 	# ref: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-linux
 	# for mac user: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-mac
@@ -21,7 +22,7 @@ else
 	printf "for mac user: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-mac\n"
 
 	printf "\n\nImport!!!    -------------------- \n"
-	printf "Ensure adding ssh key to github before continuing...\n"
+	printf "Ensure adding ssh key to github's projects you host before continuing...\n"
 	read -p "Once have privilege to access to github, Press [Enter] key to continue ...\n"
 
     # config git global settings.

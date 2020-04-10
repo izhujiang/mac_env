@@ -12,7 +12,9 @@
 # echo 1 $cur_timestamp
 
 # init global environment variables
-source ${HOME}/.env
+test -s ${HOME}/.env && source ${HOME}/.env
+# customize local profile
+test -s ${HOME}/.profile.local source ${HOME}/.profile.local
 
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
@@ -75,7 +77,7 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions )
 
 # oh-my-zsh takes 131ms, and 235ms with plugins
-source ${ZSH}/oh-my-zsh.sh
+test -s ${ZSH}/oh-my-zsh.sh && source ${ZSH}/oh-my-zsh.sh
 
 # tmp=$cur_timestamp
 # cur_sec_and_ns=`gdate '+%s-%N'`
@@ -106,7 +108,7 @@ export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-test -s ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh  && . ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh
+test -s ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh  && source ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh
 #
 # Setting for autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
@@ -127,8 +129,6 @@ bindkey '^x^e' edit-command-line
 # add fzf to zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# customize local profile
-source ${HOME}/.profile.local
 # unsetopt xtrace
 # exec 2>&3 3>&-
 

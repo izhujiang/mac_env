@@ -1,10 +1,18 @@
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+unset LC_CTYPE
+export SSH_KEY_PATH=${HOME}/.ssh/rsa_id
+
+# export HOMEBREW_PREFIX=${HOMEBREW}
+# export HOMEBREW_CELLAR=${HOMEBREW_CELLAR}
+# export HOMEBREW_REPOSITORY=${HOMEBREW_REPOSITORY}
+# export MANPATH=${HOMEBREW}/share/man:${MANPATH}
+# export INFOPATH=${HOMEBREW}/share/info:${INFOPATH}
+# export PATH=${HOMEBREW}/bin:${HOMEBREW}/sbin:${PATH}
+export PATH=${HOMEBREW_PREFIX}/opt/openssl@1.1/bin:${PATH}
+export XML_CATALOG_FILES=${HOMEBREW_PREFIX}/etc/xml/catalog
 # opt out of Homebrew’s analytics
 export HOMEBREW_NO_ANALYTICS=1
-
-export PATH=${HOMEBREW}/opt/openssl@1.1/bin:${PATH}
-export PATH=${HOMEBREW}/bin:${HOMEBREW}/sbin:${PATH}
-export MANPATH=${HOMEBREW}/share/man:${MANPATH}
-export INFOPATH=${HOMEBREW}/share/info:${INFOPATH}
 
 # 2. usefull shell tools
 alias gz="tar -xzvf"
