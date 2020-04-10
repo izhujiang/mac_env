@@ -35,16 +35,16 @@ installHomebrew(){
         return 1
     fi
 
-    if [ ! -d ${HOMEBREW} ]; then
+    # if [! -d ${HOMEBREW} ]; then
         # sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        export PATH=${HOMEBREW}/bin:${PATH}
-        brew analytics off    # disable Homebrew’s analytics
-        brew tap homebrew/cask
-        brew tap go-delve/delve
-        brew tap mongodb/brew
-        brew tap pivotal/tap
-        brew tap golangci/tap
-    fi
+    # fi
+    export PATH=${HOMEBREW}/bin:${PATH}
+    brew analytics off    # disable Homebrew’s analytics
+    brew tap homebrew/cask
+    brew tap go-delve/delve
+    brew tap mongodb/brew
+    brew tap pivotal/tap
+    brew tap golangci/tap
 }
 
 # check build-essential/base-devel, git, curl and file in system path, all the prerequisites of brew
@@ -183,7 +183,7 @@ postInstall(){
 
     # 3. clean up
     printf "Cleaning up-------------------------------------\n"
-    brew cleanup
+    ${HOMEBREW}/bin/brew cleanup
 
     # 4. That's it. Congratulation
     printf "Congratulation!: Well done. Enjoy your journey!-----\n"
