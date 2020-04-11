@@ -18,7 +18,10 @@ brew install bat fd z
 brew install tmux tmuxinator
 
 # brew install node yarn python3 pyenv pipenv go ruby rust jq
-brew install node yarn python3 pyenv pipenv go
+brew install perl
+brew install node yarn
+brew install python3 pyenv pipenv
+brew install go
 
 brew install astyle readline xz pcre openssl gd geoip httpie
 if [ ${SYSOS} = "Linux" ] ; then

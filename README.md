@@ -1,4 +1,4 @@
-## Overview
+a replacement for old traditional date command
  Build and config for my workspace and supporting tool, packages, and deveolpment enviroment in macos and linux(ubuntu)
 
 ## install my_env
@@ -6,6 +6,12 @@
 + A Unix-like operating system: macOS, Linux, BSD, WSL
 Note that this will not work if Zsh is not in your authorized shells list (/etc/shells) or if you don't have permission to use chsh. If that's the case you'll need to use a different procedure.
   * Log out and login back again to use your new default shell.
++ clock set correctly
+  * set ntp<br>
+  `timedatectl set-ntp true`<br>
+  * check datetime status<br>
+  `timedatectl status`<br>
+  The timedatectl command is a new utility for RHEL/CentOS 7 and Fedora 21+ based distributions, a replacement for old traditional date command. similar commands on other systems.
 + build-essential package
   * For Ubuntu:
         apt install build-essential

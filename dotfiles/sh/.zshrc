@@ -14,7 +14,7 @@
 # init global environment variables
 test -s ${HOME}/.env && source ${HOME}/.env
 # customize local profile
-test -s ${HOME}/.profile.local source ${HOME}/.profile.local
+test -s ${HOME}/.profile.local && source ${HOME}/.profile.local
 
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh

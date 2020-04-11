@@ -16,4 +16,4 @@ POWERLINE_BASH=${PY_PACKS_LOC}/powerline/bindings/bash/powerline.sh
 # echo '/usr/local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.zsh'
 
 test -e "${HOME}/.profile.local" && source "${HOME}/.profile.local"
-test -e ${POWERLINE_BASH} source ${POWERLINE_BASH}
+test -e ${POWERLINE_BASH} && source ${POWERLINE_BASH}
