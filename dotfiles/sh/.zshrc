@@ -1,3 +1,5 @@
+# if the shell is interactive, commands are read from /etc/zshrc and then $ZDOTDIR/.zshrc
+
 # zmodload zsh/zprof
 # PS4=$'\\\011%D{%s%6.}\011%x\011%I\011%N\011%e\011'
 # exec 3>&2 2>/tmp/zshstart.$$.log
@@ -12,9 +14,10 @@
 # echo 1 $cur_timestamp
 
 # init global environment variables
-test -s ${HOME}/.env && source ${HOME}/.env
+# test -s ${HOME}/.env && source ${HOME}/.env
 # customize local profile
-test -s ${HOME}/.profile.local && source ${HOME}/.profile.local
+# test -s ${HOME}/.profile && source ${HOME}/.profile
+test -s ${HOME}/.xshrc && source ${HOME}/.xshrc
 
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh

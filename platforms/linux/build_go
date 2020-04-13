@@ -1,7 +1,0 @@
-#!/bin/sh
-
-cd ${HOME}/repo
-git clone git@github.com:izhujiang/golang.git
-cd golang
-./setup-go
-./setup-vim-go

@@ -1,10 +1,10 @@
-# init global environment variables
-source ${HOME}/.env
-
+# init global environment variables when login bash
+test -e "${HOME}/.env" && . "${HOME}/.env"
+test -e "${HOME}/.profile" && . "${HOME}/.profile"
 
 export CLICOLOR=1
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+test -e "${HOME}/.iterm2_shell_integration.bash" && . "${HOME}/.iterm2_shell_integration.bash"
 
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
@@ -13,7 +13,6 @@ POWERLINE_BASH_SELECT=1
 # PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
 # PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
 POWERLINE_BASH=${PY_PACKS_LOC}/powerline/bindings/bash/powerline.sh
-# echo '/usr/local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.zsh'
 
-test -e "${HOME}/.profile.local" && source "${HOME}/.profile.local"
-test -e ${POWERLINE_BASH} && source ${POWERLINE_BASH}
+test -e ${POWERLINE_BASH} && . ${POWERLINE_BASH}
+test -e "${HOME}/.bashrc" && . "${HOME}/.bashrc"

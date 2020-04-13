@@ -73,24 +73,22 @@ installZshPlugins(){
     ./install.sh
 
     CURRENTDATE=`date +"%Y-%m-%d-%H%M"`
-    for CFG_FILE in .zshrc .bash_profile .profile.local
+    for CFG_FILE in .profile .bash_profile .xshrc .bashrc .zshrc .zlogin .bash_logout .zlogout
     do
         if [ -f ${CFG_FILE} ]; then
             mv ${CFG_FILE} ${CFG_FILE}.bak.${CURRENTDATE}
         fi
-       curl -fsSL -o ${HOME}/${CFG_FILE} https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/sh/${CFG_FILE}
+        curl -fsSL -o ${HOME}/${CFG_FILE} https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/sh/${CFG_FILE}
     done
 
-    # for CFG_FILE in ${HOME}/.zshrc ${HOME}/.bash_profile ${HOME}/.profile.local
-    # do
-    #     if [ -L ${CFG_FILE} ]; then
-    #         unlink ${CFG_FILE}
-    #     else
-    #         if [ -f ${CFG_FILE} ]; then
-    #             mv ${CFG_FILE} ${CFG_FILE}.bak.${CURRENTDATE}
-    #         fi
-    #     fi
-    # done
+    for CFG_FILE in .zprofile
+    do
+        if [ -e ${CFG_FILE} ]; then
+            unlink ${CFG_FILE}
+        fi
+    done
+    ln -s ${HOME}/.profile ${HOME}/.zprofile
+
 
     # mkdir ${HOME}/.zsh
     # MY_ENV_ROOT=${HOME}/repo/my_env

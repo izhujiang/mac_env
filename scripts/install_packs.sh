@@ -30,6 +30,7 @@ if [ ${SYSOS} = "Linux" ] ; then
     printf "Updating ripgrep 11.0.2 to 12.0.0 failed in homebrew Ubuntu due to asciidoc, install ripgrep later plz ...\n"
     brew install xclip
 elif [ ${SYSOS} = "Darwin" ] ; then
+    brew cask install iterm2
     brew install ripgrep
     # reattach-to-user-namespace support copy and pasty
     brew install autojump reattach-to-user-namespace

@@ -232,6 +232,5 @@ bootup(){
     exit 0
 }
 # entry of main script
-bootup
-
 # checkPrerequisites
+bootup
