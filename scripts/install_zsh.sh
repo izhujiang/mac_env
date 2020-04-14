@@ -74,7 +74,7 @@ installZshPlugins(){
 
     # cd ${HOME}
     CURRENTDATE=`date +"%Y-%m-%d-%H%M"`
-    for CFG_FILE in .profile .bash_profile .xshrc .bashrc .zshrc .zlogin .bash_logout .zlogout
+    for CFG_FILE in .xprofile .bash_profile .zprofile .xshrc .bashrc .zshrc .zlogin .bash_logout .zlogout
     do
         if [ -f ${HOME}/${CFG_FILE} ]; then
             mv ${HOME}/${CFG_FILE} ${HOME}/${CFG_FILE}.${CURRENTDATE}
@@ -82,14 +82,14 @@ installZshPlugins(){
         curl -fsSL -o ${HOME}/${CFG_FILE} https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/sh/${CFG_FILE}
     done
 
-    for CFG_FILE in .zprofile .zshenv
-    do
-        if [ -e ${HOME}/${CFG_FILE} ]; then
-            unlink ${HOME}/${CFG_FILE}
-        fi
-    done
-    ln -s ${HOME}/.profile ${HOME}/.zprofile
-    ln -s ${HOME}/.env ${HOME}/.zshenv
+    # for CFG_FILE in .zprofile .zshenv
+    # do
+    #     if [ -e ${HOME}/${CFG_FILE} ]; then
+    #         unlink ${HOME}/${CFG_FILE}
+    #     fi
+    # done
+    # ln -s ${HOME}/.profile ${HOME}/.zprofile
+    # ln -s ${HOME}/.env ${HOME}/.zshenv
 
 
     # mkdir ${HOME}/.zsh

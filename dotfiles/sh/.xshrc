@@ -1,5 +1,6 @@
-# when interactive shell start, load interactive shell configuration.
-# common configs for .bashrc and .zshrc
+# when interactive shell start, load interactive shell configuration.  common configs for .bashrc and .zshrc
+# user's personal preferences for the command line for interactive shell: custom prompt, specific color scheme...
+# The most common customization inside the .bashrc file is to add aliases.
 
 # usefull shell tools
 alias l="ls -la"
@@ -15,8 +16,6 @@ alias cat='bat'
 
 # alias python="python3"
 alias vi=nvim
-export EDITOR=vi
-export VISUAL=vi
 # don't run nvim inside nvim
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     # if [ -x "$(command -v nvr)" ]; then
@@ -34,32 +33,6 @@ alias ff="fzf --preview 'bat --color always {}'"
 alias fv="nvim \$(fzf -m --preview 'bat --color always {}')"
 # alias gd="git status -s | fzf --no-sort --reverse --preview 'git diff --color=always {+2} | diff-so-fancy' --bind=ctrl-J:preview-down --bind=alt-j:preview-down  --bind=ctrl-K:preview-up --bind=alt-k:preview-up --preview-window=right:60%:wrap"
 alias gd="git status -s | fzf --no-sort --reverse --preview 'git diff --color=always {+2} | diff-so-fancy' --bind=alt-j:preview-down  --bind=alt-k:preview-up --preview-window=right:60%:wrap"
-
-# export FZF_DEFAULT_COMMAND='fd --type f'
-# follow symbolic links, and include hidden files
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border'
-# To apply the command to CTRL-T as well
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-# Use ~~ as the trigger sequence instead of the default **
-# export FZF_COMPLETION_TRIGGER='~~'
-# Options to fzf command
-# export FZF_COMPLETION_OPTS='+c -x'
-export FZF_COMPLETION_OPTS='-x'
-
-# Use fd (https://github.com/sharkdp/fd) instead of the default find
-# command for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
-_fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
-}
-
-# Use fd to generate the list for directory completion
-_fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" . "$1"
-}
 
 # tmux session management
 alias t="tmux"

@@ -1,4 +1,5 @@
 # if the shell is interactive, commands are read from /etc/zshrc and then $ZDOTDIR/.zshrc
+# usually set personal preferences for the command line for interactive shell: custom prompt, specific color scheme...
 
 # zmodload zsh/zprof
 # PS4=$'\\\011%D{%s%6.}\011%x\011%I\011%N\011%e\011'
@@ -13,12 +14,9 @@
 # start=$cur_timestamp
 # echo 1 $cur_timestamp
 
-# init global environment variables
-# test -s ${HOME}/.env && source ${HOME}/.env
-# customize local profile
-# test -s ${HOME}/.profile && source ${HOME}/.profile
-test -s ${HOME}/.xshrc && source ${HOME}/.xshrc
+test -s ${HOME}/.xshrc && . ${HOME}/.xshrc
 
+# todo: try to source oh-my-zsh in .zprofile to speed up, but how about start zsh from bash
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
 
@@ -78,9 +76,8 @@ DISABLE_AUTO_UPDATE="true"
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions forgit extract vi-mode docker)
 plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions )
-
 # oh-my-zsh takes 131ms, and 235ms with plugins
-test -s ${ZSH}/oh-my-zsh.sh && source ${ZSH}/oh-my-zsh.sh
+test -s ${ZSH}/oh-my-zsh.sh && . ${ZSH}/oh-my-zsh.sh
 
 # tmp=$cur_timestamp
 # cur_sec_and_ns=`gdate '+%s-%N'`
@@ -110,28 +107,21 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-test -s ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh  && source ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh
 #
 # Setting for autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 
+POWERLINE_ZSH=${PY_PACKS_LOC}/powerline/bindings/zsh/powerline.zsh
+test -e ${POWERLINE_ZSH} && . ${POWERLINE_ZSH}
 # if test -z ${PY_PACKS_LOC}
 # then
 #     echo "powerline-status does not exist, install it with pip3 install powerline-status"
 # else
-#     POWERLINE_ZSH=${PY_PACKS_LOC}/powerline/bindings/zsh/powerline.zsh
 #     # echo $POWERLINE_ZSH
-#     # source ${POWERLINE_ZSH}
+#     . ${POWERLINE_ZSH}
 # fi
 
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '^x^e' edit-command-line
-
-# add fzf to zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+[ -e ~/.zshrc.local ] && . ~/.zshrc.local
 # unsetopt xtrace
 # exec 2>&3 3>&-
 
