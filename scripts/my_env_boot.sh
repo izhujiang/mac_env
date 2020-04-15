@@ -161,7 +161,7 @@ install(){
 }
 
 installZsh(){
-    printf "install zsh plugins ...\n"
+    # printf "install zsh plugins ...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_zsh.sh)" || return 1
 }
 
