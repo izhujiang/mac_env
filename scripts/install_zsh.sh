@@ -28,9 +28,8 @@ installZshPlugins(){
     export ZSH_CUSTOM=${ZSH}/custom
 
     rm -rf ${ZSH}
-    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's:env zsh -l::g' | sed 's:chsh -s .*$::g' | sed '/chsh -s/d' )"
-    # todo: install oh-my-zsh silently, and continue the rest part
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --skip-chsh --unattended --keep-zshrc"
 
     printf "\nInstall plugins for oh-my-zsh ...\n"
     # printf "\nZSH_CUSTOM: ${ZSH_CUSTOM} ...\n"
@@ -61,7 +60,7 @@ installZshPlugins(){
     fi
     . ./install_in_omz.sh
 
-    printf "install powerline fonts-------------------------\n"
+    printf "install powerline fonts ...\n"
     FONTS_PATH=${HOME}/.fonts-powerline
     if [ -d ${FONTS_PATH} ] ; then
         cd ${FONTS_PATH}
@@ -101,7 +100,7 @@ installZshPlugins(){
     # ln -s ${MY_ENV_ROOT}/dotfiles/sh/.zshrc ${HOME}/.zshrc
 
     if [ ${SYSOS} = "Darwin" ] ; then
-    printf "Addiontal config for Dawrin--------------------------\n"
+    printf "Addiontal config for Dawrin ...\n"
     printf "iTerm2 users need to set both the Regular font and the Non-ASCII Font in 'iTerm > Preferences > Profiles > Text' to use a patched font.\n"
     printf "Ref: https://github.com/powerline/fonts\n"
     fi     #ifend
@@ -115,9 +114,24 @@ installZshEnv(){
         checkZsh || return 1
 
         installZshPlugins
-        chsh -s $(grep zsh /etc/shells | head -n1)
-        printf "\n--------------------------------------------------------\n"
-        printf "Logout(use logout command) and start a new login session for a change(\$SHELL) to take effect. Because chsh command have updated /etc/passwd for current user.\n"
+        printf "\n"
+
+        while true; do
+            read -ep "Do you wish to run chsh for switching into zsh now? Y/[n]" -i "Y" yn
+            case $yn in
+                [Yy]* )
+                    chsh -s $(grep zsh /etc/shells | head -n1)
+                    printf "\nLogout(use logout command) and start a new login session for change \$SHELL to take effect. \n"
+                    printf "Because chsh command have updated /etc/passwd for current user.\n"
+                    break;;
+                [Nn]* )
+                    printf "Run \'chsh -s $(grep zsh /etc/shells | head -n1)\' to switch into zsh manually.\n"
+                    exit;;
+                * )
+                    printf "Please answer yes or no.\n";;
+            esac
+        done
+
     fi
 }
 
