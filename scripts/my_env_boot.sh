@@ -15,12 +15,12 @@ checkPrerequisites(){
 }
 
 installHomebrew(){
-    # todo: install homebrew silently
+    #  install homebrew silently
     if [ ${SYSOS} = "Linux" ] ; then
-        # todo: enable install linuxbrew silently into HOMEBREW
+        # enable install linuxbrew silently into HOMEBREW
         HOMEBREW=${HOME}/.linuxbrew
 
-        # install by git clnoe
+        # install by git clnoe for silent installation
         if [ ! -d ${HOMEBREW} ]; then
             git clone https://github.com/Homebrew/brew ${HOMEBREW}/Homebrew
             mkdir ${HOMEBREW}/bin
@@ -52,9 +52,8 @@ checkAndInstallEssentialPackages(){
     if [ ${SYSOS} = "Linux" ] ; then
         getLinuxDist
 
-        # todo: enable install linuxbrew silently into HOMEBREW
         HOMEBREW=${HOME}/.linuxbrew
-        # todo: checking build-essential packages, install it with superuser priviledges if possible
+        # checking build-essential packages, install it with superuser priviledges if possible
         if [ $DISTRO = "Ubuntu" ]; then
             if [[ -x /usr/bin/apt || -x /bin/apt ]]; then
                 printf "checking build-essential, git ...\n"
@@ -83,7 +82,7 @@ checkAndInstallEssentialPackages(){
 
     elif [ ${SYSOS} = "Darwin" ] ; then
         printf "boot up on mac ...\n"
-        printf "todo: checking xcode-select\n"
+        # printf "todo: checking xcode-select\n"
         # xcode-select --install
         COMMANDLINETOOLS_HOME=/Library/Developer/CommandLineTools
         if [ ! -x ${COMMANDLINETOOLS_HOME}/usr/bin/gcc ]; then
@@ -145,7 +144,7 @@ install(){
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_packs.sh)"
     printf "install extras packages ...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_extras.sh)"
-    printf "todo: install and config git ...\n"
+    printf "setup and config git ...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_github.sh)"
 
     # sh ${MY_ENV_ROOT}/scripts/install_packs.sh

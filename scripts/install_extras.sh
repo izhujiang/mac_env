@@ -88,11 +88,11 @@ go get -u github.com/zmb3/goaddimport
 go get -u github.com/zmb3/gogetdoc
 go get -u sourcegraph.com/sqs/goreturns
 
-printf "install extension for code ...\n"
-if [ ${SYSOS} = "Darwin" ] ; then
+installVscodePlugins () {
+    command -v code > /dev/null 2>&1 || return 1
+
+    printf "install extension for code ...\n"
     code --install-extension ms-vscode.go
-else
-    printf "todo: check if vscode exists ..."
-    # code --install-extension ms-vscode.go
-    printf "install vscode with sudo privilege in GUI mode, following the instruction: \n"
-fi
+    printf "todo: install more extensions for vscode"
+}
+installVscodePlugins
