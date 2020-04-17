@@ -5,5 +5,5 @@
 
 POWERLINE_BASH=${PY_PACKS_LOC}/powerline/bindings/bash/powerline.sh
 test -e ${POWERLINE_BASH} && . ${POWERLINE_BASH}
-
+[ -f ~/.shtk.local ] && (. ~/.shtk.local ; export BASH_EVN="${HOME}/.shtk.local" )
 [ -f ~/.bashrc.local ] && . ~/.bashrc.local

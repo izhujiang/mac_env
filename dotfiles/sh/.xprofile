@@ -58,3 +58,7 @@ export PATH=${PATH}:$(go env GOPATH)/bin
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
+
+# 3. addtional path or other enviroment variables
+# ${HOME}/.local/bin for store local commands, programs and scripts, which maybe run in vim/nvim via "[!!/!}/!G]cmd"
+export PATH=${PATH}:${HOME}/.local/bin

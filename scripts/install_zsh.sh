@@ -79,12 +79,19 @@ configBashZsh () {
     # cd ${HOME}
     printf "\nConfuging sh(bash, zsh) profiles ...\n"
     CURRENTDATE=`date +"%Y-%m-%d-%H%M"`
-    for CFG_FILE in .xprofile .bash_profile .zprofile .xshrc .bashrc .zshrc .zlogin .bash_logout .zlogout
+    for CFG_FILE in .zshenv .xprofile .bash_profile .zprofile .xshrc .bashrc .zshrc .zlogin .bash_logout .zlogout
     do
         if [ -f ${HOME}/${CFG_FILE} ]; then
             mv ${HOME}/${CFG_FILE} ${HOME}/${CFG_FILE}.${CURRENTDATE}
         fi
         curl -fsSL -o ${HOME}/${CFG_FILE} https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/sh/${CFG_FILE}
+    done
+    # don't override local config file
+    for CFG_FILE in .shtk
+    do
+        if [ ! -f ${HOME}/${CFG_FILE}.local ]; then
+            curl -fsSL -o ${HOME}/${CFG_FILE}.local https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/sh/${CFG_FILE}.sample
+        fi
     done
 
 
@@ -116,7 +123,8 @@ installZshEnv () {
                     [Yy]* )
                         chsh -s $(grep zsh /etc/shells | head -n1)
                         printf "\nImport!!!\n"
-                        printf "Logout(use logout command) and start a new login session for \$SHELL change to take effect. \n"
+                        # printf "Logout(use logout command) and start a new login session for \$SHELL change to take effect. \n"
+                        printf "Please re-login to make zsh take effect. \n"
                         printf "Because chsh command have updated /etc/passwd for current user.\n"
                         break;;
                     [Nn]* )
@@ -126,6 +134,15 @@ installZshEnv () {
                         printf "Please answer yes or no.\n";;
                 esac
             done
+        else
+            # todo: make configure files take effect with re-login
+            # test -e "${HOME}/.zshenv" && . "${HOME}/.zshenv"
+            # test -e "${HOME}/.zprofile" && . "${HOME}/.zprofile"
+            # test -e "${HOME}/.zshrc" && . "${HOME}/.zshrc"
+            # test -e "${HOME}/.zlogin" && . "${HOME}/.zlogin"
+            # printf "${SHELL} cnofigure change has taken effect. \n"
+
+            printf "\n${SHELL} cnofigure has changed, please re-login to take effect. \n"
         fi
     fi
 }
