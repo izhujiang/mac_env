@@ -74,8 +74,8 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ${HOME}/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git zsh-autosuggestions zsh-eyntax-highlighting zsh-completions forgit extract vi-mode docker)
-plugins=(zsh-autosuggestions zsh-eyntax-highlighting zsh-completions )
+# plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions forgit extract vi-mode docker)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions )
 # oh-my-zsh takes 131ms, and 235ms with plugins
 test -e ${ZSH}/oh-my-zsh.sh && . ${ZSH}/oh-my-zsh.sh
 
