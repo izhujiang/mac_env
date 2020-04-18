@@ -14,7 +14,7 @@
 # start=$cur_timestamp
 # echo 1 $cur_timestamp
 
-test -s ${HOME}/.xshrc && . ${HOME}/.xshrc
+test -e ${HOME}/.xshrc && . ${HOME}/.xshrc
 
 # todo: try to source oh-my-zsh in .zprofile to speed up, but how about start zsh from bash
 # Path to your oh-my-zsh installation.
@@ -32,7 +32,7 @@ ZSH_DISABLE_COMPFIX=true
 # ZSH_THEME="powerline"
 ZSH_THEME="agnoster"
 
-# Uncomment the following line to use case-sensitive completion.
+# Uncomment the following line to use case-eensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
@@ -48,7 +48,7 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
-# Uncomment the following line to disable auto-setting terminal title.
+# Uncomment the following line to disable auto-eetting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
@@ -70,14 +70,14 @@ DISABLE_AUTO_UPDATE="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load? (plugins can be found in ${HOME}/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ${HOME}/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions forgit extract vi-mode docker)
-plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions )
+# plugins=(git zsh-autosuggestions zsh-eyntax-highlighting zsh-completions forgit extract vi-mode docker)
+plugins=(zsh-autosuggestions zsh-eyntax-highlighting zsh-completions )
 # oh-my-zsh takes 131ms, and 235ms with plugins
-test -s ${ZSH}/oh-my-zsh.sh && . ${ZSH}/oh-my-zsh.sh
+test -e ${ZSH}/oh-my-zsh.sh && . ${ZSH}/oh-my-zsh.sh
 
 # tmp=$cur_timestamp
 # cur_sec_and_ns=`gdate '+%s-%N'`
@@ -98,6 +98,10 @@ unset LESS
 set -o vi
 bindkey -v
 
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
 # man page highlight
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
 export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
@@ -111,17 +115,14 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 # Setting for autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 
+test -e ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh  && source ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh
+# add fzf to zsh
+[ -e ${HOME}/.fzf.zsh ] && . ${HOME}/.fzf.zsh
+
 POWERLINE_ZSH=${PY_PACKS_LOC}/powerline/bindings/zsh/powerline.zsh
 test -e ${POWERLINE_ZSH} && . ${POWERLINE_ZSH}
-# if test -z ${PY_PACKS_LOC}
-# then
-#     echo "powerline-status does not exist, install it with pip3 install powerline-status"
-# else
-#     # echo $POWERLINE_ZSH
-#     . ${POWERLINE_ZSH}
-# fi
 
-[ -e ~/.zshrc.local ] && . ~/.zshrc.local
+[ -e ${HOME}/.local/scripts/.zshrc.local ] && . ${HOME}/.local/scripts/.zshrc.local
 # unsetopt xtrace
 # exec 2>&3 3>&-
 

@@ -89,8 +89,8 @@ configBashZsh () {
     # don't override local config file
     for CFG_FILE in .shtk
     do
-        if [ ! -f ${HOME}/${CFG_FILE}.local ]; then
-            curl -fsSL -o ${HOME}/${CFG_FILE}.local https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/sh/${CFG_FILE}.sample
+        if [ ! -f ${HOME}/.local/scripts/${CFG_FILE}.local ]; then
+            curl -fsSL --create-dirs -o ${HOME}/.local/scripts/${CFG_FILE}.local https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/sh/${CFG_FILE}.sample
         fi
     done
 
@@ -136,6 +136,7 @@ installZshEnv () {
             done
         else
             # todo: make configure files take effect with re-login
+            # autoload command in .zprofile will fail, because install_zsh.sh will run by sh instead of zsh
             # test -e "${HOME}/.zshenv" && . "${HOME}/.zshenv"
             # test -e "${HOME}/.zprofile" && . "${HOME}/.zprofile"
             # test -e "${HOME}/.zshrc" && . "${HOME}/.zshrc"

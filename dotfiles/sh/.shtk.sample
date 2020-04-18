@@ -9,3 +9,11 @@ hello (){
   printf "hello shell-toolkit\n"
   printf "plz define some useful functions for being called by shell and vim/nvim filter\n"
 }
+
+now() {
+  echo $1 $(date "+%A, %B %e, %Y - %l:%M:%s%p")
+}
+
+hnow() {
+        echo $(printf '#%.0s' {1..2}) $(now)
+}
