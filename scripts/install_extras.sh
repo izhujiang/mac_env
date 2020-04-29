@@ -1,4 +1,5 @@
 #!/bin/sh
+set -u
 # Install 3d-party packages for Python, Node.js, Ruby, Zsh and vim/nvim.
 
 SYSOS=`uname -s`
@@ -25,6 +26,9 @@ printf "install 3d-party packages for ruby ...\n"
 
 # install node.js 3d party packages
 printf "install nodejs 3d-party packages ...\n"
+# A collection of simplified and community-driven man pages.
+npm install -g tldr
+
 npm install -g typescript
 npm install -g create-react-app
 npm install -g react-devtools
@@ -93,6 +97,7 @@ installVscodePlugins () {
 
     printf "install extension for code ...\n"
     code --install-extension ms-vscode.go
+    code --install-extension bmuskalla.vscode-tldr
     printf "todo: install more extensions for vscode"
 }
 installVscodePlugins

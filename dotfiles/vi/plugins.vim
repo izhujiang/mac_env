@@ -132,6 +132,8 @@ Plug 'janko/vim-test'
 " vim plugin to interact with tmux
 Plug 'benmills/vimux'
 " Plug 'vimcn/vimcdoc'
+" Simplified and community-driven man pages
+Plug 'wlemuel/vim-tldr'
 
 "*****************************************************************************
 "" Custom Language bundles
