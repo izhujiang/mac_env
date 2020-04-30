@@ -1,8 +1,12 @@
 #!/bin/sh
-
+set -u
+# for debug: print command before excute it
+# set -x
+# enable to exit when errors occur.
+# set -euxo pipefail
 checkPrerequisites(){
-    SYSOS=`uname -s`
-    printf "boot up on %s ...\n" $SYSOS
+    SYSOS=$(uname -s)
+    printf "boot up on %s ...\n" "${SYSOS}"
     printf "0. checking prerequisites before installation ...\n"
 
     # checking packages for build programmes, and install it if not available
@@ -16,29 +20,29 @@ checkPrerequisites(){
 
 installHomebrew(){
     #  install homebrew silently
-    if [ ${SYSOS} = "Linux" ] ; then
+    if [ "${SYSOS}" = "Linux" ] ; then
         # enable install linuxbrew silently into HOMEBREW
         HOMEBREW=${HOME}/.linuxbrew
 
         # install by git clnoe for silent installation
-        if [ ! -d ${HOMEBREW} ]; then
-            git clone https://github.com/Homebrew/brew ${HOMEBREW}/Homebrew
-            mkdir ${HOMEBREW}/bin
-            ln -s ${HOMEBREW}/Homebrew/bin/brew ${HOMEBREW}/bin
-            # eval $(\${HOMEBREW}/bin/brew shellenv)
+        if [ ! -d "${HOMEBREW}" ]; then
+            git clone https://github.com/Homebrew/brew "${HOMEBREW}"/Homebrew
+            mkdir "${HOMEBREW}"/bin
+            ln -s "${HOMEBREW}"/Homebrew/bin/brew "${HOMEBREW}"/bin
+            # eval $(\"${HOMEBREW}"/bin/brew shellenv)
         fi
-    elif [ ${SYSOS} = "Darwin" ] ; then
+    elif [ "${SYSOS}" = "Darwin" ] ; then
         HOMEBREW=/usr/local
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     else
-        printf "HOMEBREW does not support on ${SYSOS}.\n"
+        printf "HOMEBREW does not support on %s \n." "${SYSOS}"
         return 1
     fi
 
-    # if [! -d ${HOMEBREW} ]; then
+    # if [! -d "${HOMEBREW}" ]; then
         # sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     # fi
-    export PATH=${HOMEBREW}/bin:${PATH}
+    export PATH="${HOMEBREW}"/bin:${PATH}
     brew analytics off    # disable Homebrew’s analytics
     brew tap homebrew/cask
     brew tap go-delve/delve
@@ -49,13 +53,13 @@ installHomebrew(){
 
 # check build-essential/base-devel, git, curl and file in system path, all the prerequisites of brew
 checkAndInstallEssentialPackages(){
-    if [ ${SYSOS} = "Linux" ] ; then
+    if [ "${SYSOS}" = "Linux" ] ; then
         getLinuxDist
 
         HOMEBREW=${HOME}/.linuxbrew
         # checking build-essential packages, install it with superuser priviledges if possible
-        if [ $DISTRO = "Ubuntu" ]; then
-            if [[ -x /usr/bin/apt || -x /bin/apt ]]; then
+        if [ "${DISTRO}" = "Ubuntu" ]; then
+            if [ -x /usr/bin/apt ] || [ -x /bin/apt ]; then
                 printf "checking build-essential, git ...\n"
                 apt list --installed build-essential | grep build-essential > /dev/null || (printf "installing build-essential ...\n";
                     sudo apt install build-essential)|| (printf "\nFailed to install build-essential package ... \n "; return 1)
@@ -66,9 +70,9 @@ checkAndInstallEssentialPackages(){
                 # apt list --installed curl | grep curl || (printf "installing curl ...\n";,
                     # sudo apt install curl)|| (printf "\nFailed to install curl. \n "; return 1)
             fi
-        elif [ $DISTRO = "Arch" ]; then
+        elif [ "${DISTRO}" = "Arch" ]; then
             printf "checking base-devel, git ...\n"
-            if [[ -x /usr/bin/pacman || -x /bin/pacman ]]; then
+            if [ -x /usr/bin/pacman ] || [ -x /bin/pacman ]; then
                 pacman -Q -g base-devel | grep base-devel > /dev/null || (printf "installing base-devel ...\n";
                     sudo pacman -S base-devel )|| (printf "\nFailed to install base-devel package ...\n "; return 1)
                 pacman -Q git | grep git > /dev/null || (printf "installing git ...\n"; sudo pacman -S git )|| (printf "\nFailed to install git. \n "; return 1)
@@ -76,11 +80,11 @@ checkAndInstallEssentialPackages(){
                 # pacman -Q file || (printf "installing file ...\n"; sudo pacman -S file) || (printf "\nFailed to install file. \n "; return 1)
             fi
         else
-            printf "plz install the essential packages, including git,  manually on %s for building and compiling program\n. Run the script again after that.\n" $DISTRO
+            printf "plz install the essential packages, including git,  manually on %s for building and compiling program\n. Run the script again after that.\n" "${DISTRO}"
             return 1
         fi
 
-    elif [ ${SYSOS} = "Darwin" ] ; then
+    elif [ "${SYSOS}" = "Darwin" ] ; then
         printf "boot up on mac ...\n"
         # printf "todo: checking xcode-select\n"
         # xcode-select --install
@@ -91,7 +95,7 @@ checkAndInstallEssentialPackages(){
 
         export HOMEBREW=/usr/local
     else
-        printf "${SYSOS} not support now.\n"
+        printf "%s not support now.\n" "${SYSOS}"
         return 1
     fi
 
@@ -99,7 +103,7 @@ checkAndInstallEssentialPackages(){
 
 # checkAndInstallGit(){
 #     printf "\nchecking git ...\n"
-#     # if [ ${SYSOS} = "Linux" ] ; then
+#     # if [ "${SYSOS}" = "Linux" ] ; then
 #     #     if [ ${DISTRO} = "Ubuntu" ] ; then
 #     #         if [[ -x /usr/bin/apt || -x /bin/apt ]]; then
 #     #             apt list --installed git | grep git && return 0
@@ -110,11 +114,11 @@ checkAndInstallEssentialPackages(){
 #     #         fi
 
 #     #     else
-#     #         printf "plz install git manually on %s \n" $DISTRO
+#     #         printf "plz install git manually on %s \n" "${DISTRO}"
 #     #         return 1
 #     #     fi
 
-#     # elif [ ${SYSOS} = "Darwin" ] ; then
+#     # elif [ "${SYSOS}" = "Darwin" ] ; then
 #     #     printf "\n"
 #     # else
 #     #     return 1
@@ -166,23 +170,23 @@ installZsh(){
 
 postInstall(){
     # Output environment viriables used by shell profile
-    printf "# ===================================================================================\n" > ${HOME}/.env
-    printf "# .evn file was generated by my_env_boot.sh automatically, plz don't modify manually\n" >> ${HOME}/.env
-    printf "# ===================================================================================\n" >> ${HOME}/.env
+    printf "# ===================================================================================\n" > "${HOME}/.env"
+    printf "# .evn file was generated by my_env_boot.sh automatically, plz don't modify manually\n" >> "${HOME}/.env"
+    printf "# ===================================================================================\n" >> "${HOME}/.env"
 
-    printf "export HOMEBREW=%s\n" ${HOMEBREW} >> ${HOME}/.env
-    ${HOMEBREW}/bin/brew shellenv >> ${HOME}/.env
+    printf "export HOMEBREW=%s\n" "${HOMEBREW}" >> "${HOME}/.env"
+    "${HOMEBREW}"/bin/brew shellenv >> "${HOME}/.env"
 
     PY_PACKS_LOC=$(pip3 show powerline-status | grep Location)
     # PY_PACKS_LOC=$(pip show powerline-status | grep Location)
     PY_PACKS_LOC=${PY_PACKS_LOC##*Location: }
 
     # echo ${PY_PACKS_LOC}
-    printf "export PY_PACKS_LOC=%s\n" ${PY_PACKS_LOC} >> ${HOME}/.env
+    printf "export PY_PACKS_LOC=%s\n" "${PY_PACKS_LOC}" >> "${HOME}/.env"
 
     # 3. clean up
     printf "Cleaning up-------------------------------------\n"
-    ${HOMEBREW}/bin/brew cleanup
+    "${HOMEBREW}"/bin/brew cleanup
 
     # 4. That's it. Congratulation
     printf "Congratulation!: Well done. Enjoy your journey!-----\n"
@@ -214,14 +218,13 @@ getLinuxDist()
     else
         DISTRO='unknow'
     fi
+
+    echo $PM
 }
 
 bootup(){
     # 0. checking prerequuisites before installation.
-    checkPrerequisites
-    if [ $? != 0 ]; then
-        return 1
-    fi
+    checkPrerequisites || return 1
 
     install
     postInstall

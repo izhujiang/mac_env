@@ -1,8 +1,10 @@
 #!/bin/sh
 set -u
-# Install 3d-party packages for Python, Node.js, Ruby, Zsh and vim/nvim.
 
-SYSOS=`uname -s`
+# Install 3d-party packages for Python, Node.js, Ruby, Zsh and vim/nvim.
+printf "install 3d-party packages for bash...... \n"
+brew install shellcheck
+
 # install python 3rd party packages
 printf "install 3d-party packages for python...... \n"
 # pip3 install -U pipenv
@@ -32,7 +34,7 @@ npm install -g tldr
 npm install -g typescript
 npm install -g create-react-app
 npm install -g react-devtools
- npm install -g serve
+npm install -g serve
 npm install -g eslint
 npm install -g prettier
 npm install -g js-beautify
@@ -59,7 +61,7 @@ npm install -g lighthouse
 
 printf "install go tools packages ...\n"
 export GOPATH=$HOME/workspace/go
-printf "install tools to GOPATH(${GOPATH}) for golang ...\n"
+printf "install tools to GOPATH(%s) for golang ...\n" "${GOPATH}"
 go get -u golang.org/x/lint/golint
 go get -u golang.org/x/tools/cmd/godoc
 go get -u golang.org/x/tools/cmd/goimports

@@ -1,18 +1,18 @@
 #!/bin/bash
+set -u
 
 ID_RSA_FILE=${HOME}/.ssh/id_rsa.pub
-if [ -f "${ID_RSA_FILE}" ]
-then
-	printf "${ID_RSA_FILE} found.\n"
+if [ -f "${ID_RSA_FILE}" ]; then
+	printf "%s found.\n" "${ID_RSA_FILE}"
 else
 	printf "generate ssh key to access github with git ssh protocol.\n"
-	cd ~/
+    cd "${HOME}" || return 1
 	ssh-keygen -t rsa -b 4096 -C "m.zhujiang@gmail.com"
 	eval "$(ssh-agent -s)"
-	ssh-add ${HOME}/.ssh/id_rsa
+	ssh-add "${HOME}/.ssh/id_rsa"
 	# xclip -sel clip < ~/.ssh/id_rsa.pub
 
-	printf "add public ssh_key in ${HOME}/.ssh/id_rsa.pub to the projects in github munually please,\n"
+	printf "add public ssh_key in %s to the projects in github munually please,\n" "${HOME}/.ssh/id_rsa.pub"
 	printf "otherwise just skip it and continue ...\n"
 	# and add ssh_key to github
 	# ref: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-linux
@@ -23,7 +23,7 @@ else
 
 	printf "\n\nImport!!!    -------------------- \n"
 	printf "Ensure adding ssh key to github's projects you host before continuing...\n"
-	read -p "Once have privilege to access to github, Press [Enter] key to continue ...\n"
+	read -rp "Once have privilege to access to github, Press [Enter] key to continue ...\n"
 
 fi
 # config git global settings.

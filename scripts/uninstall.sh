@@ -1,4 +1,5 @@
 #!/bin/sh
+set -u
 
 printf "uninstall 3d-party packages for python...... \n"
 pip3 uninstall -y neovim
@@ -49,4 +50,3 @@ brew uninstall fzf
 brew uninstall reattach-to-user-namespace astyle readline xz pcre openssl gd
 brew uninstall pipenv python3 go ruby rust jq yarn npm node
 brew uninstall cmake wget git xclip zsh autojump tmux httpie
-
