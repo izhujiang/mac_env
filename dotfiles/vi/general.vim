@@ -39,6 +39,9 @@ else
     set wildignore+=.git\*,.hg\*,.svn\*
 endif
 
+" instruct vim/nvim to start an interactive shell, which load .bashrc or .zshrc, and then invoke functions by [!! | !} | !G] filter command.
+" set shcf=-ic
+
 " set helplang=cn             "help file in chinese
 "*****************************************************************************
 "" Abbreviations
@@ -56,51 +59,6 @@ cnoreabbrev Qall qall
 
 " nnoremap <Leader>q :q<CR>
 nnoremap Q :q<CR>
-"------------------------------------------------------------------------------
-" Sessions
-"------------------------------------------------------------------------------
-" session management
-let g:session_directory = "~/.session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
-
-" Define what to save with :mksession
-" blank - empty windows
-" buffers - all buffers not only ones in a window
-" curdir - the current directory
-" folds - including manually created ones
-" help - the help window
-" options - all options and mapping
-" winsize - window sizes
-" tabpages - all tab pages
-" slash and unix - share session file between unix and windows
-set sessionoptions=blank,buffers,curdir,folds,help,options,winsize,tabpages,slash,unix
-
-" session management
-nnoremap <leader>so :OpenSession<Space>
-nnoremap <leader>ss :SaveSession<Space>
-nnoremap <leader>sd :DeleteSession<CR>
-nnoremap <leader>sc :CloseSession<CR>
-
-" Remember things between sessions
-"
-" '20  - remember marks for 20 previous files
-" \"50 - save 50 lines for each register
-" :20  - remember 20 items in command-line history
-" /20  - remember 20 items in search history
-" %    - remember the buffer list (if vim started without a file arg)
-" n    - set name of viminfo file
-" set viminfo='20,\"50,:20,/20,%,n~/.viminfo.go
-
-" Remember info about open buffers on close
-" set viminfo^=%
-
-" Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
 
 "------------------------------------------------------------------------------
 " Files and buffers

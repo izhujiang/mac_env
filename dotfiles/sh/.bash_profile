@@ -3,6 +3,7 @@
 test -e "${HOME}/.env" && . "${HOME}/.env"
 test -e "${HOME}/.xprofile" && . "${HOME}/.xprofile"
 
+export HISTTIMEFORMAT='%F %T  '
 
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1

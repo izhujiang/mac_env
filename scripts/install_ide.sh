@@ -27,6 +27,7 @@ do
 done
 ln -s "${NVIM_CFG_DIR}"/init.vim "${HOME}"/.vimrc
 
+# todo: only download necessary .vim files
 for CFG_FILE in ale.vim ctrlp.vim easymotion.vim editorconfig.vim emmet-vim.vim fzf.vim grepper.vim indentline.vim jedi.vim \
                 molokai.vim neoformat.vim nerdtree.vim python-mode.vim syntastic.vim tagbar.vim typescript.vim ultisnips.vim \
                 vim-airline.vim vim-c.vim vim-commentary.vim vim-easyalign.vim vim-fugitive.vim vim-go.vim vim-java.vim \

@@ -16,6 +16,7 @@
 
 test -e ${HOME}/.xshrc && . ${HOME}/.xshrc
 
+alias h="history -i"
 # todo: try to source oh-my-zsh in .zprofile to speed up, but how about start zsh from bash
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
@@ -111,7 +112,6 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-#
 # Setting for autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 

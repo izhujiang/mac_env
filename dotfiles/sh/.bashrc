@@ -4,6 +4,15 @@
 
 export CLICOLOR=1
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+
+set - vi
+# enable globbing
+set +o noglob
+# enable **/* to recurses all the directories
+shopt -s globstar
+shopt -s extglob
+shopt -s failglob
+
 test -e "${HOME}/.iterm2_shell_integration.bash" && . "${HOME}/.iterm2_shell_integration.bash"
 [ -e ${HOME}/.fzf.bash ] && . ${HOME}/.fzf.bash
 

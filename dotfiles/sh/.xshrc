@@ -26,6 +26,20 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     # fi
 fi
 
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+alias rm="rm -i"
 alias f="fzf"
 alias ff="fzf --preview 'bat --color always {}'"
 # find file with preview, then open with vim/nvim
@@ -49,9 +63,9 @@ alias idea="${HOME}/idea"
 # add gi command to generate .gitignore file. ref: https://www.gitignore.io/
 # function gi() { curl -sL https://www.gitignore.io/api/\$@ ;}
 
-# java like
-alias spring-start='curl https://start.spring.io/starter.zip -d type=gradle-project -d javaVersion=11 -d dependencies=web,devtools -o starter.zip'
+# for java dev
+# alias spring-start='curl https://start.spring.io/starter.zip -d type=gradle-project -d javaVersion=11 -d dependencies=web,devtools -o starter.zip'
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="${HOME}/.sdkman"
-[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
+# The tool for managing parallel versions of multiple Software Development Kits (java and relative tools) on most Unix based systems.
+# export SDKMAN_DIR="${HOME}/.sdkman"
+# [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
