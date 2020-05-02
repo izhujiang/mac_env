@@ -16,7 +16,7 @@ indent_style = space
 charset = utf-8
 
 # 4 space indentation
-[*.{sh,py,c,java,go,awk}]
+[*.{sh,py,c,cpp,java,go,awk}]
 indent_style = space
 indent_size = 4
 

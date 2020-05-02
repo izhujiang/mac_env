@@ -1,11 +1,14 @@
 " https://github.com/w0rp/ale
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
 
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 
-let g:ale_lint_on_enter = 0
 let g:ale_completion_enabled = 0
+" When working with TypeScript files, ALE supports automatic imports from external modules.
+let g:ale_completion_tsserver_autoimport = 0
 
 " use the quickfix list instead of the loclist
 let g:ale_set_loclist = 1
@@ -22,17 +25,23 @@ let g:ale_open_list = 1
 " let g:ale_python_pylint_options = '--load-plugins pylint_django'
 
 " Only run linters named in ale_linters settings.
-" let g:ale_linters_explicit = 1
-" ALE can fix files with the ALEFix command.
+let g:ale_linters_explicit = 1
+
 " By default, all available tools for all supported languages will be run.
 " If you want to only select a subset of the tools, you can define b:ale_linters for a single buffer, or g:ale_linters globally
-
-let g:ale_linters = {'javascript': ['eslint'],
+let g:ale_linter_aliases = {'jsx': ['css', 'javascript']}
+let g:ale_linters = {
+                 \   'sh': ['shellcheck', 'language_server'],
+                 \   'javascript': ['eslint'],
                  \   'typescript': ['tsserver', 'tslint'],
+                 \   'jsx': ['stylelint', 'eslint'],
                  \   'go': ['gofmt', 'golint', 'go vet'],
+                 \   'rust': ['cargo'],
                  \   'python': ['flake8', 'pylint'],
                  \   'java': ['checkstyle', 'javac', 'google-java-format']
                  \ }
+" c/c++ using cppcheck, clangcheck, clangtidy and cquery linters. ref: https://github.com/dense-analysis/ale
+"
 " This |Dictionary| will be merged with a default dictionary containing the
 " following values:
 " {
@@ -40,7 +49,6 @@ let g:ale_linters = {'javascript': ['eslint'],
 " \   'help': [],
 " \   'perl': ['perlcritic'],
 " \   'python': ['flake8', 'mypy', 'pylint'],
-" \   'rust': ['cargo'],
 " \   'spec': [],
 " \   'text': [],
 " \   'zsh': ['shell'],
@@ -62,12 +70,18 @@ let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'],
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 
+" Show 6 lines of errors (default: 10)
+let g:ale_list_window_size = 6
+
 " ALE sets some background colors automatically for warnings and errors in the sign gutter
 " highlight clear ALEErrorSign
 " highlight clear ALEWarningSign
 "
-" " Set this in your vimrc file to disabling highlighting
+" ALE's highlights problems with highlight groups which link to SpellBad, SpellCap, error, and todo groups by default.
+" Set this in your vimrc file to disabling highlighting
 " let g:ale_set_highlights = 0
+
+" color scheme for ALE hightlights
 " highlight ALEWarning ctermbg=DarkMagenta
 
 "keep the sign gutter open at all times by setting the g:ale_sign_column_always to 1
@@ -103,12 +117,20 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " check JSX files with both stylelint and eslint
 " First, install eslint and install stylelint with stylelint-processor-styled-components.
-" augroup FiletypeGroup
-"     autocmd!
-"     au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
-" augroup END
+augroup JsxFiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+
 " autocmd bufwritepost *.js silent !standard --fix %
 " set autoread
 
-" Show 5 lines of errors (default: 10)
-let g:ale_list_window_size = 6
+
+" augroup YourGroup
+"     autocmd!
+"     autocmd User ALELintPre    call YourFunction()
+"     autocmd User ALELintPost   call YourFunction()
+"     autocmd User ALEJobStarted call YourFunction()
+"     autocmd User ALEFixPre     call YourFunction()
+"     autocmd User ALEFixPost    call YourFunction()
+"   augroup END

@@ -98,11 +98,10 @@ function! BuildYCM(info)
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
     " "!./install.py --clang-completer --go-completer --js-completer
-    " !python3 ./install.py --clang-completer --go-completer --js-completer --java-completer
-    "python3 ./install.py --c !python3 ./install.py --clang-completer --go-completer
-    !python3 ./install.py --clang-completer --go-completer --ts-completer
+    " !python3 ./install.py --clang-completer --go-completer --js-completer
+    " !python3 ./install.py --clangd-completer --go-completer --ts-completer --rust-completer --java-completer
+    !python3 ./install.py --clangd-completer --go-completer --ts-completer
     " ts-server with flag --ts-completer is two slow at this stag, waiting for coming version....
-    " !python3 ./install.py --clang-completer --go-completer --ts-completer --java-completer
   endif
 endfunction
 " Todo: install(update and build automaticlly) YouCompleteMe like vimpro
