@@ -30,10 +30,6 @@ Plug 'tpope/vim-fugitive'
 " Tagbar: displays a window with a hierarchical list of tags in the current file.
 Plug 'majutsushi/tagbar'
 
-" Dark powered shell interface for NeoVim and Vim8.
-if has('nvim-0.1')
-    Plug 'Shougo/deol.nvim'
-endif
 " Extended session management for Vim, require vmi-misc
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -99,7 +95,7 @@ function! BuildYCM(info)
   if a:info.status == 'installed' || a:info.force
     " "!./install.py --clang-completer --go-completer --js-completer
     " !python3 ./install.py --clang-completer --go-completer --js-completer
-    " !python3 ./install.py --clangd-completer --go-completer --ts-completer --rust-completer --java-completer
+    " !python3 ./install.py --clangd-completer --go-completer --ts-completer --rust-completer --java-completer(JDK8 required )
     !python3 ./install.py --clangd-completer --go-completer --ts-completer
     " ts-server with flag --ts-completer is two slow at this stag, waiting for coming version....
   endif
@@ -144,14 +140,8 @@ Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for':'go'}
 Plug 'AndrewRadev/splitjoin.vim', {'for': 'go'}
 
 "" ------------Python Bundle ----------------------------------
-" Python Lang Bundle
 " YouCompleteMe has built-in jedi engine.
-" Plug 'davidhalter/jedi-vim'
-
-" Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
-" Sorry. Waiting for stable version. master version does't support vim-plug.
-" Plug 'python-mode/python-mode', { 'for': 'python', 'do': 'git submodule update --init --recursive'}
-Plug 'python-mode/python-mode', { 'for': 'python' }
+" Ale has built-in linters (PyLint, flake8) and formatter (autopep8, yape).
 
 " --------------Java----------------------------------------------
 " Todo: config for multi-filetype and dorp other relative plugins as js-beautify

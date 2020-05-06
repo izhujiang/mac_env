@@ -37,12 +37,14 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_COMPLETION_OPTS='-x'
 
 # 3. ide-level env and tools
-export PATH="${HOME}/.cargo/bin:$PATH"
 
 # golang
 # export GOROOT=$HOME/repo/golang/go
 export GOPATH=${HOME}/workspace/go
 export PATH=${PATH}:$(go env GOPATH)/bin
+
+# rust
+[ -d "${HOME}/.cargo" ] && export PATH="${PATH}:${HOME}/.cargo/bin"
 
 # python
 if command -v pyenv 1>/dev/null 2>&1; then

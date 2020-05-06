@@ -100,6 +100,6 @@ installVscodePlugins () {
     printf "install extension for code ...\n"
     code --install-extension ms-vscode.go
     code --install-extension bmuskalla.vscode-tldr
-    printf "todo: install more extensions for vscode"
+    printf "todo: install more extensions for vscode.\n"
 }
 installVscodePlugins

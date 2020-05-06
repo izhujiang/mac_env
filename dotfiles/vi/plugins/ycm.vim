@@ -1,10 +1,36 @@
+" To prevent the execution of malicious code from a file you didn't write,
+" YCM will ask you once per .ycm_extra_conf.py if it is safe to load.
 let g:ycm_confirm_extra_conf = 0 "关闭加载.ycm_extra_conf.py提示
+
+" Normally, YCM searches for a .ycm_extra_conf.py file for compilation flags (see the User Guide for more details on how this works).
+"
+" YCM looks for a .ycm_extra_conf.py file in the directory of the opened file or in any directory above it in the hierarchy (recursively);
+" when the file is found, it is loaded (only once!) as a Python module.
+" YCM calls a Settings method in that module which should provide it with the information necessary to compile the current file.
+"
+" NOTE: It is highly recommended to include -x <language> flag to libclang.
+" This is so that the correct language is detected, particularly for header files.
+" Common values are -x c for C, -x c++ for C++, -x objc for Objective-C, and -x cuda for CUDA.
+"
+" This option specifies a fallback path to a config file which is used if no .ycm_extra_conf.py is found.
 " let g:ycm_global_ycm_extra_conf = ''
 if has('nvim')
-    let g:ycm_global_ycm_extra_conf = '~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+  let g:ycm_global_ycm_extra_conf = "${HOME}/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
 else
-    let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+  let g:ycm_global_ycm_extra_conf = "${HOME}/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
 endif
+if filereadable(expand("${HOME}/.ycm_extra_conf.py"))
+  let g:ycm_global_ycm_extra_conf = "${HOME}/.ycm_extra_conf.py"
+endif
+
+" YCM will by default search for an appropriate Python interpreter on your system.
+" You can use this option to override that behavior and force the use of a specific interpreter of your choosing.
+" DO NOT set g:ycm_server_python_interpreter. Actually, ycmd only run with the python that build it.
+" (python3 ./install.py --clangd-completer --go-completer --ts-completer --rust-completer)
+"
+" NOTE: This interpreter is only used for the ycmd server.
+" The YCM client running inside Vim always uses the Python interpreter that's embedded inside Vim.
+" let g:ycm_server_python_interpreter = ''
 
 " enable for debug
 " let g:ycm_log_level = 'debug'

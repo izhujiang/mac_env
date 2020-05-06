@@ -14,25 +14,30 @@ brew update && brew upgrade
 printf "\nStart installing libs, packages and tools ...\n"
 # brew install binutils gcc cmake curl wget git
 brew install gcc cmake curl wget git
-# brew install ripgrep bat fd z
-brew install bat fd z
+brew install ripgrep bat fd z
+brew install astyle pcre gd httpie
 brew install tmux tmuxinator
 
-# brew install node yarn python3 pyenv pipenv go ruby rust jq
+# ycmd has builtin llvm/clangd
+# brew install llvm
 brew install perl
 brew install node yarn
 brew install python3 pyenv pipenv
+# build CPython with shared library with --enable-framework required by YouCompleteMe ycmd server and other 3rd party tools, if use python in pyenv.
+# env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.8.2
+# pyenv global 3.8.2
 brew install go
 
-brew install astyle readline xz pcre openssl gd geoip httpie
 if [ "${SYSOS}" = "Linux" ] ; then
     # install rust
-    curl https://sh.rustup.rs -sSf | sh -s -- -y
-    printf "Updating ripgrep 11.0.2 to 12.0.0 failed in homebrew Ubuntu due to asciidoc, install ripgrep later plz ...\n"
+    # printf "Updating ripgrep 11.0.2 to 12.0.0 failed in homebrew Ubuntu due to asciidoc, install ripgrep later plz ...\n"
+    brew install bzip2 libffi libxml2 libxmlsec1
+    # install into ${HOME}/.cargo, for linuxbrew doesn't support rust
+    curl https://sh.rustup.rs -sSf | sh -s -- -yq --no-modify-path
+
     brew install xclip
 elif [ "${SYSOS}" = "Darwin" ] ; then
     brew cask install iterm2
-    brew install ripgrep
     # reattach-to-user-namespace support copy and pasty
     brew install autojump reattach-to-user-namespace
     brew install rust
@@ -48,11 +53,12 @@ brew install fzf diff-so-fancy
 
 # install nginx, or install nginx manually from sourcecode, and fix --with-http_ssl_module bug referring to https://www.widlabs.com/article/mac-os-x-nginx-compile-symbol-not-found-for-architecture-x86_64
 brew install luarocks nginx
+# install vim with python3 support
 # brew install vim --enable-pythoninterp=dynamic --enable-python3interp=dynamic
+# YouCompleteMe provides more semantic IDE-like features (displaying signature help and documentation) with vim only, wait for new version
 brew install vim
 # maybe better choice for nvim
 brew install neovim
-# install vim with python3 support
 
 # install vscode
 if [ "${SYSOS}" = "Darwin" ] ; then
