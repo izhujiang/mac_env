@@ -45,17 +45,13 @@ export GOPATH=${HOME}/workspace/go
 
 printf "install plugins for vim...\n"
 vim +PlugInstall +qall
-if [ -d "${HOME}/.vim/plugged/ycmd-lsp" ]; then
-    cd "${HOME}/.vim/plugged/ycmd-lsp" && git pull
-else
-    git clone https://github.com/ycm-core/lsp-examples.git "${HOME}/.vim/plugged/ycmd-lsp"
-fi
+[ -d "${HOME}/.vim/plugged/ycmd-lsp" ] || git clone https://github.com/ycm-core/lsp-examples.git "${HOME}/.vim/plugged/ycmd-lsp"
+FlagsLsp=( --enable-bash --enable-docker --enable-json --enable-yaml --enable-viml --enable-.git --enable-test)
+cd "${HOME}/.vim/plugged/ycmd-lsp" && git pull && python3 ./install.py "${FlagsLsp[@]}"
 
 printf "install plugins for nvim...\n"
 nvim +PlugInstall +qall
-if [ -d "${HOME}/.config/nvim/plugged/ycmd-lsp" ]; then
-    cd "${HOME}/.config/nvim/plugged/ycmd-lsp" && git pull
-else
-    git clone https://github.com/ycm-core/lsp-examples.git "${HOME}/.config/nvim/plugged/ycmd-lsp"
-fi
+[ -d "${HOME}/.config/nvim/plugged/ycmd-lsp" ] || git clone https://github.com/ycm-core/lsp-examples.git "${HOME}/.config/nvim/plugged/ycmd-lsp"
+cd "${HOME}/.config/nvim/plugged/ycmd-lsp" && git pull && python3 ./install.py "${FlagsLsp[@]}"
+
 sleep 1
