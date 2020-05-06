@@ -16,8 +16,10 @@ let g:ycm_confirm_extra_conf = 0 "关闭加载.ycm_extra_conf.py提示
 " let g:ycm_global_ycm_extra_conf = ''
 if has('nvim')
   let g:ycm_global_ycm_extra_conf = "${HOME}/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
+  let s:lsp = "${HOME}/.config/nvim/plugged/ycmd-lsp"
 else
   let g:ycm_global_ycm_extra_conf = "${HOME}/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
+  let s:lsp = "${HOME}/.vim/plugged/ycmd-lsp"
 endif
 if filereadable(expand("${HOME}/.ycm_extra_conf.py"))
   let g:ycm_global_ycm_extra_conf = "${HOME}/.ycm_extra_conf.py"
@@ -202,3 +204,90 @@ nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntast
 nnoremap  <F4> :YcmDiags<CR>
 
 autocmd InsertLeave * if pumvisible() != 0|pclose|endif    "离开插入模式后自动关闭预览窗口
+
+" support language servers used with YCM
+let g:ycm_language_server = [
+  \   {
+  \     'name': 'bash',
+  \     'cmdline': [ 'node', expand( s:lsp . '/bash/node_modules/.bin/bash-language-server' ), 'start' ],
+  \     'filetypes': [ 'sh', 'bash' ],
+  \   },
+  " \   {
+  " \     'name': 'dart',
+  " \     'cmdline': [ 'dart', expand( s:lsp . '/dart/analysis_server.dart.snapshot' ), '--lsp' ],
+  " \     'filetypes': [ 'dart' ],
+  " \   },
+  \   {
+  \     'name': 'yaml',
+  \     'cmdline': [ 'node', expand( s:lsp . '/yaml/node_modules/.bin/yaml-language-server' ), '--stdio' ],
+  \     'filetypes': [ 'yaml' ],
+  \   },
+  " \   {
+  " \     'name': 'php',
+  " \     'cmdline': [ 'php', expand( s:lsp . '/php/vendor/bin/php-language-server.php' ) ],
+  " \     'filetypes': [ 'php' ],
+  " \   },
+  \   {
+  \     'name': 'json',
+  \     'cmdline': [ 'node', expand( s:lsp . '/json/node_modules/.bin/vscode-json-languageserver' ), '--stdio' ],
+  \     'filetypes': [ 'json' ],
+  \   },
+  \   {
+  \     'name': 'ruby',
+  \     'cmdline': [ expand( s:lsp . '/ruby/bin/solargraph' ), 'stdio' ],
+  \     'filetypes': [ 'ruby' ],
+  \   },
+  \   { 'name': 'kotlin',
+  \     'filetypes': [ 'kotlin' ],
+  \     'cmdline': [ expand( s:lsp . '/kotlin/server/build/install/server/bin/server' ) ],
+  \   },
+  " \   { 'name': 'd',
+  " \     'filetypes': [ 'd' ],
+  " \     'cmdline': [ expand( s:lsp . '/d/serve-d' ) ],
+  " \   },
+  \   { 'name': 'vue',
+  \     'filetypes': [ 'vue' ],
+  \     'cmdline': [ expand( s:lsp . '/vue/node_modules/.bin/vls' ) ]
+  \   },
+  \   { 'name': 'docker',
+  \     'filetypes': [ 'dockerfile' ],
+  \     'cmdline': [ expand( s:lsp . '/docker/node_modules/.bin/docker-langserver' ), '--stdio' ]
+  \   },
+  \   { 'name': 'vim',
+  \     'filetypes': [ 'vim' ],
+  \     'cmdline': [ expand( s:lsp . '/viml/node_modules/.bin/vim-language-server' ), '--stdio' ]
+  \   },
+  \   { 'name': 'scala',
+  \     'filetypes': [ 'scala' ],
+  \     'cmdline': [ 'metals-vim' ],
+  \     'project_root_files': [ 'build.sbt' ]
+  \   },
+  " \   { 'name': 'purescript',
+  " \     'filetypes': [ 'purescript' ],
+  " \     'cmdline': [ expand( s:lsp . '/viml/node_modules/.bin/purescript-language-server' ), '--stdio' ]
+  " \   },
+  " \   { 'name': 'fortran',
+  " \     'filetypes': [ 'fortran' ],
+  " \     'cmdline': [ 'fortls' ],
+  " \   },
+  \   { 'name': 'haskell',
+  \     'filetypes': [ 'haskell', 'hs', 'lhs' ],
+  \     'cmdline': [ 'hie-wrapper', '--lsp' ],
+  \     'project_root_files': [ '.stack.yaml', 'cabal.config', 'package.yaml' ]
+  \   },
+  " \   { 'name': 'julia',
+  " \     'filetypes': [ 'julia' ],
+  " \     'project_root_files': [ 'Project.toml' ],
+  " \     'cmdline': <See note below>
+  " \   },
+  \   { 'name': 'lua',
+  \     'filetypes': [ 'lua' ],
+  \     'cmdline': [ expand( s:lsp . '/lua/lua-language-server/root/extension/server/bin/macOS/lua-language-server'),
+  \                  expand( s:lsp . '/lua/lua-language-server/root/extension/server/main.lua' ) ]
+  \   },
+  \   { 'name': 'rust',
+  \     'filetypes': [ 'rust' ],
+  \     'cmdline': [ expand( s:lsp .  '/rust/rust-analyzer/target/release/rust-analyzer' ) ],
+  \     'project_root_files': [ 'Cargo.toml' ],
+  \   },
+  \ ]

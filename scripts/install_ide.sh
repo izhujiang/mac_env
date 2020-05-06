@@ -40,12 +40,22 @@ for CFG_FILE in .editorconfig .ycm_extra_conf.py
 do
     curl -fsSL --create-dirs -o "${HOME}/${CFG_FILE}" "https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/vi/${CFG_FILE}"
 done
-
 printf "vim-go check GOPATH: %s \n" "${GOPATH}"
 export GOPATH=${HOME}/workspace/go
+
 printf "install plugins for vim...\n"
 vim +PlugInstall +qall
+if [ -d "${HOME}/.vim/plugged/ycmd-lsp" ]; then
+    cd "${HOME}/.vim/plugged/ycmd-lsp" && git pull
+else
+    git clone https://github.com/ycm-core/lsp-examples.git "${HOME}/.vim/plugged/ycmd-lsp"
+fi
+
 printf "install plugins for nvim...\n"
 nvim +PlugInstall +qall
-
+if [ -d "${HOME}/.config/nvim/plugged/ycmd-lsp" ]; then
+    cd "${HOME}/.config/nvim/plugged/ycmd-lsp" && git pull
+else
+    git clone https://github.com/ycm-core/lsp-examples.git "${HOME}/.config/nvim/plugged/ycmd-lsp"
+fi
 sleep 1
