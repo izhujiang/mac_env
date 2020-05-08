@@ -108,8 +108,9 @@ installZshEnv () {
         installPowerline
         configBashZsh
 
-        if [ ! "${SHELL}" =~ "zsh" ] ; then
-            printf "\n"
+        # if current shell is not zsh, promote to change it into zsh.
+        if [ "${SHELL%%zsh}" = "${SHELL}" ] ; then
+            printf "\nThe current \$SHELL is: ${SHELL}\n"
             while true; do
                 read -ep "Do you wish to run chsh for switching into zsh now? Y/[n]" -i "Y" yn
                 case $yn in
