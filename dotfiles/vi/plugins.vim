@@ -62,6 +62,9 @@ Plug 'Yggdroot/indentLine'
 "A simple, easy-to-use Vim alignment plugin
 Plug 'junegunn/vim-easy-align'
 
+" Switch between single-line and multiline forms of code
+Plug 'AndrewRadev/splitjoin.vim', {'for': ['c', 'go', 'html', 'css', 'haml', 'javascript', 'python', 'rust', 'sh', 'vim', 'yaml']}
+
 " Comment stuff out, Use gcc to comment out a line (takes a count), gc to comment out the target of a motion(likes gcap),
 " gc in visual mode to comment out the selection, and gc in operator pending mode to target a comment.
 Plug 'tpope/vim-commentary'
@@ -82,6 +85,7 @@ Plug 'chrisbra/NrrwRgn'
 " A bunch of syntastic settings were ripped out, and replaced with a slim ALE configuration.
 " For each language, ALE will automatically detect linters that are installed on the system.
 Plug 'w0rp/ale'
+" Use $VIMRUNTIME/syntax/*.vim as syntax files
 
 " a suite consist of supertab, YouCompleteMe and ultisnips
 Plug 'ervandew/supertab'
@@ -114,13 +118,9 @@ endif
 
 " Asynchronous build and test dispatcher
 Plug 'tpope/vim-dispatch'
-
 if has('nvim-0.1')
     Plug 'radenling/vim-dispatch-neovim'
 endif
-
-" ale_fixer does ['remove_trailing_lines', 'trim_whitespace'] when on_save.
-" Plug 'bronson/vim-trailing-whitespace'
 " A Vim wrapper for running tests on different granularities.
 Plug 'janko/vim-test'
 
@@ -137,58 +137,29 @@ Plug 'wlemuel/vim-tldr'
 "" ------------Golang Bundle ----------------------------------
 Plug 'sebdah/vim-delve'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for':'go'}
-Plug 'AndrewRadev/splitjoin.vim', {'for': 'go'}
 
 "" ------------Python Bundle ----------------------------------
 " YouCompleteMe has built-in jedi engine.
 " Ale has built-in linters (PyLint, flake8) and formatter (autopep8, yape).
 
 " --------------Java----------------------------------------------
-" Todo: config for multi-filetype and dorp other relative plugins as js-beautify
-" format source code before saving files
-" A (Neo)vim plugin for formatting code, supporting multi filetypes
-Plug 'sbdchd/neoformat', {'for': 'java'}
-
 Plug 'tfnico/vim-gradle', { 'for': [ 'java', 'groovy' ] }
 Plug 'airblade/vim-rooter', { 'for': [ 'java', 'groovy' ] }
 
-"     " sbt-vim
-"     Plug 'ktvoelker/sbt-vim' , { 'for': 'scala' }
-" endif
-" " vim-scala
+" Plug 'ktvoelker/sbt-vim' , { 'for': 'scala' }
 " Plug 'derekwyatt/vim-scala' , { 'for': 'scala' }
 
 "" ------------Html/css/Javascript Bundle ----------------------------------
-Plug 'hail2u/vim-css3-syntax'
-Plug 'gorodinskiy/vim-coloresque'
-Plug 'tpope/vim-haml'
-
-" Javascript Bundle, html/css
-" Enhanced javascript syntax file for Vim
-Plug 'pangloss/vim-javascript', {'for': ['javascript', 'html', 'css']}
-" Plug 'mxw/vim-jsx', {'for': 'javascript'}
-" Prettier is an opinionated code formatter with support for: JavaScript JSX Flow TypeScript CSS JSON GraphQL Markdown YAML
-" Plug 'prettier/vim-prettier', {
-    " \ 'do': 'yarn install',
-    " \ 'for': ['html', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue']}
-
-" Provides support for expanding abbreviations similar to emmet.
 Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript','typescript']}
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'tpope/vim-haml', {'for': ['haml', 'sass', 'scss']}
 
-" plugs for TypeScript
-Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
-" Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
-
-" yast will set filetype as typescript.tsx which YouCompleteMe can't work with ycm_semantic_triggers
-" yast will set filetype=typescript.tsx
-" Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
 " --------------Markdown----------------------------------------------
 " for makrdown and hugo
 " Plug 'robertbasic/vim-hugo-helper', {'for': 'Markdown'}
 
 " Build MarkdownComposer
 " function! BuildComposer(info)
-"   if a:info.status != 'unchanged' || a:info.force
 "     if has('nvim-0.1')
 "       !cargo build --release
 "     else

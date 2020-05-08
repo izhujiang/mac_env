@@ -140,7 +140,7 @@ set completeopt=longest,menu
 " Set command-line completion mode
 set wildmode=list:longest,full
 set whichwrap+=<,>,h,l
-set dictionary=/usr/share/dict/words,/usr/share/dict/words
+" set dictionary=/usr/share/dict/words,/usr/share/dict/words
 
 " Enable Ctrl-A/Ctrl-X to work on octal and hex numbers, as well as characters
 set nrformats=octal,hex,alpha

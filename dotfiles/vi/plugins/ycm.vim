@@ -21,7 +21,7 @@ else
   let g:ycm_global_ycm_extra_conf = "${HOME}/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
   let s:lsp = "${HOME}/.vim/plugged/ycmd-lsp"
 endif
-if filereadable(expand("${HOME}/.ycm_extra_conf.py"))
+if filereadable(expand($HOME ."/.ycm_extra_conf.py"))
   let g:ycm_global_ycm_extra_conf = "${HOME}/.ycm_extra_conf.py"
 endif
 
@@ -94,8 +94,8 @@ let g:ycm_semantic_triggers = {
     \   'cpp,objcpp' : ['->', '.', '::'],
     \   'perl' : ['->'],
     \   'php' : ['->', '::'],
-    \   'java,python,scala,go' : ['.', 're!\w{4}'],
-    \   'javascript,jsx,javascript.jsx,typescript,typescript.tsx' : ['.', 're!\w{4}'],
+    \   'java,python,scala,go' : ['.', 're!\w{2}'],
+    \   'javascript,jsx,javascript.jsx,typescript,typescript,tsx' : ['.', 're!\w{2}'],
     \   'cs,d,perl6,vb,elixir' : ['.'],
     \   'ruby' : ['.', '::'],
     \   'lua' : ['.', ':'],
@@ -111,11 +111,7 @@ let g:ycm_semantic_triggers = {
     \     ']('
     \   ]
     \ }
-" YCM is disable when filetype setting typescript.tsx even ycm_semantic_triggers['typescript.tsx'] has been set like following:
-" let g:ycm_semantic_triggers['typescript.tsx'] = ['.', 're!\w{2}']
 
-" only allow c/c++/... files to enable YCM be turned on
-" add javascript.jsx setted by mxw/vim-jsx because *.js's filetype setted by mxw/vim-jsx
 let g:ycm_filetype_whitelist = {
 			\ "c":1,
 			\ "cpp":1,
@@ -125,9 +121,9 @@ let g:ycm_filetype_whitelist = {
 			\ "java":1,
 			\ "groovy":1,
 			\ "scala":1,
-            \ "js":1,
+      \ "js":1,
 			\ "javascript":1,
-            \ 'javascript.jsx':1,
+      \ 'jsx':1,
 			\ "typescript":1,
 			\ "python":1,
 			\ "go":1,
@@ -153,10 +149,10 @@ let g:ycm_filetype_blacklist = {
     \ }
 
 let g:ycm_filepath_blacklist = {
-      \ 'html' : 1,
-      \ 'jsx' : 1,
-      \ 'xml' : 1,
-      \}
+    \ 'html' : 1,
+    \ 'jsx' : 1,
+    \ 'xml' : 1,
+    \}
 
 " Disable unhelpful semantic completions.
 let g:ycm_filetype_specific_completion_to_disable = {
@@ -231,7 +227,6 @@ let g:ycm_language_server = [
   \     'cmdline': [ expand( s:lsp . '/viml/node_modules/.bin/vim-language-server' ), '--stdio' ]
   \   },
   \ ]
-
   " \   { 'name': 'rust',
   " \     'filetypes': [ 'rust' ],
   " \     'cmdline': [ expand( s:lsp .  '/rust/rust-analyzer/target/release/rust-analyzer' ) ],

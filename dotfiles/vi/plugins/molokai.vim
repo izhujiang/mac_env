@@ -3,11 +3,11 @@ let g:rehash256 = 1
 let g:molokai_original = 1
 
 if has('nvim')
-  if isdirectory(expand("${HOME}/.config/nvim/plugged/molokai"))
+  if isdirectory(expand($HOME ."/.config/nvim/plugged/molokai"))
     colorscheme molokai
-  fi
+  endif
 else
-  if isdirectory(expand("${HOME}/.vim/plugged/molokai"))
+  if isdirectory(expand($HOME ."/.vim/plugged/molokai"))
     colorscheme molokai
-  fi
+  endif
 endif

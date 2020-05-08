@@ -29,9 +29,8 @@ ln -s "${NVIM_CFG_DIR}"/init.vim "${HOME}"/.vimrc
 
 # todo: only download necessary .vim files
 for CFG_FILE in ale.vim ctrlp.vim easymotion.vim editorconfig.vim vim-emmet.vim fzf.vim grepper.vim indentline.vim \
-                molokai.vim neoformat.vim nerdtree.vim tagbar.vim vim-typescript.vim ultisnips.vim \
-                vim-airline.vim vim-c.vim vim-commentary.vim vim-easyalign.vim vim-fugitive.vim vim-go.vim vim-java.vim \
-                vim-javascript.vim vim-jsx.vim vim-markdown.vim vim-prettier.vim vim-test.vim vim-tsx.vim ycm.vim
+                molokai.vim nerdtree.vim tagbar.vim ultisnips.vim \
+                vim-airline.vim vim-commentary.vim vim-easyalign.vim vim-fugitive.vim vim-test.vim ycm.vim
 do
     curl -fsSL --create-dirs -o "${NVIM_CFG_DIR}/plugins/${CFG_FILE}" "https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/vi/plugins/${CFG_FILE}"
 done

@@ -28,40 +28,32 @@ let g:ale_open_list = 1
 let g:ale_linters_explicit = 1
 
 " By default, all available tools for all supported languages will be run.
-" If you want to only select a subset of the tools, you can define b:ale_linters for a single buffer, or g:ale_linters globally
+" you can define b:ale_linters for a single buffer, or g:ale_linters globally, if you want to only select a subset of the tools.
 let g:ale_linter_aliases = {'jsx': ['css', 'javascript']}
 let g:ale_linters = {
-                 \   'sh': ['shellcheck', 'language_server'],
-                 \   'javascript': ['eslint'],
-                 \   'typescript': ['tsserver', 'tslint'],
-                 \   'jsx': ['stylelint', 'eslint'],
-                 \   'go': ['gofmt', 'golint', 'go vet'],
-                 \   'rust': ['cargo'],
-                 \   'python': ['flake8', 'pylint'],
-                 \   'java': ['checkstyle', 'javac', 'google-java-format']
-                 \ }
-" c/c++ using cppcheck, clangcheck, clangtidy and cquery linters. ref: https://github.com/dense-analysis/ale
-"
-" This |Dictionary| will be merged with a default dictionary containing the
-" following values:
-" {
-" \   'csh': ['shell'],
-" \   'help': [],
-" \   'perl': ['perlcritic'],
-" \   'python': ['flake8', 'mypy', 'pylint'],
-" \   'spec': [],
-" \   'text': [],
-" \   'zsh': ['shell'],
-" \}
-let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'],
-                 \ 'javascript': ['prettier', 'eslint'],
-                 \ 'typescript': ['prettier'],
-                 \ 'scss': ['prettier'],
-                 \ 'html': ['prettier'],
-                 \  'css': ['prettier'],
-                 \ 'python': ['autopep8', 'yapf']
-                 \ }
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'sh': ['shellcheck'],
+      \ 'javascript': ['eslint'],
+      \ 'typescript': ['tsserver', 'tslint'],
+      \ 'go': ['gofmt', 'golint', 'go vet'],
+      \ 'python': ['flake8', 'pylint'],
+      \ 'java': ['checkstyle', 'javac', 'google-java-format'],
+      \ 'rust': ['cargo'],
+      \ 'c': ['clang', 'clangd', 'cpplint'],
+      \ 'cpp': ['clang', 'clangd', 'cpplint'],
+      \ }
 
+let g:ale_fixers = {
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'javascript': ['prettier', 'eslint'],
+      \ 'typescript': ['prettier', 'eslint'],
+      \ 'scss': ['prettier'],
+      \ 'html': ['prettier'],
+      \ 'css': ['prettier'],
+      \ 'python': ['autopep8', 'yapf'],
+      \ 'c': ['clang-format', 'uncrustify'],
+      \ 'cpp': ['clang-format', 'uncrustify'],
+      \ }
 " let g:ale_fixers = {'javascript': ['eslint',' prettier'] }
 " let g:ale_fixers = {'javascript': ['standard']}
 

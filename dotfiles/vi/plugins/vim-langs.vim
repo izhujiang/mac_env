@@ -1,13 +1,13 @@
+" ----make/cmake
+augroup vi-make-cmake
+  autocmd!
+  autocmd FileType make setlocal noexpandtab
+  autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
+augroup END
+
 " ----Golong, vim-go settings
-augroup go
+augroup vi-go
     autocmd!
-    " override by .editorconfig
-    " autocmd BufNewFile,BufRead *.go
-    "  \ set noexpandtab |
-    "  \ set tabstop=4 |
-    "  \ set shiftwidth=4 |
-    "  \ set softtabstop=4 |
-    "  \ set fileformat=unix
 
     autocmd FileType go nmap <leader>b  :<C-u>call <SID>build_go_files()<CR>
     " autocmd FileType go nmap <leader>gb  :<C-u>call <SID>build_go_files()<CR>
@@ -19,10 +19,10 @@ augroup go
     " autocmd Filetype go nmap <silent><Leader>r :w<cr>:split term://go run *.go<CR>
     " execute current file
     autocmd Filetype go nmap <silent><Leader>r :w<cr>:split term://go run %<CR>
+    " execute the whole project
     " autocmd Filetype go nmap <silent><Leader>r :vsplit term://go run *.go<CR>
     " autocmd FileType go nmap <leader>gr  <Plug>(go-run)
 
-    " execute the whole project
 
     autocmd FileType go nmap <leader>t <Plug>(go-test)
     " autocmd FileType go nmap <leader>gt <Plug>(go-test)
@@ -33,7 +33,6 @@ augroup go
 
     " go-coverage-toggle, Calls go test -coverprofile-temp.out for the current package and shows the coverage annotation.
     " If run again it acts as a toggle and clears the annotation.
-
     " autocmd FileType go nmap <leader>gc <Plug>(go-coverage)
     autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
     " autocmd FileType go nmap <leader>gc <Plug>(go-coverage-clear)
@@ -186,3 +185,33 @@ function! s:build_go_files()
     call go#cmd#Build(0)
   endif
 endfunction
+
+
+" ---- java
+augroup vi-java
+    autocmd!
+    autocmd BufNewFile,BufRead *.gradle setf groovy
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    autocmd FileType java,groovy :execute "compiler gradle"
+augroup END
+
+augroup vi-javascript
+    autocmd!
+    au BufNewFile,BufRead *.handlebars set filetype=html
+augroup END
+
+" ---- Markdown
+" options ref to https://github.com/plasticboy/vim-markdown
+" autocmd BufNewFile,BufReadPost *.md
+" \ set filetype=markdown
+" let g:vim_markdown_folding_disabled = 1
+" \ let g:vim_markdown_folding_style_pythonic = 1
+" \ let g:vim_markdown_override_foldtext = 0
+" \ let g:vim_markdown_folding_level = 6
+" let g:vim_markdown_no_default_key_mappings = 1
+" \ let g:vim_markdown_toc_autofit = 1
+" let g:vim_markdown_emphasis_multiline = 0
+" \ let g:vim_markdown_math = 1
+" \ set conceallevel=2
+" let g:vim_markdown_conceal = 0
+" let g:tex_conceal = ""
