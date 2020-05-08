@@ -15,14 +15,14 @@ let g:ycm_confirm_extra_conf = 0 "关闭加载.ycm_extra_conf.py提示
 " This option specifies a fallback path to a config file which is used if no .ycm_extra_conf.py is found.
 " let g:ycm_global_ycm_extra_conf = ''
 if has('nvim')
-  let g:ycm_global_ycm_extra_conf = "${HOME}/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
-  let s:lsp = "${HOME}/.config/nvim/plugged/ycmd-lsp"
+  let g:ycm_global_ycm_extra_conf = expand($HOME ."/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py")
+  let s:lsp = expand($HOME ."/.config/nvim/plugged/ycmd-lsp")
 else
-  let g:ycm_global_ycm_extra_conf = "${HOME}/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
-  let s:lsp = "${HOME}/.vim/plugged/ycmd-lsp"
+  let g:ycm_global_ycm_extra_conf = expand($HOME ."/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py")
+  let s:lsp = expand($HOME ."/.vim/plugged/ycmd-lsp")
 endif
 if filereadable(expand($HOME ."/.ycm_extra_conf.py"))
-  let g:ycm_global_ycm_extra_conf = "${HOME}/.ycm_extra_conf.py"
+  let g:ycm_global_ycm_extra_conf = expand($HOME ."/.ycm_extra_conf.py")
 endif
 
 " YCM will by default search for an appropriate Python interpreter on your system.

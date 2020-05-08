@@ -8,8 +8,7 @@ printf "Install plugins for vim/nvim......\n"
 NVIM_CFG_DIR=${HOME}/.config/nvim
 
 CURRENTDATE=$(date +"%Y-%m-%d-%H%M")
-for CFG_FILE in ${HOME}/.vim/.vimrc ${NVIM_CFG_DIR}/init.vim ${NVIM_CFG_DIR}/general.vim ${NVIM_CFG_DIR}/plugins.vim ${NVIM_CFG_DIR}/plugins \
-                ${HOME}/.editorconfig ${HOME}/.eslintrc.js
+for CFG_FILE in ${HOME}/.vim/.vimrc ${NVIM_CFG_DIR}/init.vim ${NVIM_CFG_DIR}/general.vim ${NVIM_CFG_DIR}/plugins.vim ${NVIM_CFG_DIR}/plugins ${HOME}/.editorconfig
 do
     if [ -L "${CFG_FILE}" ]; then
         unlink "${CFG_FILE}"
@@ -43,7 +42,7 @@ printf "vim-go check GOPATH: %s \n" "${GOPATH}"
 export GOPATH=${HOME}/workspace/go
 
 printf "install plugins for vim...\n"
-vim +PlugInstall +qall
+vim +'silent! PlugInstall' +qall
 [ -d "${HOME}/.vim/plugged/ycmd-lsp" ] || git clone https://github.com/ycm-core/lsp-examples.git "${HOME}/.vim/plugged/ycmd-lsp"
 FlagsLsp=( --enable-bash --enable-docker --enable-json --enable-yaml --enable-viml --enable-.git --enable-test)
 cd "${HOME}/.vim/plugged/ycmd-lsp" && git pull && python3 ./install.py "${FlagsLsp[@]}"
