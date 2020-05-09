@@ -38,8 +38,9 @@ for CFG_FILE in .editorconfig .ycm_extra_conf.py
 do
     curl -fsSL --create-dirs -o "${HOME}/${CFG_FILE}" "https://raw.githubusercontent.com/izhujiang/my_env/master/dotfiles/vi/${CFG_FILE}"
 done
-printf "vim-go check GOPATH: %s \n" "${GOPATH}"
+
 export GOPATH=${HOME}/workspace/go
+printf "vim-go check GOPATH: %s \n" "${GOPATH}"
 
 printf "install plugins for vim...\n"
 vim +'silent! PlugInstall' +qall

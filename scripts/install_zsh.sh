@@ -110,24 +110,24 @@ installZshEnv () {
 
         # if current shell is not zsh, promote to change it into zsh.
         if [ "${SHELL%%zsh}" = "${SHELL}" ] ; then
-            printf "\nThe current \$SHELL is: ${SHELL}\n"
-            while true; do
-                read -ep "Do you wish to run chsh for switching into zsh now? Y/[n]" -i "Y" yn
-                case $yn in
-                    [Yy]* )
-                        chsh -s "$(grep zsh /etc/shells | head -n1)"
-                        printf "\nImport!!!\n"
-                        # printf "Logout(use logout command) and start a new login session for \$SHELL change to take effect. \n"
-                        printf "Please re-login to make zsh take effect. \n"
-                        printf "Because chsh command have updated /etc/passwd for current user.\n"
-                        break;;
-                    [Nn]* )
-                        printf "Run \'%s\' to switch into zsh manually.\n" "chsh -s $(grep zsh /etc/shells | head -n1)"
-                        exit;;
-                    * )
-                        printf "Please answer yes or no.\n";;
-                esac
-            done
+            printf "\nCurrent \$SHELL is: %s.\n" "${SHELL}"
+            # while true; do
+            #     read -ep "Do you wish to run chsh for switching into zsh now? Y/[n]" -i "Y" yn
+            # case $yn in
+            #     [Yy]* )
+                    chsh -s "$(grep zsh /etc/shells | head -n1)"
+                    printf "\nImport!!!\n"
+                    # printf "Logout(use logout command) and start a new login session for \$SHELL change to take effect. \n"
+                    printf "Please re-login to make zsh take effect. \n"
+                    printf "Because chsh command have updated /etc/passwd for current user.\n"
+                        # break;;
+                    # [Nn]* )
+                    #     printf "Run \'%s\' to switch into zsh manually.\n" "chsh -s $(grep zsh /etc/shells | head -n1)"
+                    #     exit;;
+                    # * )
+                    #     printf "Please answer yes or no.\n";;
+                # esac
+            # done
         else
             # todo: make configure files take effect with re-login
             # autoload command in .zprofile will fail, because install_zsh.sh will run by sh instead of zsh
