@@ -16,6 +16,7 @@ alias cat='bat'
 
 # alias python="python3"
 alias vi=nvim
+alias v=vim
 # don't run nvim inside nvim
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     # if [ -x "$(command -v nvr)" ]; then
