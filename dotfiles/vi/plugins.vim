@@ -30,14 +30,16 @@ Plug 'tpope/vim-fugitive'
 " Tagbar: displays a window with a hierarchical list of tags in the current file.
 Plug 'majutsushi/tagbar'
 
+Plug 'voldikss/vim-floaterm'
+
 " Extended session management for Vim, require vmi-misc
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
 " --------------------------------------------------------------------
-"  vim-go need ctrlp.vim
+"  vim-go need ctrlp.vim(:GoDecls)
 " Fuzzy file, buffer, mru, tag, etc finder.
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 
 " Fuzzy Finding: CtrlP –> fzf, because it's asynchronous and fast
 if isdirectory('/usr/local/opt/fzf')
@@ -49,7 +51,7 @@ endif
 
 " Use your favorite grep tool (ag, ack, git grep, ripgrep, pt, sift, findstr, grep) to start an 'asynchronous' search.
 " All matches will be put in a quickfix or location list.
-Plug 'mhinz/vim-grepper'
+" Plug 'mhinz/vim-grepper'
 " lazy loading, but grepper convenience command will be disable.
 " Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 
@@ -107,7 +109,11 @@ endfunction
 " Todo: install(update and build automaticlly) YouCompleteMe like vimpro
 " A code-completion engine for Vim
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-
+" try LanguageClient-neovim over ycm later. https://github.com/autozimu/LanguageClient-neovim
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 if has('nvim-0.1') || v:version >= 704
   " The ultimate snippet solution for Vim
   " Snippet engines
@@ -129,7 +135,7 @@ Plug 'benmills/vimux'
 " Plug 'vimcn/vimcdoc'
 " Simplified and community-driven man pages
 Plug 'wlemuel/vim-tldr'
-
+" Plug 'liuchengxu/vim-which-key'
 "*****************************************************************************
 "" Custom Language bundles
 "*****************************************************************************
@@ -151,7 +157,7 @@ Plug 'airblade/vim-rooter', { 'for': [ 'java', 'groovy' ] }
 
 "" ------------Html/css/Javascript Bundle ----------------------------------
 Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript','typescript']}
-Plug 'gorodinskiy/vim-coloresque'
+Plug 'gorodinskiy/vim-coloresque', {'for': ['html', 'css', 'less','sass']}
 Plug 'tpope/vim-haml', {'for': ['haml', 'sass', 'scss']}
 
 " --------------Markdown----------------------------------------------

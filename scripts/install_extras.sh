@@ -28,8 +28,13 @@ printf "install 3d-party packages for ruby ...\n"
 
 # install node.js 3d party packages
 printf "install nodejs 3d-party packages ...\n"
-# A collection of simplified and community-driven man pages.
-npm install -g tldr
+# git commit message guidelines:
+# https://github.com/commitizen/cz-cli
+# https://gist.github.com/abravalheri/34aeb7b18d61392251a2
+npm install -g neovim
+npm install -g commitizen cz-conventional-changelog
+# Generate changelogs and release notes. https://github.com/conventional-changelog/conventional-changelog
+npm install -g conventional-changelog
 
 npm install -g typescript
 npm install -g create-react-app

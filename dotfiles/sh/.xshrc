@@ -13,6 +13,8 @@ alias cl="clear"
 alias h="history"
 alias k="kill -9"
 alias cat='bat'
+alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+alias ping='prettyping --nolegend'
 
 # alias python="python3"
 alias vi=nvim

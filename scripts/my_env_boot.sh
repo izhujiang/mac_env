@@ -183,6 +183,7 @@ postInstall(){
 
     # echo ${PY_PACKS_LOC}
     printf "export PY_PACKS_LOC=%s\n" "${PY_PACKS_LOC}" >> "${HOME}/.env"
+    echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
 
     # 3. clean up
     printf "Cleaning up-------------------------------------\n"
