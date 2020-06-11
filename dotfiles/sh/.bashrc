@@ -5,7 +5,8 @@
 export CLICOLOR=1
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
-set - vi
+# vim-mode for shell
+set -o vi
 # enable globbing
 set +o noglob
 # enable **/* to recurses all the directories

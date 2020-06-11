@@ -21,23 +21,15 @@ let $VI_CFG_DIR = expand('~/.config/nvim')
 " *****************************************************************************
 " Vim-PLug core
 " ****************************************************************************
-
-" Todo: Fixing bug with pyenv plz: ~/.pyenv/shims/python
-" if(has("mac") || has("macunix"))
-    " if filereadable(expand("~/.pyenv/shims/python3"))
-    "     echo 'using python3: ~/.pyenv/shims/python3'
-        " let g:python2_host_prog = '~/.pyenv/shims/python'
-        " let g:python3_host_prog =  '~/.pyenv/shims/python3'
-    " else
-        " let g:python2_host_prog = '/usr/local/bin/python'
-        " let g:python3_host_prog = '/usr/local/bin/python3'
-    " endif
-" elseif(has("unix"))
-    " let g:python2_host_prog = '/usr/bin/python'
-    " let g:python3_host_prog = '/usr/bin/python3'
-" else
-    " echo 'setting up python_host_prog plz'
-" endif
+if has('nvim')
+    let python3_exe = expand($HOMEBREW .. '/bin/python3')
+    if filereadable(python3_exe)
+      let g:loaded_python_provider = 0
+      " Command to start Python3. Setting this makes startup faster.
+      " Useful for working with virtualenvs. Must be set before any check for has("python3").
+      let g:python3_host_prog = python3_exe
+    endif
+endif
 
 if !filereadable(vimplug_exists)
   if !executable('curl')

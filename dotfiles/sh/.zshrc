@@ -96,7 +96,6 @@ test -e ${ZSH}/oh-my-zsh.sh && . ${ZSH}/oh-my-zsh.sh
 unset PAGER
 unset LESS
 
-set -o vi
 bindkey -v
 
 autoload -U edit-command-line

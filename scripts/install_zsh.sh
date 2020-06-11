@@ -72,7 +72,7 @@ configBashZsh () {
     # cd ${HOME}
     printf "\nConfuging sh(bash, zsh) profiles ...\n"
     CURRENTDATE=$(date +"%Y-%m-%d-%H%M")
-    for CFG_FILE in .zshenv .xprofile .bash_profile .zprofile .xshrc .bashrc .zshrc .zlogin .bash_logout .zlogout
+    for CFG_FILE in .zshenv .xprofile .bash_profile .zprofile .xshrc .bashrc .zshrc .zlogin .bash_logout .zlogout .inputrc
     do
         if [ -f "${HOME}/${CFG_FILE}" ]; then
             mv "${HOME}/${CFG_FILE}" "${HOME}/${CFG_FILE}.${CURRENTDATE}"
