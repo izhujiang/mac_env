@@ -14,7 +14,7 @@ brew update && brew upgrade
 printf "\nStart installing libs, packages and tools ...\n"
 # brew install binutils gcc cmake curl wget git
 brew install gcc cmake curl wget git tldr
-brew install astyle pcre gd httpie
+brew install astyle pcre gd httpie asciidoc xmlto
 brew install tmux tmuxinator
 
 brew install ripgrep bat fd z broot

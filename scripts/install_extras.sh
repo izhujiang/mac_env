@@ -16,7 +16,8 @@ pip3 install -U mock
 pip3 install -U nose
 pip3 install -U PyHamcrest
 pip3 install -U powerline-status
-pip3 install -U neovim
+pip3 install -U pynvim
+# pip3 install -U neovim
 pip3 install -U neovim-remote
 
 # install gem 3d party packages

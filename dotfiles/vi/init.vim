@@ -14,7 +14,7 @@ else
   let $VI_HOME = expand('~/.vim')
 endif
 " plugin manager
-let vimplug_exists = $VI_HOME .. '/autoload/plug.vim'
+let vimplug_exists = '$VI_HOME/autoload/plug.vim'
 " nvim and vim use the same vimrc file
 let $VI_CFG_DIR = expand('~/.config/nvim')
 
@@ -22,7 +22,7 @@ let $VI_CFG_DIR = expand('~/.config/nvim')
 " Vim-PLug core
 " ****************************************************************************
 if has('nvim')
-    let python3_exe = expand($HOMEBREW .. '/bin/python3')
+    let python3_exe = expand('$HOMEBREW/bin/python3')
     if filereadable(python3_exe)
       let g:loaded_python_provider = 0
       " Command to start Python3. Setting this makes startup faster.
@@ -30,7 +30,7 @@ if has('nvim')
       let g:python3_host_prog = python3_exe
     endif
 
-    let node_exe = expand($HOMEBREW .. '/bin/node')
+    let node_exe = expand('$HOMEBREW/bin/node')
     if filereadable(node_exe)
       " Command to start node.js. Setting this makes startup faster.
       let g:node_host_prog = node_exe
@@ -65,7 +65,7 @@ call plug#begin(expand('$VI_HOME/plugged'))
     source $VI_CFG_DIR/plugins.vim
     ""*****************************************************************************
     "" Include user's extra bundle
-    if filereadable(expand($VI_CFG_DIR .. '/local_bundles.vim'))
+    if filereadable(expand('$VI_CFG_DIR/local_bundles.vim'))
         source $VI_CFG_DIR/local_bundles.vim
     endif
 call plug#end()
@@ -80,6 +80,6 @@ source $VI_CFG_DIR/plugins/misc.vim
 "*****************************************************************************
 "
 "" Include user's local vim config
-if filereadable(expand($VI_CFG_DIR .. '/local.vim'))
+if filereadable(expand('$VI_CFG_DIR/local.vim'))
   source $VI_CFG_DIR/local.vim
 endif

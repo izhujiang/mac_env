@@ -3,21 +3,22 @@ set -u
 
 sudo apt update -y && sudo apt upgrade -y
 
-sudo apt install -y cmake autoconf curl wget zsh git xclip net-tools ack z fzf bat fd-find
-sudo apt install -y libtool libtool-bin libbz2-dev zlib1g-dev libgd-dev libreadline-dev libsqlite3-dev libssl-dev cargo
+sudo apt install -y cmake autoconf curl wget zsh git xclip net-tools ack z fzf bat fd-find spell shellcheck
+
+sudo apt install -y libtool libtool-bin libbz2-dev zlib1g-dev libgd-dev libreadline-dev libsqlite3-dev libssl-dev
+sudo apt install -y libpcre3 libpcre3-dev openssl libssl-dev libcanberra-gtk-module
 
 # To be able to use add-apt-repository, need to install software-properties-common
 sudo apt install -y software-properties-common
-# support vim to enable the built-in autocomplete and spell
-sudo apt install spell
 # ppa:neovim-ppa/stable to your system's Software Sources
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
-
-sudo apt install -y python3 python3-dev python3-pip ruby ruby-html2haml ruby-dev default-jdk golang nodejs npm yarn jq
+# cargo include rustc and rust-gdb
+sudo apt install -y cargo python3 python3-dev python3-pip ruby ruby-html2haml ruby-dev default-jdk golang nodejs npm yarn jq
+# sudo curl https://sh.rustup.rs -sSf -y | sh -s -- -y
 
 # echo "Download Oracle JDK from oracle website and install it to ${HOME}/java like ${HOME}/java/jdk-10, if you prefer oracle jdk instead."
 
@@ -27,7 +28,6 @@ sudo apt install -y python3 python3-dev python3-pip ruby ruby-html2haml ruby-dev
 
 sudo apt install -y tmux autojump astyle
 
-sudo apt install -y libpcre3 libpcre3-dev openssl libssl-dev libcanberra-gtk-module
 echo "You may install nginx from sourcecode instead."
 sudo apt install -y nginx
 

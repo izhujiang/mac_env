@@ -61,6 +61,11 @@ git config --global alias.spush 'push --recurse-submodules=on-demand'
 git config --global alias.supdate 'submodule update --remote --merge'
 
 git config --global merge.conflictstyle diff3
+git config --global diff.tool vimdiff
 git config --global diff.submodule log
+git config --global difftool.prompt false
 
 git config --global rerere.enabled true
+git config --global credential.helper cache
+
+git config --global pull.rebase true
