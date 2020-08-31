@@ -23,7 +23,7 @@ else
 
 	printf "\n\nImport!!!    -------------------- \n"
 	printf "Ensure adding ssh key to github's projects you host before continuing...\n"
-	read -rp "Once have privilege to access to github, Press [Enter] key to continue ...\n"
+	read -rp "Once have privilege to access to github, Press [Enter] key to continue ..."
 
 fi
 # config git global settings.

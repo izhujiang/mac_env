@@ -8,15 +8,14 @@ set nocompatible               " Be iMproved
 " let vimplug_exists
 if has('nvim')
   let g:vim_bootstrap_editor = 'nvim'
-  let $VI_HOME = expand('~/.config/nvim')
+  let $VI_CFG_DIR = expand('~/.config/nvim')
 else
   let g:vim_bootstrap_editor = "vim"
-  let $VI_HOME = expand('~/.vim')
+  let $VI_CFG_DIR = expand('~/.vim')
 endif
 " plugin manager
-let vimplug_exists = '$VI_HOME/autoload/plug.vim'
+let vimplug_exists = expand('$VI_CFG_DIR/autoload/plug.vim')
 " nvim and vim use the same vimrc file
-let $VI_CFG_DIR = expand('~/.config/nvim')
 
 " *****************************************************************************
 " Vim-PLug core
@@ -41,6 +40,7 @@ if has('nvim')
     " TODO: Clipboard integration 			      *provider-clipboard* *clipboard*
 endif
 
+echo vimplug_exists
 if !filereadable(vimplug_exists)
   if !executable('curl')
     echoerr 'You have to install curl or first install vim-plug yourself!'
@@ -49,7 +49,7 @@ if !filereadable(vimplug_exists)
 
   echo "Installing Vim-Plug...\n"
 
-  silent !\curl -fLo ${VI_HOME}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !\curl -fLo ${VI_CFG_DIR}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   let g:not_finish_vimplug = 'yes'
 
   autocmd VimEnter * PlugInstall
@@ -59,7 +59,7 @@ endif
 " Enable matchit plugin shiped with vim
 runtime macros/matchit.vim
 
-call plug#begin(expand('$VI_HOME/plugged'))
+call plug#begin(expand('$VI_CFG_DIR/plugged'))
     " execute 'source' vi_cfg_root .. '/plugins.vim'
     " or
     source $VI_CFG_DIR/plugins.vim
