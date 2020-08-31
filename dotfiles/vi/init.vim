@@ -8,13 +8,15 @@ set nocompatible               " Be iMproved
 " let vimplug_exists
 if has('nvim')
   let g:vim_bootstrap_editor = 'nvim'
-  let $VI_CFG_DIR = expand('~/.config/nvim')
+  let $VI_HOME = expand('~/.config/nvim')
 else
   let g:vim_bootstrap_editor = "vim"
-  let $VI_CFG_DIR = expand('~/.vim')
+  let $VI_HOME = expand('~/.vim')
 endif
+
+  let $VI_CFG_DIR = expand('~/.config/nvim')
 " plugin manager
-let vimplug_exists = expand('$VI_CFG_DIR/autoload/plug.vim')
+let vimplug_exists = expand('$VI_HOME/autoload/plug.vim')
 " nvim and vim use the same vimrc file
 
 " *****************************************************************************
@@ -49,7 +51,7 @@ if !filereadable(vimplug_exists)
 
   echo "Installing Vim-Plug...\n"
 
-  silent !\curl -fLo ${VI_CFG_DIR}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !\curl -fLo ${VI_HOME}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   let g:not_finish_vimplug = 'yes'
 
   autocmd VimEnter * PlugInstall
@@ -80,6 +82,6 @@ source $VI_CFG_DIR/plugins/misc.vim
 "*****************************************************************************
 "
 "" Include user's local vim config
-if filereadable(expand('$VI_CFG_DIR/local.vim'))
+if filereadable(expand('$VI_HOME/local.vim'))
   source $VI_CFG_DIR/local.vim
 endif
