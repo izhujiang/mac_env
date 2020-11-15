@@ -45,10 +45,10 @@ if [ "${SYSOS}" = "Linux" ] ; then
 
     brew install xclip
 elif [ "${SYSOS}" = "Darwin" ] ; then
-    brew cask install iterm2
     # reattach-to-user-namespace support copy and pasty
     brew install autojump reattach-to-user-namespace
     brew install rust
+    brew install gnupg
 else
     printf "autojump rust and reattach-to-user-namespace ...  not installed on %s ...\n" "${SYSOS}"
 fi
@@ -65,9 +65,13 @@ brew install neovim
 
 brew instal jq
 
-# install vscode
+
+# install platform-specific tools
 if [ "${SYSOS}" = "Darwin" ] ; then
+    brew cask install iterm2
+    brew cask install google-chrome
     brew cask install visual-studio-code
+
     # install other useful tools
     # brew cask install alfred
     # brew install springboot
