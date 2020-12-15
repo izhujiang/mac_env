@@ -29,6 +29,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border'
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
 # Use ~~ as the trigger sequence instead of the default **
 # export FZF_COMPLETION_TRIGGER='~~'
@@ -41,8 +42,7 @@ export FZF_COMPLETION_OPTS='-x'
 # golang
 # export GOROOT=$HOME/repo/golang/go
 export GOPATH=${HOME}/workspace/go
-export PATH=${PATH}:$(go env GOPATH)/bin
-
+export PATH=${PATH}:${GOPATH}/bin
 # rust
 [ -d "${HOME}/.cargo" ] && export PATH="${PATH}:${HOME}/.cargo/bin"
 

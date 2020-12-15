@@ -432,7 +432,6 @@ nnoremap <leader>bl :blast<cr>
 
 " Close the current buffer (w/o closing the currentwindow)
 nnoremap <leader>bd :bdelete<cr>
-nnoremap <leader>q :bdelete<cr>
 " Close all the buffers
 nnoremap <leader>bda :1,1000 bd!<cr>
 
@@ -443,6 +442,7 @@ set splitright
 
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
+noremap <Leader>q :quit<CR>
 
 nnoremap <leader>wh <c-w>h
 nnoremap <leader>wj <c-w>j
