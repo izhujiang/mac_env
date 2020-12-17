@@ -49,3 +49,14 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 # post-installation steps for linux
 sudo usermod -aG docker "$USER"
 newgrp docker
+
+# post-installation
+mkdir ~/.local/bin
+ln -s /usr/bin/batcat "${HOME}/.local/bin/bat"
+ln -s /usr/bin/fdfind "${HOME}/.local/bin/fd"
+
+# enable fzf keybindings and fuzzy auto-completion for zsh and bash
+echo "source /usr/share/doc/fzf/examples/key-bindings.zsh" >> "${HOME}/.local/scripts/.zshrc.local"
+echo "source /usr/share/doc/fzf/examples/completion.zsh" >> "${HOME}/.local/scripts/.zshrc.local"
+echo "source /usr/share/doc/fzf/examples/key-bindings.zsh" >> "${HOME}/.local/scripts/.bashrc.local"
+echo "source /usr/share/doc/fzf/examples/completion.zsh" >> "${HOME}/.local/scripts/.bashrc.local"
