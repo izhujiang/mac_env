@@ -32,7 +32,6 @@ sudo apt install -y tmux autojump astyle
 echo "You may install nginx from sourcecode instead."
 sudo apt install -y nginx
 
-sudo apt install -y powerline fonts-powerline
 sudo apt install -y vim neovim
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
