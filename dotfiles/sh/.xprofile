@@ -42,6 +42,7 @@ export FZF_COMPLETION_OPTS='-x'
 # golang
 # export GOROOT=$HOME/repo/golang/go
 export GOPATH=${HOME}/workspace/go
+export GO111MODULE=on
 export PATH=${PATH}:${GOPATH}/bin
 # rust
 [ -d "${HOME}/.cargo" ] && export PATH="${PATH}:${HOME}/.cargo/bin"

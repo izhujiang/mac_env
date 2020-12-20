@@ -15,7 +15,12 @@ checkPrerequisites(){
     # checking git, and install it if not available
     # checkAndInstallGit || return 1
 
-    installHomebrew || return 1
+    if [ "${DISTRO}" = "Ubuntu" ]; then
+        printf "HOMEBREW does not support on %s \n." "$(uname -a)"
+        printf "just for walking around temporarily ... \n."
+    else
+        installHomebrew || return 1
+    fi
 }
 
 installHomebrew(){
@@ -62,9 +67,9 @@ checkAndInstallEssentialPackages(){
             if [ -x /usr/bin/apt ] || [ -x /bin/apt ]; then
                 printf "checking build-essential, git ...\n"
                 apt list --installed build-essential | grep build-essential > /dev/null || (printf "installing build-essential ...\n";
-                    sudo apt install build-essential)|| (printf "\nFailed to install build-essential package ... \n "; return 1)
+                    sudo apt install -y build-essential)|| (printf "\nFailed to install build-essential package ... \n "; return 1)
                 apt list --installed git | grep git > /dev/null || (printf "installing git ...\n";
-                    sudo apt install git)|| (printf "\nFailed to install git. \n "; return 1)
+                    sudo apt install -y git)|| (printf "\nFailed to install git. \n "; return 1)
                 # apt list --installed file | grep file || (printf "installing file ...\n";
                     # sudo apt install file)|| (printf "\nFailed to install file. \n "; return 1)
                 # apt list --installed curl | grep curl || (printf "installing curl ...\n";,
@@ -145,9 +150,18 @@ install(){
     # 1. install all libs, packages and tools
     # call:
     printf "install essential packages ...\n"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_packs.sh)"
+
+    if [ "${DISTRO}" = "Ubuntu" ]; then
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_packs_ubuntu.sh)"
+        # ./install_packs_ubuntu.sh
+    else
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_packs.sh)"
+    fi
+
     printf "install extras packages ...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_extras.sh)"
+    # ./install_extras.sh
+
     printf "setup and config git ...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_github.sh)"
 
@@ -159,8 +173,10 @@ install(){
     # addtional config for setup my ide
     printf "install tmux ...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_tmux.sh)"
+
     printf "install IDE ...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_ide.sh)"
+    # ./install_ide.sh
 }
 
 installZsh(){

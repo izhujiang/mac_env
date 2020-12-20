@@ -23,8 +23,6 @@ brew install ripgrep bat fd z broot
 # An interactive Unix filter for command-line that can be used with any list: files, command history, processes, hostnames, bookmarks, git commits, etc.
 brew install fzf diff-so-fancy
 brew install ncdu prettyping htop
-# To install useful key bindings and fuzzy completion:
-"$(brew --prefix)/opt/fzf/install" --all
 
 # ycmd has builtin llvm/clangd
 # brew install llvm
@@ -35,6 +33,11 @@ brew install python3 pyenv pipenv
 # env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.8.2
 # pyenv global 3.8.2
 brew install go
+
+# install nginx, or install nginx manually from sourcecode, and fix --with-http_ssl_module bug referring to https://www.widlabs.com/article/mac-os-x-nginx-compile-symbol-not-found-for-architecture-x86_64
+brew install luarocks nginx
+
+brew instal jq shellcheck
 
 if [ "${SYSOS}" = "Linux" ] ; then
     # install rust
@@ -49,21 +52,12 @@ elif [ "${SYSOS}" = "Darwin" ] ; then
     brew install autojump reattach-to-user-namespace
     brew install rust
     brew install gnupg
+
+    # To install useful key bindings and fuzzy completion:
+    "$(brew --prefix)/opt/fzf/install" --all
 else
     printf "autojump rust and reattach-to-user-namespace ...  not installed on %s ...\n" "${SYSOS}"
 fi
-
-
-# install nginx, or install nginx manually from sourcecode, and fix --with-http_ssl_module bug referring to https://www.widlabs.com/article/mac-os-x-nginx-compile-symbol-not-found-for-architecture-x86_64
-brew install luarocks nginx
-# install vim with python3 support
-# brew install vim --enable-pythoninterp=dynamic --enable-python3interp=dynamic
-# YouCompleteMe provides more semantic IDE-like features (displaying signature help and documentation) with vim only, wait for new version
-brew install vim
-# maybe better choice for nvim
-brew install neovim
-
-brew instal jq
 
 
 # install platform-specific tools

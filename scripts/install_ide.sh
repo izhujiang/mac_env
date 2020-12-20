@@ -5,6 +5,21 @@ set -u
 printf "install my dev env ...\n"
 printf "Install plugins for vim/nvim......\n"
 
+
+# temporarily walk around building m1 on ubuntu 20.04
+if [ "${SYSOS}" = "Linux" ] ; then
+    if grep -Eq "Ubuntu" /etc/issue || grep -Eq "Ubuntu" /etc/*-release; then
+        sudo apt install -y vim neovim
+    fi
+else
+    brew install vim
+    # maybe better choice for nvim
+    brew install neovim
+    # install vim with python3 support
+    # brew install vim --enable-pythoninterp=dynamic --enable-python3interp=dynamic
+    # YouCompleteMe provides more semantic IDE-like features (displaying signature help and documentation) with vim only, wait for new version
+fi
+
 for VI_HOME in ${HOME}/.vim ${HOME}/.config/nvim
 do
     for CFG_FILE in init.vim general.vim plugins.vim plugins/ui.vim plugins/explorer.vim plugins/coding.vim plugins/langs.vim plugins/misc.vim

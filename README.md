@@ -13,11 +13,11 @@ Note that this will not work if Zsh is not in your authorized shells list (/etc/
   `timedatectl status`<br>
   The timedatectl command is a new utility for RHEL/CentOS 7 and Fedora 21+ based distributions, a replacement for old traditional date command. similar commands on other systems.
 + build-essential package
-  * For Ubuntu:
+  * For Ubuntu:<br>
       sudo apt update <br>
       sudo apt install build-essential openssh-server <br>
       sudo systemctl status ssh <br>
-  * For ArchLinux:
+  * For ArchLinux:<br>
         pacman -S base-devel <br>
 + git,curl,file
 + Zsh(v4.3.9+), optional.

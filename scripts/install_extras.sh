@@ -2,8 +2,6 @@
 set -u
 
 # Install 3d-party packages for Python, Node.js, Ruby, Zsh and vim/nvim.
-printf "install 3d-party packages for bash...... \n"
-brew install shellcheck
 
 # install python 3rd party packages
 printf "install 3d-party packages for python...... \n"
@@ -29,6 +27,8 @@ printf "install 3d-party packages for ruby ...\n"
 
 # install node.js 3d party packages
 printf "install nodejs 3d-party packages ...\n"
+printf "change npm global repository where node_modules stored ...\n"
+npm config set prefix .local
 # git commit message guidelines:
 # https://github.com/commitizen/cz-cli
 # https://gist.github.com/abravalheri/34aeb7b18d61392251a2
@@ -67,38 +67,40 @@ npm install -g lighthouse
 
 printf "install go tools packages ...\n"
 export GOPATH=$HOME/workspace/go
-printf "install tools to GOPATH(%s) for golang ...\n" "${GOPATH}"
-go get -u golang.org/x/lint/golint
-go get -u golang.org/x/tools/cmd/godoc
-go get -u golang.org/x/tools/cmd/goimports
-go get -u golang.org/x/tools/cmd/gorename
-go get -u golang.org/x/tools/cmd/guru
-go get -u golang.org/x/blog
+# fix issure: cannot use path@version syntax in GOPATH mode
+export GO111MODULE=on
 
-go get -u github.com/acroca/go-symbols
-# go get -u github.com/alecthomas/gometalinter
-# gometalinter --install
+printf "install tools to GOPATH(%s) for golang ...\n" "${GOPATH}"
+go get golang.org/x/lint/golint
+go get golang.org/x/tools/cmd/godoc
+go get golang.org/x/tools/cmd/goimports
+go get golang.org/x/tools/cmd/gorename
+go get golang.org/x/tools/cmd/guru
+go get golang.org/x/blog
+
+go get github.com/acroca/go-symbols
 # using golangci-lint instead of gemetalinter
-# go get -u golangci/golangci-lint
-brew install golangci-lint
-go get -u github.com/cweill/gotests
-go get -u github.com/davidrjenni/reftools/cmd/fillstruct
-go get -u github.com/go-delve/delve/cmd/dlv
-go get -u github.com/fatih/gomodifytags
+# go get -u github.com/alecthomas/gometalinter
+# go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.33.0
+go get github.com/golangci/golangci-lint/cmd/golangci-lint    # no -u
+go get github.com/cweill/gotests
+go get github.com/davidrjenni/reftools/cmd/fillstruct
+go get github.com/go-delve/delve/cmd/dlv
+go get github.com/fatih/gomodifytags
 # go get -u github.com/gobuffalo/buffalo/buffalo
-go get -u github.com/haya14busa/goplay/cmd/goplay
-go get -u github.com/josharian/impl
-go get -u github.com/kisielk/errcheck
-go get -u github.com/mdempsky/gocode
-go get -u github.com/nsf/gocode
-go get -u github.com/ramya-rao-a/go-outline
-go get -u github.com/rogpeppe/godef
-go get -u github.com/sqs/goreturns
-go get -u github.com/tpng/gopkgs
-go get -u github.com/uudashr/gopkgs/cmd/gopkgs
-go get -u github.com/zmb3/goaddimport
-go get -u github.com/zmb3/gogetdoc
-go get -u sourcegraph.com/sqs/goreturns
+go get github.com/haya14busa/goplay/cmd/goplay
+go get github.com/josharian/impl
+go get github.com/kisielk/errcheck
+go get github.com/mdempsky/gocode
+go get github.com/nsf/gocode
+go get github.com/ramya-rao-a/go-outline
+go get github.com/rogpeppe/godef
+go get github.com/sqs/goreturns
+go get github.com/tpng/gopkgs
+go get github.com/uudashr/gopkgs/cmd/gopkgs
+go get github.com/zmb3/goaddimport
+go get github.com/zmb3/gogetdoc
+go get sourcegraph.com/sqs/goreturns
 
 installVscodePlugins () {
     command -v code > /dev/null 2>&1 || return 1
