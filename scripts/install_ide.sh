@@ -7,6 +7,7 @@ printf "Install plugins for vim/nvim......\n"
 
 
 # temporarily walk around building m1 on ubuntu 20.04
+SYSOS=$(uname -s)
 if [ "${SYSOS}" = "Linux" ] ; then
     if grep -Eq "Ubuntu" /etc/issue || grep -Eq "Ubuntu" /etc/*-release; then
         sudo apt install -y vim neovim
