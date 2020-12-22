@@ -20,6 +20,10 @@ export XML_CATALOG_FILES=${HOMEBREW_PREFIX}/etc/xml/catalog
 # opt out of Homebrew’s analytics
 export HOMEBREW_NO_ANALYTICS=1
 
+# addtional path
+# ${HOME}/.local/bin for store local commands, programs and scripts, which maybe run in vim/nvim via "[!!/!}/!G]cmd"
+export PATH=${HOME}/.local/bin:${PATH}
+
 export EDITOR=vi
 export VISUAL=vi
 
@@ -37,21 +41,17 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # export FZF_COMPLETION_OPTS='+c -x'
 export FZF_COMPLETION_OPTS='-x'
 
-# 3. ide-level env and tools
 
+# 3. ide-level env and tools
 # golang
 # export GOROOT=$HOME/repo/golang/go
 export GOPATH=${HOME}/workspace/go
 export GO111MODULE=on
-export PATH=${PATH}:${GOPATH}/bin
+export PATH=${GOPATH}/bin:${PATH}
 # rust
-[ -d "${HOME}/.cargo" ] && export PATH="${PATH}:${HOME}/.cargo/bin"
+export PATH="${HOME}/.cargo/bin:${PATH}"
 
 # python
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
-
-# 3. addtional path or other enviroment variables
-# ${HOME}/.local/bin for store local commands, programs and scripts, which maybe run in vim/nvim via "[!!/!}/!G]cmd"
-export PATH=${PATH}:${HOME}/.local/bin

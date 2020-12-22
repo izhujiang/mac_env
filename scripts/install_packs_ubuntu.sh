@@ -23,12 +23,14 @@ sudo apt install -y libtool libtool-bin libbz2-dev zlib1g-dev libgd-dev libreadl
 sudo apt install -y libpcre3 libpcre3-dev openssl libssl-dev libcanberra-gtk-module
 sudo apt install -y tmux autojump astyle
 
-# cargo include rustc and rust-gdb
-sudo apt install -y cargo python3 python3-dev python3-pip ruby ruby-html2haml ruby-dev default-jdk nodejs npm jq
-# sudo curl https://sh.rustup.rs -sSf -y | sh -s -- -y
+# include rustc, cargo and rust-gdb
+curl https://sh.rustup.rs -sSf -y | sh -s -- -y
+
+# shellcheck disable=SC1090
+. "${HOME}/.cargo/env"
 
 sudo apt install -y golang-go
-sudo apt install -y yarn
+sudo apt install -y python3 python3-dev python3-pip ruby ruby-html2haml ruby-dev default-jdk nodejs npm yarn jq
 
 # echo "Download Oracle JDK from oracle website and install it to ${HOME}/java like ${HOME}/java/jdk-10, if you prefer oracle jdk instead."
 # curl -s "https://get.sdkman.io" | bash
