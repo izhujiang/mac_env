@@ -1,31 +1,28 @@
-a replacement for old traditional date command
- Build and config for my workspace and supporting tool, packages, and deveolpment enviroment in macos and linux(ubuntu)
+A replacement for old traditional date command.<br>
+Build and config for my workspace and supporting tool, packages, and deveolpment enviroment in macos and linux(ubuntu)
 
 ## install my_env
 ### Prerequisites
-+ A Unix-like operating system: macOS, Linux, BSD, WSL
-Note that this will not work if Zsh is not in your authorized shells list (/etc/shells) or if you don't have permission to use chsh. If that's the case you'll need to use a different procedure.
-  * Log out and login back again to use your new default shell.
+A Unix-like operating system: macOS, Linux,(BSD, WSL not implemented yet).
+
 + clock set correctly
   * set ntp<br>
   `timedatectl set-ntp true`<br>
   * check datetime status<br>
   `timedatectl status`<br>
   The timedatectl command is a new utility for RHEL/CentOS 7 and Fedora 21+ based distributions, a replacement for old traditional date command. similar commands on other systems.
-+ build-essential package
-  * For Ubuntu:<br>
-      sudo apt update <br>
-      sudo apt install build-essential openssh-server <br>
-      sudo systemctl status ssh <br>
-  * For ArchLinux:<br>
-        pacman -S base-devel <br>
-+ git,curl,file
+  * Log out and login back again to use your new default shell.
+
++ curl
+
 + Zsh(v4.3.9+), optional.
+Note that this will not work if Zsh is not in your authorized shells list (/etc/shells) or if you don't have permission to use chsh. If that's the case you'll need to use a different procedure.
   * check and confirm zsh: zsh --version
   * check the following instructions here: [Installing ZSH](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
   * Make it your default shell: chsh -s $(which zsh)<br>
 
 ### Installation
++ run as sudoer:
 run:<br>
   `curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh | sh | tee log`<br>
 or<br>
@@ -34,6 +31,17 @@ otherwise,<br>
 save and run the my_env_boot.sh script:<br>
   `wget:
 https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh`
+
+<br>
+Notes:<br>
+(1)Provide sudo password at the beginning of the installing process.<br>
+(2)Config git with built-in user(me (:) and mail, coming the changes.<br>
+Trying to figure out how to do it totally automaticlly without any promot using parameters.
+<br>
+
++ run as non-sudoer:
+If you do not yourself have admin privileges, consider asking your admin staff to create a linuxbrew role account for you with home directory /home/linuxbrew [See Homebrew on Linux])(https://docs.brew.sh/Homebrew-on-Linux).
+run:<br>
 
 ### Trouble shooting:
 #### Can't set zsh as default shell
