@@ -87,6 +87,9 @@ checkAndInstallBase(){
                     sudo apt install -y curl)|| (printf "\nFailed to install curl. \n "; return 1)
                 apt list --installed openssh-server | grep openssh-server > /dev/null || (printf "installing openssh-server ...\n";
                     sudo apt install -y openssh-server)|| (printf "\nFailed to install openssh-server. \n "; return 1)
+
+                apt list --installed zsh | grep zsh > /dev/null || (printf "installing zsh...\n";
+                    sudo apt install -y zsh )|| (printf "\nFailed to install zsh. \n "; return 1)
             fi
         elif [ "${DISTRO}" = "Arch" ]; then
             printf "checking base-devel, git ...\n"
@@ -97,6 +100,7 @@ checkAndInstallBase(){
                 pacman -Q curl | grep curl > /dev/null || (printf "installing curl ...\n"; sudo pacman -S curl )|| (printf "\nFailed to install curl. \n "; return 1)
                 pacman -Q file | grep file > /dve/null || (printf "installing file ...\n"; sudo pacman -S file) || (printf "\nFailed to install file. \n "; return 1)
                 pacman -Q openssh-server | grep openssh-server > /dev/null || (printf "installing openssh-server ...\n"; sudo pacman -S openssh-server) || (printf "\nFailed to install openssh-server. \n "; return 1)
+                pacman -Q zsh | grep zsh > /dve/null || (printf "installing zsh ...\n"; sudo pacman -S zsh ) || (printf "\nFailed to install zsh. \n "; return 1)
             fi
         else
             printf "plz install the essential packages, including git,  manually on %s for building and compiling program\n. Run the script again after that.\n" "${DISTRO}"
@@ -153,7 +157,8 @@ postInstall(){
     } > "${HOME}/.env"
 
     # 3. clean up
-    printf "Cleaning up-------------------------------------\n"
+    # walk around zfz installer has no "\n"
+    printf "\nCleaning up-------------------------------------\n"
     [ -x "${HOMEBREW}/bin/brew" ] && "${HOMEBREW}"/bin/brew cleanup
 
     # 4. That's it. Congratulation

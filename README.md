@@ -35,7 +35,8 @@ https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/my_env_boot.sh
 <br>
 Notes:<br>
 (1)Provide sudo password at the beginning of the installing process.<br>
-(2)Config git with built-in user(me (:) and mail, coming the changes.<br>
+(2)Confirm with "y" enable installing linuxbrew into /home/linuxbrew directory.<br>
+(3)Config git with built-in user(me (:) and mail, coming the changes.<br>
 Trying to figure out how to do it totally automaticlly without any promot using parameters.
 <br>
 
