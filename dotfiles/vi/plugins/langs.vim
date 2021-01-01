@@ -196,6 +196,8 @@ augroup event_golang
   " Causes some types of jobs to run inside a new terminal according to |'g:go_term_mode'|. By default it is disabled.
   " Applicable to Neovim and Vim with `terminal` feature only.
   let g:go_term_enabled = 1
+  " Reuse the terminal window when |'g:go_term_enabled'| is set. By default it's disabled.
+  let g:go_term_reuse = 1
   " Closes the terminal after the command run in it exits when the command fails.  By default it is enabled.
   let g:go_term_close_on_exit = 1
 
