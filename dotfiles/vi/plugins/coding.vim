@@ -1,4 +1,4 @@
-"------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " easymotion
 " https://github.com/easymotion/vim-easymotion
 let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
@@ -35,7 +35,7 @@ map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
 map <Leader><Leader>h <Plug>(easymotion-linebackward)
 
-"------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " vim-easy-align
 " https://github.com/junegunn/vim-easy-align
 " don't use ga, which is built-in key for printing code value of the char under the cursor in decimal, hexadecimal and octal.
@@ -44,7 +44,7 @@ xmap gn <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap gn <Plug>(EasyAlign)
 
-"------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " ale for syntax lint
 " https://github.com/w0rp/ale
 let g:ale_lint_on_text_changed = 'never'
@@ -164,7 +164,7 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " TODO: ...
-"------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " augroup Ale_YourGroup
 "     autocmd!
 "     autocmd User ALELintPre    call YourFunction()
@@ -174,7 +174,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 "     autocmd User ALEFixPost    call YourFunction()
 "   augroup END
 
-"------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " UltiSnips
 " YouCompleteMe and UltiSnips compatibility.
 let g:UltiSnipsExpandTrigger = '<Tab>'
@@ -196,7 +196,7 @@ let g:UltiSnipsEditSplit="vertical"
 "       \ $HOME . '/.vim/ultisnips-private'
 "       \ ]
 
-"------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " YouCompleteMe
 " To prevent the execution of malicious code from a file you didn't write, YCM will ask you once per .ycm_extra_conf.py if it is safe to load.
 let g:ycm_confirm_extra_conf = 0
@@ -490,7 +490,7 @@ augroup event_ycm
   autocmd InsertLeave * if pumvisible() != 0|pclose|endif    "close previewwindow when leave from insert mode
 augroup END
 
-"------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " emmet-vim
 " https://github.com/mattn/emmet-vim
 " defautl emmet leader key is <c-y>
@@ -509,7 +509,7 @@ let g:user_emmet_mode='a'    "enable all function in all mode.
 " https://github.com/vim-test/vim-test
 let test#strategy = "dispatch"
 
-"------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " vim-fugitive
 " https://github.com/tpope/vim-fugitive
 if exists("*fugitive#statusline")
@@ -526,3 +526,11 @@ noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
 "" Open current line on GitHub
 nnoremap <Leader>gb :.Gbrowse<CR>
+
+
+" ------------------------------------------------------------------------------
+" vim-gitgutter
+" https://github.com/airblade/vim-gitgutter
+" for both vim and nvim, gitgutter enable preserving (default to override, 10) other signs via g:gitgutter_sign_priority
+" let g:gitgutter_sign_allow_clobber = 0
+let g:gitgutter_sign_priority = 0
