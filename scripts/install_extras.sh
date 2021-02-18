@@ -20,7 +20,8 @@ installPythonPackages(){
     pip3 install -U pynvim
     # pip3 install -U neovim
     pip3 install -U neovim-remote
-
+    # https://pypi.org/project/imgcat/
+    pip3 install -U imgcat
 }
 
 installRubyPackages(){
@@ -84,11 +85,12 @@ installGolangPackages(){
     export GO111MODULE=on
 
     printf "install tools to GOPATH(%s) for golang ...\n" "${GOPATH}"
-    go get golang.org/x/lint/golint
+    go get golang.org/x/tools/gopls
     go get golang.org/x/tools/cmd/godoc
     go get golang.org/x/tools/cmd/goimports
     go get golang.org/x/tools/cmd/gorename
     go get golang.org/x/tools/cmd/guru
+    go get golang.org/x/lint/golint
     go get golang.org/x/blog
 
     go get github.com/acroca/go-symbols
@@ -113,6 +115,8 @@ installGolangPackages(){
     go get github.com/uudashr/gopkgs/cmd/gopkgs
     go get github.com/zmb3/goaddimport
     go get github.com/zmb3/gogetdoc
+    go get github.com/stamblerre/gocode
+
     go get sourcegraph.com/sqs/goreturns
 }
 

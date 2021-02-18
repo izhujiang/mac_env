@@ -17,21 +17,22 @@ checkPrerequisitesAndInstallEssentials(){
     # checking packages for build programmes, and install it if not available
     checkAndInstallBase || return 1
 
-    setupHomebrew || return 1
+    installViaHomebrew || return 1
 
     # temporarily walk around building m1 on ubuntu 20.04
     # if HOMEBREW is not availale
-    if [ "${DISTRO}" = "Ubuntu" ]; then
-        if [ ! -d "${HOMEBREW}/Homebrew" ]; then
-            # 1. install all libs, packages and tools
-            printf "install essential packages ...\n"
-            sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_packs_ubuntu.sh)"
-            # ./install_packs_ubuntu.sh
-        fi
-    fi
+
+    # if [ "${DISTRO}" = "Ubuntu" ]; then
+    #     if [ ! -d "${HOMEBREW}/Homebrew" ]; then
+    #         # 1. install all libs, packages and tools
+    #         printf "install essential packages ...\n"
+    #         sh -c "$(curl -fsSL https://raw.githubusercontent.com/izhujiang/my_env/master/scripts/install_packs_ubuntu.sh)"
+    #         # ./install_packs_ubuntu.sh
+    #     fi
+    # fi
 }
 
-setupHomebrew(){
+installViaHomebrew(){
     #  install homebrew silently
     if [ "${SYSOS}" = "Darwin" ] ; then
         HOMEBREW=/usr/local
@@ -69,6 +70,7 @@ checkAndInstallBase(){
             xcode-select --install
         fi
 
+        # printf "todo: checking zsh git curl \n"
         export HOMEBREW=/usr/local
     elif [ "${SYSOS}" = "Linux" ] ; then
         getLinuxDist
