@@ -41,7 +41,7 @@ installViaHomebrew(){
     elif [ "${SYSOS}" = "Linux" ] ; then
         # enable install linuxbrew silently into HOMEBREW
         printf "The prefix /home/linuxbrew/.linuxbrew was chosen so that users without admin access can ask an admin to create a linuxbrew role account and still benefit from precompiled binaries.\n"
-        printf "If you do not yourself have admin privileges, consider asking your admin staff to create a linuxbrew role account for you with home directory /home/linuxbrew."
+        printf "If you do not yourself have admin privileges, consider asking your admin staff to create a linuxbrew role account for you with home directory /home/linuxbrew.\n"
         HOMEBREW=/home/linuxbrew/.linuxbrew
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 

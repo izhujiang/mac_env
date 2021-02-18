@@ -23,7 +23,7 @@ installPackagesWithBrew(){
     # brew install --cask cmake
 
     # install into ${HOME}/.cargo, for linuxbrew doesn't support rust
-    curl https://sh.rustup.rs -sSf | sh -s -- -yq --no-modify-path
+    curl https://sh.rustup.rs -sSf | sh -s -- -y -q --no-modify-path
     # shellcheck disable=SC1090
     . "${HOME}/.cargo/env"
     brew install go
