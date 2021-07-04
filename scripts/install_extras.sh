@@ -126,6 +126,14 @@ installVscodePlugins () {
     printf "install extension for code ...\n"
     code --install-extension ms-vscode.go
     code --install-extension bmuskalla.vscode-tldr
+    code --install-extension vscodevim.vim
+
+    SYSOS=$(uname -s)
+    if [ "${SYSOS}" = "Darwin" ] ; then
+        # To enable key-repeating, ref https://github.com/VSCodeVim/Vim
+        defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+    fi
+
     printf "todo: install more extensions for vscode.\n"
 }
 

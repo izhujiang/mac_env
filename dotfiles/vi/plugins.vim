@@ -40,15 +40,16 @@ Plug 'xolox/vim-session'
 "  vim-go need ctrlp.vim(:GoDecls)
 " Fuzzy file, buffer, mru, tag, etc finder.
 " Plug 'ctrlpvim/ctrlp.vim'
-
 " Fuzzy Finding: CtrlP –> fzf, because it's asynchronous and fast
 if isdirectory('/usr/local/opt/fzf')
-  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+  Plug '/usr/local/opt/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
+elseif isdirectory('/home/linuxbrew/.linuxbrew/opt/fzf')
+  Plug '/home/linuxbrew/.linuxbrew/opt/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim', { 'do': { -> fzf#install() } }
 else
   " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-  " Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 endif
+Plug 'junegunn/fzf.vim'
 
 " Use your favorite grep tool (ag, ack, git grep, ripgrep, pt, sift, findstr, grep) to start an 'asynchronous' search.
 " All matches will be put in a quickfix or location list.
@@ -58,10 +59,11 @@ endif
 
 Plug 'easymotion/vim-easymotion'
 
-
 " --------------------------------------------------------------------
 " Display the indention levels with thin vertical lines
 Plug 'Yggdroot/indentLine'
+" Key bindings: <count>ai/ii/aI/iI, for c, d, y and v
+Plug 'michaeljsmith/vim-indent-object'
 "A simple, easy-to-use Vim alignment plugin
 Plug 'junegunn/vim-easy-align'
 

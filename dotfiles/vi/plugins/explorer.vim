@@ -45,7 +45,7 @@ nnoremap <leader>tc :!ctags -R --exclude=.git<CR>
 " fzf.vim
 "------------------------------------------------------------------------------
 "" fzf.vim
-" FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+let $FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 " The Silver Searcher
 if executable('ag')
@@ -56,7 +56,8 @@ endif
 " ripgrep
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-  set grepprg=rg\ --vimgrep
+  set grepprg=rg --vimgrep
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 

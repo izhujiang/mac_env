@@ -1,41 +1,94 @@
-" ------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " easymotion
 " https://github.com/easymotion/vim-easymotion
+"
+" let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
+"
 let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 " makes EasyMotion work similarly to Vim's smartcase option for global searches.
 let g:EasyMotion_smartcase = 1
 
-" map \ <Plug>(easymotion-prefix)
+" Type Enter or Space key and jump to first match
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_space_jump_first = 1
+
+" let g:EasyMotion_prompt = '{n}>>> '
+let g:EasyMotion_prompt = 'EasyMotion search for {n} character(s): '
+
+" let g:EasyMotion_inc_highlight = 1
+" let g:EasyMotion_move_highlight = 1
+" let g:EasyMotion_landing_highlight = 0
+"
+" let g:EasyMotion_add_search_history = 1
+" let g:EasyMotion_off_screen_search = 1
+"
+" let g:EasyMotion_verbose = 1
+
+" The default leader key ('<Leader><Leader>') can be changed with the |<Plug>(easymotion-prefix)|
+map \ <Plug>(easymotion-prefix)
+" Set this keymapping to the key sequence to use as the prefix of the mappings
+" described in easymotion-default-mappings as following:
+" The default configuration defines the following mappings in normal, visual
+" and operator-pending mode if |g:EasyMotion_do_mapping| is on:
+"     Default Mapping      | Details
+"     ---------------------|----------------------------------------------
+"     <Leader>f{char}      | Find {char} to the right. See |f|.
+"     <Leader>F{char}      | Find {char} to the left. See |F|.
+"     <Leader>t{char}      | Till before the {char} to the right. See |t|.
+"     <Leader>T{char}      | Till after the {char} to the left. See |T|.
+"     <Leader>w            | Beginning of word forward. See |w|.
+"     <Leader>W            | Beginning of WORD forward. See |W|.
+"     <Leader>b            | Beginning of word backward. See |b|.
+"     <Leader>B            | Beginning of WORD backward. See |B|.
+"     <Leader>e            | End of word forward. See |e|.
+"     <Leader>E            | End of WORD forward. See |E|.
+"     <Leader>ge           | End of word backward. See |ge|.
+"     <Leader>gE           | End of WORD backward. See |gE|.
+"     <Leader>j            | Line downward. See |j|.
+"     <Leader>k            | Line upward. See |k|.
+"     <Leader>n            | Jump to latest '/' or '?' forward. See |n|.
+"     <Leader>N            | Jump to latest '/' or '?' backward. See |N|.
+"     <Leader>s            | Find(Search) {char} forward and backward.
+"                          | See |f| and |F|.
+
 " TODO: need to avaid confix with other plugins
-" easymotion
-map  <Leader><Leader>\ <Plug>(easymotion-bd-f)
-nmap <Leader><Leader>f <Plug>(easymotion-overwin-f)
-" s{char}{char} to move to {char}{char}
-nmap <Leader><Leader>s <Plug>(easymotion-overwin-f2)
-" Move to line
-map <Leader><Leader>l <Plug>(easymotion-bd-jk)
-nmap <Leader><Leader>l <Plug>(easymotion-overwin-line)
+map  <leader><leader>f <Plug>(easymotion-bd-f)
+nmap <leader><leader>f <Plug>(easymotion-overwin-f)
+" " s{char}{char} to move to {char}{char}
+map  <leader><leader>s <Plug>(easymotion-s2)
+" usefull for cz, yz, dz and vz
+omap z <Plug>(easymotion-s2)
 
-" Move to word
-map  <Leader><Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader><Leader>w <Plug>(easymotion-overwin-w)
+nmap <leader><leader>s <Plug>(easymotion-overwin-f2)
+nmap <leader><leader>t <Plug>(easymotion-t2)
 
-" Gif config
+" " Move to line
+map <leader><leader>L <Plug>(easymotion-bd-jk)
+nmap <leader><leader>L <Plug>(easymotion-overwin-line)
+
+" " Move to word
+map  <leader><leader>w <Plug>(easymotion-bd-w)
+nmap <leader><leader>w <Plug>(easymotion-overwin-w)
+
+" " Gif config
 map  <Leader><Leader>/ <Plug>(easymotion-sn)
 omap <Leader><Leader>/ <Plug>(easymotion-tn)
 
 " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
 " Without these mappings, `n` & `N` works fine. (These mappings just provide
 " different highlight method and have some other features )
-" map  n <Plug>(easymotion-next)
-" map  N <Plug>(easymotion-prev)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
 
+" jumpto anywhere (Beginning and End of word, Camelcase, after '_', and after '#'.)
+" in the {left, right, up, down} direction
 map <Leader><Leader>l <Plug>(easymotion-lineforward)
 map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
 map <Leader><Leader>h <Plug>(easymotion-linebackward)
 
-" ------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " vim-easy-align
 " https://github.com/junegunn/vim-easy-align
 " don't use ga, which is built-in key for printing code value of the char under the cursor in decimal, hexadecimal and octal.
@@ -44,7 +97,7 @@ xmap gn <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap gn <Plug>(EasyAlign)
 
-" ------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " ale for syntax lint
 " https://github.com/w0rp/ale
 let g:ale_lint_on_text_changed = 'never'
@@ -94,7 +147,7 @@ let g:ale_linters = {
 " let g:ale_go_gopls_options = '--mode stdio'
 " golangci-lint enabled by default linters: govet,  errcheck, staticcheck, unused, gosimple, structcheck, varcheck, ineffassign, deadcode, typecheck
 "               38 other linters are disabled by default.
-
+let g:ale_go_golangci_lint_options = '-D forbidigo'
     "  need to configure eclipselsp
     " \ 'java': ['checkstyle', 'javac', 'eclipselsp' ],
 let g:ale_fixers = {
@@ -164,7 +217,7 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " TODO: ...
-" ------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " augroup Ale_YourGroup
 "     autocmd!
 "     autocmd User ALELintPre    call YourFunction()
@@ -174,7 +227,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 "     autocmd User ALEFixPost    call YourFunction()
 "   augroup END
 
-" ------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " UltiSnips
 " YouCompleteMe and UltiSnips compatibility.
 let g:UltiSnipsExpandTrigger = '<Tab>'
@@ -196,7 +249,7 @@ let g:UltiSnipsEditSplit="vertical"
 "       \ $HOME . '/.vim/ultisnips-private'
 "       \ ]
 
-" ------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " YouCompleteMe
 " To prevent the execution of malicious code from a file you didn't write, YCM will ask you once per .ycm_extra_conf.py if it is safe to load.
 let g:ycm_confirm_extra_conf = 0
@@ -490,7 +543,7 @@ augroup event_ycm
   autocmd InsertLeave * if pumvisible() != 0|pclose|endif    "close previewwindow when leave from insert mode
 augroup END
 
-" ------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " emmet-vim
 " https://github.com/mattn/emmet-vim
 " defautl emmet leader key is <c-y>
@@ -509,7 +562,7 @@ let g:user_emmet_mode='a'    "enable all function in all mode.
 " https://github.com/vim-test/vim-test
 let test#strategy = "dispatch"
 
-" ------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " vim-fugitive
 " https://github.com/tpope/vim-fugitive
 if exists("*fugitive#statusline")
@@ -526,11 +579,3 @@ noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
 "" Open current line on GitHub
 nnoremap <Leader>gb :.Gbrowse<CR>
-
-
-" ------------------------------------------------------------------------------
-" vim-gitgutter
-" https://github.com/airblade/vim-gitgutter
-" for both vim and nvim, gitgutter enable preserving (default to override, 10) other signs via g:gitgutter_sign_priority
-" let g:gitgutter_sign_allow_clobber = 0
-let g:gitgutter_sign_priority = 0
